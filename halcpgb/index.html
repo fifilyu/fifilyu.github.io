@@ -2630,8 +2630,18 @@ Cluster允许多台MySQL服务器写到同一个Cluster,因此在一些合适的
 </div>
 <div class="sect2">
 <h3 id="_mysql配置文件">8.5. MySQL配置文件</h3>
-<div class="paragraph">
-<p>直接将以下内容复制到终端执行即可生成MySQL配置文件。</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server4.etc.my.cnf">Server4.etc.my.cnf</a> 到Server4，覆盖文件 <code>/etc/my.cnf</code></p>
+</li>
+<li>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.etc.my.cnf">Server5.etc.my.cnf</a> 到Server5的，覆盖文件 <code>/etc/my.cnf</code></p>
+</li>
+<li>
+<p>重启Server4&amp;5的MySQL服务，使配置生效 <code>service mysqld restart</code></p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2656,92 +2666,6 @@ Cluster允许多台MySQL服务器写到同一个Cluster,因此在一些合适的
 </td>
 </tr>
 </table>
-</div>
-<div class="sect3">
-<h4 id="_server4_etc_my_cnf">8.5.1. Server4 /etc/my.cnf</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt;/etc/my.cnf
-[mysqld]
-datadir=/data/mysql
-socket=/var/lib/mysql/mysql.sock
-user=mysql
-# Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
-
-#跳过主机名解析，加快MySQL远程访问速度
-skip-name-resolve
-max_allowed_packet = 100M
-server-id=1
-log_bin=/data2/mysql_binlogs/mysql-bin.log
-
-relay_log=/data2/mysql_binlogs/mysql-relay-bin
-#主-主模式，两个MySQL服务器中，其中一个宕机。当恢复正常时，主-主之间会相互进行同步，可能出现死锁和IO问题。所以，其中一个
-MySQL服务器默认不启动slave服务。
-skip_slave_start
-# 让从服务器记录日志，有助于在必要时把从切换成主。
-log_slave_updates = 1
-
-sync_binlog=1
-innodb_flush_log_at_trx_commit=1
-innodb_support_xa=1
-
-#解决自动增长的列冲突
-auto_increment_increment=2
-auto_increment_offset=1
-
-[mysqld_safe]
-log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid
-EOF</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_server5_etc_my_cnf">8.5.2. Server5 /etc/my.cnf</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt;/etc/my.cnf
-[mysqld]
-datadir=/data/mysql
-socket=/var/lib/mysql/mysql.sock
-user=mysql
-# Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
-
-#跳过主机名解析，加快MySQL远程访问速度
-skip-name-resolve
-max_allowed_packet = 100M
-server-id=2
-log_bin=/data2/mysql_binlogs/mysql-bin.log
-
-relay_log=/data2/mysql_binlogs/mysql-relay-bin
-# 让从服务器记录日志，有助于在必要时把从切换成主。
-log_slave_updates = 1
-
-sync_binlog=1
-innodb_flush_log_at_trx_commit=1
-innodb_support_xa=1
-
-#解决自动增长的列冲突
-auto_increment_increment=2
-auto_increment_offset=1
-
-[mysqld_safe]
-log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid
-EOF</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_重启mysql服务">8.5.3. 重启MySQL服务</h4>
-<div class="paragraph">
-<p>重启MySQL服务，使配置生效</p>
-</div>
-<div class="paragraph">
-<p><code>service mysqld restart</code></p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -3536,214 +3460,15 @@ TCP  192.168.1.200:80 rr
 </div>
 <div class="sect2">
 <h3 id="_keepalived配置文件">9.4. Keepalived配置文件</h3>
-<div class="paragraph">
-<p>直接将以下内容复制到终端执行即可生成Keepalived配置文件。</p>
-</div>
-<div class="sect3">
-<h4 id="_server1_etc_keepalived_keepalived_conf">9.4.1. Server1 /etc/keepalived/keepalived.conf</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt;/etc/keepalived/keepalived.conf
-global_defs {
-   router_id LVS_MASTER
-}
-
-vrrp_instance VI_NGINX {
-    state MASTER
-    interface eth0
-    virtual_router_id 51
-    priority 100
-    advert_int 1
-    authentication {
-        auth_type PASS
-        auth_pass IeabXeekae
-    }
-    virtual_ipaddress {
-        192.168.1.200
-    }
-}
-
-virtual_server 192.168.1.200 80 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind DR
-    nat_mask 255.255.255.0
-    !会话保持，同一个IP 50秒内分配到同一个真实服务器。默认是不启用。
-    !persistence_timeout 50
-    protocol TCP
-
-    real_server 10.10.10.201 80 {
-        weight 1
-
-        HTTP_GET {
-            url {
-                path /index.html
-                status_code 200
-            }
-
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-
-    real_server 10.10.10.202 80 {
-        weight 1
-
-        HTTP_GET {
-            url {
-                path /index.html
-                status_code 200
-            }
-
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-}
-
-vrrp_instance VI_MYSQL {
-    state BACKUP
-    interface eth0
-    virtual_router_id 71
-    priority 80
-    advert_int 1
-
-    authentication {
-        auth_type PASS
-        auth_pass Pcdmaime3t
-    }
-
-    virtual_ipaddress {
-        10.10.10.100
-    }
-}
-
-virtual_server 10.10.10.100 3306 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind DR
-    nat_mask 255.255.255.0
-    protocol TCP
-
-    real_server 10.10.10.101 3306 {
-            weight 5
-            notify_down /opt/stop_keepalived.sh
-
-            TCP_CHECK {
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-            }
-    }
-}
-EOF</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_server2_etc_keepalived_keepalived_conf">9.4.2. Server2 /etc/keepalived/keepalived.conf</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt;/etc/keepalived/keepalived.conf
-global_defs {
-   router_id LVS_BACKUP
-}
-
-vrrp_instance VI_NGINX {
-    state BACKUP
-    interface eth0
-    virtual_router_id 51
-    priority 80
-    advert_int 1
-    authentication {
-        auth_type PASS
-        auth_pass IeabXeekae
-    }
-    virtual_ipaddress {
-        192.168.1.200
-    }
-}
-
-virtual_server 192.168.1.200 80 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind DR
-    nat_mask 255.255.255.0
-    !会话保持，同一个IP 50秒内分配到同一个真实服务器。默认是不启用。
-    !persistence_timeout 50
-    protocol TCP
-
-    real_server 10.10.10.201 80 {
-        weight 1
-
-        HTTP_GET {
-            url {
-                path /index.html
-                status_code 200
-            }
-
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-
-    real_server 10.10.10.202 80 {
-        weight 1
-
-        HTTP_GET {
-            url {
-                path /index.html
-                status_code 200
-            }
-
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-}
-
-vrrp_instance VI_MYSQL {
-    state MASTER
-    interface eth0
-    virtual_router_id 71
-    priority 100
-    advert_int 1
-
-    authentication {
-        auth_type PASS
-        auth_pass Pcdmaime3t
-    }
-
-    virtual_ipaddress {
-        10.10.10.100
-    }
-}
-
-virtual_server 10.10.10.100 3306 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind DR
-    nat_mask 255.255.255.0
-    protocol TCP
-
-    real_server 10.10.10.102 3306 {
-            weight 5
-            notify_down /opt/stop_keepalived.sh
-
-            TCP_CHECK {
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-            }
-    }
-}
-EOF</code></pre>
-</div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server1.etc.keepalived.keepalived.conf">Server1.etc.keepalived.keepalived.conf</a> 到Server1，覆盖文件 <code>/etc/keepalived/keepalived.conf</code></p>
+</li>
+<li>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server2.etc.keepalived.keepalived.conf">Server2.etc.keepalived.keepalived.conf</a> 到Server2，覆盖文件 <code>/etc/keepalived/keepalived.conf</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -4658,7 +4383,7 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server3.rsyncd.conf">file/Server3.rsyncd.conf</a> 到Server3的 <code>/etc</code> 目录</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server3.etc.rsyncd.conf">Server3.etc.rsyncd.conf</a> 到Server3的 <code>/etc</code> 目录</p>
 </li>
 </ul>
 </div>
@@ -4687,7 +4412,7 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server7.rsyncd.conf">file/Server7.rsyncd.conf</a> 到Server7的 <code>/etc</code> 目录。</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server7.etc.rsyncd.conf">Server7.etc.rsyncd.conf</a> 到Server7的 <code>/etc</code> 目录。</p>
 </li>
 </ul>
 </div>
@@ -4704,13 +4429,13 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server5.rsyncd.conf">file/Server5.rsyncd.conf</a> 到Server5的 <code>/etc</code> 目录</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.etc.rsyncd.conf">Server5.etc.rsyncd.conf</a> 到Server5的 <code>/etc</code> 目录</p>
 </li>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server5.bak_db_dump.sh">file/Server5.bak_db_dump.sh</a> 到Server5的 <code>/opt</code> 目录</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_dump.sh">Server5.opt.bak_db_dump.sh</a> 到Server5的 <code>/opt</code> 目录</p>
 </li>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server5.bak_db_binlog.sh">file/Server5.bak_db_binlog.sh</a> 到Server5的 <code>/opt</code> 目录</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_binlog.sh">Server5.opt.bak_db_binlog.sh</a> 到Server5的 <code>/opt</code> 目录</p>
 </li>
 </ul>
 </div>
@@ -4734,7 +4459,7 @@ echo "1 2 * * 0 /bin/sh /opt/bak_db_dump.sh" &gt;&gt;/var/spool/cron/root</code>
 <div class="ulist">
 <ul>
 <li>
-<p>复制 <a href="http://fifilyu.github.io/halcpgb/file/Server2.rsync_all_bak.sh">file/Server2.rsync_all_bak.sh</a> 到Server2的 <code>/opt</code> 目录</p>
+<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server2.opt.rsync_all_bak.sh">Server2.opt.rsync_all_bak.sh</a> 到Server2的 <code>/opt</code> 目录</p>
 </li>
 </ul>
 </div>
