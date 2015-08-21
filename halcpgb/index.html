@@ -746,30 +746,30 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_centos">3.1. CentOS</a></li>
 <li><a href="#_iptables">3.2. iptables</a></li>
-<li><a href="#_keepalived">3.3. Keepalived</a></li>
-<li><a href="#_linux_virtual_server">3.4. Linux Virtual Server</a></li>
+<li><a href="#_linux_virtual_server">3.3. Linux Virtual Server</a></li>
+<li><a href="#_keepalived">3.4. Keepalived</a></li>
 <li><a href="#_mysql">3.5. MySQL</a></li>
 <li><a href="#_network_file_system">3.6. Network File System</a></li>
 <li><a href="#_nginx">3.7. Nginx</a></li>
 <li><a href="#_rsync">3.8. Rsync</a></li>
 </ul>
 </li>
-<li><a href="#_服务器与规划">4. 服务器与规划</a>
+<li><a href="#_网络拓扑">4. 网络拓扑</a>
 <ul class="sectlevel2">
-<li><a href="#_服务器及其配件选购">4.1. 服务器及其配件选购</a></li>
-<li><a href="#_网卡连接与网卡_ip映射">4.2. 网卡连接与网卡-IP映射</a></li>
-<li><a href="#_ip地址表">4.3. IP地址表</a></li>
-<li><a href="#_分区规划">4.4. 分区规划</a></li>
+<li><a href="#_总览">4.1. 总览</a></li>
+<li><a href="#_web负载均衡与高可用_lvs_keepalived">4.2. Web负载均衡与高可用(LVS+Keepalived)</a></li>
+<li><a href="#_web文件存储">4.3. Web文件存储</a></li>
+<li><a href="#_db高可用_lvs_keepalived_无负载均衡">4.4. DB高可用(LVS+Keepalived，无负载均衡)</a></li>
+<li><a href="#_db主主复制">4.5. DB主主复制</a></li>
+<li><a href="#_备份">4.6. 备份</a></li>
 </ul>
 </li>
-<li><a href="#_网络拓扑">5. 网络拓扑</a>
+<li><a href="#_服务器与规划">5. 服务器与规划</a>
 <ul class="sectlevel2">
-<li><a href="#_总览">5.1. 总览</a></li>
-<li><a href="#_web负载均衡与高可用_lvs_keepalived">5.2. Web负载均衡与高可用(LVS+Keepalived)</a></li>
-<li><a href="#_web文件存储">5.3. Web文件存储</a></li>
-<li><a href="#_db高可用_lvs_keepalived_无负载均衡">5.4. DB高可用(LVS+Keepalived，无负载均衡)</a></li>
-<li><a href="#_db主主复制">5.5. DB主主复制</a></li>
-<li><a href="#_备份">5.6. 备份</a></li>
+<li><a href="#_服务器及其配件选购">5.1. 服务器及其配件选购</a></li>
+<li><a href="#_网卡连接与网卡_ip映射">5.2. 网卡连接与网卡-IP映射</a></li>
+<li><a href="#_ip地址表">5.3. IP地址表</a></li>
+<li><a href="#_分区规划">5.4. 分区规划</a></li>
 </ul>
 </li>
 <li><a href="#_安装设置centos6">6. 安装设置CentOS6</a>
@@ -845,14 +845,10 @@ p { margin-bottom: 1.25rem; }
 <h2 id="_前言">1. 前言</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>灵活多样、开源、兼容性以及免费等特性成就了 Linux。自然也无可避免存在各种碎片化问题。
-比如，Linux 发行版过多，多个工具能解决同样的问题，知识体系过多对新手不友好。
-一个常见的例子就是： Android 。</p>
+<p>灵活多样、开源、兼容性以及免费等特性成就了Linux。自然也无可避免存在各种碎片化问题。比如，Linux发行版过多，多个工具能解决同样的问题，知识体系过多对新手不太友好。一个常见的例子就是： Android 。</p>
 </div>
 <div class="paragraph">
-<p>当基于 Linux 搭建集群时，理所当然的会面临最严重的问题：知识体系过多导致的碎片化。
-这么多选择，我该怎么办？选什么好呢？怎么搭建？
-诚然，看相关的博客、文章、图书以及文档是好的选择。但是，大多数时候需要的东西都是零散存在的。</p>
+<p>当基于Linux搭建集群时，理所当然的会面临最严重的问题：知识体系过多导致的碎片化。这么多选择，我该怎么办？选什么好呢？怎么搭建？诚然，看相关的博客、文章、图书以及文档是好的选择。但是，大多数时候需要的东西都是零散存在的。</p>
 </div>
 <div class="paragraph">
 <p>所以，提供一个容易搭建、经过实践、可用并且成体系的集群解决方案是编写本书的目的。</p>
@@ -863,8 +859,7 @@ p { margin-bottom: 1.25rem; }
 <h2 id="_本书的读者">2. 本书的读者</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本书可以作为搭建 Web 服务集群的一本入门指南或教程。它主要是为新手而设计,不过对于有经验
-的运维(System Administrator，简称SA)来说,它同样有用。</p>
+<p>本书可以作为搭建Web服务集群的一本入门指南或教程。它主要是为新手而设计,不过对于有经验的运维(System Administrator，简称SA)来说,它同样有用。</p>
 </div>
 <div class="paragraph">
 <p>本书假设读者具有初步的 Linux 使用经验。了解 Linux 的基本工作原理，熟悉常用 Shell 命令。</p>
@@ -875,7 +870,7 @@ p { margin-bottom: 1.25rem; }
 <h2 id="_起步">3. 起步</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>我们从介绍 Web 集群相关的一些背景知识开始。
+<p>我们从介绍Web集群相关的一些背景知识开始。
 通过本章的学习，您应该了解各个部分在集群中发挥的作用。</p>
 </div>
 <div class="sect2">
@@ -896,7 +891,11 @@ p { margin-bottom: 1.25rem; }
 <div class="title">Figure 2: CentOS 7 桌面</div>
 </div>
 <div class="paragraph">
-<p><a href="https://www.centos.org">CentOS</a> 是一个由社区支持的发行版本，它是由 Red Hat 公开的 Red Hat 企业级 Linux（RHEL）源代码所衍生出来的。因此，CentOS Linux 以兼容 RHEL 的功能为目标。CentOS 计划对组件的修改主要是去除上游提供者的商标及美工图。CentOS 是免费的及可自由派发的。每个 CentOS 版本均获得长达十年的维护（通过安全更新 —— 支持期的长短取决于 Red Hat 发行的源代码的更改）。新版本的 CentOS 大约每两年发行一次，而每个版本的 CentOS 更会定期（大概每六个月）更新一次，以便支持新的硬件。这最终构建了一个安全的、低维护的、稳定的、高预测性的、高重复性的 Linux 环境。</p>
+<p><a href="https://www.centos.org">CentOS</a> 是一个由社区支持的发行版本，它是由Red Hat公开的Red Hat Enterprise Linux（RHEL）源代码所衍
+生出来的。因此，CentOS Linux以兼容 RHEL的功能为目标。CentOS计划对组件的修改主要是去除上游提供者的商标及美工图。CentOS是
+免费的及可自由派发的。每个CentOS版本均获得长达十年的维护（通过安全更新 —— 支持期的长短取决于Red Hat发行的源代码的更改）。
+新版本的CentOS大约每两年发行一次，而每个版本的CentOS更会定期（大概每六个月）更新一次，以便支持新的硬件。这最终构建了一个
+安全的、低维护的、稳定的、高预测性的、高重复性的Linux环境。</p>
 </div>
 <div class="sect3">
 <h4 id="_版本">3.1.1. 版本</h4>
@@ -904,40 +903,40 @@ p { margin-bottom: 1.25rem; }
 <dl>
 <dt class="hdlist1">CentOS 7</dt>
 <dd>
-<p>最新版本，相对于其它版本变动较大，目前使用较少。估计 2016 年到 2017 年会成为大多数新服务器的首选。</p>
+<p>最新版本，相对于其它版本变动较大，目前使用较少。估计2016年到2017年会成为大多数新服务器的首选</p>
 </dd>
 <dt class="hdlist1">CentOS 6</dt>
 <dd>
-<p>较新并且成熟的版本，目前大多数新服务器使用的版本。本书也将使用CentOS6做演示。</p>
+<p>较新并且成熟的版本，目前大多数新服务器使用的版本。本书也将使用CentOS6做演示</p>
 </dd>
 <dt class="hdlist1">CentOS 5</dt>
 <dd>
-<p>老旧维护版本，仅仅会bugfix。不会增加任何新特性或者功能。</p>
+<p>老旧维护版本，仅仅会bugfix。不会增加任何新特性或者功能</p>
 </dd>
 </dl>
 </div>
 <div class="sect4">
 <h5 id="_选择">选择</h5>
 <div class="paragraph">
-<p><strong><span class="red">在整个 Linux 生态链中，有一些共识</span></strong>。</p>
+<p><strong><span class="red">在整个Linux生态链中，有一些共识</span></strong>。</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">开发者</dt>
 <dd>
-<p>维护一个稳定版本、开发一个新版本。</p>
+<p>维护一个稳定版本、开发一个新版本</p>
 </dd>
 <dt class="hdlist1">使用者</dt>
 <dd>
-<p>老旧服务器保持所有组件大版本不变，仅仅需要打补丁即可。<br>
-新服务器使用当前较新并且稳定的版本，会刻意避免使用最新的版本。</p>
+<p>老旧服务器保持所有组件大版本不变，仅仅需要打补丁即可<br>
+新服务器使用当前较新并且稳定的版本，会刻意避免使用最新的版本</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
 <p>最新版本对上线的生产服务器来说，相对不够稳定，服务器开发或维护人员对新版本的认识和使用经验还不足。通俗来讲，新版本是一个
-“填坑”的过程。当使用的数量足够大并且时间足够长新版会暴露一些问题，从而得到修复。所以，对我们来说，7.0 时只是一个开始。
-我们会大批量使用在生产服务器时应该是 7.1+ 或 7.2+ 。</p>
+“填坑”的过程。当使用的数量足够大并且时间足够长新版会暴露一些问题，从而得到修复。所以，对我们来说，7.0时只是一个开始。
+我们会大批量使用在生产服务器时应该是7.1+或7.2+ 。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -960,39 +959,11 @@ p { margin-bottom: 1.25rem; }
 <p>集群中的作用：<strong><span class="red">防火墙</span></strong></p>
 </div>
 <div class="paragraph">
-<p><a href="http://www.netfilter.org/projects/iptables">iptables</a> 是一个用户空间命令行程序，用以配置 Linux 2.4 及其以上内核包过滤规则集，类似于 Windows 系统的防火墙。</p>
+<p><a href="http://www.netfilter.org/projects/iptables">iptables</a> 是一个用户空间命令行程序，用以配置Linux 2.4及其以上版本内核包过滤规则集，类似于Windows系统的防火墙。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_keepalived">3.3. Keepalived</h3>
-<div class="paragraph">
-<p>集群中的作用：<strong><span class="red">负载均衡和高可用</span></strong></p>
-</div>
-<div class="paragraph">
-<p><a href="http://www.keepalived.org">Keepalived</a> 是一个用 C 编写的路由软件。项目的主要目标是基于 Linux 系统提供简单稳定的负载均衡和高可用性基础设施。负载均衡框架依赖于鼎鼎大名的 Linux 虚拟服务器 (IPVS) 内核模块提供 Layer4 负载均衡。Keepalived 实现了一套校验器，能够根据健康状态自动管理维护负载均衡服务协议。另一方面，高可用性依靠 VRRP 协议实现。</p>
-</div>
-<div class="paragraph">
-<p>工作原理分别如下：</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="image/keepalived.jpg" alt="Keepalived 工作原理">
-</div>
-</div>
-<div class="paragraph">
-<p>Keepalived 根据配置文件设置负载均衡主服务器和从服务器，分别在主和从上增加 real server 到本机的 LVS 中。</p>
-</div>
-<div class="paragraph">
-<p>主和从服务器：
-每台主从服务器通过 VRRP 协议相互检测对方是否工作正常，如不正常，会做主和从之间的角色切换。</p>
-</div>
-<div class="paragraph">
-<p>real server：
-一般通过端口或HTTP URL返回值检测 real server 是否工作正常，如不正常，则从 LVS 规则中剔除。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_linux_virtual_server">3.4. Linux Virtual Server</h3>
+<h3 id="_linux_virtual_server">3.3. Linux Virtual Server</h3>
 <div class="paragraph">
 <p>集群中的作用：<strong><span class="red">负载均衡和高可用</span></strong></p>
 </div>
@@ -1002,7 +973,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://www.linuxvirtualserver.org">Linux Virtual Server (LVS)</a> 是一个建立在多个 real server 集群之上的高度可扩展且高可用服务器，使负载均衡运行于 Linux 系统之上。
+<p><a href="http://www.linuxvirtualserver.org">Linux Virtual Server (LVS)</a> 是一个建立在多个Real Server集群之上的高度可扩展且高可用服务器，使负载均衡运行于Linux系统之上。
 服务器集群的结构是完全向最终用户透明的，对用户来说就像是一个独立的高性能虚拟服务器。</p>
 </div>
 <div class="paragraph">
@@ -1014,13 +985,41 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="paragraph">
-<p>由于 LVS 的成功，从 Linux 2.4 内核开始，LVS 已经被合并到了内核代码中。</p>
+<p>由于LVS的成功，从Linux 2.4内核开始，LVS已经被合并到了内核代码中。</p>
 </div>
 <div class="paragraph">
-<p>本项目在1998年5月由章文嵩博士创建。此后一直作为 Linux 内核开发者。 目前，章文嵩博士任阿里集团副总裁、高级研究员。</p>
+<p>本项目在1998年5月由章文嵩博士创建。此后一直作为Linux内核开发者。 目前，章文嵩博士任阿里集团副总裁、高级研究员。</p>
 </div>
 <div class="paragraph">
 <p>更加详细的介绍，请访问 <a href="http://www.linuxvirtualserver.org/zh" class="bare">http://www.linuxvirtualserver.org/zh</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keepalived">3.4. Keepalived</h3>
+<div class="paragraph">
+<p>集群中的作用：<strong><span class="red">负载均衡和高可用</span></strong></p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.keepalived.org">Keepalived</a> 是一个用C编写的路由软件。项目的主要目标是基于Linux系统提供简单稳定的负载均衡和高可用性基础设施。负载均衡框架依赖于鼎鼎大名的Linux虚拟服务器 (IPVS)内核模块提供Layer4负载均衡。Keepalived实现了一套校验器，能够根据健康状态自动管理维护负载均衡服务协议。另一方面，高可用性依靠VRRP协议实现。</p>
+</div>
+<div class="paragraph">
+<p>工作原理分别如下：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="image/keepalived.jpg" alt="Keepalived 工作原理">
+</div>
+</div>
+<div class="paragraph">
+<p>Keepalived根据配置文件设置负载均衡主服务器和从服务器，分别在主和从上增加Real Server到本机的LVS中。</p>
+</div>
+<div class="paragraph">
+<p>主和从服务器：
+每台主从服务器通过VRRP协议相互检测对方是否工作正常，如不正常，会做主和从之间的角色切换。</p>
+</div>
+<div class="paragraph">
+<p>Real Server：
+一般通过端口或HTTP URL返回值检测Real Server是否工作正常，如不正常，则从LVS规则中剔除。</p>
 </div>
 </div>
 <div class="sect2">
@@ -1034,14 +1033,13 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://www.mysql.com">MySQL</a> 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 公司。
-体积小、使用简单、容易维护、高性能、成熟稳定以及开放源码等特点使 MySQL 成为大多数人的首选。
-特别是 Linux + Apache/Nginx + MySQL + PHP (LAMP/LNMP) 这样的组合，突出了高性能和快速开发的优势，
-使 MySQL 应用更加广泛。</p>
+<p><a href="http://www.mysql.com">MySQL</a> 是一个关系型数据库管理系统，由瑞典MySQL AB公司开发，目前属于Oracle公司。体积小、使用简单、容
+易维护、高性能、成熟稳定以及开放源码等特点使MySQL成为大多数人的首选。特别是Linux+Apache/Nginx+MySQL+PHP(LAMP/LNMP)这样的
+组合，突出了高性能和快速开发的优势，使MySQL应用更加广泛。</p>
 </div>
 <div class="paragraph">
-<p>凡是需要数据库的地方，都可以看到 MySQL的身影。比如，阿里(淘宝、天猫)、亚马逊、YouTube、Facebook、Google等等。
-其中，阿里、亚马逊、Facebook、Google等企业甚至修改 MySQL 代码以支撑自身的应用需求。</p>
+<p>凡是需要数据库的地方，都可以看到MySQL的身影。比如，阿里(淘宝、天猫)、亚马逊、YouTube、Facebook、Google等等。其中，阿里、
+亚马逊、Facebook、Google等企业甚至修改MySQL代码以支撑自身的应用需求。</p>
 </div>
 <div class="paragraph">
 <p>MySQL软件采用了双授权政策，它分为社区版和商业版。</p>
@@ -1053,10 +1051,10 @@ p { margin-bottom: 1.25rem; }
 <p>集群中的作用：<strong><span class="red">文件存储</span></strong></p>
 </div>
 <div class="paragraph">
-<p><a href="https://tools.ietf.org/html/rfc1813">Network File System (NFS)</a> 是一种分布式文件系统协议，最初由 Sun Microsystems 公司开发，并于1984年发布。其功能旨在允许客户端主机可以像访问本地存储一样通过网络访问服务器端文件。</p>
+<p><a href="https://tools.ietf.org/html/rfc1813">Network File System (NFS)</a> 是一种分布式文件系统协议，最初由Sun Microsystems 公司开发，并于1984年发布。其功能旨在允许客户端主机可以像访问本地存储一样通过网络访问服务器端文件。</p>
 </div>
 <div class="paragraph">
-<p>NFS 在 RFC 中是一个开放、标准的协议，任何人或组织都可以依据标准实现它。</p>
+<p>NFS在RFC中是一个开放、标准的协议，任何人或组织都可以依据标准实现它。</p>
 </div>
 </div>
 <div class="sect2">
@@ -1070,11 +1068,11 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://nginx.org">Nginx</a> 是一个 HTTP、反向代理、邮件代理、TCP代理服务器。很长一段时间里，许多大访问量的俄罗斯网站都运行于 nginx 之上。2015年7月，nginx服务或代理了最繁忙站点中的 22.27%。</p>
+<p><a href="http://nginx.org">Nginx</a> 是一个HTTP、反向代理、邮件代理、TCP代理服务器。很长一段时间里，许多大访问量的俄罗斯网站都运行于Nginx之上。2015年7月，Nginx服务或代理了最繁忙站点中的22.27%。</p>
 </div>
 <div class="paragraph">
-<p>Nginx 最初是为俄罗斯访问量第二的 Rambler.ru 开发的。意识到 Ningx 对整个互联网的作用，最后 Nignx 被开源出来。随后 Apache 的垄断地位被颠覆。
-起初，没人想用 C 重写一个 “Apache”，写出来能比 Apache 好吗？</p>
+<p>Nginx最初是为俄罗斯访问量第二的Rambler.ru开发的。意识到Ningx对整个互联网的作用，最后Nignx被开源出来。随后Apache的垄断地位被颠覆。
+起初，没人想用 C 重写一个“Apache”，写出来能比Apache好吗？</p>
 </div>
 </div>
 <div class="sect2">
@@ -1089,13 +1087,75 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="sect1">
-<h2 id="_服务器与规划">4. 服务器与规划</h2>
+<h2 id="_网络拓扑">4. 网络拓扑</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在我们动手搭建集群之前，非常有必要熟悉整体结构。</p>
+</div>
+<div class="sect2">
+<h3 id="_总览">4.1. 总览</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/1-总览.png" alt="总览" width="600" height="800">
+</div>
+<div class="title">Figure 1: 总览</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web负载均衡与高可用_lvs_keepalived">4.2. Web负载均衡与高可用(LVS+Keepalived)</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/2-Web负载均衡与高可用.png" alt="Web负载均衡与高可用(LVS+Keepalived)" width="600">
+</div>
+<div class="title">Figure 2: Web负载均衡与高可用(LVS+Keepalived)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web文件存储">4.3. Web文件存储</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/3-Web文件存储.png" alt="Web文件存储" width="600">
+</div>
+<div class="title">Figure 3: Web文件存储</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_db高可用_lvs_keepalived_无负载均衡">4.4. DB高可用(LVS+Keepalived，无负载均衡)</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/4-DB高可用.png" alt="DB高可用(LVS+Keepalived，无负载均衡)" width="600">
+</div>
+<div class="title">Figure 4: DB高可用(LVS+Keepalived，无负载均衡)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_db主主复制">4.5. DB主主复制</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/5-DB主主复制.png" alt="DB主主复制" width="600">
+</div>
+<div class="title">Figure 5: DB主主复制</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_备份">4.6. 备份</h3>
+<div class="imageblock">
+<div class="content">
+<img src="image/6-备份.png" alt="备份" width="600">
+</div>
+<div class="title">Figure 6: 备份</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_服务器与规划">5. 服务器与规划</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>没有足够的实践经验，难以选择集群适用的硬件，也难以合理的规划系统分区等，并应用到集群。本书根据内容需求，提供一个硬件选择与系统规划方案。</p>
 </div>
 <div class="sect2">
-<h3 id="_服务器及其配件选购">4.1. 服务器及其配件选购</h3>
+<h3 id="_服务器及其配件选购">5.1. 服务器及其配件选购</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. 服务器</caption>
 <colgroup>
@@ -1213,7 +1273,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="sect2">
-<h3 id="_网卡连接与网卡_ip映射">4.2. 网卡连接与网卡-IP映射</h3>
+<h3 id="_网卡连接与网卡_ip映射">5.2. 网卡连接与网卡-IP映射</h3>
 <div class="imageblock">
 <div class="content">
 <img src="image/2-网卡连接与网卡-IP映射.png" alt="网卡连接与网卡-IP映射" width="600">
@@ -1222,7 +1282,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ip地址表">4.3. IP地址表</h3>
+<h3 id="_ip地址表">5.3. IP地址表</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. IP地址表</caption>
 <colgroup>
@@ -1380,7 +1440,7 @@ p { margin-bottom: 1.25rem; }
 </table>
 </div>
 <div class="sect2">
-<h3 id="_分区规划">4.4. 分区规划</h3>
+<h3 id="_分区规划">5.4. 分区规划</h3>
 <div class="paragraph">
 <p>正常情况，安装完CentOS后，根分区使用1.5G左右。
 为保证根分区在现在和未来都足够大，此处分配50G。</p>
@@ -1445,68 +1505,6 @@ p { margin-bottom: 1.25rem; }
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_网络拓扑">5. 网络拓扑</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>在我们动手搭建集群之前，非常有必要熟悉整体结构。</p>
-</div>
-<div class="sect2">
-<h3 id="_总览">5.1. 总览</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/1-总览.png" alt="总览" width="600" height="800">
-</div>
-<div class="title">Figure 1: 总览</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_web负载均衡与高可用_lvs_keepalived">5.2. Web负载均衡与高可用(LVS+Keepalived)</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/2-Web负载均衡与高可用.png" alt="Web负载均衡与高可用(LVS+Keepalived)" width="600">
-</div>
-<div class="title">Figure 2: Web负载均衡与高可用(LVS+Keepalived)</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_web文件存储">5.3. Web文件存储</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/3-Web文件存储.png" alt="Web文件存储" width="600">
-</div>
-<div class="title">Figure 3: Web文件存储</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_db高可用_lvs_keepalived_无负载均衡">5.4. DB高可用(LVS+Keepalived，无负载均衡)</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/4-DB高可用.png" alt="DB高可用(LVS+Keepalived，无负载均衡)" width="600">
-</div>
-<div class="title">Figure 4: DB高可用(LVS+Keepalived，无负载均衡)</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_db主主复制">5.5. DB主主复制</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/5-DB主主复制.png" alt="DB主主复制" width="600">
-</div>
-<div class="title">Figure 5: DB主主复制</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_备份">5.6. 备份</h3>
-<div class="imageblock">
-<div class="content">
-<img src="image/6-备份.png" alt="备份" width="600">
-</div>
-<div class="title">Figure 6: 备份</div>
 </div>
 </div>
 </div>
@@ -1580,13 +1578,13 @@ p { margin-bottom: 1.25rem; }
 <p>ssh登录时，登录ip被会服务端反向解析为域名，导致ssh登录缓慢</p>
 </div>
 <div class="paragraph">
-<p>sed -i "s/#UseDNS yes/UseDNS no/" /etc/ssh/sshd_config</p>
+<p><code>sed -i "s/#UseDNS yes/UseDNS no/" /etc/ssh/sshd_config</code></p>
 </div>
 <div class="paragraph">
-<p>ssh登录时，GSSAPIAuthentication 认证会导致登录缓慢</p>
+<p>ssh登录时，GSSAPIAuthentication认证会导致登录缓慢</p>
 </div>
 <div class="paragraph">
-<p>sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/" /etc/ssh/sshd_config</p>
+<p><code>sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/" /etc/ssh/sshd_config</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4880,7 +4878,7 @@ service iptables save</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-15 21:09:48 CST
+Last updated 2015-08-21 09:07:06 CST
 </div>
 </div>
 </body>
