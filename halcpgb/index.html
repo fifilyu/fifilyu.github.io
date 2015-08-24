@@ -2446,7 +2446,7 @@ Accept-Ranges: bytes</pre>
 <div class="listingblock">
 <div class="title">Server4&amp;5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ls /etc/my.cnf.init.bak 2&gt;&amp;1 &gt;/dev/null || cp /etc/my.cnf /etc/my.cnf.init.bak
+<pre class="highlight"><code class="language-bash" data-lang="bash">ls /etc/my.cnf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/my.cnf /etc/my.cnf.init.bak
 
 sed -i 's#datadir=/var/lib/mysql#datadir=/data/mysql#g' /etc/my.cnf
 
