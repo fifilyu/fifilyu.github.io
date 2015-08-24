@@ -2693,23 +2693,23 @@ MySQL服务器默认不启动slave服务。本书设置如下：</p>
 <div class="ulist">
 <ul>
 <li>
-<p>第二MySQL从服务器(Server1)默认不启动slave服务。脚本(/opt/check_mysql_slave.sh)每两分钟检测一次slave服务，如未启动slave
+<p>第二MySQL从服务器(Server4)默认不启动slave服务。脚本(/opt/check_mysql_slave.sh)每两分钟检测一次slave服务，如未启动slave
 服务则启动之</p>
 </li>
 <li>
-<p>第一MySQL从服务器(Server2)默认启动slave服务</p>
+<p>第一MySQL从服务器(Server5)默认启动slave服务</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Server1执行</div>
+<div class="title">Server4执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt;EOF &gt;/opt/check_mysql_slave.sh
 mysql_cmd="/usr/bin/mysql -uroot -prootpassword -e"
-$mysql_cmd "show slave status\G;"|grep "Slave_IO_Running: Yes" &gt;/dev/null || $mysql_cmd "start slave;"
+\$mysql_cmd "show slave status\G;"|grep "Slave_IO_Running: Yes" &gt;/dev/null || \$mysql_cmd "start slave;"
 EOF
 
-echo "*/2 * * * * /bin/sh /opt/check_mysql_slave.sh 2&gt;&amp;1 &gt;/dev/null" &gt;&gt; /var/spool/cron/root</code></pre>
+echo "*/2 * * * * /bin/sh /opt/check_mysql_slave.sh &gt;/dev/null 2&gt;&amp;1" &gt;&gt; /var/spool/cron/root</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2722,7 +2722,7 @@ echo "*/2 * * * * /bin/sh /opt/check_mysql_slave.sh 2&gt;&amp;1 &gt;/dev/null" &
 <p>在MySQL Shell中执行</p>
 </div>
 <div class="listingblock">
-<div class="title">Server1执行</div>
+<div class="title">Server5执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">SHOW MASTER STATUS;
 
@@ -2757,7 +2757,7 @@ flush privileges;</code></pre>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Server1输出</div>
+<div class="title">Server4输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
@@ -2836,7 +2836,7 @@ show slave status\G;</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Server2输出</div>
+<div class="title">Server5输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
@@ -3029,7 +3029,7 @@ mysql&gt;</code></pre>
 <p>在第二主库上删除数据库 <code>testdb</code> ，在第二从库查看是否同步删除。</p>
 </div>
 <div class="listingblock">
-<div class="title">Server5执行和输出</div>
+<div class="title">Server5 MySQL Shell</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
@@ -3040,7 +3040,7 @@ mysql&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Serve4执行和输出</div>
+<div class="title">Server4 MySQL Shell</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
@@ -3496,7 +3496,7 @@ chmod +x /opt/stop_keepalived.sh /opt/check_keepalived.sh
 #增加计划任务，每分钟执行一次脚本。当Keepalived服务停止时，该脚本会启动服务
 #此任务与Keepalived配置文件中使用/opt/stop_keepalived.sh脚本结合起来，组成了一个启动和停止服务的环路。
 #配合实现MySQL的高可用框架。
-echo "*/1 * * * * /bin/sh /opt/check_keepalived.sh &gt;/dev/null" &gt;&gt; /var/spool/cron/root
+echo "*/1 * * * * /bin/sh /opt/check_keepalived.sh &gt;/dev/null 2&gt;&amp;1" &gt;&gt; /var/spool/cron/root
 
 chkconfig keepalived on
 service keepalived start
