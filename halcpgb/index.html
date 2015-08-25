@@ -2687,14 +2687,12 @@ service mysqld restart</code></pre>
 <div class="sect4">
 <h5 id="_server4_第一mysql主服务器">Server4，第一MySQL主服务器</h5>
 <div class="paragraph">
-<p>主-主模式，两个MySQL服务器中，其中一个宕机。当恢复正常时，主-主之间会相互进行同步，可能出现死锁和IO问题。所以，其中一个
-MySQL服务器默认不启动slave服务。本书设置如下：</p>
+<p>主-主模式，两个MySQL服务器中，其中一个宕机。当恢复正常时，主-主之间会相互进行同步，可能出现死锁和IO问题。所以，其中一个MySQL服务器默认不启动slave服务。本书设置如下：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>第二MySQL从服务器(Server4)默认不启动slave服务。脚本(/opt/check_mysql_slave.sh)每两分钟检测一次slave服务，如未启动slave
-服务则启动之</p>
+<p>第二MySQL从服务器(Server4)默认不启动slave服务。脚本(/opt/check_mysql_slave.sh)每两分钟检测一次slave服务，如未启动slave服务则启动之</p>
 </li>
 <li>
 <p>第一MySQL从服务器(Server5)默认启动slave服务</p>
@@ -2750,8 +2748,7 @@ flush privileges;</code></pre>
 <div class="title">Tip</div>
 </td>
 <td class="content">
-13.13.13.0/24是Server4&amp;5服务器之间使用千兆网线直连的网络。
-允许Keepalived和Nginx服务器(10.10.10.70&amp;80&amp;201&amp;202)可以远程访问MySQL。
+13.13.13.0/24是Server4&amp;5服务器之间使用千兆网线直连的网络。允许Keepalived和Nginx服务器(10.10.10.70&amp;80&amp;201&amp;202)可以远程访问MySQL。
 </td>
 </tr>
 </table>
@@ -3843,7 +3840,7 @@ chkconfig nfs on</code></pre>
 </dd>
 <dt class="hdlist1">rw</dt>
 <dd>
-<p>允许读写数据。</p>
+<p>允许读写数据</p>
 </dd>
 <dt class="hdlist1">sync(默认值)</dt>
 <dd>
@@ -3856,8 +3853,7 @@ chkconfig nfs on</code></pre>
 </dd>
 <dt class="hdlist1">root_squash(默认值)</dt>
 <dd>
-<p>这个选项可以防止root用户远程连接(相对于本地)，从而具有root权限。相反，NFS服务端会映射root用户到匿名用户(nfsnobody)。这样有
-效的“压缩”远程root用户的权利为最低权限的本地用户，防止在远程服务器上出现可能未经授权的写操作</p>
+<p>这个选项可以防止root用户远程连接(相对于本地)，从而具有root权限。相反，NFS服务端会映射root用户到匿名用户(nfsnobody)。这样有效的“压缩”远程root用户的权利为最低权限的本地用户，防止在远程服务器上出现可能未经授权的写操作</p>
 </dd>
 <dt class="hdlist1">all_squash</dt>
 <dd>
@@ -3896,8 +3892,10 @@ chkconfig nfs on</code></pre>
 <p>通配符不能被用于IP地址</p>
 </li>
 <li>
-<p>它们可以在递归DNS查找失败时偶然工作。当在完全形式的域名中指定通配符时，通配符不会包含点(.)。比如，*.example.com
-包括one.example.com，但不包括one.two.example.com.。</p>
+<p>如果递归DNS查找失败，通配符会尽可能的工作</p>
+</li>
+<li>
+<p>当在完全形式的域名中指定通配符时，通配符不会包含点(.)。比如，*.example.com包括one.example.com，但不包括one.two.example.com</p>
 </li>
 </ul>
 </div>
@@ -4187,8 +4185,7 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 <p>为了降低学习难度，本书仅演示基于文件系统的同机房异机备份。</p>
 </div>
 <div class="paragraph">
-<p>一般情况下，建议基于文件系统备份即可。<br>
-对于数据安全要求非常高的情况，肯定是基于硬件和文件系统混合备份，冷&amp;热备份也同时进行。</p>
+<p>一般情况下，建议基于文件系统备份即可。对于数据安全要求非常高的情况，肯定是基于硬件和文件系统混合备份，冷&amp;热备份也同时进行。</p>
 </div>
 <div class="sect2">
 <h3 id="_常见的备份方式">11.1. 常见的备份方式</h3>
@@ -4335,8 +4332,10 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 <div class="sect2">
 <h3 id="_备份策略">11.2. 备份策略</h3>
 <div class="paragraph">
-<p>重要的数据，一般指数据库。必须冷&amp;热备份同时进行。比如MySQL服务器，需要同时做冷&amp;热备份。<br>
-不太重要的数据，一般指网页文件。仅仅做冷备份即可。比如NFS存储服务器以及Nginx服务器上的网页文件，一般做冷备份即可。</p>
+<p>重要的数据，一般指数据库。必须冷&amp;热备份同时进行。比如MySQL服务器，需要同时做冷&amp;热备份。</p>
+</div>
+<div class="paragraph">
+<p>不太重要的数据，一般指网页文件。仅仅做冷备份即可。比如NFS存储服务器以及Nginx服务器上的网页文件，一般做冷备份即可。</p>
 </div>
 <div class="dlist">
 <dl>
