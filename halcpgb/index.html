@@ -3207,8 +3207,9 @@ mysql&gt;</code></pre>
 <p>本节仅仅体验如何使用LVS。此时不会修改任何系统配置文件，所有设置都是重启后即被还原。</p>
 </div>
 <div class="sect3">
-<h4 id="_director_server1_2">9.3.1. Director(Server1&amp;2)</h4>
+<h4 id="_director">9.3.1. Director</h4>
 <div class="listingblock">
+<div class="title">Server1&amp;2执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/24 broadcast 192.168.1.255 dev eth0
 
@@ -3221,14 +3222,15 @@ ipvsadm -a -t 192.168.1.200:80 -r 10.10.10.202 -g</code></pre>
 <p>通过命令 <code>ipvsadm -ln</code> 查看增加的LVS设置</p>
 </div>
 <div class="listingblock">
+<div class="title">Server1&amp;2输出</div>
 <div class="content">
-<pre># ipvsadm -ln
+<pre class="highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
   -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn
 TCP  192.168.1.200:80 rr
   -&gt; 10.10.10.201:80              Route   1      0          0
-  -&gt; 10.10.10.202:80              Route   1      0          0</pre>
+  -&gt; 10.10.10.202:80              Route   1      0          0</code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -3281,6 +3283,7 @@ TCP  192.168.1.200:80 rr
 <div class="sect3">
 <h4 id="_real_server_server6_7">9.3.2. Real Server(Server6&amp;7)</h4>
 <div class="listingblock">
+<div class="title">Server6&amp;7执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/32 dev lo
 ip route add 192.168.1.200/32 dev lo
@@ -3385,6 +3388,7 @@ Default value is 0. Note that some distributions enable it in startup scripts.</
 <div class="sect4">
 <h5 id="_创建测试页面">创建测试页面</h5>
 <div class="listingblock">
+<div class="title">Server6&amp;7执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">html_page=/usr/share/nginx/html/index.html
 ip_addr=`ip a|grep '10.10.10'|awk '{print $2}'|awk -F'/' '{print $1}'`
@@ -3414,14 +3418,14 @@ echo "你看到内容来自 Real Server: $ip_addr" &gt;&gt;$html_page</code></pr
 </table>
 </div>
 <div class="listingblock">
-<div class="title">输出</div>
+<div class="title">浏览器输出</div>
 <div class="content">
 <pre>这个是一个测试页面。
 你看到内容来自 Real Server: 10.10.10.201</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">输出</div>
+<div class="title">浏览器输出</div>
 <div class="content">
 <pre>这个是一个测试页面。
 你看到内容来自 Real Server: 10.10.10.202</pre>
@@ -3431,14 +3435,15 @@ echo "你看到内容来自 Real Server: $ip_addr" &gt;&gt;$html_page</code></pr
 <p>通过命令 <code>ipvsadm -ln</code> 查看访问分配情况</p>
 </div>
 <div class="listingblock">
+<div class="title">Server1&amp;2输出</div>
 <div class="content">
-<pre># ipvsadm -ln
+<pre class="highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
   -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn
 TCP  192.168.1.200:80 rr
   -&gt; 10.10.10.201:80              Route   1      1          2
-  -&gt; 10.10.10.202:80              Route   1      0          2</pre>
+  -&gt; 10.10.10.202:80              Route   1      0          2</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -3498,8 +3503,9 @@ wget -c http://fifilyu.github.io/halcpgb/file/Server2.etc.keepalived.keepalived.
 <div class="sect2">
 <h3 id="_keepalived环境配置">9.5. Keepalived环境配置</h3>
 <div class="sect3">
-<h4 id="_keepalived_server1_2">9.5.1. Keepalived(Server1&amp;2)</h4>
+<h4 id="_keepalived_2">9.5.1. Keepalived</h4>
 <div class="listingblock">
+<div class="title">Server1&amp;2执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">echo "/sbin/service keepalived stop" &gt;/opt/stop_keepalived.sh
 echo "/sbin/service keepalived status|grep '(pid ' || /sbin/service keepalived start" &gt;/opt/check_keepalived.sh
@@ -3524,7 +3530,7 @@ ipvsadm -ln</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>当服务器(Server1/2)的Keepalived(vrrp_instance)为Master状态时，无法访问以下地址：</p>
+<p>当服务器(Server1&amp;2)的Keepalived(vrrp_instance)为Master状态时，无法访问以下地址：</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3552,6 +3558,7 @@ ipvsadm -ln</code></pre>
 <div class="sect4">
 <h5 id="_server4_5">Server4&amp;5</h5>
 <div class="listingblock">
+<div class="title">Server4&amp;5执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
 DEVICE=lo:vip
@@ -3582,6 +3589,7 @@ sysctl -p</code></pre>
 <div class="sect4">
 <h5 id="_server6_7">Server6&amp;7</h5>
 <div class="listingblock">
+<div class="title">Server6&amp;7执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
 DEVICE=lo:vip
@@ -3645,16 +3653,19 @@ sysctl -p</code></pre>
 <div class="sect3">
 <h4 id="_测试数据库服务高可用">9.6.2. 测试数据库服务高可用</h4>
 <div class="paragraph">
-<p>在Server6&amp;7上，执行</p>
+<p>在Server6&amp;7上连接MySQL测试。</p>
 </div>
-<div class="paragraph">
-<p><code>mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"</code></p>
+<div class="listingblock">
+<div class="title">Server6&amp;7执行</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>如果成功，则能看到 <strong>Server5</strong> 字样。</p>
 </div>
 <div class="listingblock">
-<div class="title">输出</div>
+<div class="title">Server6&amp;7输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
 +----------+
@@ -3668,7 +3679,7 @@ sysctl -p</code></pre>
 <p>此时，如果停止Server5上的Keepalived服务，执行同样的命令，会看到 <strong>Server4</strong> 字样。表示MySQL高可用配置成功。</p>
 </div>
 <div class="listingblock">
-<div class="title">输出</div>
+<div class="title">Server6&amp;7输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
 +----------+
