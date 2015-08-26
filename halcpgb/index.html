@@ -3468,15 +3468,31 @@ TCP  192.168.1.200:80 rr
 </div>
 <div class="sect2">
 <h3 id="_keepalived配置文件">9.4. Keepalived配置文件</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server1.etc.keepalived.keepalived.conf">Server1.etc.keepalived.keepalived.conf</a> 到Server1，覆盖文件 <code>/etc/keepalived/keepalived.conf</code></p>
-</li>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server2.etc.keepalived.keepalived.conf">Server2.etc.keepalived.keepalived.conf</a> 到Server2，覆盖文件 <code>/etc/keepalived/keepalived.conf</code></p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="title">Server1执行</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
+ls /etc/keepalived/keepalived.conf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.init.bak
+
+#删除默认配置文件
+rm -f /etc/keepalived/keepalived.conf
+
+#下载配置文件
+wget -c http://fifilyu.github.io/halcpgb/file/Server1.etc.keepalived.keepalived.conf -O /etc/keepalived/keepalived.conf</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Server2执行</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
+ls /etc/keepalived/keepalived.conf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.init.bak
+
+#删除默认配置文件
+rm -f /etc/keepalived/keepalived.conf
+
+#下载配置文件
+wget -c http://fifilyu.github.io/halcpgb/file/Server2.etc.keepalived.keepalived.conf -O /etc/keepalived/keepalived.conf</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -3550,7 +3566,7 @@ EOF
 
 #当前系统生效
 ip addr add 10.10.10.100/32 dev lo
-ip route add 10.10.10.1000/32 dev lo
+ip route add 10.10.10.100/32 dev lo
 
 cat &lt;&lt;EOF &gt;&gt;/etc/sysctl.conf
 net.ipv4.conf.lo.arp_ignore = 1
@@ -4890,7 +4906,7 @@ service iptables save</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-27 00:00:16 CST
+Last updated 2015-08-27 00:31:38 CST
 </div>
 </div>
 </body>
