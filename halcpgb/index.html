@@ -3365,22 +3365,6 @@ Increasing the restriction level gives more chance for receiving answer from the
 The max value from conf/{all,interface}/arp_ignore is used when ARP request is received on the {interface}</pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">rp_filter - INTEGER</div>
-<div class="content">
-<pre>0 - No source validation.
-
-1 - Strict mode as defined in RFC3704 Strict Reverse Path Each incoming packet is tested against the FIB and if the interface is not the best reverse path the packet check will fail. By default failed packets are discarded.
-
-2 - Loose mode as defined in RFC3704 Loose Reverse Path Each incoming packet's source address is also tested against the FIB and if the source address is not reachable via any interface the packet check will fail.
-
-Current recommended practice in RFC3704 is to enable strict mode to prevent IP spoofing from DDos attacks. If using asymmetric routing or other complicated routing, then loose mode is recommended.
-
-The max value from conf/{all,interface}/rp_filter is used when doing source validation on the {interface}.
-
-Default value is 0. Note that some distributions enable it in startup scripts.</pre>
-</div>
-</div>
 </div>
 </div>
 <div class="sect3">
@@ -3435,7 +3419,7 @@ echo "你看到内容来自 Real Server: $ip_addr" &gt;&gt;$html_page</code></pr
 <p>通过命令 <code>ipvsadm -ln</code> 查看访问分配情况</p>
 </div>
 <div class="listingblock">
-<div class="title">Server1&amp;2输出</div>
+<div class="title">Server1输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
@@ -3465,7 +3449,13 @@ TCP  192.168.1.200:80 rr
 </div>
 </div>
 <div class="sect3">
-<h4 id="_总结">9.3.4. 总结</h4>
+<h4 id="_清空临时配置">9.3.4. 清空临时配置</h4>
+<div class="paragraph">
+<p>重启Server1&amp;6&amp;7，清空所有临时配置。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_总结">9.3.5. 总结</h4>
 <div class="paragraph">
 <p>本章只是为后面Keepalived的学习做一些铺垫。熟悉LVS原理和使用后，更加容易理解Keepalived。</p>
 </div>
@@ -4917,7 +4907,7 @@ service iptables save</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-27 09:19:00 CST
+Last updated 2015-08-28 02:53:29 CST
 </div>
 </div>
 </body>
