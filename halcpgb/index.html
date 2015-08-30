@@ -4443,17 +4443,13 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_nfs存储备份源">11.3.1. NFS存储备份源</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server3.etc.rsyncd.conf">Server3.etc.rsyncd.conf</a> 到Server3的 <code>/etc</code> 目录</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Server3执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rsync --daemon
+<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
+wget -c http://fifilyu.github.io/halcpgb/file/Server3.etc.rsyncd.conf -O /etc/rsyncd.conf
+
+rsync --daemon
 echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 </div>
 </div>
@@ -4472,40 +4468,28 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server7.etc.rsyncd.conf">Server7.etc.rsyncd.conf</a> 到Server7的 <code>/etc</code> 目录。</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Server7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rsync --daemon
+<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
+wget -c http://fifilyu.github.io/halcpgb/file/Server7.etc.rsyncd.conf -O /etc/rsyncd.conf
+
+rsync --daemon
 echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_mysql冷备份源">11.3.3. MySQL冷备份源</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.etc.rsyncd.conf">Server5.etc.rsyncd.conf</a> 到Server5的 <code>/etc</code> 目录</p>
-</li>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_dump.sh">Server5.opt.bak_db_dump.sh</a> 到Server5的 <code>/opt</code> 目录</p>
-</li>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_binlog.sh">Server5.opt.bak_db_binlog.sh</a> 到Server5的 <code>/opt</code> 目录</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">chmod 700 /opt/bak_db_dump.sh /opt/bak_db_binlog.sh
+<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf /opt/bak_db_dump.sh /opt/bak_db_binlog.sh
+wget -c http://fifilyu.github.io/halcpgb/file/Server5.etc.rsyncd.conf -O /etc/rsyncd.conf
+wget -c http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_dump.sh -O /opt/bak_db_dump.sh
+wget -c http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_binlog.sh -O /opt/bak_db_binlog.sh
+
+chmod 700 /opt/bak_db_dump.sh /opt/bak_db_binlog.sh
 
 rsync --daemon
 echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local
@@ -4519,17 +4503,13 @@ echo "1 2 * * 0 /bin/sh /opt/bak_db_dump.sh" &gt;&gt;/var/spool/cron/root</code>
 </div>
 <div class="sect3">
 <h4 id="_备份客户端">11.3.4. 备份客户端</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>上传 <a href="http://fifilyu.github.io/halcpgb/file/Server2.opt.rsync_all_bak.sh">Server2.opt.rsync_all_bak.sh</a> 到Server2的 <code>/opt</code> 目录</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">chmod 700 /opt/rsync_all_bak.sh
+<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /opt/rsync_all_bak.sh
+wget -c http://fifilyu.github.io/halcpgb/file/Server2.opt.rsync_all_bak.sh -O /opt/rsync_all_bak.sh
+
+chmod 700 /opt/rsync_all_bak.sh
 
 echo "1 5 * * * /bin/sh /opt/rsync_all_bak.sh" &gt;&gt;/var/spool/cron/root</code></pre>
 </div>
