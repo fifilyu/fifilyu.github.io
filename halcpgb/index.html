@@ -3955,7 +3955,7 @@ chkconfig nfs on</code></pre>
 uid=`id -u nginx`
 gid=`id -g nginx`
 cat &lt;&lt; EOF &gt; /etc/exports
-/data 11.11.11.0/24(rw,sync,all_squash,anonuid=$uid,anongid=$gid) 12.12.12.0/24(rw,sync,all_squash,anonuid=$uid,anongid=$gid)
+/data 11.11.11.0/24(rw,sync,all_squash,anonuid=$uid,anongid=$gid) 12.12.12.0/24(rw,sync,all_squash,anonuid=$uid,anongid=$gid) 14.14.14.0/24(rw,sync,all_squash,anonuid=$uid,anongid=$gid)
 EOF
 
 service rpcbind start
@@ -3971,7 +3971,7 @@ service nfs start</code></pre>
 <pre class="highlight"><code class="language-console" data-lang="console">---
 # showmount -e
 Export list for Server3:
-/data 12.12.12.0/24,11.11.11.0/24
+/data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24
 ---</code></pre>
 </div>
 </div>
@@ -3989,7 +3989,7 @@ Export list for Server3:
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># showmount -e 12.12.12.90
 Export list for 12.12.12.90:
-/data 12.12.12.0/24,11.11.11.0/24</code></pre>
+/data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4036,18 +4036,26 @@ mount -a</code></pre>
 <p>显示NFS服务端的共享列表</p>
 </div>
 <div class="listingblock">
-<div class="title">Server6&amp;7输出</div>
+<div class="title">Server6输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># showmount -e 11.11.11.90
 Export list for 11.11.11.90:
-/data 12.12.12.0/24,11.11.11.0/24</code></pre>
+/data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Server7输出</div>
+<div class="content">
+<pre># showmount -e 14.14.14.90
+Export list for 14.14.14.90:
+/data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>挂载NFS共享目录/data到本地/nfs</p>
 </div>
 <div class="listingblock">
-<div class="title">Server6&amp;7执行</div>
+<div class="title">Server6执行</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
 chown -R nginx:nginx /nfs
@@ -4055,11 +4063,20 @@ echo "11.11.11.90:/data  /nfs   nfs4      noatime,nolock,intr,bg,tcp     0 0" &g
 mount -a</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Server7执行</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
+chown -R nginx:nginx /nfs
+echo "14.14.14.90:/data  /nfs   nfs4      noatime,nolock,intr,bg,tcp     0 0" &gt;&gt;/etc/fstab
+mount -a</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>检查是否挂载成功</p>
 </div>
 <div class="listingblock">
-<div class="title">Server6&amp;7输出</div>
+<div class="title">Server6输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># df -h
 Filesystem         Size  Used Avail Use% Mounted on
@@ -4068,6 +4085,18 @@ tmpfs              246M     0  246M   0% /dev/shm
 /dev/sdb1          493G   70M  467G   1% /data
 /dev/sda2          444G   70M  422G   1% /data2
 11.11.11.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Server7输出</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># df -h
+Filesystem         Size  Used Avail Use% Mounted on
+/dev/sda1           48G  2.0G   44G   5% /
+tmpfs              246M     0  246M   0% /dev/shm
+/dev/sdb1          493G   70M  467G   1% /data
+/dev/sda2          444G   70M  422G   1% /data2
+14.14.14.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4090,10 +4119,17 @@ tmpfs              246M     0  246M   0% /dev/shm
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Server6&amp;7输出</div>
+<div class="title">Server6输出</div>
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
 11.11.11.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Server7输出</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
+14.14.14.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4907,7 +4943,7 @@ service iptables save</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-31 02:31:50 CST
+Last updated 2015-08-31 03:04:33 CST
 </div>
 </div>
 </body>
