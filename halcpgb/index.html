@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
-<title>高可用负载均衡集群实践简明教程</title>
+<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="author" content="Fifi Lyu">
+<title>高可用负载均衡集群实践简明教程: High-Availability Loadbalancing Clusters Practice Guide for Beginners</title>
 <style>
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ========================================================================== HTML5 display definitions ========================================================================== */
@@ -174,6 +175,12 @@ textarea { height: auto; min-height: 50px; }
 
 select { width: 100%; }
 
+object, svg { display: inline-block; vertical-align: middle; }
+
+.center { margin-left: auto; margin-right: auto; }
+
+.spread { width: 100%; }
+
 p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.21875em; line-height: 1.6; }
 
 .subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { line-height: 1.45; color: #7a2518; font-weight: normal; margin-top: 0; margin-bottom: 0.25em; }
@@ -286,7 +293,7 @@ pre, pre > code { line-height: 1.45; color: rgba(0, 0, 0, 0.9); font-family: "Dr
 
 .keyseq { color: rgba(51, 51, 51, 0.8); }
 
-kbd { display: inline-block; color: rgba(0, 0, 0, 0.8); font-size: 0.75em; line-height: 1.4; background-color: #f7f7f7; border: 1px solid #ccc; -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; margin: -0.15em 0.15em 0 0.15em; padding: 0.2em 0.6em 0.2em 0.5em; vertical-align: middle; white-space: nowrap; }
+kbd { font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace; display: inline-block; color: rgba(0, 0, 0, 0.8); font-size: 0.65em; line-height: 1.45; background-color: #f7f7f7; border: 1px solid #ccc; -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; margin: 0 0.15em; padding: 0.2em 0.5em; vertical-align: middle; position: relative; top: -0.1em; white-space: nowrap; }
 
 .keyseq kbd:first-child { margin-left: 0; }
 
@@ -330,6 +337,7 @@ p a > code:hover { color: rgba(0, 0, 0, 0.9); }
 #toc ul.sectlevel0 > li > a { font-style: italic; }
 #toc ul.sectlevel0 ul.sectlevel1 { margin: 0.5em 0; }
 #toc ul { font-family: "Open Sans", "DejaVu Sans", sans-serif; list-style-type: none; }
+#toc li { line-height: 1.3334; margin-top: 0.3334em; }
 #toc a { text-decoration: none; }
 #toc a:active { text-decoration: underline; }
 
@@ -338,7 +346,7 @@ p a > code:hover { color: rgba(0, 0, 0, 0.9); }
 @media only screen and (min-width: 768px) { #toctitle { font-size: 1.375em; }
   body.toc2 { padding-left: 15em; padding-right: 0; }
   #toc.toc2 { margin-top: 0 !important; background-color: #f8f8f7; position: fixed; width: 15em; left: 0; top: 0; border-right: 1px solid #efefed; border-top-width: 0 !important; border-bottom-width: 0 !important; z-index: 1000; padding: 1.25em 1em; height: 100%; overflow: auto; }
-  #toc.toc2 #toctitle { margin-top: 0; font-size: 1.2em; }
+  #toc.toc2 #toctitle { margin-top: 0; margin-bottom: 0.8rem; font-size: 1.2em; }
   #toc.toc2 > ul { font-size: 0.9em; margin-bottom: 0; }
   #toc.toc2 ul ul { margin-left: 0; padding-left: 1em; }
   #toc.toc2 ul.sectlevel0 ul.sectlevel1 { padding-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
@@ -424,7 +432,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 
 table.pyhltable { border-collapse: separate; border: 0; margin-bottom: 0; background: none; }
 
-table.pyhltable td { vertical-align: top; padding-top: 0; padding-bottom: 0; }
+table.pyhltable td { vertical-align: top; padding-top: 0; padding-bottom: 0; line-height: 1.45; }
 
 table.pyhltable td.code { padding-left: .75em; padding-right: 0; }
 
@@ -460,8 +468,6 @@ table.pyhltable .linenodiv { background: none !important; padding-right: 0 !impo
 
 table.tableblock { max-width: 100%; border-collapse: separate; }
 table.tableblock td > .paragraph:last-child p > p:last-child, table.tableblock th > p:last-child, table.tableblock td > p:last-child { margin-bottom: 0; }
-
-table.spread { width: 100%; }
 
 table.tableblock, th.tableblock, td.tableblock { border: 0 solid #dedede; }
 
@@ -550,9 +556,9 @@ ol.lowergreek { list-style-type: lower-greek; }
 .hdlist > table, .colist > table { border: 0; background: none; }
 .hdlist > table > tbody > tr, .colist > table > tbody > tr { background: none; }
 
-td.hdlist1 { padding-right: .75em; font-weight: bold; }
+td.hdlist1, td.hdlist2 { vertical-align: top; padding: 0 0.625em; }
 
-td.hdlist1, td.hdlist2 { vertical-align: top; }
+td.hdlist1 { font-weight: bold; padding-bottom: 1.25em; }
 
 .literalblock + .colist, .listingblock + .colist { margin-top: -0.5em; }
 
@@ -571,15 +577,16 @@ td.hdlist1, td.hdlist2 { vertical-align: top; }
 .image.left { margin-right: 0.625em; }
 .image.right { margin-left: 0.625em; }
 
-a.image { text-decoration: none; }
+a.image { text-decoration: none; display: inline-block; }
+a.image object { pointer-events: none; }
 
-span.footnote, span.footnoteref { vertical-align: super; font-size: 0.875em; }
-span.footnote a, span.footnoteref a { text-decoration: none; }
-span.footnote a:active, span.footnoteref a:active { text-decoration: underline; }
+sup.footnote, sup.footnoteref { font-size: 0.875em; position: static; vertical-align: super; }
+sup.footnote a, sup.footnoteref a { text-decoration: none; }
+sup.footnote a:active, sup.footnoteref a:active { text-decoration: underline; }
 
 #footnotes { padding-top: 0.75em; padding-bottom: 0.75em; margin-bottom: 0.625em; }
-#footnotes hr { width: 20%; min-width: 6.25em; margin: -.25em 0 .75em 0; border-width: 1px 0 0 0; }
-#footnotes .footnote { padding: 0 0.375em; line-height: 1.3; font-size: 0.875em; margin-left: 1.2em; text-indent: -1.2em; margin-bottom: .2em; }
+#footnotes hr { width: 20%; min-width: 6.25em; margin: -0.25em 0 0.75em 0; border-width: 1px 0 0 0; }
+#footnotes .footnote { padding: 0 0.375em 0 0.225em; line-height: 1.3334; font-size: 0.875em; margin-left: 1.2em; text-indent: -1.05em; margin-bottom: 0.2em; }
 #footnotes .footnote a:first-of-type { font-weight: bold; text-decoration: none; }
 #footnotes .footnote:last-of-type { margin-bottom: 0; }
 
@@ -683,14 +690,13 @@ b.conum * { color: inherit !important; }
 
 .conum:not([data-value]):empty { display: none; }
 
-h1, h2 { letter-spacing: -0.01em; }
+dt, th.tableblock, td.content, div.footnote { text-rendering: optimizeLegibility; }
 
-dt, th.tableblock, td.content { text-rendering: optimizeLegibility; }
+h1, h2, p, td.content, span.alt { letter-spacing: -0.01em; }
 
-p, td.content { letter-spacing: -0.01em; }
-p strong, td.content strong { letter-spacing: -0.005em; }
+p strong, td.content strong, div.footnote strong { letter-spacing: -0.005em; }
 
-p, blockquote, dt, td.content { font-size: 1.0625rem; }
+p, blockquote, dt, td.content, span.alt { font-size: 1.0625rem; }
 
 p { margin-bottom: 1.25rem; }
 
@@ -706,9 +712,9 @@ p { margin-bottom: 1.25rem; }
   a.bare, a[href^="#"], a[href^="mailto:"] { text-decoration: none !important; }
   a[href^="http:"]:not(.bare):after, a[href^="https:"]:not(.bare):after { content: "(" attr(href) ")"; display: inline-block; font-size: 0.875em; padding-left: 0.25em; }
   abbr[title]:after { content: " (" attr(title) ")"; }
-  pre, blockquote, tr, img { page-break-inside: avoid; }
+  pre, blockquote, tr, img, object, svg { page-break-inside: avoid; }
   thead { display: table-header-group; }
-  img { max-width: 100% !important; }
+  svg { max-width: 100%; }
   p, blockquote, dt, td.content { font-size: 1em; orphans: 3; widows: 3; }
   h2, h3, #toctitle, .sidebarblock > .content > .title, #toctitle, .sidebarblock > .content > .title { page-break-after: avoid; }
   #toc, .sidebarblock, .exampleblock > .content { background: none !important; }
@@ -733,12 +739,21 @@ p { margin-bottom: 1.25rem; }
   .show-for-print { display: inherit !important; } }
 
 </style>
+<link rel="stylesheet" href="css/font-awesome.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>高可用负载均衡集群实践简明教程</h1>
+<h1>高可用负载均衡集群实践简明教程: High-Availability Loadbalancing Clusters Practice Guide for Beginners</h1>
+<div class="details">
+<span id="author" class="author">Fifi Lyu</span><br>
+<span id="email" class="email"><a href="mailto:fifilyu@gmail.com">fifilyu@gmail.com</a></span><br>
+<span id="revnumber">version 1.0.28,</span>
+<span id="revdate">2016-10-09</span>
+</div>
 <div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
+<div id="toctitle">目录</div>
+<ul class="sectlevel0">
+<li><a href="#_高可用负载均衡集群实践简明教程">高可用负载均衡集群实践简明教程</a>
 <ul class="sectlevel1">
 <li><a href="#_前言">1. 前言</a></li>
 <li><a href="#_本书的读者">2. 本书的读者</a></li>
@@ -831,16 +846,12 @@ p { margin-bottom: 1.25rem; }
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>High-Availability Loadbalancing Clusters Practice Guide for Beginners</p>
-</div>
-</div>
-</div>
+<h1 id="_高可用负载均衡集群实践简明教程" class="sect0">高可用负载均衡集群实践简明教程</h1>
 <div class="sect1">
 <h2 id="_前言">1. 前言</h2>
 <div class="sectionbody">
@@ -880,13 +891,13 @@ p { margin-bottom: 1.25rem; }
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="image/centos_logo.png" alt="CentOS">
+<img src="image/centos_logo.jpg" alt="CentOS">
 </div>
 <div class="title">Figure 1: CentOS</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="image/centos7_desktop.png" alt="CentOS 7 桌面">
+<img src="image/centos7_desktop.jpg" alt="CentOS 7 桌面">
 </div>
 <div class="title">Figure 2: CentOS 7 桌面</div>
 </div>
@@ -942,7 +953,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 选择版本的经验，适用于任何操作系统、软件或工具。
@@ -981,7 +992,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="image/lvs.png" alt="LVS 工作原理">
+<img src="image/lvs.jpg" alt="LVS 工作原理">
 </div>
 </div>
 <div class="paragraph">
@@ -1029,7 +1040,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="image/mysql_logo.png" alt="MySQL">
+<img src="image/mysql_logo.jpg" alt="MySQL">
 </div>
 </div>
 <div class="paragraph">
@@ -1064,7 +1075,7 @@ p { margin-bottom: 1.25rem; }
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="image/nginx_logo.png" alt="CentOS" width="200" height="48">
+<img src="image/nginx_logo.jpg" alt="CentOS" width="200" height="48">
 </div>
 </div>
 <div class="paragraph">
@@ -1096,7 +1107,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_总览">4.1. 总览</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/1-总览.png" alt="总览" width="600" height="800">
+<img src="image/1-总览.jpg" alt="总览" width="600" height="800">
 </div>
 <div class="title">Figure 1: 总览</div>
 </div>
@@ -1105,7 +1116,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_web负载均衡与高可用_lvs_keepalived">4.2. Web负载均衡与高可用(LVS+Keepalived)</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/2-Web负载均衡与高可用.png" alt="Web负载均衡与高可用(LVS+Keepalived)" width="600">
+<img src="image/2-Web负载均衡与高可用.jpg" alt="Web负载均衡与高可用(LVS+Keepalived)" width="600">
 </div>
 <div class="title">Figure 2: Web负载均衡与高可用(LVS+Keepalived)</div>
 </div>
@@ -1114,7 +1125,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_web文件存储">4.3. Web文件存储</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/3-Web文件存储.png" alt="Web文件存储" width="600">
+<img src="image/3-Web文件存储.jpg" alt="Web文件存储" width="600">
 </div>
 <div class="title">Figure 3: Web文件存储</div>
 </div>
@@ -1123,7 +1134,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_db高可用_lvs_keepalived_无负载均衡">4.4. DB高可用(LVS+Keepalived，无负载均衡)</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/4-DB高可用.png" alt="DB高可用(LVS+Keepalived，无负载均衡)" width="600">
+<img src="image/4-DB高可用.jpg" alt="DB高可用(LVS+Keepalived，无负载均衡)" width="600">
 </div>
 <div class="title">Figure 4: DB高可用(LVS+Keepalived，无负载均衡)</div>
 </div>
@@ -1132,7 +1143,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_db主主复制">4.5. DB主主复制</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/5-DB主主复制.png" alt="DB主主复制" width="600">
+<img src="image/5-DB主主复制.jpg" alt="DB主主复制" width="600">
 </div>
 <div class="title">Figure 5: DB主主复制</div>
 </div>
@@ -1141,7 +1152,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_备份">4.6. 备份</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/6-备份.png" alt="备份" width="600">
+<img src="image/6-备份.jpg" alt="备份" width="600">
 </div>
 <div class="title">Figure 6: 备份</div>
 </div>
@@ -1159,12 +1170,12 @@ p { margin-bottom: 1.25rem; }
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. 服务器</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 12%;">
-<col style="width: 12%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
 <col style="width: 25%;">
 <col style="width: 25%;">
-<col style="width: 12%;">
+<col style="width: 12.5%;">
 </colgroup>
 <thead>
 <tr>
@@ -1238,9 +1249,9 @@ p { margin-bottom: 1.25rem; }
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 2. 配件</caption>
 <colgroup>
-<col style="width: 33%;">
-<col style="width: 33%;">
-<col style="width: 33%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -1261,7 +1272,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 一定要购买质量好的千兆网线。<br>
@@ -1289,7 +1300,7 @@ p { margin-bottom: 1.25rem; }
 <h3 id="_网卡连接与网卡_ip映射">5.2. 网卡连接与网卡-IP映射</h3>
 <div class="imageblock">
 <div class="content">
-<img src="image/2-网卡连接与网卡-IP映射.png" alt="网卡连接与网卡-IP映射" width="600">
+<img src="image/2-网卡连接与网卡-IP映射.jpg" alt="网卡连接与网卡-IP映射" width="600">
 </div>
 <div class="title">Figure 2: 网卡连接与网卡-IP映射</div>
 </div>
@@ -1461,9 +1472,9 @@ p { margin-bottom: 1.25rem; }
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 4. Server1/2/3/4/5/6/7</caption>
 <colgroup>
-<col style="width: 33%;">
-<col style="width: 33%;">
-<col style="width: 33%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -1497,7 +1508,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 本书没有为虚拟内存(SWAP)单独分区，打算使用单独的文件(/var/swap.file)作虚拟内存。
@@ -1510,7 +1521,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 /dev/sda2 和 /dev/sdb1 可以加入LVM卷组，并将所有空间划分到同一个逻辑卷，然后挂载到/data。
@@ -1539,7 +1550,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 推荐安装迷你版本，这是最小化安装。占用最少的硬盘空间，安装最少的软件包。
@@ -1603,7 +1614,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 对新手来说SELINUX和默认的iptables规则带来太多麻烦。搭建集群时，我们暂时禁用和关闭它们。
@@ -1623,7 +1634,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 严格意义上讲，<strong>192.168.0.0/16</strong> 属于私有网络，私有网络的IP无法直接连接互联网，需要公网IP转发。
@@ -1637,7 +1648,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 本书假设网卡前缀为常用的eth。根据网卡类型的不同，CentOS会修改网卡前缀为em或eno等等。
@@ -1649,7 +1660,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 内网不需要配置网关和DNS。
@@ -1661,7 +1672,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1691,7 +1702,7 @@ p { margin-bottom: 1.25rem; }
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 ifconfig命令已经过时，建议使用ip命令代替。
@@ -1853,7 +1864,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 内网不需要配置网关和DNS。
@@ -1865,7 +1876,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1895,7 +1906,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 ifconfig命令已经过时，建议使用ip命令代替。
@@ -2036,7 +2047,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <strong><strong><span class="red">为什么又看到这个提示？因为&#8230;&#8203;&#8230;&#8203;重要的事情说三遍。</span></strong></strong>
@@ -2048,7 +2059,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 内网不需要配置网关和DNS。
@@ -2060,7 +2071,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -2090,7 +2101,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 ifconfig命令已经过时，建议使用ip命令代替。
@@ -2284,7 +2295,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 仅仅是为了使系统用户nginx存在。NFS服务器共享文件给Nginx服务器使用，而NFS共享的目录对系统用户nginx来说是可读写的。
@@ -2341,7 +2352,7 @@ EOF</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 本书不涉及具体的参数调整，仅仅需要启动Nginx，保证80端口可以访问即可。
@@ -2373,7 +2384,7 @@ LISTEN     0      128                       *:80                       *:*      
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 netstat命令已经过时，建议使用ss命令代替。
@@ -2405,7 +2416,7 @@ Accept-Ranges: bytes</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 当然，你也可以在自己的电脑上，通过浏览器 <a href="http://192.168.1.201" class="bare">http://192.168.1.201</a> 或 <a href="http://192.168.1.202" class="bare">http://192.168.1.202</a> 测试访问。
@@ -2446,7 +2457,7 @@ Accept-Ranges: bytes</pre>
 <div class="listingblock">
 <div class="title">Server4&amp;5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ls /etc/my.cnf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/my.cnf /etc/my.cnf.init.bak
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ls /etc/my.cnf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/my.cnf /etc/my.cnf.init.bak
 
 sed -i 's#datadir=/var/lib/mysql#datadir=/data/mysql#g' /etc/my.cnf
 
@@ -2463,7 +2474,7 @@ mysqladmin -uroot password "rootpassword"</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 本书不涉及具体的参数优化，仅会设置MySQL集群需要的参数。保证3306端口能够连接即可。
@@ -2485,7 +2496,7 @@ mysqladmin -uroot password "rootpassword"</code></pre>
 <div class="listingblock">
 <div class="title">Server4&amp;5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ss -t4nlp|grep ':3306'
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ss -t4nlp|grep ':3306'
 LISTEN     0      50                        *:3306                     *:*      users:(("mysqld",22131,10))</code></pre>
 </div>
 </div>
@@ -2496,7 +2507,7 @@ LISTEN     0      50                        *:3306                     *:*      
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 netstat命令已经过时，建议使用ss命令代替。
@@ -2513,7 +2524,7 @@ netstat命令已经过时，建议使用ss命令代替。
 <div class="listingblock">
 <div class="title">Server4&amp;5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
 Server version: 5.1.73 Source distribution
@@ -2636,7 +2647,7 @@ Cluster允许多台MySQL服务器写到同一个Cluster,因此在一些合适的
 <div class="listingblock">
 <div class="title">Server4执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/my.cnf
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /etc/my.cnf
 wget -c http://fifilyu.github.io/halcpgb/file/Server4.etc.my.cnf -O /etc/my.cnf
 
 mkdir /data2/mysql_binlogs
@@ -2647,7 +2658,7 @@ service mysqld restart</code></pre>
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/my.cnf
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /etc/my.cnf
 wget -c http://fifilyu.github.io/halcpgb/file/Server5.etc.my.cnf -O /etc/my.cnf
 
 mkdir /data2/mysql_binlogs
@@ -2659,7 +2670,7 @@ service mysqld restart</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -2702,7 +2713,7 @@ service mysqld restart</code></pre>
 <div class="listingblock">
 <div class="title">Server4执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt;EOF &gt;/opt/check_mysql_slave.sh
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt;EOF &gt;/opt/check_mysql_slave.sh
 mysql_cmd="/usr/bin/mysql -uroot -prootpassword -e"
 \$mysql_cmd "show slave status\G;"|grep "Slave_IO_Running: Yes" &gt;/dev/null || \$mysql_cmd "start slave;"
 EOF
@@ -2722,7 +2733,7 @@ echo "*/2 * * * * /bin/sh /opt/check_mysql_slave.sh &gt;/dev/null 2&gt;&amp;1" &
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">SHOW MASTER STATUS;
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">SHOW MASTER STATUS;
 
 grant all privileges on *.* to root@"10.10.10.70"  identified by 'rootpassword';
 
@@ -2745,7 +2756,7 @@ flush privileges;</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 13.13.13.0/24是Server4&amp;5服务器之间使用千兆网线直连的网络。允许Keepalived和Nginx服务器(10.10.10.70&amp;80&amp;201&amp;202)可以远程访问MySQL。
@@ -2756,7 +2767,7 @@ flush privileges;</code></pre>
 <div class="listingblock">
 <div class="title">Server4输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; SHOW MASTER STATUS;
 +------------------+----------+--------------+------------------+
@@ -2821,7 +2832,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">change master to master_host='13.13.13.101',
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console">change master to master_host='13.13.13.101',
 master_user='slaveuser',
 master_password='slaveuserpassword',
 master_log_file='mysql-bin.000001',
@@ -2835,7 +2846,7 @@ show slave status\G;</code></pre>
 <div class="listingblock">
 <div class="title">Server5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; change master to master_host='13.13.13.101',
     -&gt; master_user='slaveuser',
@@ -2889,13 +2900,13 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">mysql -uroot -prootpassword -e "SHOW MASTER STATUS;"</code></pre>
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console">mysql -uroot -prootpassword -e "SHOW MASTER STATUS;"</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword -e "SHOW MASTER STATUS;"
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword -e "SHOW MASTER STATUS;"
 +------------------+----------+--------------+------------------+
 | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 +------------------+----------+--------------+------------------+
@@ -2926,7 +2937,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server4执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">change master to master_host='13.13.13.102',
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console">change master to master_host='13.13.13.102',
 master_user='slaveuser',
 master_password='slaveuserpassword',
 master_log_file='mysql-bin.000001',
@@ -2940,7 +2951,7 @@ show slave status\G;</code></pre>
 <div class="listingblock">
 <div class="title">Server4输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; change master to master_host='13.13.13.102',
     -&gt; master_user='slaveuser',
@@ -2992,7 +3003,7 @@ No query specified</code></pre>
 <div class="listingblock">
 <div class="title">Server4 MySQL Shell</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; create database testdb;
 Query OK, 1 row affected (0.01 sec)
@@ -3003,7 +3014,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server5 MySQL Shell</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; show databases;
 +--------------------+
@@ -3028,7 +3039,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server5 MySQL Shell</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; drop database testdb;
 Query OK, 0 rows affected (0.04 sec)
@@ -3039,7 +3050,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server4 MySQL Shell</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -uroot -prootpassword
 ......
 mysql&gt; show databases;
 +--------------------+
@@ -3211,7 +3222,7 @@ mysql&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Server1执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/24 broadcast 192.168.1.255 dev eth0
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/24 broadcast 192.168.1.255 dev eth0
 
 ipvsadm -A -t 192.168.1.200:80 -s rr
 ipvsadm -a -t 192.168.1.200:80 -r 10.10.10.201 -g
@@ -3224,7 +3235,7 @@ ipvsadm -a -t 192.168.1.200:80 -r 10.10.10.202 -g</code></pre>
 <div class="listingblock">
 <div class="title">Server1输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
   -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn
@@ -3285,7 +3296,7 @@ TCP  192.168.1.200:80 rr
 <div class="listingblock">
 <div class="title">Server6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/32 dev lo
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ip addr add 192.168.1.200/32 dev lo
 ip route add 192.168.1.200/32 dev lo
 
 sysctl -w net.ipv4.conf.lo.arp_ignore=1
@@ -3316,7 +3327,7 @@ sysctl -w net.ipv4.conf.all.arp_announce=2</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <code>*.arp_ignore</code> 和 <code>all.arp_ignore</code> 值不同时，取值最大的值生效。
@@ -3374,7 +3385,7 @@ The max value from conf/{all,interface}/arp_ignore is used when ARP request is r
 <div class="listingblock">
 <div class="title">Server6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">html_page=/usr/share/nginx/html/index.html
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">html_page=/usr/share/nginx/html/index.html
 ip_addr=`ip a|grep '10.10.10'|awk '{print $2}'|awk -F'/' '{print $1}'`
 
 echo '&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;' &gt;$html_page
@@ -3393,7 +3404,7 @@ echo "你看到内容来自 Real Server: $ip_addr" &gt;&gt;$html_page</code></pr
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 为了测试的准确性，请直接使用 <strong><span class="red">Ctrl+F5强制刷新</span></strong> 网页，这样浏览器才不会显示缓存的内容。
@@ -3421,7 +3432,7 @@ echo "你看到内容来自 Real Server: $ip_addr" &gt;&gt;$html_page</code></pr
 <div class="listingblock">
 <div class="title">Server1输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
   -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn
@@ -3466,7 +3477,7 @@ TCP  192.168.1.200:80 rr
 <div class="listingblock">
 <div class="title">Server1执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
 ls /etc/keepalived/keepalived.conf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.init.bak
 
 #删除默认配置文件
@@ -3479,7 +3490,7 @@ wget -c http://fifilyu.github.io/halcpgb/file/Server1.etc.keepalived.keepalived.
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#备份默认配置文件
 ls /etc/keepalived/keepalived.conf.init.bak &gt;/dev/null 2&gt;&amp;1 || cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.init.bak
 
 #删除默认配置文件
@@ -3497,7 +3508,7 @@ wget -c http://fifilyu.github.io/halcpgb/file/Server2.etc.keepalived.keepalived.
 <div class="listingblock">
 <div class="title">Server1&amp;2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">echo "/sbin/service keepalived stop" &gt;/opt/stop_keepalived.sh
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">echo "/sbin/service keepalived stop" &gt;/opt/stop_keepalived.sh
 echo "/sbin/service keepalived status|grep '(pid ' || /sbin/service keepalived start" &gt;/opt/check_keepalived.sh
 chmod +x /opt/stop_keepalived.sh /opt/check_keepalived.sh
 
@@ -3516,7 +3527,7 @@ ipvsadm -ln</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -3550,7 +3561,7 @@ ipvsadm -ln</code></pre>
 <div class="listingblock">
 <div class="title">Server4&amp;5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
 DEVICE=lo:vip
 BOOTPROTO=none
 IPADDR=10.10.10.100
@@ -3581,7 +3592,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">Server6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">cat &lt;&lt; EOF &gt; /etc/sysconfig/network-scripts/ifcfg-lo:vip
 DEVICE=lo:vip
 BOOTPROTO=none
 IPADDR=192.168.1.200
@@ -3624,7 +3635,7 @@ sysctl -p</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="dlist">
@@ -3648,7 +3659,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">Server6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"</code></pre>
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console">mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3657,7 +3668,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">Server6&amp;7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
 +----------+
 | hostname |
 +----------+
@@ -3671,7 +3682,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">Server6&amp;7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># mysql -h 10.10.10.100 -uroot -prootpassword -e "SELECT @@hostname hostname;"
 +----------+
 | hostname |
 +----------+
@@ -3683,7 +3694,7 @@ sysctl -p</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="dlist">
@@ -3740,7 +3751,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">Server3执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">chkconfig rpcbind on
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">chkconfig rpcbind on
 chkconfig nfs on</code></pre>
 </div>
 </div>
@@ -3950,7 +3961,7 @@ chkconfig nfs on</code></pre>
 <div class="listingblock">
 <div class="title">Server3执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">chown -R nginx:nginx /data
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">chown -R nginx:nginx /data
 uid=`id -u nginx`
 gid=`id -g nginx`
 cat &lt;&lt; EOF &gt; /etc/exports
@@ -3967,7 +3978,7 @@ service nfs start</code></pre>
 <div class="listingblock">
 <div class="title">Server3输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">---
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console">---
 # showmount -e
 Export list for Server3:
 /data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24
@@ -3986,7 +3997,7 @@ Export list for Server3:
 <div class="listingblock">
 <div class="title">Server2输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># showmount -e 12.12.12.90
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># showmount -e 12.12.12.90
 Export list for 12.12.12.90:
 /data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24</code></pre>
 </div>
@@ -3997,7 +4008,7 @@ Export list for 12.12.12.90:
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
 echo "12.12.12.90:/data  /nfs   nfs4      noatime,nolock,intr,bg,tcp     0 0" &gt;&gt;/etc/fstab
 mount -a</code></pre>
 </div>
@@ -4006,7 +4017,7 @@ mount -a</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -4037,7 +4048,7 @@ mount -a</code></pre>
 <div class="listingblock">
 <div class="title">Server6输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># showmount -e 11.11.11.90
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># showmount -e 11.11.11.90
 Export list for 11.11.11.90:
 /data 14.14.14.0/24,12.12.12.0/24,11.11.11.0/24</code></pre>
 </div>
@@ -4056,7 +4067,7 @@ Export list for 14.14.14.90:
 <div class="listingblock">
 <div class="title">Server6执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
 chown -R nginx:nginx /nfs
 echo "11.11.11.90:/data  /nfs   nfs4      noatime,nolock,intr,bg,tcp     0 0" &gt;&gt;/etc/fstab
 mount -a</code></pre>
@@ -4065,7 +4076,7 @@ mount -a</code></pre>
 <div class="listingblock">
 <div class="title">Server7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mkdir /nfs
 chown -R nginx:nginx /nfs
 echo "14.14.14.90:/data  /nfs   nfs4      noatime,nolock,intr,bg,tcp     0 0" &gt;&gt;/etc/fstab
 mount -a</code></pre>
@@ -4077,7 +4088,7 @@ mount -a</code></pre>
 <div class="listingblock">
 <div class="title">Server6输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># df -h
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># df -h
 Filesystem         Size  Used Avail Use% Mounted on
 /dev/sda1           48G  2.0G   44G   5% /
 tmpfs              246M     0  246M   0% /dev/shm
@@ -4089,7 +4100,7 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># df -h
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># df -h
 Filesystem         Size  Used Avail Use% Mounted on
 /dev/sda1           48G  2.0G   44G   5% /
 tmpfs              246M     0  246M   0% /dev/shm
@@ -4113,21 +4124,21 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server2输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
 12.12.12.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server6输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
 11.11.11.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># df -h|grep '/nfs'
 14.14.14.90:/data  1.4T   70M  1.3T   1% /nfs</code></pre>
 </div>
 </div>
@@ -4140,14 +4151,14 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server2&amp;6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 "bs=1024 count=10000" 表示建立10M大小的空文件。
@@ -4160,7 +4171,7 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server2输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
 记录了10000+0 的读入
 记录了10000+0 的写出
 10240000字节(10 MB)已复制，0.169929 秒，60.3 MB/秒</code></pre>
@@ -4169,7 +4180,7 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server6输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
 记录了10000+0 的读入
 记录了10000+0 的写出
 10240000字节(10 MB)已复制，0.372033 秒，27.5 MB/秒</code></pre>
@@ -4178,7 +4189,7 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># dd if=/dev/zero of=/nfs/`hostname`.file bs=1024 count=10000
 记录了10000+0 的读入
 记录了10000+0 的写出
 10240000字节(10 MB)已复制，0.602732 秒，17.0 MB/秒</code></pre>
@@ -4188,7 +4199,7 @@ tmpfs              246M     0  246M   0% /dev/shm
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -4211,14 +4222,14 @@ tmpfs              246M     0  246M   0% /dev/shm
 <div class="listingblock">
 <div class="title">Server3输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ls /data
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ls /data
 Server2.file  Server6.file  Server7.file  lost+found</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server2&amp;6&amp;7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ls /nfs
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ls /nfs
 lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 </div>
 </div>
@@ -4432,7 +4443,7 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 更多关于rsyncd.conf的信息，请访问 <a href="https://download.samba.org/pub/rsync/rsyncd.conf.html">Manual page rsyncd.conf</a> 。
@@ -4445,7 +4456,7 @@ lost+found  Server2.file  Server6.file  Server7.file</code></pre>
 <div class="listingblock">
 <div class="title">Server3执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
 wget -c http://fifilyu.github.io/halcpgb/file/Server3.etc.rsyncd.conf -O /etc/rsyncd.conf
 
 rsync --daemon
@@ -4459,7 +4470,7 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 假设所有的动态网页文件全部存放在 <code>/data</code> 目录。
@@ -4470,7 +4481,7 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 <div class="listingblock">
 <div class="title">Server7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf
 wget -c http://fifilyu.github.io/halcpgb/file/Server7.etc.rsyncd.conf -O /etc/rsyncd.conf
 
 rsync --daemon
@@ -4483,7 +4494,7 @@ echo "/usr/bin/rsync --daemon" &gt;&gt;/etc/rc.local</code></pre>
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf /opt/bak_db_dump.sh /opt/bak_db_binlog.sh
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /etc/rsyncd.conf /opt/bak_db_dump.sh /opt/bak_db_binlog.sh
 wget -c http://fifilyu.github.io/halcpgb/file/Server5.etc.rsyncd.conf -O /etc/rsyncd.conf
 wget -c http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_dump.sh -O /opt/bak_db_dump.sh
 wget -c http://fifilyu.github.io/halcpgb/file/Server5.opt.bak_db_binlog.sh -O /opt/bak_db_binlog.sh
@@ -4505,7 +4516,7 @@ echo "1 2 * * 0 /bin/sh /opt/bak_db_dump.sh" &gt;&gt;/var/spool/cron/root</code>
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">rm -f /opt/rsync_all_bak.sh
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">rm -f /opt/rsync_all_bak.sh
 wget -c http://fifilyu.github.io/halcpgb/file/Server2.opt.rsync_all_bak.sh -O /opt/rsync_all_bak.sh
 
 chmod 700 /opt/rsync_all_bak.sh
@@ -4528,27 +4539,27 @@ echo "1 5 * * * /bin/sh /opt/rsync_all_bak.sh" &gt;&gt;/var/spool/cron/root</cod
 <div class="listingblock">
 <div class="title">Server3&amp;5&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">ss -lpn|grep rsync</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ss -lpn|grep rsync</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server3输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
 LISTEN     0      5               12.12.12.90:873                      *:*      users:(("rsync",1573,4))</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
 LISTEN     0      5               10.10.10.102:873                      *:*      users:(("rsync",1560,4))</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server7输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># ss -lpn|grep rsync
 LISTEN     0      5               10.10.10.202:873                      *:*      users:(("rsync",1233,4))</code></pre>
 </div>
 </div>
@@ -4565,13 +4576,13 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <div class="listingblock">
 <div class="title">Server5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">crontab -l|egrep '(bak_db_binlog.sh)|(bak_db_dump.sh)'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">crontab -l|egrep '(bak_db_binlog.sh)|(bak_db_dump.sh)'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server5输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># crontab -l|egrep '(bak_db_binlog.sh)|(bak_db_dump.sh)'
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># crontab -l|egrep '(bak_db_binlog.sh)|(bak_db_dump.sh)'
 1 1 * * * /bin/sh /opt/bak_db_binlog.sh
 1 2 * * 0 /bin/sh /opt/bak_db_dump.sh</code></pre>
 </div>
@@ -4586,13 +4597,13 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <div class="listingblock">
 <div class="title">Server2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">crontab -l|egrep rsync_all_bak.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">crontab -l|egrep rsync_all_bak.sh</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Server2输出</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console"># crontab -l|egrep rsync_all_bak.sh
+<pre class="highlightjs highlight"><code class="language-console" data-lang="console"># crontab -l|egrep rsync_all_bak.sh
 1 5 * * * /bin/sh /opt/rsync_all_bak.sh</code></pre>
 </div>
 </div>
@@ -4605,7 +4616,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 整个恢复过程看似简单，但实际操作会问题多多。限于篇幅，本书没有详细解读。
@@ -4617,7 +4628,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 在生产服务器上，需要从备份数据恢复时，必须在专业人士的协助下操作，或由专业人士直接操作。操作前，一定要备份当前数据避免"次生灾害"。
@@ -4659,7 +4670,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 更多关于binlog解释，请访问 <a href="https://dev.mysql.com/doc/refman/5.0/en/binary-log.html">The Binary Log</a>
@@ -4716,7 +4727,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 除非一次性向电信公司购买(租用)一个机柜(12台1U服务器)的托管业务。否则，是没有机会在电信机房上自己的交换机或防火墙之类的设备的。
@@ -4731,7 +4742,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 如果配置错误，被DROP的访问会记录在日志文件 <code>/var/log/iptables.log</code> 中。通过日志文件的内容排除错误。
@@ -4744,7 +4755,7 @@ LISTEN     0      5               10.10.10.202:873                      *:*     
 <div class="listingblock">
 <div class="title">Server1&amp;2执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
 echo "kern.warning /var/log/iptables.log" &gt;&gt; /etc/rsyslog.conf
 service rsyslog restart
 
@@ -4790,7 +4801,7 @@ service iptables save</code></pre>
 <div class="listingblock">
 <div class="title">Server3执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
 echo "kern.warning /var/log/iptables.log" &gt;&gt; /etc/rsyslog.conf
 service rsyslog restart
 
@@ -4831,7 +4842,7 @@ service iptables save</code></pre>
 <div class="listingblock">
 <div class="title">Server4&amp;5执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
 echo "kern.warning /var/log/iptables.log" &gt;&gt; /etc/rsyslog.conf
 service rsyslog restart
 
@@ -4878,7 +4889,7 @@ service iptables save</code></pre>
 <div class="listingblock">
 <div class="title">Server6&amp;7执行</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#添加系统日志设置，将iptables日志写入/var/log/iptables.log
 echo "kern.warning /var/log/iptables.log" &gt;&gt; /etc/rsyslog.conf
 service rsyslog restart
 
@@ -4922,8 +4933,12 @@ service iptables save</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-09-01 10:22:25 CST
+Version 1.0.28<br>
+Last updated 2016-10-09 13:10:38 CST
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>
