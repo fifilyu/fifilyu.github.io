@@ -5102,13 +5102,14 @@ systemctl status php7-fpm</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
 cd  ~/downloads
-wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz -O Python-3.8.0.tar.xz
-tar xf Python-3.8.0.tar.xz
-cd Python-3.8.0
+wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tar.xz -O Python-3.8.1.tar.xz
+tar xf Python-3.8.1.tar.xz
+cd Python-3.8.1
 
-yum install -y gcc make openssl-devel
+# libffi-devel 解决错误："ImportError: No module named '_ctypes'"
+yum install -y gcc make openssl-devel libffi-devel
 
-./configure --prefix=/usr/local/python-3.8.0 \
+./configure --prefix=/usr/local/python-3.8.1 \
     --enable-optimizations \
     --with-openssl=/usr \
     --with-ssl-default-suites=openssl \
@@ -5116,8 +5117,10 @@ yum install -y gcc make openssl-devel
 make
 make install
 
-ln -s /usr/local/python-3.8.0/bin/pip3 /usr/local/bin/pip38
-ln -s /usr/local/python-3.8.0/bin/python3.8 /usr/local/bin/python38
+ln -s /usr/local/python-3.8.1 /usr/local/python3
+
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
 
 pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
 pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
@@ -5128,15 +5131,15 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <h4 id="_二进制压缩包安装">16.1.2. 二进制压缩包安装</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/7/python/3/python-3.8.0-1.el7.x86_64.tar.gz -O python-3.8.0-1.el7.x86_64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/7/python/3/python-3.8.1-1.el7.x86_64.tar.gz -O python-3.8.1-1.el7.x86_64.tar.gz
 
-tar xf python-3.8.0-1.el7.x86_64.tar.gz
+tar xf python-3.8.1-1.el7.x86_64.tar.gz
 
-rm -rf /usr/local/python-3.8.0
-mv python-3.8.0 /usr/local/python-3.8.0
+rm -rf /usr/local/python-3.8.1
+mv python-3.8.1 /usr/local/python-3.8.1
 
-ln -s /usr/local/python-3.8.0/bin/pip3 /usr/local/bin/pip38
-ln -s /usr/local/python-3.8.0/bin/python3.8 /usr/local/bin/python38
+ln -s /usr/local/python-3.8.1/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python-3.8.1/bin/python3.8 /usr/local/bin/python38
 
 pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
 pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
@@ -5152,13 +5155,14 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
 cd  ~/downloads
-wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz -O Python-3.8.0.tar.xz
-tar xf Python-3.8.0.tar.xz
-cd Python-3.8.0
+wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tar.xz -O Python-3.8.1.tar.xz
+tar xf Python-3.8.1.tar.xz
+cd Python-3.8.1
 
-dnf install -y gcc make openssl-devel
+# libffi-devel 解决错误："ImportError: No module named '_ctypes'"
+dnf install -y gcc make openssl-devel libffi-devel
 
-./configure --prefix=/usr/local/python-3.8.0 \
+./configure --prefix=/usr/local/python-3.8.1 \
     --enable-optimizations \
     --with-openssl=/usr \
     --with-ssl-default-suites=openssl \
@@ -5166,8 +5170,10 @@ dnf install -y gcc make openssl-devel
 make
 make install
 
-ln -s /usr/local/python-3.8.0/bin/pip3 /usr/local/bin/pip38
-ln -s /usr/local/python-3.8.0/bin/python3.8 /usr/local/bin/python38
+ln -s /usr/local/python-3.8.1 /usr/local/python3
+
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
 
 pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
 pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
@@ -5178,15 +5184,15 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <h4 id="_二进制压缩包安装_2">16.2.2. 二进制压缩包安装</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/8/python/3/python-3.8.0-1.el8.x86_64.tar.gz -O python-3.8.0-1.el8.x86_64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/8/python/3/python-3.8.1-1.el8.x86_64.tar.gz -O python-3.8.1-1.el8.x86_64.tar.gz
 
-tar xf python-3.8.0-1.el7.x86_64.tar.gz
+tar xf python-3.8.1-1.el7.x86_64.tar.gz
 
-rm -rf /usr/local/python-3.8.0
-mv python-3.8.0 /usr/local/python-3.8.0
+rm -rf /usr/local/python-3.8.1
+mv python-3.8.1 /usr/local/python-3.8.1
 
-ln -s /usr/local/python-3.8.0/bin/pip3 /usr/local/bin/pip38
-ln -s /usr/local/python-3.8.0/bin/python3.8 /usr/local/bin/python38
+ln -s /usr/local/python-3.8.1/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python-3.8.1/bin/python3.8 /usr/local/bin/python38
 
 pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
 pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
