@@ -883,13 +883,18 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_配置系统">8.1.6. 配置系统</a></li>
 <li><a href="#_chroot">8.1.7. Chroot</a></li>
 <li><a href="#_时区">8.1.8. 时区</a></li>
-<li><a href="#_键盘布局">8.1.9. 键盘布局</a></li>
-<li><a href="#_网络">8.1.10. 网络</a></li>
-<li><a href="#_设置root密码">8.1.11. 设置root密码</a></li>
-<li><a href="#_创建用户">8.1.12. 创建用户</a></li>
-<li><a href="#_安装引导器grub">8.1.13. 安装引导器(GRUB)</a></li>
-<li><a href="#_卸载分区并重启">8.1.14. 卸载分区并重启</a></li>
-<li><a href="#_用法">8.1.15. 用法</a>
+<li><a href="#_本地化语言支持">8.1.9. 本地化语言支持</a></li>
+<li><a href="#_键盘布局">8.1.10. 键盘布局</a></li>
+<li><a href="#_网络">8.1.11. 网络</a></li>
+<li><a href="#_设置root密码">8.1.12. 设置root密码</a></li>
+<li><a href="#_创建用户">8.1.13. 创建用户</a></li>
+<li><a href="#_安装引导器grub">8.1.14. 安装引导器(GRUB)</a></li>
+<li><a href="#_卸载分区并重启">8.1.15. 卸载分区并重启</a></li>
+</ul>
+</li>
+<li><a href="#_pacman">8.2. pacman</a>
+<ul class="sectlevel3">
+<li><a href="#_用法">8.2.1. 用法</a>
 <ul class="sectlevel4">
 <li><a href="#_安装包">安装包</a>
 <ul class="sectlevel5">
@@ -905,34 +910,34 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_search_for_a_package_that_contains_a_specific_file">Search for a package that contains a specific file</a></li>
 </ul>
 </li>
-<li><a href="#_troubleshooting">8.1.16. Troubleshooting</a>
+<li><a href="#_troubleshooting">8.2.2. Troubleshooting</a>
 <ul class="sectlevel4">
 <li><a href="#_signature_from_user_emailexample_org_is_unknown_trust_installation_failed">Signature from "User &lt;email@example.org&gt;" is unknown trust, installation failed</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_wireshark">8.2. Wireshark</a>
+<li><a href="#_wireshark">8.3. Wireshark</a>
 <ul class="sectlevel3">
-<li><a href="#_以普通用户身份抓包">8.2.1. 以普通用户身份抓包</a></li>
+<li><a href="#_以普通用户身份抓包">8.3.1. 以普通用户身份抓包</a></li>
 </ul>
 </li>
-<li><a href="#_sudo">8.3. Sudo</a>
+<li><a href="#_sudo">8.4. Sudo</a>
 <ul class="sectlevel3">
-<li><a href="#_sudo_command_doesnt_source_bashrc">8.3.1. sudo command doesn&#8217;t source ~/.bashrc</a></li>
+<li><a href="#_sudo_command_doesnt_source_bashrc">8.4.1. sudo command doesn&#8217;t source ~/.bashrc</a></li>
 </ul>
 </li>
-<li><a href="#_降级包">8.4. 降级包</a>
+<li><a href="#_降级包">8.5. 降级包</a>
 <ul class="sectlevel3">
-<li><a href="#_mysql_启动失败">8.4.1. MySQL 启动失败</a></li>
-<li><a href="#_降级_protobuf_包">8.4.2. 降级 <code>protobuf</code> 包</a></li>
-<li><a href="#_忽略_protobuf_包的后续更新">8.4.3. 忽略 <code>protobuf</code> 包的后续更新</a></li>
+<li><a href="#_mysql_启动失败">8.5.1. MySQL 启动失败</a></li>
+<li><a href="#_降级_protobuf_包">8.5.2. 降级 <code>protobuf</code> 包</a></li>
+<li><a href="#_忽略_protobuf_包的后续更新">8.5.3. 忽略 <code>protobuf</code> 包的后续更新</a></li>
 </ul>
 </li>
-<li><a href="#_视频缩略图">8.5. 视频缩略图</a>
+<li><a href="#_视频缩略图">8.6. 视频缩略图</a>
 <ul class="sectlevel3">
-<li><a href="#_问题">8.5.1. 问题</a></li>
-<li><a href="#_解决方法">8.5.2. 解决方法</a></li>
+<li><a href="#_问题">8.6.1. 问题</a></li>
+<li><a href="#_解决方法">8.6.2. 解决方法</a></li>
 </ul>
 </li>
 </ul>
@@ -1175,6 +1180,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_term_查询">term 查询</a></li>
 <li><a href="#_terms_查询">terms 查询</a></li>
 <li><a href="#_range_过滤">range 过滤</a></li>
+<li><a href="#_exists_和_missing_过滤">exists 和 missing 过滤</a></li>
 </ul>
 </li>
 </ul>
@@ -2626,14 +2632,20 @@ EOF</code></pre>
 <dd>
 <p><code>hwclock  --systohc</code></p>
 </dd>
-<dt class="hdlist1">==== 本地化语言支持</dt>
-<dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_本地化语言支持">8.1.9. 本地化语言支持</h4>
+<div class="paragraph">
 <p><code>echo "en_US.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen<br>
 echo "zh_CN.GB18030 GB18030" &gt;&gt; /etc/locale.gen<br>
 echo "zh_CN.GBK GBK" &gt;&gt; /etc/locale.gen<br>
 echo "zh_CN.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen<br>
 echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
-</dd>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">生成locale</dt>
 <dd>
 <p><code>locale-gen</code></p>
@@ -2646,13 +2658,13 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_键盘布局">8.1.9. 键盘布局</h4>
+<h4 id="_键盘布局">8.1.10. 键盘布局</h4>
 <div class="paragraph">
 <p><code>echo "KEYMAP=us" &gt; /etc/vconsole.conf</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_网络">8.1.10. 网络</h4>
+<h4 id="_网络">8.1.11. 网络</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">添加对应的信息到 hosts</dt>
@@ -2668,13 +2680,13 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置root密码">8.1.11. 设置root密码</h4>
+<h4 id="_设置root密码">8.1.12. 设置root密码</h4>
 <div class="paragraph">
 <p><code>passwd</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_创建用户">8.1.12. 创建用户</h4>
+<h4 id="_创建用户">8.1.13. 创建用户</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">新增用户</dt>
@@ -2711,7 +2723,7 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装引导器grub">8.1.13. 安装引导器(GRUB)</h4>
+<h4 id="_安装引导器grub">8.1.14. 安装引导器(GRUB)</h4>
 <div class="paragraph">
 <p><code>pacman -S grub</code></p>
 </div>
@@ -2726,17 +2738,19 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_卸载分区并重启">8.1.14. 卸载分区并重启</h4>
+<h4 id="_卸载分区并重启">8.1.15. 卸载分区并重启</h4>
 <div class="paragraph">
 <p><code>exit #退回到live模式<br>
 umount -R /mnt<br>
 shutdown now<br>
-进入新系统</code>
-=== pacman</p>
+进入新系统</code></p>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_pacman">8.2. pacman</h3>
 <div class="sect3">
-<h4 id="_用法">8.1.15. 用法</h4>
+<h4 id="_用法">8.2.1. 用法</h4>
 <div class="sect4">
 <h5 id="_安装包">安装包</h5>
 <div class="sect5">
@@ -2923,7 +2937,7 @@ extra/xscreensaver 5.43-1
 </div>
 </div>
 <div class="sect3">
-<h4 id="_troubleshooting">8.1.16. Troubleshooting</h4>
+<h4 id="_troubleshooting">8.2.2. Troubleshooting</h4>
 <div class="sect4">
 <h5 id="_signature_from_user_emailexample_org_is_unknown_trust_installation_failed">Signature from "User &lt;<a href="mailto:email@example.org">email@example.org</a>&gt;" is unknown trust, installation failed</h5>
 <div class="paragraph">
@@ -2962,9 +2976,9 @@ extra/xscreensaver 5.43-1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wireshark">8.2. Wireshark</h3>
+<h3 id="_wireshark">8.3. Wireshark</h3>
 <div class="sect3">
-<h4 id="_以普通用户身份抓包">8.2.1. 以普通用户身份抓包</h4>
+<h4 id="_以普通用户身份抓包">8.3.1. 以普通用户身份抓包</h4>
 <div class="paragraph">
 <p>默认情况下，必须使用 <code>sudo -i</code> 等命令切换到 root 用户才能获取到本地接口列表，然后抓包。</p>
 </div>
@@ -2994,9 +3008,9 @@ extra/xscreensaver 5.43-1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sudo">8.3. Sudo</h3>
+<h3 id="_sudo">8.4. Sudo</h3>
 <div class="sect3">
-<h4 id="_sudo_command_doesnt_source_bashrc">8.3.1. sudo command doesn&#8217;t source ~/.bashrc</h4>
+<h4 id="_sudo_command_doesnt_source_bashrc">8.4.1. sudo command doesn&#8217;t source ~/.bashrc</h4>
 <div class="paragraph">
 <div class="title">bashrc is a configuration file of bash, only when it&#8217;s executed interactively. It&#8217;s only loaded when you start bash, not when you run some other program such as sh (not even if bash is invoked via the name sh). And it&#8217;s only loaded when bash is interactive, not when it&#8217;s executing a script or a command with -c.</div>
 <p>sudo sh -c 'echo $PATH' or sudo bash -c 'echo $PATH' doesn&#8217;t invoke an interactive shell, so .bashrc is not involved.</p>
@@ -3027,9 +3041,9 @@ extra/xscreensaver 5.43-1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_降级包">8.4. 降级包</h3>
+<h3 id="_降级包">8.5. 降级包</h3>
 <div class="sect3">
-<h4 id="_mysql_启动失败">8.4.1. MySQL 启动失败</h4>
+<h4 id="_mysql_启动失败">8.5.1. MySQL 启动失败</h4>
 <div class="olist arabic">
 <div class="title">分析过程</div>
 <ol class="arabic">
@@ -3111,7 +3125,7 @@ protobuf /usr/lib/libprotobuf-lite.so.21.0.0</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_降级_protobuf_包">8.4.2. 降级 <code>protobuf</code> 包</h4>
+<h4 id="_降级_protobuf_包">8.5.2. 降级 <code>protobuf</code> 包</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rm -f protobuf-3.7.0-1-x86_64.pkg.tar.xz
@@ -3155,7 +3169,7 @@ $ ldd /usr/bin/mysqld|grep libprotobuf-lite.so
 </div>
 </div>
 <div class="sect3">
-<h4 id="_忽略_protobuf_包的后续更新">8.4.3. 忽略 <code>protobuf</code> 包的后续更新</h4>
+<h4 id="_忽略_protobuf_包的后续更新">8.5.3. 忽略 <code>protobuf</code> 包的后续更新</h4>
 <div class="paragraph">
 <p>在 <code>/etc/pacman.conf</code> 搜索 <code>IgnorePkg</code> 修改为：</p>
 </div>
@@ -3198,15 +3212,15 @@ $ ldd /usr/bin/mysqld|grep libprotobuf-lite.so
 </div>
 </div>
 <div class="sect2">
-<h3 id="_视频缩略图">8.5. 视频缩略图</h3>
+<h3 id="_视频缩略图">8.6. 视频缩略图</h3>
 <div class="sect3">
-<h4 id="_问题">8.5.1. 问题</h4>
+<h4 id="_问题">8.6.1. 问题</h4>
 <div class="paragraph">
 <p><code>Nautilus</code> 窗口视频没有缩略图。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_解决方法">8.5.2. 解决方法</h4>
+<h4 id="_解决方法">8.6.2. 解决方法</h4>
 <div class="paragraph">
 <p>参考：
 <a href="http://logan.tw/posts/2015/11/08/fix-nautilus-video-thumbnails/" class="bare">http://logan.tw/posts/2015/11/08/fix-nautilus-video-thumbnails/</a></p>
@@ -7144,9 +7158,9 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>======= exists 和 missing 过滤</p>
 </div>
+<div class="sect5">
+<h6 id="_exists_和_missing_过滤">exists 和 missing 过滤</h6>
 <div class="paragraph">
 <p><code>exists</code> 和 <code>missing</code> 过滤SQL语句中的过滤可以用于查找文档中是否包含指定字段或没有某个字段,类似于 <code>IS_NULL</code> 条件</p>
 </div>
