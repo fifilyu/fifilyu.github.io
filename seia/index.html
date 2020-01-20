@@ -3388,7 +3388,7 @@ EOF</code></pre>
 <code>yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></p>
 </div>
 <div class="paragraph">
-<p>查看默认 Java 版本：</p>
+<p>查看当前默认 Java 版本：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3407,7 +3407,7 @@ Current `best' version is /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.
 </div>
 </div>
 <div class="paragraph">
-<p>设置Java11为默认版本</p>
+<p>设置Java11为默认版本：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3416,6 +3416,17 @@ Current `best' version is /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.
 alternatives --set jre_openjdk `ls -d /usr/lib/jvm/java-11-openjdk-*`
 
 alternatives --set java_sdk_openjdk `ls -d /usr/lib/jvm/java-11-openjdk-*`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看当前默认 Java 版本：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# java -version
+openjdk version "11.0.6" 2020-01-14 LTS
+OpenJDK Runtime Environment 18.9 (build 11.0.6+10-LTS)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.6+10-LTS, mixed mode, sharing)</code></pre>
 </div>
 </div>
 </div>
@@ -3624,7 +3635,7 @@ EOF</code></pre>
 <h6 id="_设置配置文件_2">设置配置文件</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '9s#xxl.job.admin.addresses=http://127.0.0.1:8080/xxl-job-admin#xxl.job.admin.addresses=http://192.168.2.26:8080/xxl-job-admin#' \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '9s#xxl.job.admin.addresses=http://127.0.0.1:8080/xxl-job-admin#xxl.job.admin.addresses=http://192.168.2.11:8080/xxl-job-admin#' \
 /data/xxl-job/executor/application.properties
 
 appname=xxl-job-executor-s01
@@ -3770,7 +3781,7 @@ LISTEN     0      100       [::]:8081                  [::]:*                   
 <div class="sect3">
 <h4 id="_工作状态确认">9.1.6. 工作状态确认</h4>
 <div class="paragraph">
-<p>访问 <a href="http://192.168.2.26:8080/xxl-job-admin/jobgroup" class="bare">http://192.168.2.26:8080/xxl-job-admin/jobgroup</a> 并登录，确认结果与下图一致：</p>
+<p>访问 <a href="http://192.168.2.11:8080/xxl-job-admin/jobgroup" class="bare">http://192.168.2.11:8080/xxl-job-admin/jobgroup</a> 并登录，确认结果与下图一致：</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -7935,7 +7946,7 @@ input{
 filter {
       json {
         source =&gt; "content"
-        remove_tag =&gt; "content"
+        remove_field =&gt; "content"
       }
 }
 output{
