@@ -1063,11 +1063,19 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Java_chapter">16. Java</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_4">16.1. 安装配置</a></li>
-<li><a href="#_使用实例">16.2. 使用实例</a>
+<li><a href="#_javacjar和classpath">16.1. javac、jar和classpath</a>
 <ul class="sectlevel3">
-<li><a href="#_常用命令_3">16.2.1. 常用命令</a></li>
-<li><a href="#_编译运行java">16.2.2. 编译运行java</a></li>
+<li><a href="#_运行jar包">16.1.1. 运行jar包</a></li>
+<li><a href="#_编译运行java">16.1.2. 编译运行java</a></li>
+</ul>
+</li>
+<li><a href="#_spring">16.2. Spring</a></li>
+<li><a href="#_springboot">16.3. SpringBoot</a>
+<ul class="sectlevel3">
+<li><a href="#_配置文件官方文档">16.3.1. 配置文件官方文档</a></li>
+<li><a href="#_运行时指定配置模式devprodetc">16.3.2. 运行时指定配置模式（dev/prod/etc）</a></li>
+<li><a href="#_开启调试日志">16.3.3. 开启调试日志</a></li>
+<li><a href="#_开启web访问日志">16.3.4. 开启Web访问日志</a></li>
 </ul>
 </li>
 </ul>
@@ -1129,12 +1137,12 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Rsync_chapter">21. Rsync</a>
 <ul class="sectlevel2">
-<li><a href="#_使用实例_2">21.1. 使用实例</a></li>
+<li><a href="#_使用实例">21.1. 使用实例</a></li>
 </ul>
 </li>
 <li><a href="#_frp_chapter">22. frp</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_5">22.1. 安装配置</a>
+<li><a href="#_安装配置_4">22.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置">22.1.1. 初始配置</a></li>
 <li><a href="#_服务端">22.1.2. 服务端</a></li>
@@ -1145,7 +1153,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_npm_chapter">23. npm</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_6">23.1. 安装配置</a>
+<li><a href="#_安装配置_5">23.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置_2">23.1.1. 初始配置</a></li>
 </ul>
@@ -1154,7 +1162,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_lftp_chapter">24. lftp</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_7">24.1. 安装配置</a>
+<li><a href="#_安装配置_6">24.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置_3">24.1.1. 初始配置</a></li>
 </ul>
@@ -1163,7 +1171,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_gradle_chapter">25. gradle</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_8">25.1. 安装配置</a>
+<li><a href="#_安装配置_7">25.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_全局源">25.1.1. 全局源</a></li>
 </ul>
@@ -1240,12 +1248,12 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_youtube_dl_chapter">28. youtube-dl</a>
 <ul class="sectlevel2">
-<li><a href="#_使用实例_3">28.1. 使用实例</a></li>
+<li><a href="#_使用实例_2">28.1. 使用实例</a></li>
 </ul>
 </li>
 <li><a href="#_maven_chapter">29. maven</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_9">29.1. 安装配置</a>
+<li><a href="#_安装配置_8">29.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_全局源_2">29.1.1. 全局源</a></li>
 </ul>
@@ -1259,7 +1267,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_MongoDB_chapter">30. MongoDB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_10">30.1. 安装配置</a></li>
+<li><a href="#_安装配置_9">30.1. 安装配置</a></li>
 <li><a href="#_安装_2">30.2. 安装</a>
 <ul class="sectlevel3">
 <li><a href="#_文件目录结构">30.2.1. 文件目录结构</a></li>
@@ -1288,7 +1296,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Kafka_chapter">32. Kafka</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_11">32.1. 安装配置</a>
+<li><a href="#_安装配置_10">32.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_linux">32.1.1. Linux</a>
 <ul class="sectlevel4">
@@ -1305,7 +1313,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Pure-FTPd_chapter">33. Pure-FTPd</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_12">33.1. 安装配置</a>
+<li><a href="#_安装配置_11">33.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_centos6_安装">33.1.1. CentOS6 安装</a></li>
 </ul>
@@ -1314,7 +1322,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Shadowsocks_chapter">34. Shadowsocks</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_13">34.1. 安装配置</a>
+<li><a href="#_安装配置_12">34.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_centos7_2">34.1.1. CentOS7</a>
 <ul class="sectlevel4">
@@ -5652,24 +5660,15 @@ jd+6Xb3y6/u2+H0WrdV9D6kqmLn8bsuuz6/V1z73+rpe37W015dH23jvczjC49l6e+W17Xh0rNzT</co
 <h2 id="_Java_chapter">16. Java</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_4">16.1. 安装配置</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_使用实例">16.2. 使用实例</h3>
+<h3 id="_javacjar和classpath">16.1. javac、jar和classpath</h3>
 <div class="sect3">
-<h4 id="_常用命令_3">16.2.1. 常用命令</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">java -jar target/gs-spring-boot-0.1.0.jar</dt>
-<dd>
-<p>运行jar包</p>
-</dd>
-</dl>
+<h4 id="_运行jar包">16.1.1. 运行jar包</h4>
+<div class="paragraph">
+<p><code>java -jar target/gs-spring-boot-0.1.0.jar</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_编译运行java">16.2.2. 编译运行java</h4>
+<h4 id="_编译运行java">16.1.2. 编译运行java</h4>
 <div class="literalblock">
 <div class="title">源代码结构</div>
 <div class="content">
@@ -5723,6 +5722,82 @@ java -cp ./bin:/usr/share/java/postgresql-jdbc-8.4.704.jar statistics.Test</code
     └── statistics
         └── Test.class</pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spring">16.2. Spring</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_springboot">16.3. SpringBoot</h3>
+<div class="sect3">
+<h4 id="_配置文件官方文档">16.3.1. 配置文件官方文档</h4>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties" class="bare">https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_运行时指定配置模式devprodetc">16.3.2. 运行时指定配置模式（dev/prod/etc）</h4>
+<div class="paragraph">
+<p>通过启用不同的配置文件载入指定的配置参数。这种方式非常适合有多种配置的应用，通过特殊的运行时环境指定配置文件。</p>
+</div>
+<div class="paragraph">
+<p>在SpringBoot中，你可以在 `application.yml ` 所在目录下创建多个 `application-{profile}.yml ` 文件达到目的。指定的配置文件会覆盖默认设置。如果指定多个配置文件，最后一个有效。</p>
+</div>
+<div class="paragraph">
+<p>假如我的应用有两个环境，例如 <code>生产环境</code> 和 <code>开发环境</code>。这时，只需要创建两个配置文件即可：</p>
+</div>
+<div class="listingblock">
+<div class="title">application-dev.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="yml" class="language-yml hljs">logging:
+  file: logs/application-debug.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: ERROR
+    com.howtodoinjava: DEBUG
+    org.hibernate: ERROR</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">application-prod.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="yml" class="language-yml hljs">logging:
+  file: logs/application-debug.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: ERROR
+    com.howtodoinjava: INFO
+    org.hibernate: ERROR</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在运行时增加参数 <code>spring.profiles.active</code>，可以指定启用的配置文件。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ java -jar -Dspring.profiles.active=prod spring-boot-demo.jar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_开启调试日志">16.3.3. 开启调试日志</h4>
+<div class="paragraph">
+<p><code>java -jar -Ddebug=true target/server-1.0-SNAPSHOT.jar</code></p>
+</div>
+<div class="paragraph">
+<p><code>java -jar -Dtrace=true target/server-1.0-SNAPSHOT.jar</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_开启web访问日志">16.3.4. 开启Web访问日志</h4>
+<div class="paragraph">
+<p><code>java -jar -Dserver.tomcat.basedir=tomcat -Dserver.tomcat.accesslog.enabled=true target/server-1.0-SNAPSHOT.jar</code></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -6465,7 +6540,7 @@ echo 'out.pdf' &gt;&gt; make_pdf.sh</code></pre>
 <h2 id="_Rsync_chapter">21. Rsync</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_使用实例_2">21.1. 使用实例</h3>
+<h3 id="_使用实例">21.1. 使用实例</h3>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -6474,7 +6549,7 @@ echo 'out.pdf' &gt;&gt; make_pdf.sh</code></pre>
 <h2 id="_frp_chapter">22. frp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_5">22.1. 安装配置</h3>
+<h3 id="_安装配置_4">22.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置">22.1.1. 初始配置</h4>
 <div class="listingblock">
@@ -6564,7 +6639,7 @@ systemctl  status frpc</code></pre>
 <h2 id="_npm_chapter">23. npm</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_6">23.1. 安装配置</h3>
+<h3 id="_安装配置_5">23.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置_2">23.1.1. 初始配置</h4>
 <div class="listingblock">
@@ -6585,7 +6660,7 @@ npm run build</code></pre>
 <h2 id="_lftp_chapter">24. lftp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_7">24.1. 安装配置</h3>
+<h3 id="_安装配置_6">24.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置_3">24.1.1. 初始配置</h4>
 <div class="paragraph">
@@ -6602,7 +6677,7 @@ set ssl:verify-certificate no
 <h2 id="_gradle_chapter">25. gradle</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_8">25.1. 安装配置</h3>
+<h3 id="_安装配置_7">25.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_全局源">25.1.1. 全局源</h4>
 <div class="listingblock">
@@ -8031,7 +8106,7 @@ EOF
 <h2 id="_youtube_dl_chapter">28. youtube-dl</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_使用实例_3">28.1. 使用实例</h3>
+<h3 id="_使用实例_2">28.1. 使用实例</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">youtube-dl --sub-lang en --write-sub --sub-format srt https://www.youtube.com/watch?v=ptVqRCRPN9I
@@ -8077,7 +8152,7 @@ youtube-dl -f 137+140 'https://www.youtube.com/watch?v=lrDlTEbHw3g'</code></pre>
 <h2 id="_maven_chapter">29. maven</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_9">29.1. 安装配置</h3>
+<h3 id="_安装配置_8">29.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_全局源_2">29.1.1. 全局源</h4>
 <div class="listingblock">
@@ -8177,7 +8252,7 @@ EOF</code></pre>
 <h2 id="_MongoDB_chapter">30. MongoDB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_10">30.1. 安装配置</h3>
+<h3 id="_安装配置_9">30.1. 安装配置</h3>
 <div class="paragraph">
 <p><strong>基于 CentOS8</strong></p>
 </div>
@@ -8557,7 +8632,7 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
 <h2 id="_Kafka_chapter">32. Kafka</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_11">32.1. 安装配置</h3>
+<h3 id="_安装配置_10">32.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_linux">32.1.1. Linux</h4>
 <div class="sect4">
@@ -8646,7 +8721,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <h2 id="_Pure-FTPd_chapter">33. Pure-FTPd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_12">33.1. 安装配置</h3>
+<h3 id="_安装配置_11">33.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos6_安装">33.1.1. CentOS6 安装</h4>
 <div class="paragraph">
@@ -8772,7 +8847,7 @@ pure-pw list</code></pre>
 <h2 id="_Shadowsocks_chapter">34. Shadowsocks</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_13">34.1. 安装配置</h3>
+<h3 id="_安装配置_12">34.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos7_2">34.1.1. CentOS7</h4>
 <div class="sect4">
