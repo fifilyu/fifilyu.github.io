@@ -2442,7 +2442,7 @@ virsh autostart vm192168122253
 </dl>
 </div>
 <div class="listingblock">
-<div class="title">MySQL 5.7及以上</div>
+<div class="title">MySQL 5.7及以上，开放指定HOST并设置用户名和密码</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">CREATE USER 'dummy'@'localhost';
 
@@ -2455,13 +2455,6 @@ GRANT ALL ON *.* TO 'finley'@'localhost' WITH GRANT OPTION;</code></pre>
 <div class="title">MySQL 5.7及以上，单独开放指定HOST登录</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">update user set host = '%'  where user ='root';
-flush privileges;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">MySQL 5.7及以上，开放指定HOST并设置用户名和密码</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ALTER USER 'root'@'%' IDENTIFIED BY 'geek';
 flush privileges;</code></pre>
 </div>
 </div>
