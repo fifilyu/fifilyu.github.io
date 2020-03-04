@@ -2459,6 +2459,13 @@ flush privileges;</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">MySQL 5.7及以上，修改用户密码</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ALTER USER 'root'@'%' IDENTIFIED BY 'geek';
+flush privileges;</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">MySQL 5.7以下</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">grant all privileges on *.*  to root@"172.17.%.%" identified by "geek";
