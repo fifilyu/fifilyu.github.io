@@ -1059,7 +1059,11 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_FFmpeg_chapter">14. FFmpeg</a>
 <ul class="sectlevel2">
-<li><a href="#_命令合集">14.1. 命令合集</a></li>
+<li><a href="#_命令合集">14.1. 命令合集</a>
+<ul class="sectlevel3">
+<li><a href="#_mp4转换为mp3">14.1.1. mp4转换为mp3</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_Git_chapter">15. Git</a>
@@ -1642,8 +1646,10 @@ ps aux|grep ftp</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_容器启动命令">1.3. 容器启动命令</h3>
-<div class="paragraph">
-<p><code>docker run -d --restart=always --name test  centos:7 docker-entrypoint.sh</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run -d --restart=always --name test  centos:7 docker-entrypoint.sh</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p><code>docker-entrypoint.sh</code> 表示容器中的 <code>/usr/local/bin/docker-entrypoint.sh</code> ，通常内容为：</p>
@@ -1846,37 +1852,33 @@ iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -o virbr0 -j MASQUERADE</co
 <div class="sect2">
 <h3 id="_proxy_pass_传递查询参数">3.1. <code>proxy_pass</code> 传递查询参数</h3>
 <div class="paragraph">
-<p>proxy_pass 最后一个 "/" 表示传递查询参数到后端。</p>
+<p><code>proxy_pass</code> 最后一个 "/" 表示传递查询参数到后端。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">location /api-elevator/ {
+<pre>location /api-elevator/ {
     proxy_pass http://ttd1_api_elevator:8080/;
-}</code></pre>
+}</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>yum install -y httpd-tools</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y httpd-tools
+htpasswd -b -c /etc/nginx/conf.d/dl.2012iot.com.pass admin CaNxR7doJLW76HPXGkrsMmH9epCtSIbn23bz6bOm</code></pre>
 </div>
-<div class="paragraph">
-<p>htpasswd -b -c /etc/nginx/conf.d/dl.2012iot.com.pass admin CaNxR7doJLW76HPXGkrsMmH9epCtSIbn23bz6bOm</p>
 </div>
-<div class="paragraph">
-<p>server {
+<div class="listingblock">
+<div class="content">
+<pre>server {
     listen    80;
     server_name dl.2012iot.com;
     root /usr/share/nginx/html;
-    access_log off;</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>auth_basic "auth";
-auth_basic_user_file /etc/nginx/conf.d/dl.2012iot.com.pass;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    charset UTF-8;
+    access_log off;
+
+    auth_basic "auth";
+    auth_basic_user_file /etc/nginx/conf.d/dl.2012iot.com.pass;
+
+    charset UTF-8;
     autoindex on;
     autoindex_exact_size off;
     autoindex_localtime on;
@@ -1888,7 +1890,7 @@ auth_basic_user_file /etc/nginx/conf.d/dl.2012iot.com.pass;</pre>
 <h3 id="_目录浏览">3.2. 目录浏览</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">server {
+<pre>server {
         listen       80;
 
         server_name dl.cdgeekcamp.com;
@@ -1900,7 +1902,7 @@ auth_basic_user_file /etc/nginx/conf.d/dl.2012iot.com.pass;</pre>
             # 设置文件大小显示单位
             autoindex_exact_size off;
         }
-}</code></pre>
+}</pre>
 </div>
 </div>
 </div>
@@ -1911,7 +1913,7 @@ auth_basic_user_file /etc/nginx/conf.d/dl.2012iot.com.pass;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">proxy_cache_path /var/lib/nginx/tmp/static_cache levels=1:2 keys_zone=static_cache:100m inactive=1d max_size=10g;
+<pre>proxy_cache_path /var/lib/nginx/tmp/static_cache levels=1:2 keys_zone=static_cache:100m inactive=1d max_size=10g;
 
 server {
     listen 80;
@@ -1929,7 +1931,7 @@ server {
         proxy_cache static_cache;
         proxy_pass http://192.168.2.204:80;
     }
-}</code></pre>
+}</pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2043,15 +2045,17 @@ rm -f /tmp/set_br1.sh</code></pre>
 <h3 id="_安装配置_2">6.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_安装kvm环境">6.1.1. 安装kvm环境</h4>
-<div class="paragraph">
-<p><code>yum install -y virt-manager libvirt virt-install qemu-kvm bridge-utils</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y virt-manager libvirt virt-install qemu-kvm bridge-utils</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># lsmod | grep kvm
+<pre># lsmod | grep kvm
 
 kvm_intel       138567  0
-kvm             441119  1 kvm_intel</code></pre>
+kvm             441119  1 kvm_intel</pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2091,8 +2095,10 @@ sysctl -p</code></pre>
 <div class="paragraph">
 <p>编辑 <code>/var/lib/libvirt/dnsmasq/default.conf</code>，修改IP段为 <code>192.168.122.0/24</code></p>
 </div>
-<div class="paragraph">
-<p><code>dhcp-range=192.168.122.2,192.168.122.254</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dhcp-range=192.168.122.2,192.168.122.254</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">重启libvirtd</div>
@@ -2106,7 +2112,7 @@ brctl stp virbr0 on</code></pre>
 <h5 id="_查看默认网桥virbr0">查看默认网桥virbr0</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># ip a
+<pre># ip a
 4: virbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN
     link/ether 52:54:00:dd:9e:e0 brd ff:ff:ff:ff:ff:ff
     inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
@@ -2116,7 +2122,7 @@ brctl stp virbr0 on</code></pre>
 
 # brctl show
 bridge name	bridge id		STP enabled	interfaces
-virbr0		8000.525400dd9ee0	off		virbr0-nic</code></pre>
+virbr0		8000.525400dd9ee0	off		virbr0-nic</pre>
 </div>
 </div>
 </div>
@@ -2179,7 +2185,7 @@ CentOS 7 上意外关闭了 NetworkManager 服务，重启后导致无法访问�
 <h4 id="_查看_os_variant_类型">6.1.4. 查看 os-variant 类型</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># osinfo-query os|grep -i centos
+<pre># osinfo-query os|grep -i centos
  centos6.0            | CentOS 6.0                                         | 6.0      | http://centos.org/centos/6.0
  centos6.1            | CentOS 6.1                                         | 6.1      | http://centos.org/centos/6.1
  centos6.2            | CentOS 6.2                                         | 6.2      | http://centos.org/centos/6.2
@@ -2196,7 +2202,7 @@ CentOS 7 上意外关闭了 NetworkManager 服务，重启后导致无法访问�
 
 # osinfo-query os|grep -i 2012
  win2k12              | Microsoft Windows Server 2012                      | 6.3      | http://microsoft.com/win/2k12
- win2k12r2            | Microsoft Windows Server 2012 R2                   | 6.3      | http://microsoft.com/win/2k12r2</code></pre>
+ win2k12r2            | Microsoft Windows Server 2012 R2                   | 6.3      | http://microsoft.com/win/2k12r2</pre>
 </div>
 </div>
 </div>
@@ -2204,7 +2210,7 @@ CentOS 7 上意外关闭了 NetworkManager 服务，重启后导致无法访问�
 <h4 id="_增加虚拟机">6.1.5. 增加虚拟机</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">virt-install \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virt-install \
 --name 192168100009 \
 --ram 4096 \
 --disk path=/data/libvirt/images/192168100009.img,size=30 \
@@ -2374,9 +2380,11 @@ EOF
 virsh attach-device --config tpl_win2k12r2 guest-device.xml</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">有光驱，动态插入ISO</div>
-<p><code>virsh attach-disk tpl_win2k12r2 /data/libvirt/iso/win2k12r2.iso hdc --type cdrom --mode readonly</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virsh attach-disk tpl_win2k12r2 /data/libvirt/iso/win2k12r2.iso hdc --type cdrom --mode readonly</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">内网NAT</div>
@@ -2515,11 +2523,15 @@ flush privileges;</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_本机无密码登录">7.1.3. 本机无密码登录</h4>
-<div class="paragraph">
-<p><code>mysql_config_editor set --login-path=local --host=localhost --user=root --password</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql_config_editor set --login-path=local --host=localhost --user=root --password</code></pre>
 </div>
-<div class="paragraph">
-<p><code>mysql --login-path=local db_name</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql --login-path=local db_name</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2527,7 +2539,7 @@ flush privileges;</code></pre>
 <div class="listingblock">
 <div class="title">查看数据库字符集1</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">mysql&gt; show variables like 'collation%';
+<pre>mysql&gt; show variables like 'collation%';
 +----------------------+--------------------+
 | Variable_name        | Value              |
 +----------------------+--------------------+
@@ -2550,25 +2562,25 @@ mysql&gt; show variables like 'character%';
 | character_set_system     | utf8                       |
 | character_sets_dir       | /usr/share/mysql/charsets/ |
 +--------------------------+----------------------------+
-8 rows in set (0.00 sec)</code></pre>
+8 rows in set (0.00 sec)</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">查看数据库字符集2</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">mysql&gt; show create database ghibli;
+<pre>mysql&gt; show create database ghibli;
 +----------+----------------------------------------------------------------------------------------------------------------------------------+
 | Database | Create Database                                                                                                                  |
 +----------+----------------------------------------------------------------------------------------------------------------------------------+
 | ghibli   | CREATE DATABASE `ghibli` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */ |
 +----------+----------------------------------------------------------------------------------------------------------------------------------+
-1 row in set (0.00 sec)</code></pre>
+1 row in set (0.00 sec)</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">查看表字符集</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">mysql&gt; show create table pre_ucenter_memberfields;
+<pre>mysql&gt; show create table pre_ucenter_memberfields;
 Current database: db_name
 
 +-----------------------------------------------------------------+
@@ -2580,19 +2592,23 @@ Current database: db_name
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk |
 +-----------------------------------------------------------------+
-1 row in set (0.98 sec)</code></pre>
+1 row in set (0.98 sec)</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_修改表字符集">7.1.5. 修改表字符集</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">修改表字符集</div>
-<p><code>ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">修改数据库字符集</div>
-<p><code>ALTER DATABASE db_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ALTER DATABASE db_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2663,13 +2679,10 @@ show global variables like '%time%';</code></pre>
 <h3 id="_archlinux_安装">8.1. ArchLinux 安装</h3>
 <div class="sect3">
 <h4 id="_建立硬盘分区">8.1.1. 建立硬盘分区</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">硬盘分区</dt>
-<dd>
-<p><code>cfdisk</code></p>
-</dd>
-</dl>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cfdisk</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>步骤一：</p>
@@ -2698,39 +2711,41 @@ show global variables like '%time%';</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_格式化分区">8.1.2. 格式化分区</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">文件系统格式化</dt>
-<dd>
-<p><code>mkfs.ext4 /dev/sda1</code></p>
-</dd>
-<dt class="hdlist1">交换格式化</dt>
-</dl>
+<div class="paragraph">
+<p>文件系统格式化</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"> `mkswap /dev/sda2`
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkfs.ext4 /dev/sda1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>交换格式化</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkswap /dev/sda2
 
- `swapon /dev/sda2`</code></pre>
+swapon /dev/sda2</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_挂载分区">8.1.3. 挂载分区</h4>
-<div class="paragraph">
-<p><code>mount /dev/sda1 /mnt</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mount /dev/sda1 /mnt</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_选择镜像源">8.1.4. 选择镜像源</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">更换为国内的镜像源</dt>
-</dl>
+<div class="paragraph">
+<p>更换为国内的镜像源</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt;EOF&gt; /etc/pacman.d/mirrorlist
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/pacman.d/mirrorlist
 # tsinghua
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/\$repo/os/\$arch
 EOF</code></pre>
@@ -2739,90 +2754,98 @@ EOF</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_安装必须的软件包">8.1.5. 安装必须的软件包</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">使用 pacstrap 脚本，安装 base 软件包</dt>
-<dd>
-<p><code>pacstrap /mnt base</code></p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>使用 pacstrap 脚本，安装 base 软件包</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacstrap /mnt base</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_配置系统">8.1.6. 配置系统</h4>
-<div class="dlist">
-<div class="title">刷新fstab配置</div>
-<dl>
-<dt class="hdlist1">用以下命令生成 fstab 文件 (用 -U 或 -L 选项设置UUID 或卷标)</dt>
-<dd>
-<p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>用以下命令生成 fstab 文件 (用 -U 或 -L 选项设置UUID 或卷标)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_chroot">8.1.7. Chroot</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Change root 到新安装的系统</dt>
-<dd>
-<p><code>arch-chroot /mnt</code></p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>Change root 到新安装的系统</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">arch-chroot /mnt</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_时区">8.1.8. 时区</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">设置 时区</dt>
-<dd>
-<p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
-</dd>
-<dt class="hdlist1">运行 hwclock 以生成 /etc/adjtime</dt>
-<dd>
-<p><code>hwclock  --systohc</code></p>
-</dd>
-</dl>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>运行 hwclock 以生成 /etc/adjtime</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">hwclock  --systohc</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_本地化语言支持">8.1.9. 本地化语言支持</h4>
-<div class="paragraph">
-<p><code>echo "en_US.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen<br>
-echo "zh_CN.GB18030 GB18030" &gt;&gt; /etc/locale.gen<br>
-echo "zh_CN.GBK GBK" &gt;&gt; /etc/locale.gen<br>
-echo "zh_CN.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen<br>
-echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "en_US.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen +
+echo "zh_CN.GB18030 GB18030" &gt;&gt; /etc/locale.gen +
+echo "zh_CN.GBK GBK" &gt;&gt; /etc/locale.gen +
+echo "zh_CN.UTF-8 UTF-8" &gt;&gt; /etc/locale.gen +
+echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code></pre>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">生成locale</dt>
-<dd>
-<p><code>locale-gen</code></p>
-</dd>
-<dt class="hdlist1">Tip: 将系统 locale 设置为 en_US.UTF-8，系统的 Log 就会用英文显示</dt>
-<dd>
-<p><code>echo "LANG=zh_CN.UTF-8" &gt; /etc/locale.conf</code></p>
-</dd>
-</dl>
+</div>
+<div class="paragraph">
+<p>生成locale</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">locale-gen</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tip: 将系统 locale 设置为 en_US.UTF-8，系统的 Log 就会用英文显示</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "LANG=zh_CN.UTF-8" &gt; /etc/locale.conf</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_键盘布局">8.1.10. 键盘布局</h4>
-<div class="paragraph">
-<p><code>echo "KEYMAP=us" &gt; /etc/vconsole.conf</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "KEYMAP=us" &gt; /etc/vconsole.conf</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_网络">8.1.11. 网络</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">添加对应的信息到 hosts</dt>
-<dd>
-<p><code>vim /etc/hosts</code></p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>添加对应的信息到 hosts</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vim /etc/hosts</code></pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2832,40 +2855,61 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 <div class="sect3">
 <h4 id="_设置root密码">8.1.12. 设置root密码</h4>
-<div class="paragraph">
-<p><code>passwd</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">passwd</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_创建用户">8.1.13. 创建用户</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">新增用户</dt>
-<dd>
-<p><code>useradd -m ylighgh</code></p>
-</dd>
-<dt class="hdlist1">修改用户密码</dt>
-<dd>
-<p><code>passwd ylighgh</code></p>
-</dd>
-<dt class="hdlist1">用户授予权限</dt>
-<dd>
-<p><code>usermod -aG wheel,audio,video,optical,storage ylighgh</code></p>
-</dd>
-<dt class="hdlist1">检查权限</dt>
-<dd>
-<p><code>groups ylighgh</code></p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>新增用户</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -m ylighgh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改用户密码</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">passwd ylighgh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用户授予权限</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">usermod -aG wheel,audio,video,optical,storage ylighgh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>检查权限</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">groups ylighgh</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>对vanabel用户提权, 使得可以使用sudo来获得root权限</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -S sudo</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S sudo</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><code>visudo</code></p>
+<p>或</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">visudo</code></pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2875,26 +2919,28 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code><br></p>
 </div>
 <div class="sect3">
 <h4 id="_安装引导器grub">8.1.14. 安装引导器(GRUB)</h4>
-<div class="paragraph">
-<p><code>pacman -S grub</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S grub
+grub-install /dev/sda
+pacman -S linux linux-headers linux-lts linux-lts-headers
+grub-mkconfig -o /boot/grub/gurb.cfg</code></pre>
 </div>
-<div class="paragraph">
-<p><code>grub-install /dev/sda</code></p>
-</div>
-<div class="paragraph">
-<p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code></p>
-</div>
-<div class="paragraph">
-<p><code>grub-mkconfig -o /boot/grub/gurb.cfg</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_卸载分区并重启">8.1.15. 卸载分区并重启</h4>
 <div class="paragraph">
-<p><code>exit #退回到live模式<br>
-umount -R /mnt<br>
-shutdown now<br>
-进入新系统</code></p>
+<p>输入 <code>exit</code>，退回到live模式。然后执行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">umount -R /mnt
+poweroff</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装完成，重启进入系统。</p>
 </div>
 </div>
 </div>
@@ -2909,15 +2955,19 @@ shutdown now<br>
 <div class="paragraph">
 <p>安装单个包或多个包以及包依赖，执行命令：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -S package_name1 package_name2 &#8230;&#8203;</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S package_name1 package_name2 ...</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>有时会出现一个包有多个版本，来自不同的仓库（比如，<code>extra</code> 和 <code>testing</code>）。
 以下命令会安装 <code>extra</code> 仓库的包，仓库名称放在包名之前：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -S extra/package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S extra/package_name</code></pre>
+</div>
 </div>
 </div>
 <div class="sect5">
@@ -2925,14 +2975,18 @@ shutdown now<br>
 <div class="paragraph">
 <p>安装包组下的所有包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -S gnome</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S gnome</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>查看 <code>gnome</code> 组下的包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Sg gnome</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Sg gnome</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2941,14 +2995,18 @@ shutdown now<br>
 <div class="paragraph">
 <p>移除包，但不移除相关依赖包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -R package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -R package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>移除包及其依赖包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Rs package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Rs package_name</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -2957,8 +3015,10 @@ shutdown now<br>
 <p><code>pacman</code> 能够使用一个命令升级系统上的所有包。根据系统上次更新时间不同，升级的时间也有所不同。
 下面这个命令会同步仓库数据库并更新包。</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Syu</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syu</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -2970,50 +3030,66 @@ shutdown now<br>
 <div class="paragraph">
 <p><code>pacman</code> 可以搜索数据库中的包信息，包括包名称和描述：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Ss string1 string2 &#8230;&#8203;</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Ss string1 string2 ...</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>搜索已经安装的包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Qs string1 string2 &#8230;&#8203;</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Qs string1 string2 ...</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>根据文件名搜索远端仓库：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -F string1 string2 &#8230;&#8203;</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -F string1 string2 ...</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>显示指定包的概要信息：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Si package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Si package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>显示已经安装的包信息：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Qi package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Qi package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>打印本地包的文件列表：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Ql package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Ql package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>从远端仓库获取包的文件列表：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Fl package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Fl package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>检查本地包文件是否存在：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Qk package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Qk package_name</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3030,20 +3106,26 @@ shutdown now<br>
 <div class="paragraph">
 <p>查询文件所属本地包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Qo /path/to/file_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Qo /path/to/file_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>从远程仓库查询文件所属包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -F /path/to/file_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -F /path/to/file_name</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_清除包缓存">清除包缓存</h5>
-<div class="paragraph">
-<p><code>pacman -Scc</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Scc</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -3051,14 +3133,18 @@ shutdown now<br>
 <div class="paragraph">
 <p>仅下载包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Sw package_name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Sw package_name</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>从本地文件系统安装包：</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -U /path/to/package/package_name-version.pkg.tar.xz</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -U /path/to/package/package_name-version.pkg.tar.xz</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -3066,20 +3152,22 @@ shutdown now<br>
 <div class="paragraph">
 <p>同步文件数据库:</p>
 </div>
-<div class="paragraph">
-<p><code>pacman -Fy</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Fy</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>搜索包里面的一个文件，比如：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ pacman -F pacman
+<pre>$ pacman -F pacman
 core/pacman 5.2.1-1 (base base-devel) [installed]
     usr/bin/pacman
     usr/share/bash-completion/completions/pacman
 extra/xscreensaver 5.43-1
-    usr/lib/xscreensaver/pacman</code></pre>
+    usr/lib/xscreensaver/pacman</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3211,7 +3299,7 @@ extra/xscreensaver 5.43-1
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ ldd /usr/bin/mysqld
+<pre>$ ldd /usr/bin/mysqld
 	linux-vdso.so.1 (0x00007fff4dd95000)
 	libjemalloc.so.2 =&gt; /usr/lib/libjemalloc.so.2 (0x00007fd61d6d0000)
 	libpthread.so.0 =&gt; /usr/lib/libpthread.so.0 (0x00007fd61d6ae000)
@@ -3219,7 +3307,7 @@ extra/xscreensaver 5.43-1
 	libicui18n.so.64 =&gt; /usr/lib/libicui18n.so.64 (0x00007fd61d1e1000)
 	libevent_core-2.1.so.7 =&gt; /usr/lib/libevent_core-2.1.so.7 (0x00007fd61d1a8000)
 	libprotobuf-lite.so.18 =&gt; not found
-	librt.so.1 =&gt; /usr/lib/librt.so.1 (0x00007fd61d0fe000)</code></pre>
+	librt.so.1 =&gt; /usr/lib/librt.so.1 (0x00007fd61d0fe000)</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3230,8 +3318,8 @@ extra/xscreensaver 5.43-1
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ pkgfile libprotobuf-lite.so
-extra/protobuf</code></pre>
+<pre>$ pkgfile libprotobuf-lite.so
+extra/protobuf</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3239,7 +3327,7 @@ extra/protobuf</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ sudo pacman -Fy libprotobuf-lite.so
+<pre>$ sudo pacman -Fy libprotobuf-lite.so
 :: 正在同步软件包数据库...
  core 已经是最新版本
  extra 已经是最新版本
@@ -3247,7 +3335,7 @@ extra/protobuf</code></pre>
  multilib 已经是最新版本
  archlinuxcn 已经是最新版本
 extra/protobuf 3.10.0-1 [已安装: 3.10.0-1]
-    usr/lib/libprotobuf-lite.so</code></pre>
+    usr/lib/libprotobuf-lite.so</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3255,10 +3343,10 @@ extra/protobuf 3.10.0-1 [已安装: 3.10.0-1]
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ sudo pacman -Ql protobuf|grep libprotobuf-lite.so
+<pre>$ sudo pacman -Ql protobuf|grep libprotobuf-lite.so
 protobuf /usr/lib/libprotobuf-lite.so
 protobuf /usr/lib/libprotobuf-lite.so.21
-protobuf /usr/lib/libprotobuf-lite.so.21.0.0</code></pre>
+protobuf /usr/lib/libprotobuf-lite.so.21.0.0</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3266,9 +3354,9 @@ protobuf /usr/lib/libprotobuf-lite.so.21.0.0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ ldconfig -p|grep libprotobuf-lite.so
+<pre>$ ldconfig -p|grep libprotobuf-lite.so
 	libprotobuf-lite.so.21 (libc6,x86-64) =&gt; /usr/lib/libprotobuf-lite.so.21
-	libprotobuf-lite.so (libc6,x86-64) =&gt; /usr/lib/libprotobuf-lite.so</code></pre>
+	libprotobuf-lite.so (libc6,x86-64) =&gt; /usr/lib/libprotobuf-lite.so</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3287,12 +3375,12 @@ sudo pacman -U protobuf-3.7.0-1-x86_64.pkg.tar.xz</code></pre>
 <div class="listingblock">
 <div class="title">确认 <code>MySQL</code> 依赖</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ ldconfig -p|grep libprotobuf-lite.so
+<pre>$ ldconfig -p|grep libprotobuf-lite.so
 	libprotobuf-lite.so.18 (libc6,x86-64) =&gt; /usr/lib/libprotobuf-lite.so.18
 	libprotobuf-lite.so (libc6,x86-64) =&gt; /usr/lib/libprotobuf-lite.so
 
 $ ldd /usr/bin/mysqld|grep libprotobuf-lite.so
-	libprotobuf-lite.so.18 =&gt; /usr/lib/libprotobuf-lite.so.18 (0x00007f209f7b2000)</code></pre>
+	libprotobuf-lite.so.18 =&gt; /usr/lib/libprotobuf-lite.so.18 (0x00007f209f7b2000)</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3330,7 +3418,7 @@ $ ldd /usr/bin/mysqld|grep libprotobuf-lite.so
 <div class="listingblock">
 <div class="title">确认忽略效果</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ sudo pacman -Syu
+<pre>$ sudo pacman -Syu
 [sudo] mk 的密码：
 :: 正在同步软件包数据库...
  core 已经是最新版本
@@ -3340,7 +3428,7 @@ $ ldd /usr/bin/mysqld|grep libprotobuf-lite.so
  archlinuxcn 已经是最新版本
 :: 正在进行全面系统更新...
 警告：protobuf：忽略软件包升级 (3.7.0-1 =&gt; 3.10.0-1)
- 今日无事可做</code></pre>
+ 今日无事可做</pre>
 </div>
 </div>
 <div class="dlist">
@@ -3400,8 +3488,10 @@ sudo pacman -S gst-libav</code></pre>
 <h4 id="_安装依赖">9.1.1. 安装依赖</h4>
 <div class="sect4">
 <h5 id="_git">Git</h5>
-<div class="paragraph">
-<p><code>yum install -y git</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y git</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -3434,21 +3524,25 @@ sudo pacman -S gst-libav</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>安装 Maven<br>
-<code>yum install -y maven</code></p>
+<p>安装 Maven</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y maven</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>查看 Maven 版本</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# mvn --version
+<pre>[root@geekcamp ~]# mvn --version
 Apache Maven 3.0.5 (Red Hat 3.0.5-17)
 Maven home: /usr/share/maven
 Java version: 1.8.0_232, vendor: Oracle Corporation
 Java home: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre
 Default locale: en_US, platform encoding: UTF-8
-OS name: "linux", version: "3.10.0-1062.el7.x86_64", arch: "amd64", family: "unix"</code></pre>
+OS name: "linux", version: "3.10.0-1062.el7.x86_64", arch: "amd64", family: "unix"</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3456,10 +3550,10 @@ OS name: "linux", version: "3.10.0-1062.el7.x86_64", arch: "amd64", family: "uni
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# java -version
+<pre>[root@geekcamp ~]# java -version
 openjdk version "1.8.0_232"
 OpenJDK Runtime Environment (build 1.8.0_232-b09)
-OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)</code></pre>
+OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3487,15 +3581,19 @@ EOF</code></pre>
 <div class="sect4">
 <h5 id="_java_11可选">Java 11（可选）</h5>
 <div class="paragraph">
-<p>安装 Java 11：<br>
-<code>yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></p>
+<p>安装 Java 11：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>查看当前默认 Java 版本：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# java -version
+<pre>[root@geekcamp ~]# java -version
 openjdk version "1.8.0_232"
 OpenJDK Runtime Environment (build 1.8.0_232-b09)
 OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)
@@ -3506,7 +3604,7 @@ java - status is auto.
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin/java - family java-1.8.0-openjdk.x86_64 priority 1800232
  slave jre: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre
 ......
-Current `best' version is /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin/java.</code></pre>
+Current `best' version is /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin/java.</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3526,30 +3624,46 @@ alternatives --set java_sdk_openjdk `ls -d /usr/lib/jvm/java-11-openjdk-*`</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# java -version
+<pre>[root@geekcamp ~]# java -version
 openjdk version "11.0.6" 2020-01-14 LTS
 OpenJDK Runtime Environment 18.9 (build 11.0.6+10-LTS)
-OpenJDK 64-Bit Server VM 18.9 (build 11.0.6+10-LTS, mixed mode, sharing)</code></pre>
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.6+10-LTS, mixed mode, sharing)</pre>
 </div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_mysql">MySQL</h5>
 <div class="paragraph">
-<p>安装 <code>MySQL</code>：<br>
-<code>yum install -y mariadb-server mariadb</code></p>
+<p>安装 <code>MySQL</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y mariadb-server mariadb</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>设置开机启动：<br>
-<code>systemctl enable mariadb</code></p>
+<p>设置开机启动：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable mariadb</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>启动 <code>MySQL</code> 服务：<br>
-<code>systemctl start mariadb</code></p>
+<p>启动 <code>MySQL</code> 服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mariadb</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>设置密码：<br>
-<code>mysqladmin -uroot password "geek"</code></p>
+<p>设置密码：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqladmin -uroot password "geek"</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -3568,7 +3682,7 @@ OpenJDK 64-Bit Server VM 18.9 (build 11.0.6+10-LTS, mixed mode, sharing)</code><
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp ~]# mysql -uroot -pgeek -e "show databases;"
+<pre>[root@geekcamp ~]# mysql -uroot -pgeek -e "show databases;"
 +--------------------+
 | Database           |
 +--------------------+
@@ -3576,7 +3690,7 @@ OpenJDK 64-Bit Server VM 18.9 (build 11.0.6+10-LTS, mixed mode, sharing)</code><
 | mysql              |
 | performance_schema |
 | test               |
-+--------------------+</code></pre>
++--------------------+</pre>
 </div>
 </div>
 </div>
@@ -3635,8 +3749,10 @@ echo y | cp xxl-job-executor-samples/xxl-job-executor-sample-springboot/src/main
 <div class="paragraph">
 <p>创建 <code>xxl_job</code> 数据库：</p>
 </div>
-<div class="paragraph">
-<p><code>mysql -uroot -pgeek -e "CREATE DATABASE xxl_job DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;"</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql -uroot -pgeek -e "CREATE DATABASE xxl_job DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;"</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>创建 <code>xxl_job</code> 用户：</p>
@@ -3650,15 +3766,17 @@ mysql -uroot -pgeek -e "GRANT ALL ON xxl_job.* TO 'xxl_job'@'localhost' WITH GRA
 <div class="paragraph">
 <p>导入 SQL 文件：</p>
 </div>
-<div class="paragraph">
-<p><code>mysql -uxxl_job -pgeek xxl_job &lt; doc/db/tables_xxl_job.sql</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql -uxxl_job -pgeek xxl_job &lt; doc/db/tables_xxl_job.sql</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>查看 <code>xxl_job</code> 表：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp xxl-job]# mysql -uxxl_job -pgeek xxl_job -e "show tables;"
+<pre>[root@geekcamp xxl-job]# mysql -uxxl_job -pgeek xxl_job -e "show tables;"
 +--------------------+
 | Tables_in_xxl_job  |
 +--------------------+
@@ -3670,7 +3788,7 @@ mysql -uroot -pgeek -e "GRANT ALL ON xxl_job.* TO 'xxl_job'@'localhost' WITH GRA
 | xxl_job_logglue    |
 | xxl_job_registry   |
 | xxl_job_user       |
-+--------------------+</code></pre>
++--------------------+</pre>
 </div>
 </div>
 </div>
@@ -3820,7 +3938,7 @@ systemctl start xxl_job_admin</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@geekcamp xxl-job]# systemctl status xxl_job_admin
+<pre>[root@geekcamp xxl-job]# systemctl status xxl_job_admin
 ● xxl_job.service - XXL-JOB Service
    Loaded: loaded (/usr/lib/systemd/system/xxl_job.service; enabled; vendor preset: disabled)
    Active: active (running) since Thu 2020-01-16 13:56:05 CST; 1s ago
@@ -3831,7 +3949,7 @@ systemctl start xxl_job_admin</code></pre>
 Jan 16 13:56:05 geekcamp systemd[1]: Started XXL-JOB Service.
 
 [root@geekcamp xxl-job]# ss -antpl|grep 8080
-LISTEN     0      100       [::]:8080                  [::]:*                   users:(("java",pid=2288,fd=21))</code></pre>
+LISTEN     0      100       [::]:8080                  [::]:*                   users:(("java",pid=2288,fd=21))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3866,7 +3984,7 @@ systemctl start xxl_job_executor</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@localhost admin]# systemctl status xxl_job_executor
+<pre>[root@localhost admin]# systemctl status xxl_job_executor
 ● xxl_job_client.service - XXL-JOB Client
    Loaded: loaded (/usr/lib/systemd/system/xxl_job_client.service; enabled; vendor preset: disabled)
    Active: active (running) since Thu 2020-01-16 18:49:43 CST; 4s ago
@@ -3877,7 +3995,7 @@ systemctl start xxl_job_executor</code></pre>
 Jan 16 18:49:43 localhost.localdomain systemd[1]: Started XXL-JOB Client.
 
 [root@localhost admin]# ss -antpl|grep 8081
-LISTEN     0      100       [::]:8081                  [::]:*                   users:(("java",pid=4679,fd=11))</code></pre>
+LISTEN     0      100       [::]:8081                  [::]:*                   users:(("java",pid=4679,fd=11))</pre>
 </div>
 </div>
 </div>
@@ -3964,7 +4082,7 @@ ls /data</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Capture only traffic to or from IP address 172.18.5.4:<br>
+<p>Capture only traffic to or from IP address 172.18.5.4:
 <code>host 172.18.5.4</code></p>
 </li>
 <li>
@@ -4059,14 +4177,18 @@ vue init webpack demo_project</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_运行">12.1.3. 运行</h4>
-<div class="paragraph">
-<p><code>npm run dev</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">npm run dev</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_打包">12.1.4. 打包</h4>
-<div class="paragraph">
-<p><code>npm run build</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">npm run build</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p><code>dist</code> 目录中的文件就是构建的静态页面。</p>
@@ -4350,13 +4472,17 @@ EOF</code></pre>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装Nginx</div>
-<p><code>yum install -y nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y nginx</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">备份Nginx配置文件</div>
-<p><code>echo y|cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.default</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo y|cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.default</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改 nginx.conf</div>
@@ -4472,9 +4598,11 @@ server {
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">检测配置</div>
-<p><code>nginx -t &amp;&amp; rm -f /var/run/nginx.pid</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -t &amp;&amp; rm -f /var/run/nginx.pid</code></pre>
+</div>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -4496,14 +4624,16 @@ EOF</code></pre>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">启动Nginx</div>
-<p><code>systemctl start nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start nginx</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看Nginx状态</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># systemctl status nginx
+<pre># systemctl status nginx
 ● nginx.service - The nginx HTTP and reverse proxy server
    Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
    Active: active (running) since Fri 2019-11-29 14:02:31 CST; 1h 18min ago
@@ -4521,23 +4651,29 @@ Nov 29 14:02:31 iZ6weebcmroarpx8rrxscrZ systemd[1]: Started The nginx HTTP and r
 
 # ss -antpl|grep nginx
 LISTEN     0      128          *:80                       *:*                   users:(("nginx",pid=17285,fd=6),("nginx",pid=15759,fd=6))
-LISTEN     0      128         :::80                      :::*                   users:(("nginx",pid=17285,fd=7),("nginx",pid=15759,fd=7))</code></pre>
+LISTEN     0      128         :::80                      :::*                   users:(("nginx",pid=17285,fd=7),("nginx",pid=15759,fd=7))</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable nginx</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_安装_mysql">13.4.2. 安装 MySQL</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装 MySQL</div>
-<p><code>yum install -y mariadb-server</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y mariadb-server</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">备份 <code>my.cnf</code></div>
-<p><code>cp /etc/my.cnf /etc/my.cnf.default</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/my.cnf /etc/my.cnf.default</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改 <code>my.cnf</code></div>
@@ -4595,9 +4731,11 @@ pid-file=/var/run/mariadb/mariadb.pid
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">配置 <code>mysqldump</code> 命令参数</div>
-<p><code>sed -i '16 aquick\nquote-names\nmax_allowed_packet = 100M' /etc/my.cnf.d/mysql-clients.cnf</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '16 aquick\nquote-names\nmax_allowed_packet = 100M' /etc/my.cnf.d/mysql-clients.cnf</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">创建日志文件</div>
@@ -4606,18 +4744,22 @@ EOF</code></pre>
 chown mysql:mysql /var/log/mariadb/general.log /var/log/mariadb/slowquery.log</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable mariadb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable mariadb</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动 <code>MySQL</code> 服务</div>
-<p><code>systemctl start mariadb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mariadb</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看 <code>MySQL</code> 服务状态</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># systemctl status mariadb
+<pre># systemctl status mariadb
 ● mariadb.service - MariaDB database server
    Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)
    Active: active (running) since Fri 2019-11-29 14:18:12 CST; 1h 7min ago
@@ -4635,12 +4777,14 @@ Nov 29 14:18:11 iZ6weebcmroarpx8rrxscrZ mysqld_safe[16687]: 191129 14:18:11 mysq
 Nov 29 14:18:12 iZ6weebcmroarpx8rrxscrZ systemd[1]: Started MariaDB database server.
 
 # ss -antpl|grep mysql
-LISTEN     0      50     127.0.0.1:3306                     *:*                   users:(("mysqld",pid=17043,fd=14))</code></pre>
+LISTEN     0      50     127.0.0.1:3306                     *:*                   users:(("mysqld",pid=17043,fd=14))</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">修改root密码</div>
-<p><code>mysqladmin -uroot password "geek"</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqladmin -uroot password "geek"</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">删除测试数据库和空密码用户</div>
@@ -4655,9 +4799,11 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_安装_php7">13.4.3. 安装 PHP7</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加SCL源</div>
-<p><code>yum install -y centos-release-scl</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y centos-release-scl</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">安装PHP7.2</div>
@@ -4677,23 +4823,27 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
     rh-php72-php-devel</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">进入 <code>rh-php72</code> 环境</div>
-<p><code>scl enable rh-php72 bash</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">scl enable rh-php72 bash</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">确认PHP状态</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># php -v
+<pre># php -v
 PHP 7.2.24 (cli) (built: Nov  4 2019 10:23:08) ( NTS )
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
-    with Zend OPcache v7.2.24, Copyright (c) 1999-2018, by Zend Technologies</code></pre>
+    with Zend OPcache v7.2.24, Copyright (c) 1999-2018, by Zend Technologies</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">备份php.ini</div>
-<p><code>cp /etc/opt/rh/rh-php72/php.ini /etc/opt/rh/rh-php72/php.ini.default</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/opt/rh/rh-php72/php.ini /etc/opt/rh/rh-php72/php.ini.default</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改php.ini</div>
@@ -4708,13 +4858,17 @@ sed -i '314s/disable_functions =/disable_functions = system,exec,shell_exec,pass
 sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/opt/rh/rh-php72/php.ini</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable rh-php72-php-fpm</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable rh-php72-php-fpm</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动 <code>PHP-FPM</code> 服务</div>
-<p><code>systemctl start rh-php72-php-fpm</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start rh-php72-php-fpm</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看 <code>PHP-FPM</code> 服务状态</div>
@@ -4744,9 +4898,11 @@ LISTEN     0      128    127.0.0.1:9000                     *:*                 
 </div>
 <div class="sect3">
 <h4 id="_lnmp_环境测试">13.4.4. LNMP 环境测试</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加数据库</div>
-<p><code>mysql -uroot -pgeek -e 'create database drupal;grant all privileges on drupal.*  to drupal@"localhost" identified by "drupal_password";flush privileges;'</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql -uroot -pgeek -e 'create database drupal;grant all privileges on drupal.*  to drupal@"localhost" identified by "drupal_password";flush privileges;'</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">增加Nginx Host设置</div>
@@ -4848,9 +5004,11 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">设置本地解析</div>
-<p><code>echo '47.74.60.161 drupal.foo.com' &gt;&gt; /etc/hosts</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo '47.74.60.161 drupal.foo.com' &gt;&gt; /etc/hosts</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4904,13 +5062,17 @@ Server is a backwards-compatible replacement for MySQL.</p>
 <h3 id="_centos8配置文档">13.5. Centos8配置文档</h3>
 <div class="sect3">
 <h4 id="_安装_linux">13.5.1. 安装 Linux</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加EPEL源</div>
-<p><code>dnf install -y epel-release</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y epel-release</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">备份Nginx配置文件</div>
-<p><code>echo y|cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.defaultv</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo y|cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.defaultv</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改 nginx.conf</div>
@@ -5029,40 +5191,56 @@ server {
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">检查配置</div>
-<p><code>nginx -t</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -t</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动Nginx</div>
-<p><code>systemctl start nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start nginx</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查看Nginx状态</div>
-<p><code>systemctl status nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl status nginx</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable nginx</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查看版本号</div>
-<p><code>nginx -v</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -v</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">卸载nginx</div>
-<p><code>dnf remove nginx</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf remove nginx</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_安装_mysql_2">13.5.2. 安装 MySQL</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装 MySQL</div>
-<p><code>dnf install -y mariadb-server</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y mariadb-server</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">备份 my.cnf</div>
-<p><code>cp /etc/my.cnf /etc/my.cnf.default</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/my.cnf /etc/my.cnf.default</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改 my.cnf</div>
@@ -5120,21 +5298,29 @@ pid-file=/var/run/mariadb/mariadb.pid
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable mariadb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable mariadb</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动MySQL</div>
-<p><code>systemctl start mariadb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mariadb</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查看 MySQL 服务状态</div>
-<p><code>systemctl status mariadb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl status mariadb</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">修改root密码</div>
-<p><code>mysqladmin -uroot password "geek"</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqladmin -uroot password "geek"</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">删除测试数据库和空密码用户</div>
@@ -5149,9 +5335,11 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_安装_php7_2">13.5.3. 安装 PHP7</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加SCL源</div>
-<p><code>dnf install -y centos-release-scl</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y centos-release-scl</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">安装PHP7.2</div>
@@ -5171,17 +5359,23 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 		php-devel</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装mlocate</div>
-<p><code>dnf install -y mlocate</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y mlocate</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">更新</div>
-<p><code>updatedb</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">updatedb</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查找配置文件路径</div>
-<p><code>locate php.ini</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">locate php.ini</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">修改php.ini</div>
@@ -5195,24 +5389,32 @@ sed -i '314s/disable_functions =/disable_functions = system,exec,shell_exec,pass
 sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/opt/rh/rh-php72/php.ini</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加开机启动</div>
-<p><code>systemctl enable php-fpm</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable php-fpm</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动 PHP-FPM 服务</div>
-<p><code>systemctl start php-fpm</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start php-fpm</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查看 PHP-FPM 服务状态</div>
-<p><code>systemctl status php-fpm</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl status php-fpm</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_lnmp环境测试">13.5.4. LNMP环境测试</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">增加数据库</div>
-<p><code>mysql -uroot -pgeek -e 'create database drupal;grant all privileges on drupal.* to drupal@"localhost" identified by "drupal_password";flush privileges;'</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql -uroot -pgeek -e 'create database drupal;grant all privileges on drupal.* to drupal@"localhost" identified by "drupal_password";flush privileges;'</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">增加Nginx Host设置</div>
@@ -5244,9 +5446,11 @@ EOF</code></pre>
 <div class="title">重载Nginx配置</div>
 <p><code>nginx -s reload</code></p>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">准备 Drupal</div>
-<p><code>mkdir -p /data/web/drupal.foo.com</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /data/web/drupal.foo.com</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">使用 -O 参数指定保存文件名，会强制覆盖已经存在的文件</div>
@@ -5259,9 +5463,11 @@ chown -R apache:nginx /data/web/drupal.foo.com
 chmod -R 755 /data/web/drupal.foo.com</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">设置本地解析</div>
-<p><code>echo '47.74.60.161 drupal.foo.com' &gt;&gt; /etc/hosts</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo '47.74.60.161 drupal.foo.com' &gt;&gt; /etc/hosts</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -5491,13 +5697,15 @@ If you have a IR mode (RAID via the controller) configuration, you may need the 
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_命令合集">14.1. 命令合集</h3>
-<div class="paragraph">
-<p>mp4转换为mp3</p>
+<div class="sect3">
+<h4 id="_mp4转换为mp3">14.1.1. mp4转换为mp3</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ffmpeg -i 'BLACKPINK - Really.mp4'  -vn -ar 44100 -ac 2 -b:a 192k 'BLACKPINK - Really.mp3'</code></pre>
 </div>
-<div class="paragraph">
-<p><code>ffmpeg -i 'BLACKPINK - Really.mp4'  -vn -ar 44100 -ac 2 -b:a 192k 'BLACKPINK - Really.mp3'</code></p>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -5537,7 +5745,7 @@ If you have a IR mode (RAID via the controller) configuration, you may need the 
 <div class="listingblock">
 <div class="title">查看配置列表</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ git config --list
+<pre>$ git config --list
 core.packedgitlimit=100m
 core.packedgitwindowsize=100m
 core.quotepath=false
@@ -5550,7 +5758,7 @@ pack.packsizelimit=100m
 pack.windowmemory=100m
 pack.threads=1
 pack.window=0
-commit.template=/home/mk/.gitmessage.txt</code></pre>
+commit.template=/home/mk/.gitmessage.txt</pre>
 </div>
 </div>
 </div>
@@ -5572,7 +5780,7 @@ commit.template=/home/mk/.gitmessage.txt</code></pre>
 <div class="listingblock">
 <div class="title">gitmessage.txt 文件内容</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs"># Type(&lt;scope&gt;): &lt;subject&gt;
+<pre># Type(&lt;scope&gt;): &lt;subject&gt;
 
 # &lt;body&gt;
 
@@ -5601,7 +5809,7 @@ commit.template=/home/mk/.gitmessage.txt</code></pre>
 
 # e.g.,
 # revert: feat(pencil): add 'graphiteWidth' option
-# This reverts commit 667ecc1654a317a13331b17617d973392f415f02.</code></pre>
+# This reverts commit 667ecc1654a317a13331b17617d973392f415f02.</pre>
 </div>
 </div>
 </div>
@@ -5637,14 +5845,14 @@ fi
 <div class="listingblock">
 <div class="title">问题描述</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ git status
+<pre>$ git status
 On branch dev
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
 
     "\346\265\213\350\257\225\344\270\255\346\226\207"
 
-nothing added to commit but untracked files present (use "git add" to track)</code></pre>
+nothing added to commit but untracked files present (use "git add" to track)</pre>
 </div>
 </div>
 <div class="listingblock">
@@ -5656,14 +5864,14 @@ nothing added to commit but untracked files present (use "git add" to track)</co
 <div class="listingblock">
 <div class="title">测试</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ git status
+<pre>$ git status
 On branch dev
 Untracked files:
   (use "git add &lt;file&gt;..." to include in what will be committed)
 
     测试
 
-nothing added to commit but untracked files present (use "git add" to track)</code></pre>
+nothing added to commit but untracked files present (use "git add" to track)</pre>
 </div>
 </div>
 </div>
@@ -5672,9 +5880,9 @@ nothing added to commit but untracked files present (use "git add" to track)</co
 <div class="listingblock">
 <div class="title">修改前</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ git remote -v
+<pre>$ git remote -v
 origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
-origin  https://github.com/USERNAME/REPOSITORY.git (push)</code></pre>
+origin  https://github.com/USERNAME/REPOSITORY.git (push)</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5683,9 +5891,9 @@ origin  https://github.com/USERNAME/REPOSITORY.git (push)</code></pre>
 <div class="listingblock">
 <div class="title">修改前</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ git remote -v
+<pre>$ git remote -v
 origin  git@github.com:USERNAME/OTHERREPOSITORY.git (fetch)
-origin  git@github.com:USERNAME/OTHERREPOSITORY.git (push)</code></pre>
+origin  git@github.com:USERNAME/OTHERREPOSITORY.git (push)</pre>
 </div>
 </div>
 <div class="sect3">
@@ -5709,8 +5917,10 @@ origin  git@github.com:USERNAME/OTHERREPOSITORY.git (push)</code></pre>
 <div class="paragraph">
 <p>以上命令可以增加和移除远程仓库，一个项目可以同时拥有多个远程仓库。仅需要在推送时，指定远程仓库即可，比如</p>
 </div>
-<div class="paragraph">
-<p><code>git push test master</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">git push test master</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -5736,7 +5946,7 @@ origin  git@github.com:USERNAME/OTHERREPOSITORY.git (push)</code></pre>
 <h3 id="_实用工具">16.4. 实用工具</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[mk@archlinux test]$ echo 测试测试&gt;out.txt
+<pre>[mk@archlinux test]$ echo 测试测试&gt;out.txt
 [mk@archlinux test]$ file out.txt
 out.txt: UTF-8 Unicode text
 
@@ -5807,7 +6017,7 @@ iVBORw0KGgoAAAANSUhEUgAAAZkAAAJTCAYAAADaPmuBAAAABHNCSVQICAgIfAhkiAAAABl0RVh0
 U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AACAASURBVHic7L3bkiS9jSb4AXSPrJLU3WO7
 8wZzuXf7GG17MQ+5ZvNua9ajVutXVWY4CewFCDqdQT/FISt/SSiLikg/kCCdjg8AQZD+llT/3//1
 v/Dv//7vGIcB35QATeCkUFZgAISAQQNUFS0R0eJvVS3HiKh7T+8+Ebk5tnZtW9/aNfUxEVkcWytz
-jd+6Xb3y6/u2+H0WrdV9D6kqmLn8bsuuz6/V1z73+rpe37W015dH23jvczjC49l6e+W17Xh0rNzT</code></pre>
+jd+6Xb3y6/u2+H0WrdV9D6kqmLn8bsuuz6/V1z73+rpe37W015dH23jvczjC49l6e+W17Xh0rNzT</pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -5821,8 +6031,10 @@ jd+6Xb3y6/u2+H0WrdV9D6kqmLn8bsuuz6/V1z73+rpe37W015dH23jvczjC49l6e+W17Xh0rNzT</co
 <h3 id="_javacjar和classpath">17.1. javac、jar和classpath</h3>
 <div class="sect3">
 <h4 id="_运行jar包">17.1.1. 运行jar包</h4>
-<div class="paragraph">
-<p><code>java -jar target/gs-spring-boot-0.1.0.jar</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">java -jar target/gs-spring-boot-0.1.0.jar</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -5939,23 +6151,29 @@ java -cp ./bin:/usr/share/java/postgresql-jdbc-8.4.704.jar statistics.Test</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ java -jar -Dspring.profiles.active=prod spring-boot-demo.jar</code></pre>
+<pre>$ java -jar -Dspring.profiles.active=prod spring-boot-demo.jar</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_开启调试日志">17.3.3. 开启调试日志</h4>
-<div class="paragraph">
-<p><code>java -jar -Ddebug=true target/server-1.0-SNAPSHOT.jar</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">java -jar -Ddebug=true target/server-1.0-SNAPSHOT.jar</code></pre>
 </div>
-<div class="paragraph">
-<p><code>java -jar -Dtrace=true target/server-1.0-SNAPSHOT.jar</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">java -jar -Dtrace=true target/server-1.0-SNAPSHOT.jar</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_开启web访问日志">17.3.4. 开启Web访问日志</h4>
-<div class="paragraph">
-<p><code>java -jar -Dserver.tomcat.basedir=tomcat -Dserver.tomcat.accesslog.enabled=true target/server-1.0-SNAPSHOT.jar</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">java -jar -Dserver.tomcat.basedir=tomcat -Dserver.tomcat.accesslog.enabled=true target/server-1.0-SNAPSHOT.jar</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -6354,8 +6572,10 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <h3 id="_设置pip国内镜像">19.3. 设置PIP国内镜像</h3>
 <div class="sect3">
 <h4 id="_临时使用">19.3.1. 临时使用</h4>
-<div class="paragraph">
-<p><code>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" class="bare">https://pypi.tuna.tsinghua.edu.cn/simple</a> 包名称</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名称</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6374,9 +6594,11 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 </div>
 <div class="sect3">
 <h4 id="_设为默认">19.3.2. 设为默认</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">先升级PIP</div>
-<p><code>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" class="bare">https://pypi.tuna.tsinghua.edu.cn/simple</a> pip -U</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6388,16 +6610,20 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <div class="paragraph">
 <p>手动升级 <code>CentOS</code> 系统 <code>yum</code> 安装的 <code>pip3</code> 时，需要指定安装路径到 <code>/usr</code> ，否则 <code>pip3</code> 会被安装到 <code>/usr/local/bin/pip3</code></p>
 </div>
-<div class="paragraph">
-<p><code>pip install --prefix /usr -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" class="bare">https://pypi.tuna.tsinghua.edu.cn/simple</a> pip -U</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install --prefix /usr -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U</code></pre>
+</div>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">设置默认镜像</div>
-<p><code>pip config set global.index-url <a href="https://pypi.tuna.tsinghua.edu.cn/simple" class="bare">https://pypi.tuna.tsinghua.edu.cn/simple</a></code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6417,7 +6643,7 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <div class="listingblock">
 <div class="title">~/.pypirc</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">[distutils]
+<pre>[distutils]
 index-servers=
     pypi
     testpypi
@@ -6429,58 +6655,74 @@ password: &lt;密码&gt;
 [testpypi]
 repository: https://test.pypi.org/legacy/
 username: &lt;用户名&gt;
-password: &lt;密码&gt;</code></pre>
+password: &lt;密码&gt;</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_打包_2">19.4.2. 打包</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装打包工具</div>
-<p><code>python3 -m pip install -U setuptools wheel</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">python3 -m pip install -U setuptools wheel</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">打包</div>
-<p><code>python3 setup.py bdist_wheel</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">python3 setup.py bdist_wheel</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">打包后的文件</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">dist/
+<pre>dist/
   example_pkg_YOUR_USERNAME_HERE-0.0.1-py3-none-any.whl
-  example_pkg_YOUR_USERNAME_HERE-0.0.1.tar.gz</code></pre>
+  example_pkg_YOUR_USERNAME_HERE-0.0.1.tar.gz</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_测试上传">19.4.3. 测试上传</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装上传工具</div>
-<p><code>python3 -m pip install -U twine</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">python3 -m pip install -U twine</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">测试上传</div>
-<p><code>twine upload --repository-url <a href="https://test.pypi.org/legacy/" class="bare">https://test.pypi.org/legacy/</a> dist/*</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">twine upload --repository-url https://test.pypi.org/legacy/ dist/*</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>或者</p>
 </div>
-<div class="paragraph">
-<p><code>twine upload --config-file ~/.pypirc -r testpypi dist/*</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">twine upload --config-file ~/.pypirc -r testpypi dist/*</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">测试安装</div>
-<p><code>python3 -m pip install -i <a href="https://test.pypi.org/simple/" class="bare">https://test.pypi.org/simple/</a> --no-deps example-pkg-YOUR-USERNAME-HERE</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">python3 -m pip install -i https://test.pypi.org/simple/ --no-deps example-pkg-YOUR-USERNAME-HERE</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">在 <code>Python</code> 解释器中测试导入包</div>
-<p><code>import example_pkg</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">import example_pkg</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_上传">19.4.4. 上传</h4>
-<div class="paragraph">
-<p><code>twine upload dist/*</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">twine upload dist/*</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>如果使用国内镜像源，需要等一两天国内服务器才会同步官方源。</p>
@@ -6488,8 +6730,10 @@ password: &lt;密码&gt;</code></pre>
 <div class="paragraph">
 <p>可以临时指定官方源安装：</p>
 </div>
-<div class="paragraph">
-<p><code>python3 -m pip install -i <a href="https://pypi.org/simple/" class="bare">https://pypi.org/simple/</a> example-pkg</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">python3 -m pip install -i https://pypi.org/simple/ example-pkg</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6586,7 +6830,7 @@ password: &lt;密码&gt;</code></pre>
 <h3 id="_生成文件签名">20.1. 生成文件签名</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">$ gpg --list-signatures
+<pre>$ gpg --list-signatures
 /home/fifilyu/.gnupg/pubring.kbx
 --------------------------------
 pub   rsa2048 2017-12-14 [SC]
@@ -6594,7 +6838,7 @@ pub   rsa2048 2017-12-14 [SC]
 uid           [ 绝对 ] Zhong Jing Wu Lian (release key) &lt;security@mwteck.com&gt;
 sig 3        F5AF9B93E7C36AED 2017-12-14  Zhong Jing Wu Lian (release key) &lt;security@mwteck.com&gt;
 sub   rsa2048 2017-12-14 [E]
-sig          F5AF9B93E7C36AED 2017-12-14  Zhong Jing Wu Lian (release key) &lt;security@mwteck.com&gt;</code></pre>
+sig          F5AF9B93E7C36AED 2017-12-14  Zhong Jing Wu Lian (release key) &lt;security@mwteck.com&gt;</pre>
 </div>
 </div>
 <div class="listingblock">
@@ -6822,9 +7066,15 @@ npm run build</code></pre>
 <div class="sect3">
 <h4 id="_初始配置_3">25.1.1. 初始配置</h4>
 <div class="paragraph">
-<p>编辑/etc/lftp.conf，加入下面内容：
-set ssl:verify-certificate no
-或直接在lftp命令提示符下输入：set ssl:verify-certificate no 回车。</p>
+<p>编辑 <code>/etc/lftp.conf</code>，加入下面内容：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>set ssl:verify-certificate no</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>或直接在lftp命令提示符下输入 <code>：set ssl:verify-certificate no</code>，然后 <kbd>Enter</kbd>。</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -6897,8 +7147,10 @@ EOF</code></pre>
 <h3 id="_uwsgi">27.1. uWSGI</h3>
 <div class="sect3">
 <h4 id="_centos6">27.1.1. CentOS6</h4>
-<div class="paragraph">
-<p><code>yum install -y epel</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y epel</code></pre>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_uwsgi_2">uWSGI</h5>
@@ -7071,7 +7323,7 @@ EOF</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@localhost ~]# yum --disablerepo="*" --enablerepo="elasticsearch" list available
+<pre>[root@localhost ~]# yum --disablerepo="*" --enablerepo="elasticsearch" list available
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
 elasticsearch                                                                                                                          | 1.3 kB  00:00:00
@@ -7095,7 +7347,7 @@ logstash.noarch                                                                 
 metricbeat.i686                                                                 7.5.1-1                                                          elasticsearch
 metricbeat.x86_64                                                               7.5.1-1                                                          elasticsearch
 packetbeat.i686                                                                 7.5.1-1                                                          elasticsearch
-packetbeat.x86_64                                                               7.5.1-1                                                          elasticsearch</code></pre>
+packetbeat.x86_64                                                               7.5.1-1                                                          elasticsearch</pre>
 </div>
 </div>
 </div>
@@ -7233,17 +7485,17 @@ docker-compose up</code></pre>
 <div class="paragraph">
 <p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">监听网络IP</dt>
-<dd>
-<p><code>network.host: 192.168.0.4</code></p>
-</dd>
-<dt class="hdlist1">允许的客户端</dt>
-<dd>
-<p><code>discovery.seed_hosts: ["192.168.0.0/24"]`</code></p>
-</dd>
-</dl>
+<div class="listingblock">
+<div class="title">监听网络IP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">network.host: 192.168.0.4</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">允许的客户端</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">discovery.seed_hosts: ["192.168.0.0/24"]`</code></pre>
+</div>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -7434,7 +7686,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">返回结果同上</code></pre>
+<pre>返回结果同上</pre>
 </div>
 </div>
 <div class="dlist">
@@ -7575,14 +7827,14 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">{
+<pre>{
 "query" :{ ... }
     "highlight" : {
             "fields" : {
                 "about" : {}
             }
         }
-}</code></pre>
+}</pre>
 </div>
 </div>
 <div class="sect4">
@@ -7966,10 +8218,10 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">{ "term": { "age": 26}}
+<pre>{ "term": { "age": 26}}
 { "term": { "date": "2014-09-01" }}
 { "term": { "public": true }}
-{ "term": { "tag": "full_text"}}</code></pre>
+{ "term": { "tag": "full_text"}}</pre>
 </div>
 </div>
 </div>
@@ -8603,9 +8855,11 @@ To permanently disable this reminder, run the following command: db.disableFreeM
 <h3 id="_tl_wdn5200h">32.1. TL_WDN5200H</h3>
 <div class="sect3">
 <h4 id="_centos8_安装驱动">32.1.1. CentOS8 安装驱动</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装工具</div>
-<p><code>dnf install -y mlocate vim pciutils usbutils</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y mlocate vim pciutils usbutils</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">配置中文支持</div>
@@ -8625,9 +8879,11 @@ make -j4
 make install</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">手动加载驱动</div>
-<p><code>modprobe 8821cu</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">modprobe 8821cu</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">设置开机加载rtl8821cu USB Wifi驱动（必须关闭SELINUX）</div>
@@ -8645,44 +8901,52 @@ fi
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">查找USB网卡</div>
-<p><code>lsusb|grep Realtek|grep 1a2b</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lsusb|grep Realtek|grep 1a2b</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">切换USB网卡模式：存储模式&#8594;网卡模式</div>
-<p><code>usb_modeswitch -KW -v  0bda -p 1a2b</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">usb_modeswitch -KW -v  0bda -p 1a2b</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">安装NetworkManager wifi插件</div>
-<p><code>dnf install -y NetworkManager-wifi</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y NetworkManager-wifi</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看网络连接状态</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># nmcli connection show
+<pre># nmcli connection show
 NAME    UUID                                  TYPE      DEVICE
-enp2s0  85631024-b228-4294-bccc-85238ebf288d  ethernet  --</code></pre>
+enp2s0  85631024-b228-4294-bccc-85238ebf288d  ethernet  --</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">查看网卡状态</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># nmcli dev status
+<pre># nmcli dev status
 DEVICE       TYPE      STATE        CONNECTION
 wlp0s18f2u2  wifi      unmanaged    gc
 enp2s0       ethernet  unavailable  --
-lo           loopback  unmanaged    --</code></pre>
+lo           loopback  unmanaged    --</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">接管网卡管理</div>
-<p><code>nmcli device set wlp0s29u1u8 managed yes</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nmcli device set wlp0s29u1u8 managed yes</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看wifi信号列表</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># nmcli dev wifi list
+<pre># nmcli dev wifi list
 IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
         成都极客营           Infra  6     270 Mbit/s  100     ▂▄▆█  WPA1 WPA2
         成都极客营2          Infra  11    130 Mbit/s  100     ▂▄▆█  WPA1 WPA2
@@ -8695,12 +8959,14 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
         --                   Infra  6     270 Mbit/s  50      ▂▄__  WPA2
         M                    Infra  6     270 Mbit/s  49      ▂▄__  WPA2
         42B626-TS3100series  Infra  13    65 Mbit/s   49      ▂▄__  WPA2
-        ChinaNet-hkKn-5G     Infra  36    270 Mbit/s  44      ▂▄__  WPA1 WPA2</code></pre>
+        ChinaNet-hkKn-5G     Infra  36    270 Mbit/s  44      ▂▄__  WPA1 WPA2</pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">连接wifi，DHCP动态分配IP地址</div>
-<p><code>nmcli dev wifi connect 成都极客营_5G password geek8888</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nmcli dev wifi connect 成都极客营_5G password geek8888</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">开机自动连接wifi，并使用静态IP</div>
@@ -8773,13 +9039,17 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">手动启用wifi连接</div>
-<p><code>nmcli con up gc</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nmcli con up gc</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">开机自动连接wifi</div>
-<p><code>nmcli device set wlp0s18f2u2 autoconnect yes</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nmcli device set wlp0s18f2u2 autoconnect yes</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -8806,24 +9076,32 @@ tar xf kafka_2.12-2.3.1.tgz
 mv kafka_2.12-2.3.1 /usr/local/kafka_2.12-2.3.1</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">启动 ZooKeeper</div>
-<p><code>bin/zookeeper-server-start.sh config/zookeeper.properties</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">bin/zookeeper-server-start.sh config/zookeeper.properties</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">启动 Kafka</div>
-<p><code>bin/kafka-server-start.sh config/server.properties</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">bin/kafka-server-start.sh config/server.properties</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_topic">Topic</h5>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">创建 Topic</div>
-<p><code>bin/kafka-topics.sh --create --bootstrap-server 192.168.2.2:9092 --replication-factor 1 --partitions 1 --topic test</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">bin/kafka-topics.sh --create --bootstrap-server 192.168.2.2:9092 --replication-factor 1 --partitions 1 --topic test</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">查看 Topic 列表</div>
-<p><code>bin/kafka-topics.sh --list --bootstrap-server 192.168.2.2:9092</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">bin/kafka-topics.sh --list --bootstrap-server 192.168.2.2:9092</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -8831,17 +9109,17 @@ mv kafka_2.12-2.3.1 /usr/local/kafka_2.12-2.3.1</code></pre>
 <div class="listingblock">
 <div class="title">启动生产者发送消息</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># bin/kafka-console-producer.sh --broker-list 192.168.2.2:9092 --topic test
+<pre># bin/kafka-console-producer.sh --broker-list 192.168.2.2:9092 --topic test
 This is a message
-This is another message</code></pre>
+This is another message</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">启动消费者接收消息</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+<pre># bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 This is a message
-This is another message</code></pre>
+This is another message</pre>
 </div>
 </div>
 </div>
@@ -8867,8 +9145,12 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <div class="sect3">
 <h4 id="_配置_4">33.1.3. 配置</h4>
 <div class="paragraph">
-<div class="title">开启对外端口监听，编辑文件 <code>config/server.properties</code> 修改以下参数：</div>
-<p><code>advertised.listeners=PLAINTEXT://0.0.0.0:9092</code></p>
+<p>开启对外端口监听，编辑文件 <code>config/server.properties</code> 修改以下参数：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">advertised.listeners=PLAINTEXT://0.0.0.0:9092</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -8882,16 +9164,22 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <h3 id="_安装配置_11">34.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos6_安装">34.1.1. CentOS6 安装</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">安装EPEL源</div>
-<p><code>yum install -y epel-release</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y epel-release</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">安装Pure-FTPd</div>
-<p><code>yum install -y pure-ftpd</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y pure-ftpd</code></pre>
 </div>
-<div class="paragraph">
-<p><code>chkconfig pure-ftpd on</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">chkconfig pure-ftpd on</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">生成配置文件</div>
@@ -9055,8 +9343,8 @@ echo "tcp_bbr" | tee --append /etc/modules-load.d/modules.conf</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># lsmod | grep bbr
-tcp_bbr                20480  31</code></pre>
+<pre># lsmod | grep bbr
+tcp_bbr                20480  31</pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -9078,11 +9366,11 @@ sysctl -p</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># sysctl net.ipv4.tcp_available_congestion_control
+<pre># sysctl net.ipv4.tcp_available_congestion_control
 net.ipv4.tcp_available_congestion_control = reno cubic bbr
 
 # sysctl net.ipv4.tcp_congestion_control
-net.ipv4.tcp_congestion_control = bbr</code></pre>
+net.ipv4.tcp_congestion_control = bbr</pre>
 </div>
 </div>
 </div>
@@ -9096,8 +9384,10 @@ net.ipv4.tcp_congestion_control = bbr</code></pre>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><code>yum update -y openssl</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum update -y openssl</code></pre>
+</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="2">
@@ -9121,8 +9411,10 @@ pip install pyopenssl ndg-httpsclient pyasn</code></pre>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><code>pip install shadowsocks</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install shadowsocks</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -9221,8 +9513,10 @@ firewall-cmd --reload</code></pre>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><code>firewall-cmd --list-all</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">firewall-cmd --list-all</code></pre>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_centos7_一键安装脚本">CentOS7 一键安装脚本</h5>
@@ -9524,23 +9818,25 @@ aliyun help</code></pre>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">交互式配置默认的AccessKey凭证</div>
-<p><code>aliyun configure --profile default</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun configure --profile default</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看配置列表</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[mk@archlinux ~]$ ali configure list
+<pre>[mk@archlinux ~]$ ali configure list
 Profile   | Credential         | Valid   | Region           | Language
 --------- | ------------------ | ------- | ---------------- | --------
-default * | AK:***MWZ          | Valid   | cd               | zh</code></pre>
+default * | AK:***MWZ          | Valid   | cd               | zh</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">查看帮助信息</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[mk@archlinux ~]$ aliyun help
+<pre>[mk@archlinux ~]$ aliyun help
 阿里云CLI命令行工具 3.0.32
 
 Usage:
@@ -9571,23 +9867,22 @@ Products:
   elasticsearch elasticsearch
 ......
 
-Use `aliyun --help` for more information.</code></pre>
+Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_ecs相关参数查询">37.1.3. ECS相关参数查询</h4>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">查询可选区域</div>
-<p><code>aliyun ecs DescribeRegions</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeRegions</code></pre>
 </div>
-<div class="paragraph">
-<p>输出结果：</p>
 </div>
 <div class="listingblock">
+<div class="title">输出结果</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">---
-{
+<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
 	"RequestId": "076E9C9E-FE75-4136-BB4A-6E6A2212F2B3",
 	"Regions": {
 		"Region": [
@@ -9698,35 +9993,34 @@ Use `aliyun --help` for more information.</code></pre>
 			}
 		]
 	}
-}
----</code></pre>
+}</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<div class="title">查询可选的CentOS7镜像列表</div>
-<p><code>aliyun ecs DescribeImages --RegionId ap-northeast-1 --OSType linux --ImageOwnerAlias system --Architecture x86_64 --PageNumber 1 --PageSize 100|grep "\"ImageId\": \"centos_7"</code></p>
-</div>
-<div class="paragraph">
-<p>输出结果：</p>
 </div>
 <div class="listingblock">
+<div class="title">查询可选的CentOS7镜像列表</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">				"ImageId": "centos_7_7_x64_20G_alibase_20191225.vhd",    &lt;- 选择这个最新的
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeImages --RegionId ap-northeast-1 --OSType linux --ImageOwnerAlias system --Architecture x86_64 --PageNumber 1 --PageSize 100|grep "\"ImageId\": \"centos_7"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">输出结果</div>
+<div class="content">
+<pre>				"ImageId": "centos_7_7_x64_20G_alibase_20191225.vhd",    &lt;- 选择这个最新的
 				"ImageId": "centos_7_06_64_20G_alibase_20190711.vhd",
 				"ImageId": "centos_7_05_64_20G_alibase_20181210.vhd",
 				"ImageId": "centos_7_04_64_20G_alibase_201701015.vhd",
 				"ImageId": "centos_7_03_64_20G_alibase_20170818.vhd",
-				"ImageId": "centos_7_02_64_20G_alibase_20170818.vhd",</code></pre>
+				"ImageId": "centos_7_02_64_20G_alibase_20170818.vhd",</pre>
 </div>
-</div>
-<div class="paragraph">
-<div class="title">查询安全组</div>
-<p><code>aliyun ecs DescribeSecurityGroups --RegionId ap-northeast-1</code></p>
-</div>
-<div class="paragraph">
-<p>输出结果：</p>
 </div>
 <div class="listingblock">
+<div class="title">查询安全组</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeSecurityGroups --RegionId ap-northeast-1</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">输出结果</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
 	"PageNumber": 1,
@@ -9765,9 +10059,11 @@ Use `aliyun --help` for more information.</code></pre>
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">查询实例规格</div>
-<p><code>aliyun ecs DescribeInstanceTypes</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeInstanceTypes</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>阿里云接口返回内容太大，很可能超时无返回。</p>
@@ -9775,14 +10071,14 @@ Use `aliyun --help` for more information.</code></pre>
 <div class="paragraph">
 <p>在ECS页面可以找到最便宜的规格：ecs.t6-c4m1.large</p>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">查询密钥对</div>
-<p><code>aliyun ecs DescribeKeyPairs</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeKeyPairs</code></pre>
 </div>
-<div class="paragraph">
-<p>输出结果：</p>
 </div>
 <div class="listingblock">
+<div class="title">输出结果</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
 	"PageNumber": 1,
@@ -9802,9 +10098,11 @@ Use `aliyun --help` for more information.</code></pre>
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">查询交换机信息</div>
-<p><code>aliyun ecs DescribeVpcs</code></p>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DescribeVpcs</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9931,11 +10229,11 @@ InstanceChargeType=PostPaid
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">ERROR: SDK.ServerError
+<pre>ERROR: SDK.ServerError
 ErrorCode: DryRunOperation
 Recommend:
 RequestId: 7CCCB886-1D4F-452E-BCA3-3C9C358D1B2A
-Message: Request validation has been passed with DryRun flag set.</code></pre>
+Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9950,8 +10248,12 @@ Message: Request validation has been passed with DryRun flag set.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>分配公网IP地址：<br>
-<code>aliyun ecs AllocatePublicIpAddress --InstanceId i-6wedke5p0mk9pnk5gwxd</code></p>
+<p>分配公网IP地址：<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs AllocatePublicIpAddress --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9965,18 +10267,28 @@ Message: Request validation has been passed with DryRun flag set.</code></pre>
 <div class="sect3">
 <h4 id="_ecs实例管理">37.1.5. ECS实例管理</h4>
 <div class="paragraph">
-<p>启动ECS实例：<br>
-<code>aliyun ecs StartInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></p>
+<p>启动ECS实例：<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs StartInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>停止ECS实例：<br>
-<code>aliyun ecs StopInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></p>
+<p>停止ECS实例：<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs StopInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_删除ecs实例">37.1.6. 删除ECS实例</h4>
-<div class="paragraph">
-<p><code>aliyun ecs DeleteInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DeleteInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
