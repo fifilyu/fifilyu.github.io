@@ -287,9 +287,11 @@ h1 strong, h2 strong, h3 strong, #toctitle strong, .sidebarblock > .content > .t
 .clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: " "; display: table; }
 .clearfix:after, .float-group:after { clear: both; }
 
-*:not(pre) > code { font-size: 0.9375em; font-style: normal !important; letter-spacing: 0; padding: 0.1em 0.5ex; word-spacing: -0.15em; background-color: #f7f7f8; -webkit-border-radius: 4px; border-radius: 4px; line-height: 1.45; text-rendering: optimizeSpeed; }
+*:not(pre) > code { font-size: 0.9375em; font-style: normal !important; letter-spacing: 0; padding: 0.1em 0.5ex; word-spacing: -0.15em; background-color: #f7f7f8; -webkit-border-radius: 4px; border-radius: 4px; line-height: 1.45; text-rendering: optimizeSpeed; border: 1px dashed #2f6fab;}
 
-pre, pre > code { line-height: 1.45; color: rgba(0, 0, 0, 0.9); font-family: "Droid Sans Mono", "DejaVu Sans Mono", "Monospace", monospace; font-weight: normal; text-rendering: optimizeSpeed; }
+pre {border: 1px dashed gray;}
+
+pre, pre > code { line-height: 1.45; color: rgba(0, 0, 0, 0.9); font-family: "Droid Sans Mono", "DejaVu Sans Mono", "Monospace", monospace; font-weight: normal; text-rendering: optimizeSpeed;}
 
 .keyseq { color: rgba(51, 51, 51, 0.8); }
 
@@ -405,7 +407,9 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 
 .exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child { margin-bottom: 0; }
 
-.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint { background: #f7f7f8; }
+.listingblock pre:not(.highlight) {color: white; background: #002b36; }
+
+.literalblock pre, .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint { background: #f7f7f8; }
 .sidebarblock .literalblock pre, .sidebarblock .listingblock pre:not(.highlight), .sidebarblock .listingblock pre[class="highlight"], .sidebarblock .listingblock pre[class^="highlight "], .sidebarblock .listingblock pre.CodeRay, .sidebarblock .listingblock pre.prettyprint { background: #f2f1f1; }
 
 .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { -webkit-border-radius: 4px; border-radius: 4px; word-wrap: break-word; padding: 1em; font-size: 0.8125em; }
@@ -819,9 +823,14 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Linux_chapter">5. Linux</a>
 <ul class="sectlevel2">
-<li><a href="#_networkmanager">5.1. NetworkManager</a>
+<li><a href="#_常用命令">5.1. 常用命令</a>
 <ul class="sectlevel3">
-<li><a href="#_nmcli">5.1.1. nmcli</a>
+<li><a href="#_find分别查找目录和文件">5.1.1. find分别查找目录和文件</a></li>
+</ul>
+</li>
+<li><a href="#_networkmanager">5.2. NetworkManager</a>
+<ul class="sectlevel3">
+<li><a href="#_nmcli">5.2.1. nmcli</a>
 <ul class="sectlevel4">
 <li><a href="#_配置ip地址">配置IP地址</a></li>
 <li><a href="#_物理网卡加入网桥">物理网卡加入网桥</a></li>
@@ -847,12 +856,12 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_增加虚拟机">6.1.5. 增加虚拟机</a></li>
 </ul>
 </li>
-<li><a href="#_常用命令">6.2. 常用命令</a></li>
+<li><a href="#_常用命令_2">6.2. 常用命令</a></li>
 </ul>
 </li>
 <li><a href="#_MySQL_chapter">7. MySQL</a>
 <ul class="sectlevel2">
-<li><a href="#_常用命令_2">7.1. 常用命令</a>
+<li><a href="#_常用命令_3">7.1. 常用命令</a>
 <ul class="sectlevel3">
 <li><a href="#_创建数据库时指定字符集">7.1.1. 创建数据库时指定字符集</a></li>
 <li><a href="#_新建或修改密码开放指定host登录">7.1.2. 新建或修改密码、开放指定HOST登录</a></li>
@@ -1954,9 +1963,39 @@ server {
 <h2 id="_Linux_chapter">5. Linux</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_networkmanager">5.1. NetworkManager</h3>
+<h3 id="_常用命令">5.1. 常用命令</h3>
 <div class="sect3">
-<h4 id="_nmcli">5.1.1. nmcli</h4>
+<h4 id="_find分别查找目录和文件">5.1.1. find分别查找目录和文件</h4>
+<div class="listingblock">
+<div class="title">修改当前路径所有目录的权限</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">find . -type d|xargs  -d '\n' chmod 755</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">修改当前路径所有文件的权限</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">find . -type f|xargs  -d '\n' chmod 644</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+由于 <code>xargs</code> 默认使用空格为分隔符，导致目录或文件中有空格时无法正常使用。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_networkmanager">5.2. NetworkManager</h3>
+<div class="sect3">
+<h4 id="_nmcli">5.2.1. nmcli</h4>
 <div class="sect4">
 <h5 id="_配置ip地址">配置IP地址</h5>
 <div class="listingblock">
@@ -2370,7 +2409,7 @@ firewall-cmd --permanent --direct --passthrough ipv4  -t nat -A POSTROUTING -s 1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_常用命令">6.2. 常用命令</h3>
+<h3 id="_常用命令_2">6.2. 常用命令</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">qemu-img create -f qcow2 /var/lib/libvirt/images/vm192168122253.img 100G
@@ -2422,7 +2461,7 @@ virsh autostart vm192168122253
 <h2 id="_MySQL_chapter">7. MySQL</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_常用命令_2">7.1. 常用命令</h3>
+<h3 id="_常用命令_3">7.1. 常用命令</h3>
 <div class="sect3">
 <h4 id="_创建数据库时指定字符集">7.1.1. 创建数据库时指定字符集</h4>
 <div class="listingblock">
@@ -12609,11 +12648,11 @@ Message: Request validation has been passed with DryRun flag set.</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-02-19 13:57:57 +0800
+Last updated 2020-03-08 22:56:53 +0800
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<link rel="stylesheet" href="css/github.min.css">
+<script src="js/highlight.min.js"></script>
 <script>hljs.initHighlighting()</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -12638,6 +12677,6 @@ MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
   })
 })
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<script src="js/MathJax/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
