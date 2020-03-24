@@ -2095,7 +2095,7 @@ systemctl status NetworkManager</code></pre>
 <div class="listingblock">
 <div class="title">添加物理网卡</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nmcli c add type Ethernet autoconnect yes con-name eth2 ifname eth2
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">
 nmcli c add type bridge autoconnect yes con-name br1 ifname br1
 nmcli c modify br1 bridge.stp no
 nmcli c modify br1 ipv6.method ignore
