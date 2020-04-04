@@ -826,6 +826,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_常用命令">5.1. 常用命令</a>
 <ul class="sectlevel3">
 <li><a href="#_find分别查找目录和文件">5.1.1. find分别查找目录和文件</a></li>
+<li><a href="#_创建用于运行服务的用户">5.1.2. 创建用于运行服务的用户</a></li>
 </ul>
 </li>
 <li><a href="#_networkmanager">5.2. NetworkManager</a>
@@ -2086,6 +2087,14 @@ server {
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_创建用于运行服务的用户">5.1.2. 创建用于运行服务的用户</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd --comment  "Python User" --user-group --no-create-home --shell /usr/bin/nologin  python</code></pre>
+</div>
 </div>
 </div>
 </div>
