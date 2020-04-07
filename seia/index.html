@@ -5172,6 +5172,12 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">安装Nginx</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y ngin</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">备份Nginx配置文件</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo y|cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.defaultv</code></pre>
@@ -5324,12 +5330,6 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -v</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">卸载nginx</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf remove nginx</code></pre>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_安装_mysql_2">13.5.2. 安装 MySQL</h4>
@@ -5439,13 +5439,7 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 <div class="sect3">
 <h4 id="_安装_php7_2">13.5.3. 安装 PHP7</h4>
 <div class="listingblock">
-<div class="title">增加SCL源</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y centos-release-scl</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">安装PHP7.2</div>
+<div class="title">安装PHP7</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y \
 		php  \
@@ -5463,33 +5457,15 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">安装mlocate</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y mlocate</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">更新</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">updatedb</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">查找配置文件路径</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">locate php.ini</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">修改php.ini</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '197s/short_open_tag = Off/short_open_tag = On/' /etc/opt/rh/rh-php72/php.ini
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '197s/short_open_tag = Off/short_open_tag = On/' /etc/php.ini
 
 # 禁止一些危险性高的函数
-sed -i '314s/disable_functions =/disable_functions = system,exec,shell_exec,passthru,set_time_limit,ini_alter,dl,openlog,syslog,readlink,symlink,link,leak,popen,escapeshellcmd,virtual,socket_create,mail,eval/' /etc/opt/rh/rh-php72/php.ini
+sed -i '314s/disable_functions =/disable_functions = system,exec,shell_exec,passthru,set_time_limit,ini_alter,dl,openlog,syslog,readlink,symlink,link,leak,popen,escapeshellcmd,virtual,socket_create,mail,eval/' /etc/php.ini
 
 # 配置中国时区
-sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/opt/rh/rh-php72/php.ini</code></pre>
+sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/php.ini</code></pre>
 </div>
 </div>
 <div class="listingblock">
