@@ -2935,6 +2935,18 @@ show global variables like '%time%';</code></pre>
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+如果使用UEFI启动方式，需要新建 <code>/dev/sda1</code> 容量200M，并且设置为启动分区，其余分区编号顺延。
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>创建主分区，此处以7G为例，实际情况至少10G：</p>
 </div>
@@ -3030,6 +3042,26 @@ show global variables like '%time%';</code></pre>
 swapon /dev/sda2</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果使用UEFI启动方式，并且 <code>/dev/sda1</code> 是容量200M的启动分区，需要执行以下步骤。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S dosfstools
+mkfs.fat -F32 /dev/sda1</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_挂载分区">8.1.3. 挂载分区</h4>
@@ -3037,6 +3069,26 @@ swapon /dev/sda2</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mount /dev/sda1 /mnt</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果使用UEFI启动方式，并且 <code>/dev/sda1</code> 是容量200M的启动分区，需要执行以下步骤。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
