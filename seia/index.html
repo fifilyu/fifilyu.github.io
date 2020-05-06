@@ -811,9 +811,18 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Nginx_chapter">3. Nginx</a>
 <ul class="sectlevel2">
-<li><a href="#_proxy_pass_传递查询参数">3.1. <code>proxy_pass</code> 传递查询参数</a></li>
-<li><a href="#_目录浏览">3.2. 目录浏览</a></li>
-<li><a href="#_缓存静态文件">3.3. 缓存静态文件</a></li>
+<li><a href="#_http基本身份验证">3.1. HTTP基本身份验证</a>
+<ul class="sectlevel3">
+<li><a href="#_生成密码文件">3.1.1. 生成密码文件</a>
+<ul class="sectlevel4">
+<li><a href="#_配置nginx">配置Nginx</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_proxy_pass_传递查询参数">3.2. <code>proxy_pass</code> 传递查询参数</a></li>
+<li><a href="#_目录浏览">3.3. 目录浏览</a></li>
+<li><a href="#_缓存静态文件">3.4. 缓存静态文件</a></li>
 </ul>
 </li>
 <li><a href="#_PostgreSQL_chapter">4. PostgreSQL</a>
@@ -2003,7 +2012,77 @@ iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -o virbr0 -j MASQUERADE</co
 <h2 id="_Nginx_chapter">3. Nginx</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_proxy_pass_传递查询参数">3.1. <code>proxy_pass</code> 传递查询参数</h3>
+<h3 id="_http基本身份验证">3.1. HTTP基本身份验证</h3>
+<div class="sect3">
+<h4 id="_生成密码文件">3.1.1. 生成密码文件</h4>
+<div class="paragraph">
+<p>安装 <code>htpasswd</code> 命令的软件包和 <code>pwgen</code> 包：</p>
+</div>
+<div class="listingblock">
+<div class="title">Debian/Ubuntu</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">apt install apache2-utils pwgen</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">RHEL/CentOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y httpd-tools pwgen
+# 或
+dnf install -y httpd-tools pwgen</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>git_password=<code>pwgen -s 20</code>
+echo $git_password
+# 添加第一个用户时，创建 /etc/nginx/.htpasswd  文件
+echo $git_password | htpasswd -i -c /etc/nginx/.htpasswd git</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>添加第二个用户时，不需要 <code>-c</code> 参数（创建密码文件）</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'test123456' | htpasswd -i /etc/nginx/.htpasswd test</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_配置nginx">配置Nginx</h5>
+<div class="paragraph">
+<p>在Nginx的Server配置中，加入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>location /api {
+    auth_basic           "Administrator’s Area";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>生效新配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -t &amp;&amp; nginx -s reload</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_pass_传递查询参数">3.2. <code>proxy_pass</code> 传递查询参数</h3>
 <div class="paragraph">
 <p><code>proxy_pass</code> 最后一个 "/" 表示传递查询参数到后端。</p>
 </div>
@@ -2040,7 +2119,7 @@ htpasswd -b -c /etc/nginx/conf.d/dl.2012iot.com.pass admin CaNxR7doJLW76HPXGkrsM
 </div>
 </div>
 <div class="sect2">
-<h3 id="_目录浏览">3.2. 目录浏览</h3>
+<h3 id="_目录浏览">3.3. 目录浏览</h3>
 <div class="listingblock">
 <div class="content">
 <pre>server {
@@ -2060,7 +2139,7 @@ htpasswd -b -c /etc/nginx/conf.d/dl.2012iot.com.pass admin CaNxR7doJLW76HPXGkrsM
 </div>
 </div>
 <div class="sect2">
-<h3 id="_缓存静态文件">3.3. 缓存静态文件</h3>
+<h3 id="_缓存静态文件">3.4. 缓存静态文件</h3>
 <div class="paragraph">
 <p>官方文档 <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path">Syntax:	proxy_cache_path</a></p>
 </div>
