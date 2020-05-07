@@ -8545,8 +8545,20 @@ gpg --verify config.properties.sha1sum.asc</code></pre>
 <div class="listingblock">
 <div class="title">Hmac摘要，输出Base64字符串</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo -n "abc" | openssl dgst -sha224 -hmac "123456" -binary | base64</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo -n "abc" | openssl dgst -sha224 -hmac "123456" -binary | base64 -w 0</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>base64 -w 0</code> 表示不换行
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
