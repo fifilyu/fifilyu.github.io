@@ -2037,11 +2037,14 @@ iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -o virbr0 -j MASQUERADE</co
 dnf install -y httpd-tools pwgen</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>git_password=<code>pwgen -s 20</code>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">git_password=`pwgen -s 20`
 echo $git_password
+
 # 添加第一个用户时，创建 /etc/nginx/.htpasswd  文件
-echo $git_password | htpasswd -i -c /etc/nginx/.htpasswd git</p>
+echo $git_password | htpasswd -i -c /etc/nginx/.htpasswd git</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
