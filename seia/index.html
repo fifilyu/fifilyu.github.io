@@ -1183,8 +1183,9 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_nginx反代gitlab">21.3. Nginx反代GitLab</a>
 <ul class="sectlevel3">
 <li><a href="#_gitlab_设置">21.3.1. GitLab 设置</a></li>
-<li><a href="#_nginx_server配置">21.3.2. Nginx Server配置</a></li>
-<li><a href="#_最后">21.3.3. 最后</a></li>
+<li><a href="#_设置http_clone相关参数">21.3.2. 设置HTTP Clone相关参数</a></li>
+<li><a href="#_nginx_server配置">21.3.3. Nginx Server配置</a></li>
+<li><a href="#_最后">21.3.4. 最后</a></li>
 </ul>
 </li>
 </ul>
@@ -6132,6 +6133,20 @@ If you have a IR mode (RAID via the controller) configuration, you may need the 
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>T3600安装CentOS8时，只有两个盘位。所以，只能接SATA0和SATA1。并且，要保证BIOS中，SATA控制器模式是ACHI。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -7207,17 +7222,12 @@ Complete!</pre>
 sed -i 's/^external_url /#external_url /g' /etc/gitlab/gitlab.rb
 
 cat &lt;&lt; EOF &gt;&gt; /etc/gitlab/gitlab.rb
-# Git HTTP Clone相关参数
-gitlab_rails['gitlab_host'] = 'git.xxx.com'
-gitlab_rails['gitlab_port'] = 2035
-gitlab_rails['gitlab_https'] = true
-
 # Git SSH Clone相关参数
 gitlab_rails['gitlab_ssh_host'] = 'git.xxx.com'
 gitlab_rails['gitlab_shell_ssh_port'] = 2222
 
 # 禁用自动签发免费HTTPS证书
-letsencrypt['enable'] = false
+# letsencrypt['enable'] = false
 
 # 禁用签发证书后，需要显式启用Nginx服务
 nginx['enable'] = true
@@ -7228,6 +7238,12 @@ nginx['listen_https'] = false
 # Nginx端口监听配置
 nginx['listen_addresses'] = ['127.0.0.1']
 nginx['listen_port'] = 8000
+
+git_data_dirs({
+    "default" =&gt; {
+        "path" =&gt; "/data/gitlab_data"
+    }
+})
 EOF
 
 # 重新生成配置并重启
@@ -7239,7 +7255,19 @@ ss -antpl|grep 8000</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_nginx_server配置">21.3.2. Nginx Server配置</h4>
+<h4 id="_设置http_clone相关参数">21.3.2. 设置HTTP Clone相关参数</h4>
+<div class="paragraph">
+<p>用管理员帐号登录GitLab，进入以下菜单：</p>
+</div>
+<div class="paragraph">
+<p>Admin Area &gt; Settings &gt; General &gt; Visibility and access controls</p>
+</div>
+<div class="paragraph">
+<p>找到 <code>"Custom Git clone URL for HTTP(S) "</code>，根据实际情况填写，比如：https://git.xxx.com:2305</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nginx_server配置">21.3.3. Nginx Server配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre>server {
@@ -7269,12 +7297,22 @@ ss -antpl|grep 8000</code></pre>
     ssl_stapling on;
     ssl_stapling_verify on;
 
+    # 替换URL，解决README.md之类无法加载的问题
+    sub_filter 'http://git.xxx.com'  'https://git.xxx.com';
+    sub_filter_once off;
+    sub_filter_last_modified on;
+    # 替换 text/html application/json HTTP响应包中的内容
+    sub_filter_types application/json;
+
     location / {
         auth_basic           "Administrator’s Area";
         auth_basic_user_file /etc/nginx/.htpasswd;
 
         # 必须设置，否则新建项目后，会302跳转到http的80端口
         proxy_set_header Host git.xxx.com:2035;
+        proxy_set_header X-Real-IP $remote_addr;
+        #proxy_set_header X-Forwarded-Proto https;
+
         proxy_pass http://127.0.0.1:1034;
     }
 
@@ -7294,7 +7332,7 @@ ss -antpl|grep 8000</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_最后">21.3.3. 最后</h4>
+<h4 id="_最后">21.3.4. 最后</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">外网GitLab访问地址</dt>
