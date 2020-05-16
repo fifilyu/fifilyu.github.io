@@ -3363,6 +3363,8 @@ gsettings set org.gnome.nautilus.preferences default-sort-order name
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
+# Ctrl+Shift+Alt+R 录像时，30秒后自动结束。设置为0,不限制
+gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
 # virtualbox 设置
 sudo gpasswd -a root vboxusers
@@ -7858,7 +7860,8 @@ yum install -y gcc make openssl-devel libffi-devel
     --enable-optimizations \
     --with-openssl=/usr \
     --with-ssl-default-suites=openssl \
-    --with-ensurepip
+    --with-ensurepip \
+    --enable-loadable-sqlite-extensions
 make
 make install
 
@@ -7900,22 +7903,23 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
 cd  ~/downloads
-wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tar.xz -O Python-3.8.1.tar.xz
-tar xf Python-3.8.1.tar.xz
-cd Python-3.8.1
+wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tar.xz -O Python-3.8.3.tar.xz
+tar xf Python-3.8.3.tar.xz
+cd Python-3.8.3
 
 # libffi-devel 解决错误："ImportError: No module named '_ctypes'"
 dnf install -y gcc make openssl-devel libffi-devel
 
-./configure --prefix=/usr/local/python-3.8.1 \
+./configure --prefix=/usr/local/python-3.8.3 \
     --enable-optimizations \
     --with-openssl=/usr \
     --with-ssl-default-suites=openssl \
-    --with-ensurepip
+    --with-ensurepip \
+    --enable-loadable-sqlite-extensions
 make
 make install
 
-ln -s /usr/local/python-3.8.1 /usr/local/python3
+ln -s /usr/local/python-3.8.3 /usr/local/python3
 
 ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
 ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
@@ -7929,14 +7933,14 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <h4 id="_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/8/python/3/python-3.8.1-1.el8.x86_64.tar.gz -O python-3.8.1-1.el8.x86_64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/8/python/3/python-3.8.3-1.el8.x86_64.tar.gz -O python-3.8.3-1.el8.x86_64.tar.gz
 
-tar xf python-3.8.1-1.el8.x86_64.tar.gz
+tar xf python-3.8.3-1.el8.x86_64.tar.gz
 
-rm -rf /usr/local/python-3.8.1
-mv python-3.8.1 /usr/local/python-3.8.1
+rm -rf /usr/local/python-3.8.3
+mv python-3.8.3 /usr/local/python-3.8.3
 
-ln -s /usr/local/python-3.8.1 /usr/local/python3
+ln -s /usr/local/python-3.8.3 /usr/local/python3
 ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
 ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
 
