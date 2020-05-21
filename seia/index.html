@@ -1131,7 +1131,12 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_配置_git_客户端">17.1. 配置 <code>Git</code> 客户端</a></li>
 <li><a href="#_commit_模板">17.2. <code>commit</code> 模板</a></li>
-<li><a href="#_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</a></li>
+<li><a href="#_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</a>
+<ul class="sectlevel3">
+<li><a href="#_安装依赖_2">17.3.1. 安装依赖</a></li>
+<li><a href="#_更新commit中的邮箱">17.3.2. 更新commit中的邮箱</a></li>
+</ul>
+</li>
 <li><a href="#_git_status_不显示中文">17.4. <code>git status</code> 不显示中文</a></li>
 <li><a href="#_修改远程url为ssh协议地址">17.5. 修改远程URL为SSH协议地址</a>
 <ul class="sectlevel3">
@@ -1177,7 +1182,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_centos7安装配置">21.1. CentOS7安装配置</a></li>
 <li><a href="#_centos8_安装配置">21.2. CentOS8 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装依赖_2">21.2.1. 安装依赖</a></li>
+<li><a href="#_安装依赖_3">21.2.1. 安装依赖</a></li>
 <li><a href="#_安装gitlab">21.2.2. 安装GitLab</a></li>
 </ul>
 </li>
@@ -6507,28 +6512,49 @@ commit.template=/home/mk/.gitmessage.txt</pre>
 </div>
 <div class="sect2">
 <h3 id="_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</h3>
+<div class="paragraph">
+<p><strong>本方法适用于Python 3.5+</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_安装依赖_2">17.3.1. 安装依赖</h4>
+<div class="paragraph">
+<p>安装Python插件：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/sh
-# https://help.github.com/articles/changing-author-info/
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install git-filter-repo
 
-git filter-branch --env-filter '
+ls ~/.local/bin/git-filter-repo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>设置环境变量：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'export PATH=$PATH:~/.local/bin' &gt;&gt; ~/.bashrc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>生效环境变量：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">source ~/.bashrc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_更新commit中的邮箱">17.3.2. 更新commit中的邮箱</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 请自行替换以下信息
+echo '作者 &lt;新邮箱&gt; &lt;旧邮箱&gt;' &gt; ~/.mailmap
 
-OLD_EMAIL="foo@example.com"
-CORRECT_NAME="bar"
-CORRECT_EMAIL="bar@example.com"
+git filter-repo --mailmap ~/.mailmap --force
 
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_COMMITTER_NAME="$CORRECT_NAME"
-    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-fi
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_AUTHOR_NAME="$CORRECT_NAME"
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
-' --tag-name-filter cat -- --branches --tags</code></pre>
+git push origin  master --force</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -7055,7 +7081,7 @@ Complete!</pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装依赖_2">21.2.1. 安装依赖</h4>
+<h4 id="_安装依赖_3">21.2.1. 安装依赖</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y curl policycoreutils openssh-server
