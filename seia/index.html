@@ -1131,7 +1131,12 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_配置_git_客户端">17.1. 配置 <code>Git</code> 客户端</a></li>
 <li><a href="#_commit_模板">17.2. <code>commit</code> 模板</a></li>
-<li><a href="#_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</a></li>
+<li><a href="#_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</a>
+<ul class="sectlevel3">
+<li><a href="#_安装依赖_2">17.3.1. 安装依赖</a></li>
+<li><a href="#_更新commit中的邮箱">17.3.2. 更新commit中的邮箱</a></li>
+</ul>
+</li>
 <li><a href="#_git_status_不显示中文">17.4. <code>git status</code> 不显示中文</a></li>
 <li><a href="#_修改远程url为ssh协议地址">17.5. 修改远程URL为SSH协议地址</a>
 <ul class="sectlevel3">
@@ -1177,7 +1182,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_centos7安装配置">21.1. CentOS7安装配置</a></li>
 <li><a href="#_centos8_安装配置">21.2. CentOS8 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装依赖_2">21.2.1. 安装依赖</a></li>
+<li><a href="#_安装依赖_3">21.2.1. 安装依赖</a></li>
 <li><a href="#_安装gitlab">21.2.2. 安装GitLab</a></li>
 </ul>
 </li>
@@ -1238,23 +1243,29 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</a></li>
 </ul>
 </li>
-<li><a href="#_设置pip国内镜像">24.3. 设置PIP国内镜像</a>
+<li><a href="#_ubuntu_install_python38">24.3. Ubuntu Install Python38</a>
 <ul class="sectlevel3">
-<li><a href="#_临时使用">24.3.1. 临时使用</a></li>
-<li><a href="#_设为默认">24.3.2. 设为默认</a></li>
+<li><a href="#_编译安装_3">24.3.1. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装_3">24.3.2. 二进制压缩包安装</a></li>
 </ul>
 </li>
-<li><a href="#_上传_pypi">24.4. 上传 <code>PyPI</code></a>
+<li><a href="#_设置pip国内镜像">24.4. 设置PIP国内镜像</a>
 <ul class="sectlevel3">
-<li><a href="#_配置文件">24.4.1. 配置文件</a></li>
-<li><a href="#_打包_2">24.4.2. 打包</a></li>
-<li><a href="#_测试上传">24.4.3. 测试上传</a></li>
-<li><a href="#_上传">24.4.4. 上传</a></li>
+<li><a href="#_临时使用">24.4.1. 临时使用</a></li>
+<li><a href="#_设为默认">24.4.2. 设为默认</a></li>
 </ul>
 </li>
-<li><a href="#_pycharm">24.5. Pycharm</a>
+<li><a href="#_上传_pypi">24.5. 上传 <code>PyPI</code></a>
 <ul class="sectlevel3">
-<li><a href="#_disable_and_suppress_inspections">24.5.1. Disable and suppress inspections</a></li>
+<li><a href="#_配置文件">24.5.1. 配置文件</a></li>
+<li><a href="#_打包_2">24.5.2. 打包</a></li>
+<li><a href="#_测试上传">24.5.3. 测试上传</a></li>
+<li><a href="#_上传">24.5.4. 上传</a></li>
+</ul>
+</li>
+<li><a href="#_pycharm">24.6. Pycharm</a>
+<ul class="sectlevel3">
+<li><a href="#_disable_and_suppress_inspections">24.6.1. Disable and suppress inspections</a></li>
 </ul>
 </li>
 </ul>
@@ -1310,50 +1321,61 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_使用实例">30.1. 使用实例</a></li>
 </ul>
 </li>
-<li><a href="#_frp_chapter">31. frp</a>
+<li><a href="#_Dante_chapter">31. Dante</a>
 <ul class="sectlevel2">
 <li><a href="#_安装配置_5">31.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_初始配置">31.1.1. 初始配置</a></li>
-<li><a href="#_服务端">31.1.2. 服务端</a></li>
-<li><a href="#_客户端">31.1.3. 客户端</a></li>
+<li><a href="#_安装_4">31.1.1. 安装</a></li>
+<li><a href="#_配置_3">31.1.2. 配置</a></li>
+<li><a href="#_运行_2">31.1.3. 运行</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_npm_chapter">32. npm</a>
+<li><a href="#_frp_chapter">32. frp</a>
 <ul class="sectlevel2">
 <li><a href="#_安装配置_6">32.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_初始配置_2">32.1.1. 初始配置</a></li>
+<li><a href="#_初始配置">32.1.1. 初始配置</a></li>
+<li><a href="#_服务端">32.1.2. 服务端</a></li>
+<li><a href="#_客户端">32.1.3. 客户端</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_lftp_chapter">33. lftp</a>
+<li><a href="#_npm_chapter">33. npm</a>
 <ul class="sectlevel2">
 <li><a href="#_安装配置_7">33.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_初始配置_3">33.1.1. 初始配置</a></li>
+<li><a href="#_初始配置_2">33.1.1. 初始配置</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_gradle_chapter">34. gradle</a>
+<li><a href="#_lftp_chapter">34. lftp</a>
 <ul class="sectlevel2">
 <li><a href="#_安装配置_8">34.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_全局源">34.1.1. 全局源</a></li>
+<li><a href="#_初始配置_3">34.1.1. 初始配置</a></li>
 </ul>
 </li>
-<li><a href="#_使用方法">34.2. 使用方法</a></li>
 </ul>
 </li>
-<li><a href="#_uWSGI_chapter">35. uWSGI</a>
+<li><a href="#_gradle_chapter">35. gradle</a>
 <ul class="sectlevel2">
-<li><a href="#_uwsgi">35.1. uWSGI</a>
+<li><a href="#_安装配置_9">35.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos6">35.1.1. CentOS6</a>
+<li><a href="#_全局源">35.1.1. 全局源</a></li>
+</ul>
+</li>
+<li><a href="#_使用方法">35.2. 使用方法</a></li>
+</ul>
+</li>
+<li><a href="#_uWSGI_chapter">36. uWSGI</a>
+<ul class="sectlevel2">
+<li><a href="#_uwsgi">36.1. uWSGI</a>
+<ul class="sectlevel3">
+<li><a href="#_centos6">36.1.1. CentOS6</a>
 <ul class="sectlevel4">
 <li><a href="#_uwsgi_2">uWSGI</a>
 <ul class="sectlevel5">
@@ -1369,11 +1391,11 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_ElasticStack_chapter">36. ElasticStack</a>
+<li><a href="#_ElasticStack_chapter">37. ElasticStack</a>
 <ul class="sectlevel2">
-<li><a href="#_elasticsearch_安装配置">36.1. Elasticsearch 安装配置</a>
+<li><a href="#_elasticsearch_安装配置">37.1. Elasticsearch 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7_yum">36.1.1. CentOS7 Yum</a>
+<li><a href="#_centos7_yum">37.1.1. CentOS7 Yum</a>
 <ul class="sectlevel4">
 <li><a href="#_配置yum源">配置Yum源</a></li>
 <li><a href="#_安装elasticsearch">安装ElasticSearch</a></li>
@@ -1381,23 +1403,23 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装logstash">安装Logstash</a></li>
 </ul>
 </li>
-<li><a href="#_docker_方式">36.1.2. Docker 方式</a></li>
-<li><a href="#_配置_3">36.1.3. 配置</a></li>
+<li><a href="#_docker_方式">37.1.2. Docker 方式</a></li>
+<li><a href="#_配置_4">37.1.3. 配置</a></li>
 </ul>
 </li>
-<li><a href="#_elasticstack_使用教程">36.2. ElasticStack 使用教程</a>
+<li><a href="#_elasticstack_使用教程">37.2. ElasticStack 使用教程</a>
 <ul class="sectlevel3">
-<li><a href="#_索引文档">36.2.1. 索引文档</a></li>
-<li><a href="#_搜索">36.2.2. 搜索</a>
+<li><a href="#_索引文档">37.2.1. 索引文档</a></li>
+<li><a href="#_搜索">37.2.2. 搜索</a>
 <ul class="sectlevel4">
 <li><a href="#_短语搜索">短语搜索</a></li>
 <li><a href="#_高亮我们的搜索">高亮我们的搜索</a></li>
 </ul>
 </li>
-<li><a href="#_聚合">36.2.3. 聚合</a></li>
-<li><a href="#_更新文档">36.2.4. 更新文档</a></li>
-<li><a href="#_删除文档">36.2.5. 删除文档</a></li>
-<li><a href="#_结构化查询">36.2.6. 结构化查询</a>
+<li><a href="#_聚合">37.2.3. 聚合</a></li>
+<li><a href="#_更新文档">37.2.4. 更新文档</a></li>
+<li><a href="#_删除文档">37.2.5. 删除文档</a></li>
+<li><a href="#_结构化查询">37.2.6. 结构化查询</a>
 <ul class="sectlevel4">
 <li><a href="#_最重要的查询过滤语句">最重要的查询过滤语句</a>
 <ul class="sectlevel5">
@@ -1409,99 +1431,99 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_dsl查询实例">36.2.7. DSL查询实例</a></li>
+<li><a href="#_dsl查询实例">37.2.7. DSL查询实例</a></li>
 </ul>
 </li>
-<li><a href="#_从mysql同步数据到elasticsearch">36.3. 从MySQL同步数据到ElasticSearch</a></li>
-<li><a href="#_elasticsearch在线迁移">36.4. ElasticSearch在线迁移</a></li>
+<li><a href="#_从mysql同步数据到elasticsearch">37.3. 从MySQL同步数据到ElasticSearch</a></li>
+<li><a href="#_elasticsearch在线迁移">37.4. ElasticSearch在线迁移</a></li>
 </ul>
 </li>
-<li><a href="#_youtube_dl_chapter">37. youtube-dl</a>
+<li><a href="#_youtube_dl_chapter">38. youtube-dl</a>
 <ul class="sectlevel2">
-<li><a href="#_使用实例_2">37.1. 使用实例</a></li>
+<li><a href="#_使用实例_2">38.1. 使用实例</a></li>
 </ul>
 </li>
-<li><a href="#_maven_chapter">38. maven</a>
+<li><a href="#_maven_chapter">39. maven</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_9">38.1. 安装配置</a>
+<li><a href="#_安装配置_10">39.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_全局源_2">38.1.1. 全局源</a></li>
+<li><a href="#_全局源_2">39.1.1. 全局源</a></li>
 </ul>
 </li>
-<li><a href="#_使用方法_2">38.2. 使用方法</a>
+<li><a href="#_使用方法_2">39.2. 使用方法</a>
 <ul class="sectlevel3">
-<li><a href="#_build_lifecycle">38.2.1. Build Lifecycle</a></li>
+<li><a href="#_build_lifecycle">39.2.1. Build Lifecycle</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_MongoDB_chapter">39. MongoDB</a>
+<li><a href="#_MongoDB_chapter">40. MongoDB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_10">39.1. 安装配置</a></li>
-<li><a href="#_安装_4">39.2. 安装</a>
+<li><a href="#_安装配置_11">40.1. 安装配置</a></li>
+<li><a href="#_安装_5">40.2. 安装</a>
 <ul class="sectlevel3">
-<li><a href="#_文件目录结构">39.2.1. 文件目录结构</a></li>
+<li><a href="#_文件目录结构">40.2.1. 文件目录结构</a></li>
 </ul>
 </li>
-<li><a href="#_配置_4">39.3. 配置</a>
+<li><a href="#_配置_5">40.3. 配置</a>
 <ul class="sectlevel3">
-<li><a href="#_禁用selinux重启生效">39.3.1. 禁用SELINUX（重启生效）</a></li>
-<li><a href="#_设置_ulimit">39.3.2. 设置 <code>ulimit</code></a></li>
-<li><a href="#_开机启动">39.3.3. 开机启动</a></li>
-<li><a href="#_服务管理">39.3.4. 服务管理</a></li>
-<li><a href="#_验证服务">39.3.5. 验证服务</a></li>
-<li><a href="#_开始使用_mongodb">39.3.6. 开始使用 <code>MongoDB</code></a></li>
+<li><a href="#_禁用selinux重启生效">40.3.1. 禁用SELINUX（重启生效）</a></li>
+<li><a href="#_设置_ulimit">40.3.2. 设置 <code>ulimit</code></a></li>
+<li><a href="#_开机启动">40.3.3. 开机启动</a></li>
+<li><a href="#_服务管理">40.3.4. 服务管理</a></li>
+<li><a href="#_验证服务">40.3.5. 验证服务</a></li>
+<li><a href="#_开始使用_mongodb">40.3.6. 开始使用 <code>MongoDB</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_LinuxWifiDriver_chapter">40. Linux Wifi Driver</a>
+<li><a href="#_LinuxWifiDriver_chapter">41. Linux Wifi Driver</a>
 <ul class="sectlevel2">
-<li><a href="#_tl_wdn5200h">40.1. TL_WDN5200H</a>
+<li><a href="#_tl_wdn5200h">41.1. TL_WDN5200H</a>
 <ul class="sectlevel3">
-<li><a href="#_centos8_安装驱动">40.1.1. CentOS8 安装驱动</a></li>
+<li><a href="#_centos8_安装驱动">41.1.1. CentOS8 安装驱动</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Kafka_chapter">41. Kafka</a>
+<li><a href="#_Kafka_chapter">42. Kafka</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_11">41.1. 安装配置</a>
+<li><a href="#_安装配置_12">42.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_linux">41.1.1. Linux</a>
+<li><a href="#_linux">42.1.1. Linux</a>
 <ul class="sectlevel4">
-<li><a href="#_安装_5">安装</a></li>
+<li><a href="#_安装_6">安装</a></li>
 <li><a href="#_topic">Topic</a></li>
 <li><a href="#_测试">测试</a></li>
 </ul>
 </li>
-<li><a href="#_windows">41.1.2. Windows</a></li>
-<li><a href="#_配置_5">41.1.3. 配置</a></li>
+<li><a href="#_windows">42.1.2. Windows</a></li>
+<li><a href="#_配置_6">42.1.3. 配置</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Pure-FTPd_chapter">42. Pure-FTPd</a>
-<ul class="sectlevel2">
-<li><a href="#_安装配置_12">42.1. 安装配置</a>
-<ul class="sectlevel3">
-<li><a href="#_centos6_安装">42.1.1. CentOS6 安装</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_Shadowsocks_chapter">43. Shadowsocks</a>
+<li><a href="#_Pure-FTPd_chapter">43. Pure-FTPd</a>
 <ul class="sectlevel2">
 <li><a href="#_安装配置_13">43.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7_2">43.1.1. CentOS7</a>
+<li><a href="#_centos6_安装">43.1.1. CentOS6 安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_Shadowsocks_chapter">44. Shadowsocks</a>
+<ul class="sectlevel2">
+<li><a href="#_安装配置_14">44.1. 安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_centos7_2">44.1.1. CentOS7</a>
 <ul class="sectlevel4">
 <li><a href="#_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></a></li>
 <li><a href="#_开启_tcp_bbr_塞控制算法">开启 <code>TCP BBR</code> 塞控制算法</a></li>
 </ul>
 </li>
-<li><a href="#_安装_shadowsocks">43.1.2. 安装 <code>Shadowsocks</code></a></li>
-<li><a href="#_配置_shadowsocks">43.1.3. 配置 <code>Shadowsocks</code></a>
+<li><a href="#_安装_shadowsocks">44.1.2. 安装 <code>Shadowsocks</code></a></li>
+<li><a href="#_配置_shadowsocks">44.1.3. 配置 <code>Shadowsocks</code></a>
 <ul class="sectlevel4">
 <li><a href="#_centos7_一键安装脚本">CentOS7 一键安装脚本</a></li>
 </ul>
@@ -1510,34 +1532,34 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_WSL_chapter">44. WSL</a>
+<li><a href="#_WSL_chapter">45. WSL</a>
 <ul class="sectlevel2">
-<li><a href="#_修复wsl文件权限问题">44.1. 修复WSL文件权限问题</a>
+<li><a href="#_修复wsl文件权限问题">45.1. 修复WSL文件权限问题</a>
 <ul class="sectlevel3">
-<li><a href="#_解决方法_2">44.1.1. 解决方法</a></li>
+<li><a href="#_解决方法_2">45.1.1. 解决方法</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Aliyun_chapter">45. Aliyun</a>
+<li><a href="#_Aliyun_chapter">46. Aliyun</a>
 <ul class="sectlevel2">
-<li><a href="#_cli工具">45.1. CLI工具</a>
+<li><a href="#_cli工具">46.1. CLI工具</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_6">45.1.1. 安装</a></li>
-<li><a href="#_配置凭证">45.1.2. 配置凭证</a></li>
-<li><a href="#_ecs相关参数查询">45.1.3. ECS相关参数查询</a></li>
-<li><a href="#_创建ecs">45.1.4. 创建ECS</a></li>
-<li><a href="#_ecs实例管理">45.1.5. ECS实例管理</a></li>
-<li><a href="#_删除ecs实例">45.1.6. 删除ECS实例</a></li>
+<li><a href="#_安装_7">46.1.1. 安装</a></li>
+<li><a href="#_配置凭证">46.1.2. 配置凭证</a></li>
+<li><a href="#_ecs相关参数查询">46.1.3. ECS相关参数查询</a></li>
+<li><a href="#_创建ecs">46.1.4. 创建ECS</a></li>
+<li><a href="#_ecs实例管理">46.1.5. ECS实例管理</a></li>
+<li><a href="#_删除ecs实例">46.1.6. 删除ECS实例</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_RabbitMQ_chapter">46. RabbitMQ</a>
+<li><a href="#_RabbitMQ_chapter">47. RabbitMQ</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_14">46.1. 安装配置</a>
+<li><a href="#_安装配置_15">47.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos_8">46.1.1. CentOS 8</a>
+<li><a href="#_centos_8">47.1.1. CentOS 8</a>
 <ul class="sectlevel4">
 <li><a href="#_安装rabbitmq">安装RabbitMQ</a></li>
 <li><a href="#_参数优化">参数优化</a></li>
@@ -1550,10 +1572,10 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_支持mqtt">46.2. 支持MQTT</a>
+<li><a href="#_支持mqtt">47.2. 支持MQTT</a>
 <ul class="sectlevel3">
-<li><a href="#_新增虚拟主机">46.2.1. 新增虚拟主机</a></li>
-<li><a href="#_为mqtt连接创建新用户">46.2.2. 为MQTT连接创建新用户</a></li>
+<li><a href="#_新增虚拟主机">47.2.1. 新增虚拟主机</a></li>
+<li><a href="#_为mqtt连接创建新用户">47.2.2. 为MQTT连接创建新用户</a></li>
 </ul>
 </li>
 </ul>
@@ -6507,28 +6529,49 @@ commit.template=/home/mk/.gitmessage.txt</pre>
 </div>
 <div class="sect2">
 <h3 id="_修改_commit_邮箱">17.3. 修改 <code>commit</code> 邮箱</h3>
+<div class="paragraph">
+<p><strong>本方法适用于Python 3.5+</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_安装依赖_2">17.3.1. 安装依赖</h4>
+<div class="paragraph">
+<p>安装Python插件：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/sh
-# https://help.github.com/articles/changing-author-info/
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install git-filter-repo
 
-git filter-branch --env-filter '
+ls ~/.local/bin/git-filter-repo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>设置环境变量：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'export PATH=$PATH:~/.local/bin' &gt;&gt; ~/.bashrc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>生效环境变量：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">source ~/.bashrc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_更新commit中的邮箱">17.3.2. 更新commit中的邮箱</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 请自行替换以下信息
+echo '作者 &lt;新邮箱&gt; &lt;旧邮箱&gt;' &gt; ~/.mailmap
 
-OLD_EMAIL="foo@example.com"
-CORRECT_NAME="bar"
-CORRECT_EMAIL="bar@example.com"
+git filter-repo --mailmap ~/.mailmap --force
 
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_COMMITTER_NAME="$CORRECT_NAME"
-    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-fi
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_AUTHOR_NAME="$CORRECT_NAME"
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
-' --tag-name-filter cat -- --branches --tags</code></pre>
+git push origin  master --force</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -7055,7 +7098,7 @@ Complete!</pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装依赖_2">21.2.1. 安装依赖</h4>
+<h4 id="_安装依赖_3">21.2.1. 安装依赖</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y curl policycoreutils openssh-server
@@ -7967,9 +8010,67 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="_设置pip国内镜像">24.3. 设置PIP国内镜像</h3>
+<h3 id="_ubuntu_install_python38">24.3. Ubuntu Install Python38</h3>
 <div class="sect3">
-<h4 id="_临时使用">24.3.1. 临时使用</h4>
+<h4 id="_编译安装_3">24.3.1. 编译安装</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
+cd  ~/downloads
+wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tar.xz -O Python-3.8.3.tar.xz
+tar xf Python-3.8.3.tar.xz
+cd Python-3.8.3
+
+# libffi-dev 解决错误："ImportError: No module named '_ctypes'"
+apt install gcc make libssl-dev libffi-dev zlib1g zlib1g-dev shadowsocks
+
+./configure --prefix=/usr/local/python-3.8.3 \
+    --enable-optimizations \
+    --with-openssl=/usr \
+    --with-ssl-default-suites=openssl \
+    --with-ensurepip \
+    --enable-loadable-sqlite-extensions
+make
+make install
+
+ln -s /usr/local/python-3.8.3 /usr/local/python3
+
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
+
+pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_二进制压缩包安装_3">24.3.2. 二进制压缩包安装</h4>
+<div class="paragraph">
+<p><strong>Ubuntu 18.04</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/ubuntu/18.04/python-3.8.3-1~ubuntu18.04_amd64.tar.gz -O python-3.8.3-1~ubuntu18.04_amd64.tar.gz
+
+tar xf python-3.8.3-1~ubuntu18.04_amd64.tar.gz
+
+rm -rf /usr/local/python-3.8.3
+mv python-3.8.3 /usr/local/python-3.8.3
+
+ln -s /usr/local/python-3.8.3 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip38
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python38
+
+pip38 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_设置pip国内镜像">24.4. 设置PIP国内镜像</h3>
+<div class="sect3">
+<h4 id="_临时使用">24.4.1. 临时使用</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名称</code></pre>
@@ -7991,7 +8092,7 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设为默认">24.3.2. 设为默认</h4>
+<h4 id="_设为默认">24.4.2. 设为默认</h4>
 <div class="listingblock">
 <div class="title">先升级PIP</div>
 <div class="content">
@@ -8026,7 +8127,7 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="_上传_pypi">24.4. 上传 <code>PyPI</code></h3>
+<h3 id="_上传_pypi">24.5. 上传 <code>PyPI</code></h3>
 <div class="paragraph">
 <p>官方文档：</p>
 </div>
@@ -8037,7 +8138,7 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <p><a href="https://docs.python.org/3.3/distutils/packageindex.html#pypirc" class="bare">https://docs.python.org/3.3/distutils/packageindex.html#pypirc</a></p>
 </div>
 <div class="sect3">
-<h4 id="_配置文件">24.4.1. 配置文件</h4>
+<h4 id="_配置文件">24.5.1. 配置文件</h4>
 <div class="listingblock">
 <div class="title">~/.pypirc</div>
 <div class="content">
@@ -8058,7 +8159,7 @@ password: &lt;密码&gt;</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_打包_2">24.4.2. 打包</h4>
+<h4 id="_打包_2">24.5.2. 打包</h4>
 <div class="listingblock">
 <div class="title">安装打包工具</div>
 <div class="content">
@@ -8081,7 +8182,7 @@ password: &lt;密码&gt;</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_测试上传">24.4.3. 测试上传</h4>
+<h4 id="_测试上传">24.5.3. 测试上传</h4>
 <div class="listingblock">
 <div class="title">安装上传工具</div>
 <div class="content">
@@ -8116,7 +8217,7 @@ password: &lt;密码&gt;</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_上传">24.4.4. 上传</h4>
+<h4 id="_上传">24.5.4. 上传</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">twine upload dist/*</code></pre>
@@ -8136,9 +8237,9 @@ password: &lt;密码&gt;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pycharm">24.5. Pycharm</h3>
+<h3 id="_pycharm">24.6. Pycharm</h3>
 <div class="sect3">
-<h4 id="_disable_and_suppress_inspections">24.5.1. Disable and suppress inspections</h4>
+<h4 id="_disable_and_suppress_inspections">24.6.1. Disable and suppress inspections</h4>
 <div class="paragraph">
 <p>官方文档：</p>
 </div>
@@ -8733,12 +8834,347 @@ echo 'out.pdf' &gt;&gt; make_pdf.sh</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_frp_chapter">31. frp</h2>
+<h2 id="_Dante_chapter">31. Dante</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Dante 是一个SOCKS服务端和客户端。这里，用来作为服务端。</p>
+</div>
 <div class="sect2">
 <h3 id="_安装配置_5">31.1. 安装配置</h3>
+<div class="paragraph">
+<p>官方下载页面： <a href="https://www.inet.no/dante/sslfiles/binaries.html" class="bare">https://www.inet.no/dante/sslfiles/binaries.html</a></p>
+</div>
 <div class="sect3">
-<h4 id="_初始配置">31.1.1. 初始配置</h4>
+<h4 id="_安装_4">31.1.1. 安装</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
+cd ~/downloads
+
+wget -c https://www.inet.no/dante/sslfiles/dante-1.4.2/tgz-prod.dante-1.4.2-rhel72-amd64-64bit-gcc.tar.gz
+tar xf tgz-prod.dante-1.4.2-rhel72-amd64-64bit-gcc.tar.gz
+
+cp -r usr/ /
+
+# 测试
+sockd --help</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_配置_3">31.1.2. 配置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -r -s /bin/false  sockd
+
+cat &lt;&lt; EOF &gt; /etc/sockd.conf
+# \$Id: sockd.conf,v 1.52.10.2 2014/09/03 14:49:13 michaels Exp \$
+#
+# A sample sockd.conf
+#
+#
+# The config file is divided into three parts;
+#    1) server settings
+#    2) rules
+#    3) routes
+#
+# The recommended order is:
+#   Server settings:
+#               logoutput
+#               internal
+#               external
+#               socksmethod
+#               clientmethod
+#               users
+#               compatibility
+#               extension
+#               timeout
+#               srchost
+#
+#  Rules:
+#        client block/pass
+#                from to
+#                libwrap
+#                log
+#
+#     block/pass
+#                from to
+#                socksmethod
+#                command
+#                libwrap
+#                log
+#                protocol
+#                proxyprotocol
+#
+#  Routes:
+
+# the server will log both via syslog, to stdout and to /var/log/sockd.log
+#logoutput: syslog stdout /var/log/sockd.log
+#logoutput: stderr
+logoutput: /var/log/sockd.log
+
+# The server will bind to the address 10.1.1.1, port 1080 and will only
+# accept connections going to that address.
+#internal: 10.1.1.1 port = 1080
+# Alternatively, the interface name can be used instead of the address.
+#internal: eth0 port = 1080
+internal: 0.0.0.0 port = 1080
+
+# all outgoing connections from the server will use the IP address
+# 195.168.1.1
+#external: 192.168.1.1
+external: eth0
+
+# list over acceptable authentication methods, order of preference.
+# An authentication method not set here will never be selected.
+#
+# If the socksmethod field is not set in a rule, the global
+# socksmethod is filled in for that rule.
+#
+
+# methods for socks-rules.
+#socksmethod: username none #rfc931
+
+# methods for client-rules.
+# The default of "none" permits anonymous access.
+clientmethod: none
+
+#or if you want to allow rfc931 (ident) too
+#socksmethod: username rfc931 none
+
+#or for PAM authentication
+#socksmethod: pam
+
+# The default of "none" permits anonymous access.
+socksmethod: none
+
+#
+# User identities, an important section.
+#
+
+# when doing something that can require privilege, it will use the
+# userid "sockd".
+user.privileged: sockd
+
+# when running as usual, it will use the unprivileged userid of "sockd".
+user.unprivileged: sockd
+
+# If you are not using libwrap, no need for the below line, so leave
+# it commented.
+# If you compiled with libwrap support, what userid should it use
+# when executing your libwrap commands?  "libwrap".
+#user.libwrap: libwrap
+
+
+#
+# Some options to help clients with compatibility:
+#
+
+# when a client connection comes in the socks server will try to use
+# the same port as the client is using, when the socks server
+# goes out on the clients behalf (external: IP address).
+# If this option is set, Dante will try to do it for reserved ports as well.
+# This will usually require user.privileged to be set to "root".
+#compatibility: sameport
+
+# If you are using the Inferno Nettverk bind extension and have trouble
+# running servers via the server, you might try setting this.
+#compatibility: reuseaddr
+
+#
+# The Dante server supports some extensions to the socks protocol.
+# These require that the socks client implements the same extension and
+# can be enabled using the "extension" keyword.
+#
+# enable the bind extension.
+#extension: bind
+
+
+#
+# Misc options.
+#
+
+# how many seconds can pass from when a client connects til it has
+# sent us it's request?  Adjust according to your network performance
+# and methods supported.
+#timeout.negotiate: 30   # on a lan, this should be enough.
+
+# how many seconds can the client and it's peer idle without sending
+# any data before we dump it?  Unless you disable tcp keep-alive for
+# some reason, it's probably best to set this to 0, which is
+# "forever".
+#timeout.io: 0 # or perhaps 86400, for a day.
+
+# do you want to accept connections from addresses without
+# dns info?  what about addresses having a mismatch in dns info?
+#srchost: nounknown nomismatch
+
+#
+# The actual rules.  There are two kinds and they work at different levels.
+#
+# The rules prefixed with "client" are checked first and say who is allowed
+# and who is not allowed to speak/connect to the server.  I.e the
+# ip range containing possibly valid clients.
+# It is especially important that these only use IP addresses, not hostnames,
+# for security reasons.
+#
+# The rules that do not have a "client" prefix are checked later, when the
+# client has sent its request and are used to evaluate the actual
+# request.
+#
+# The "to:" in the "client" context gives the address the connection
+# is accepted on, i.e the address the socks server is listening on, or
+# just "0.0.0.0/0" for any address the server is listening on.
+#
+# The "to:" in the non-"client" context gives the destination of the clients
+# socks request.
+#
+# "from:" is the source address in both contexts.
+#
+
+
+#
+# The "client" rules.  All our clients come from the net 10.0.0.0/8.
+#
+
+# Allow our clients, also provides an example of the port range command.
+#client pass {
+#        from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#        clientmethod: rfc931 # match all idented users that also are in passwordfile
+#}
+
+# This is identical to above, but allows clients without a rfc931 (ident)
+# too.  In practice this means the socks server will try to get a rfc931
+# reply first (the above rule), if that fails, it tries this rule.
+#client pass {
+#        from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#}
+
+client pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+
+
+# drop everyone else as soon as we can and log the connect, they are not
+# on our net and have no business connecting to us.  This is the default
+# but if you give the rule yourself, you can specify details.
+#client block {
+#        from: 0.0.0.0/0 to: 0.0.0.0/0
+#        log: connect error
+#}
+
+
+# the rules controlling what clients are allowed what requests
+#
+
+# you probably don't want people connecting to loopback addresses,
+# who knows what could happen then.
+#socks block {
+#        from: 0.0.0.0/0 to: lo0
+#        log: connect error
+#}
+
+# the people at the 172.16.0.0/12 are bad, no one should talk to them.
+# log the connect request and also provide an example on how to
+# interact with libwrap.
+#socks block {
+#        from: 0.0.0.0/0 to: 172.16.0.0/12
+#        libwrap: spawn finger @%a
+#        log: connect error
+#}
+
+# unless you need it, you could block any bind requests.
+#socks block {
+#        from: 0.0.0.0/0 to: 0.0.0.0/0
+#        command: bind
+#        log: connect error
+#}
+
+# or you might want to allow it, for instance "active" ftp uses it.
+# Note that a "bindreply" command must also be allowed, it
+# should usually by from "0.0.0.0/0", i.e if a client of yours
+# has permission to bind, it will also have permission to accept
+# the reply from anywhere.
+#socks pass {
+#        from: 10.0.0.0/8 to: 0.0.0.0/0
+#        command: bind
+#        log: connect error
+#}
+
+# some connections expect some sort of "reply", this might be
+# the reply to a bind request or it may be the reply to a
+# udppacket, since udp is packet based.
+# Note that nothing is done to verify that it's a "genuine" reply,
+# that is in general not possible anyway.  The below will allow
+# all "replies" in to your clients at the 10.0.0.0/8 net.
+#socks pass {
+#        from: 0.0.0.0/0 to: 10.0.0.0/8
+#        command: bindreply udpreply
+#        log: connect error
+#}
+
+
+# pass any http connects to the example.com domain if they
+# authenticate with username.
+# This matches "example.com" itself and everything ending in ".example.com".
+#socks pass {
+#        from: 10.0.0.0/8 to: .example.com port = http
+#        log: connect error
+#        clientmethod: username
+#}
+
+
+# block any other http connects to the example.com domain.
+#socks block {
+#        from: 0.0.0.0/0 to: .example.com port = http
+#        log: connect error
+#}
+
+# everyone from our internal network, 10.0.0.0/8 is allowed to use
+# tcp and udp for everything else.
+#socks pass {
+#        from: 10.0.0.0/8 to: 0.0.0.0/0
+#        protocol: tcp udp
+#}
+
+socks pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+
+# last line, block everyone else.  This is the default but if you provide
+# one  yourself you can specify your own logging/actions
+#socks block {
+#        from: 0.0.0.0/0 to: 0.0.0.0/0
+#        log: connect error
+#}
+
+# route all http connects via an upstream socks server, aka "server-chaining".
+#route {
+# from: 10.0.0.0/8 to: 0.0.0.0/0 port = http via: socks.example.net port = socks
+#}
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_运行_2">31.1.3. 运行</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sockd -f /etc/sockd.conf -D</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frp_chapter">32. frp</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装配置_6">32.1. 安装配置</h3>
+<div class="sect3">
+<h4 id="_初始配置">32.1.1. 初始配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget -c https://github.com/fatedier/frp/releases/download/v0.31.1/frp_0.31.1_linux_amd64.tar.gz
@@ -8756,7 +9192,7 @@ useradd -M -s /sbin/nologin frp</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_服务端">31.1.2. 服务端</h4>
+<h4 id="_服务端">32.1.2. 服务端</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt;  /etc/frp/frps.ini
@@ -8787,7 +9223,7 @@ systemctl  status frps</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_客户端">31.1.3. 客户端</h4>
+<h4 id="_客户端">32.1.3. 客户端</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt;  /etc/frp/frpc.ini
@@ -8823,12 +9259,12 @@ systemctl  status frpc</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_npm_chapter">32. npm</h2>
+<h2 id="_npm_chapter">33. npm</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_6">32.1. 安装配置</h3>
+<h3 id="_安装配置_7">33.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_初始配置_2">32.1.1. 初始配置</h4>
+<h4 id="_初始配置_2">33.1.1. 初始配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">npm config set registry https://registry.npm.taobao.org
@@ -8844,12 +9280,12 @@ npm run build</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lftp_chapter">33. lftp</h2>
+<h2 id="_lftp_chapter">34. lftp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_7">33.1. 安装配置</h3>
+<h3 id="_安装配置_8">34.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_初始配置_3">33.1.1. 初始配置</h4>
+<h4 id="_初始配置_3">34.1.1. 初始配置</h4>
 <div class="paragraph">
 <p>编辑 <code>/etc/lftp.conf</code>，加入下面内容：</p>
 </div>
@@ -8867,12 +9303,12 @@ npm run build</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_chapter">34. gradle</h2>
+<h2 id="_gradle_chapter">35. gradle</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_8">34.1. 安装配置</h3>
+<h3 id="_安装配置_9">35.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_全局源">34.1.1. 全局源</h4>
+<h4 id="_全局源">35.1.1. 全局源</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.gradle/init.gradle
@@ -8905,7 +9341,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_使用方法">34.2. 使用方法</h3>
+<h3 id="_使用方法">35.2. 使用方法</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">gradle build</dt>
@@ -8923,15 +9359,15 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_uWSGI_chapter">35. uWSGI</h2>
+<h2 id="_uWSGI_chapter">36. uWSGI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>基于 CentOS 7</strong></p>
 </div>
 <div class="sect2">
-<h3 id="_uwsgi">35.1. uWSGI</h3>
+<h3 id="_uwsgi">36.1. uWSGI</h3>
 <div class="sect3">
-<h4 id="_centos6">35.1.1. CentOS6</h4>
+<h4 id="_centos6">36.1.1. CentOS6</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y epel</code></pre>
@@ -9076,12 +9512,12 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ElasticStack_chapter">36. ElasticStack</h2>
+<h2 id="_ElasticStack_chapter">37. ElasticStack</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_elasticsearch_安装配置">36.1. Elasticsearch 安装配置</h3>
+<h3 id="_elasticsearch_安装配置">37.1. Elasticsearch 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos7_yum">36.1.1. CentOS7 Yum</h4>
+<h4 id="_centos7_yum">37.1.1. CentOS7 Yum</h4>
 <div class="sect4">
 <h5 id="_配置yum源">配置Yum源</h5>
 <div class="paragraph">
@@ -9177,7 +9613,7 @@ systemctl start kibana
 </div>
 </div>
 <div class="sect3">
-<h4 id="_docker_方式">36.1.2. Docker 方式</h4>
+<h4 id="_docker_方式">37.1.2. Docker 方式</h4>
 <div class="paragraph">
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html">Install Elasticsearch(官方文档)</a></p>
 </div>
@@ -9266,7 +9702,7 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_3">36.1.3. 配置</h4>
+<h4 id="_配置_4">37.1.3. 配置</h4>
 <div class="paragraph">
 <p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
 </div>
@@ -9316,12 +9752,12 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_elasticstack_使用教程">36.2. ElasticStack 使用教程</h3>
+<h3 id="_elasticstack_使用教程">37.2. ElasticStack 使用教程</h3>
 <div class="paragraph">
 <p>我们以 <code>wecompany</code> 公司的员工信息管理为例来学习 <code>Elasticsearch</code> 中的基本操作。</p>
 </div>
 <div class="sect3">
-<h4 id="_索引文档">36.2.1. 索引文档</h4>
+<h4 id="_索引文档">37.2.1. 索引文档</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">向名称为 <code>wecompany</code> 的索引中添加类型为 <code>employee</code> 的3个员工信息的文档</dt>
@@ -9362,7 +9798,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_搜索">36.2.2. 搜索</h4>
+<h4 id="_搜索">37.2.2. 搜索</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">获取ID为1的文档</dt>
@@ -9718,7 +10154,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_聚合">36.2.3. 聚合</h4>
+<h4 id="_聚合">37.2.3. 聚合</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">先启用相关字段的分析功能</dt>
@@ -9964,7 +10400,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_更新文档">36.2.4. 更新文档</h4>
+<h4 id="_更新文档">37.2.4. 更新文档</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">更新ID为2的文档，只需再次PUT即可</dt>
@@ -9985,7 +10421,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除文档">36.2.5. 删除文档</h4>
+<h4 id="_删除文档">37.2.5. 删除文档</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -H "Content-Type: application/json" -X DELETE 'http://localhost:9200/wecompany/employee/1?pretty'</code></pre>
@@ -9993,7 +10429,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_结构化查询">36.2.6. 结构化查询</h4>
+<h4 id="_结构化查询">37.2.6. 结构化查询</h4>
 <div class="sect4">
 <h5 id="_最重要的查询过滤语句">最重要的查询过滤语句</h5>
 <div class="sect5">
@@ -10088,7 +10524,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dsl查询实例">36.2.7. DSL查询实例</h4>
+<h4 id="_dsl查询实例">37.2.7. DSL查询实例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
@@ -10157,7 +10593,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect2">
-<h3 id="_从mysql同步数据到elasticsearch">36.3. 从MySQL同步数据到ElasticSearch</h3>
+<h3 id="_从mysql同步数据到elasticsearch">37.3. 从MySQL同步数据到ElasticSearch</h3>
 <div class="paragraph">
 <p>参考文档：</p>
 </div>
@@ -10258,7 +10694,7 @@ systemctl start redas_meta_sync</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_elasticsearch在线迁移">36.4. ElasticSearch在线迁移</h3>
+<h3 id="_elasticsearch在线迁移">37.4. ElasticSearch在线迁移</h3>
 <div class="paragraph">
 <p>参考文档：</p>
 </div>
@@ -10298,10 +10734,10 @@ EOF
 </div>
 </div>
 <div class="sect1">
-<h2 id="_youtube_dl_chapter">37. youtube-dl</h2>
+<h2 id="_youtube_dl_chapter">38. youtube-dl</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_使用实例_2">37.1. 使用实例</h3>
+<h3 id="_使用实例_2">38.1. 使用实例</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">youtube-dl --sub-lang en --write-sub --sub-format srt https://www.youtube.com/watch?v=ptVqRCRPN9I
@@ -10344,12 +10780,12 @@ youtube-dl -f 137+140 'https://www.youtube.com/watch?v=lrDlTEbHw3g'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_chapter">38. maven</h2>
+<h2 id="_maven_chapter">39. maven</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_9">38.1. 安装配置</h3>
+<h3 id="_安装配置_10">39.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_全局源_2">38.1.1. 全局源</h4>
+<h4 id="_全局源_2">39.1.1. 全局源</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.m2/settings.xml
@@ -10369,9 +10805,9 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_使用方法_2">38.2. 使用方法</h3>
+<h3 id="_使用方法_2">39.2. 使用方法</h3>
 <div class="sect3">
-<h4 id="_build_lifecycle">38.2.1. Build Lifecycle</h4>
+<h4 id="_build_lifecycle">39.2.1. Build Lifecycle</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">mvn clean</dt>
@@ -10444,10 +10880,10 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_MongoDB_chapter">39. MongoDB</h2>
+<h2 id="_MongoDB_chapter">40. MongoDB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_10">39.1. 安装配置</h3>
+<h3 id="_安装配置_11">40.1. 安装配置</h3>
 <div class="paragraph">
 <p><strong>基于 CentOS8</strong></p>
 </div>
@@ -10461,7 +10897,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_安装_4">39.2. 安装</h3>
+<h3 id="_安装_5">40.2. 安装</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &gt; /etc/yum.repos.d/mongodb-org-4.2.repo &lt;&lt; EOF
@@ -10477,7 +10913,7 @@ dnf install -y mongodb-org</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_文件目录结构">39.2.1. 文件目录结构</h4>
+<h4 id="_文件目录结构">40.2.1. 文件目录结构</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">配置文件</dt>
@@ -10518,9 +10954,9 @@ dnf install -y mongodb-org</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_配置_4">39.3. 配置</h3>
+<h3 id="_配置_5">40.3. 配置</h3>
 <div class="sect3">
-<h4 id="_禁用selinux重启生效">39.3.1. 禁用SELINUX（重启生效）</h4>
+<h4 id="_禁用selinux重启生效">40.3.1. 禁用SELINUX（重启生效）</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo SELINUX=disabled&gt;/etc/selinux/config
@@ -10529,7 +10965,7 @@ echo SELINUXTYPE=targeted&gt;&gt;/etc/selinux/config</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置_ulimit">39.3.2. 设置 <code>ulimit</code></h4>
+<h4 id="_设置_ulimit">40.3.2. 设置 <code>ulimit</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "*               soft   nofile            65535" &gt;&gt; /etc/security/limits.conf
@@ -10545,7 +10981,7 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 </div>
 <div class="sect3">
-<h4 id="_开机启动">39.3.3. 开机启动</h4>
+<h4 id="_开机启动">40.3.3. 开机启动</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10558,7 +10994,7 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 </div>
 <div class="sect3">
-<h4 id="_服务管理">39.3.4. 服务管理</h4>
+<h4 id="_服务管理">40.3.4. 服务管理</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10577,7 +11013,7 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 </div>
 <div class="sect3">
-<h4 id="_验证服务">39.3.5. 验证服务</h4>
+<h4 id="_验证服务">40.3.5. 验证服务</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10596,7 +11032,7 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 </div>
 <div class="sect3">
-<h4 id="_开始使用_mongodb">39.3.6. 开始使用 <code>MongoDB</code></h4>
+<h4 id="_开始使用_mongodb">40.3.6. 开始使用 <code>MongoDB</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># mongo
@@ -10634,12 +11070,12 @@ To permanently disable this reminder, run the following command: db.disableFreeM
 </div>
 </div>
 <div class="sect1">
-<h2 id="_LinuxWifiDriver_chapter">40. Linux Wifi Driver</h2>
+<h2 id="_LinuxWifiDriver_chapter">41. Linux Wifi Driver</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_tl_wdn5200h">40.1. TL_WDN5200H</h3>
+<h3 id="_tl_wdn5200h">41.1. TL_WDN5200H</h3>
 <div class="sect3">
-<h4 id="_centos8_安装驱动">40.1.1. CentOS8 安装驱动</h4>
+<h4 id="_centos8_安装驱动">41.1.1. CentOS8 安装驱动</h4>
 <div class="listingblock">
 <div class="title">安装工具</div>
 <div class="content">
@@ -10842,14 +11278,14 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Kafka_chapter">41. Kafka</h2>
+<h2 id="_Kafka_chapter">42. Kafka</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_11">41.1. 安装配置</h3>
+<h3 id="_安装配置_12">42.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_linux">41.1.1. Linux</h4>
+<h4 id="_linux">42.1.1. Linux</h4>
 <div class="sect4">
-<h5 id="_安装_5">安装</h5>
+<h5 id="_安装_6">安装</h5>
 <div class="listingblock">
 <div class="title">下载解压</div>
 <div class="content">
@@ -10910,7 +11346,7 @@ This is another message</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_windows">41.1.2. Windows</h4>
+<h4 id="_windows">42.1.2. Windows</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bat" class="language-bat hljs">bin\windows\zookeeper-server-start.bat config\zookeeper.properties
@@ -10928,7 +11364,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_5">41.1.3. 配置</h4>
+<h4 id="_配置_6">42.1.3. 配置</h4>
 <div class="paragraph">
 <p>开启对外端口监听，编辑文件 <code>config/server.properties</code> 修改以下参数：</p>
 </div>
@@ -10943,12 +11379,12 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Pure-FTPd_chapter">42. Pure-FTPd</h2>
+<h2 id="_Pure-FTPd_chapter">43. Pure-FTPd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_12">42.1. 安装配置</h3>
+<h3 id="_安装配置_13">43.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos6_安装">42.1.1. CentOS6 安装</h4>
+<h4 id="_centos6_安装">43.1.1. CentOS6 安装</h4>
 <div class="listingblock">
 <div class="title">安装EPEL源</div>
 <div class="content">
@@ -11075,12 +11511,12 @@ pure-pw list</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Shadowsocks_chapter">43. Shadowsocks</h2>
+<h2 id="_Shadowsocks_chapter">44. Shadowsocks</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_13">43.1. 安装配置</h3>
+<h3 id="_安装配置_14">44.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos7_2">43.1.1. CentOS7</h4>
+<h4 id="_centos7_2">44.1.1. CentOS7</h4>
 <div class="sect4">
 <h5 id="_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></h5>
 <div class="listingblock">
@@ -11161,7 +11597,7 @@ net.ipv4.tcp_congestion_control = bbr</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_shadowsocks">43.1.2. 安装 <code>Shadowsocks</code></h4>
+<h4 id="_安装_shadowsocks">44.1.2. 安装 <code>Shadowsocks</code></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11203,7 +11639,7 @@ pip install pyopenssl ndg-httpsclient pyasn</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_shadowsocks">43.1.3. 配置 <code>Shadowsocks</code></h4>
+<h4 id="_配置_shadowsocks">44.1.3. 配置 <code>Shadowsocks</code></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11427,10 +11863,10 @@ firewall-cmd --list-all
 </div>
 </div>
 <div class="sect1">
-<h2 id="_WSL_chapter">44. WSL</h2>
+<h2 id="_WSL_chapter">45. WSL</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_修复wsl文件权限问题">44.1. 修复WSL文件权限问题</h3>
+<h3 id="_修复wsl文件权限问题">45.1. 修复WSL文件权限问题</h3>
 <div class="paragraph">
 <p>参考：</p>
 </div>
@@ -11444,7 +11880,7 @@ firewall-cmd --list-all
 <p>安装 <code>WSL</code> 后，使用 <code>ls</code> 查看文件权限全部是 <code>777</code>，还伴随着其它权限问题。</p>
 </div>
 <div class="sect3">
-<h4 id="_解决方法_2">44.1.1. 解决方法</h4>
+<h4 id="_解决方法_2">45.1.1. 解决方法</h4>
 <div class="listingblock">
 <div class="title">修复WSL挂载问题</div>
 <div class="content">
@@ -11525,10 +11961,10 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Aliyun_chapter">45. Aliyun</h2>
+<h2 id="_Aliyun_chapter">46. Aliyun</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_cli工具">45.1. CLI工具</h3>
+<h3 id="_cli工具">46.1. CLI工具</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">阿里云CLI文档</dt>
@@ -11538,7 +11974,7 @@ EOF</code></pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装_6">45.1.1. 安装</h4>
+<h4 id="_安装_7">46.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/Downloads
@@ -11551,7 +11987,7 @@ aliyun help</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置凭证">45.1.2. 配置凭证</h4>
+<h4 id="_配置凭证">46.1.2. 配置凭证</h4>
 <div class="dlist">
 <div class="title">启用 AccessKey</div>
 <dl>
@@ -11657,7 +12093,7 @@ Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ecs相关参数查询">45.1.3. ECS相关参数查询</h4>
+<h4 id="_ecs相关参数查询">46.1.3. ECS相关参数查询</h4>
 <div class="listingblock">
 <div class="title">查询可选区域</div>
 <div class="content">
@@ -11925,7 +12361,7 @@ Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_创建ecs">45.1.4. 创建ECS</h4>
+<h4 id="_创建ecs">46.1.4. 创建ECS</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs CreateInstance \
@@ -12050,7 +12486,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ecs实例管理">45.1.5. ECS实例管理</h4>
+<h4 id="_ecs实例管理">46.1.5. ECS实例管理</h4>
 <div class="paragraph">
 <p>启动ECS实例：<br></p>
 </div>
@@ -12069,7 +12505,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除ecs实例">45.1.6. 删除ECS实例</h4>
+<h4 id="_删除ecs实例">46.1.6. 删除ECS实例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DeleteInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
@@ -12081,12 +12517,12 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_RabbitMQ_chapter">46. RabbitMQ</h2>
+<h2 id="_RabbitMQ_chapter">47. RabbitMQ</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_14">46.1. 安装配置</h3>
+<h3 id="_安装配置_15">47.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos_8">46.1.1. CentOS 8</h4>
+<h4 id="_centos_8">47.1.1. CentOS 8</h4>
 <div class="paragraph">
 <p>参考： <a href="https://www.rabbitmq.com/install-rpm.html" class="bare">https://www.rabbitmq.com/install-rpm.html</a></p>
 </div>
@@ -12363,7 +12799,7 @@ rabbitmqctl set_user_tags thcl administrator</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_支持mqtt">46.2. 支持MQTT</h3>
+<h3 id="_支持mqtt">47.2. 支持MQTT</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">参考</dt>
@@ -12401,7 +12837,7 @@ started 1 plugins.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_新增虚拟主机">46.2.1. 新增虚拟主机</h4>
+<h4 id="_新增虚拟主机">47.2.1. 新增虚拟主机</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rabbitmqctl add_vhost device</code></pre>
@@ -12409,7 +12845,7 @@ started 1 plugins.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_为mqtt连接创建新用户">46.2.2. 为MQTT连接创建新用户</h4>
+<h4 id="_为mqtt连接创建新用户">47.2.2. 为MQTT连接创建新用户</h4>
 <div class="paragraph">
 <p>用户只能写，不能配置，不能读。</p>
 </div>
@@ -15090,7 +15526,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-07 13:04:59 +0800
+Last updated 2020-05-30 13:06:29 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
