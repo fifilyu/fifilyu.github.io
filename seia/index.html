@@ -3421,7 +3421,7 @@ exit</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
 
-pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl</code></pre>
+pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl wireshark</code></pre>
 </div>
 </div>
 </div>
@@ -3444,6 +3444,9 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length
 # virtualbox 设置
 sudo gpasswd -a root vboxusers
 sudo gpasswd -a $USER vboxusers
+# wireshark 设置
+sudo gpasswd -a root wireshark
+sudo gpasswd -a $USER wireshark
 sudo grpunconv
 
 # 开机启动
