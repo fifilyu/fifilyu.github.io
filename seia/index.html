@@ -2523,7 +2523,9 @@ CentOS 7 上意外关闭了 NetworkManager 服务，重启后导致无法访问�
 <h4 id="_增加虚拟机">6.1.5. 增加虚拟机</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virt-install \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">qemu-img create -f qcow2 /data/libvirt/images/192168100009.img 30G
+
+virt-install \
 --name 192168100009 \
 --ram 4096 \
 --disk path=/data/libvirt/images/192168100009.img,size=30 \
