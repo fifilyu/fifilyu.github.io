@@ -2406,8 +2406,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">重启libvirtd</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart libvirtd
-brctl stp virbr0 on</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart libvirtd</code></pre>
 </div>
 </div>
 </div>
@@ -2427,6 +2426,18 @@ brctl stp virbr0 on</code></pre>
 bridge name	bridge id		STP enabled	interfaces
 virbr0		8000.525400dd9ee0	off		virbr0-nic</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+CentOS 8可以使用 <code>bridge link show</code> 或 <code>nmcli -f bridge c s virbr0</code>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
