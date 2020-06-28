@@ -11896,9 +11896,11 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 <div class="sect4">
 <h5 id="_启用权限验证">启用权限验证</h5>
-<div class="paragraph">
-<p>echo 'security:' &gt;&gt; /etc/mongod.conf
-echo '  authorization: enabled' &gt;&gt; /etc/mongod.conf</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'security:' &gt;&gt; /etc/mongod.conf
+echo '  authorization: enabled' &gt;&gt; /etc/mongod.conf</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
