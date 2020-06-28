@@ -5153,7 +5153,11 @@ systemctl enable systemd-timesyncd
 systemctl start systemd-timesyncd
 
 #如果是x86_64系统，排除32位包
-echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf</code></pre>
+echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf
+
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl mask firewalld</code></pre>
 </div>
 </div>
 </div>
