@@ -3224,7 +3224,8 @@ swapon /dev/sda2</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S dosfstools
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
+pacman -S dosfstools
 mkfs.fat -F32 /dev/sda1</code></pre>
 </div>
 </div>
@@ -3507,7 +3508,7 @@ exit</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
 
-pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl wireshark</code></pre>
+pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl wireshark-qt</code></pre>
 </div>
 </div>
 </div>
@@ -11990,7 +11991,7 @@ MongoDB server version: 4.2.8
   {
     user: "root",
     pwd: "thcl",
-    roles: [ { role: "root", db: "admin" } ]
+    roles: [ "root"]
   }
 )</code></pre>
 </div>
