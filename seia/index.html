@@ -1111,8 +1111,8 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_编译">14.1.2. 编译</a>
 <ul class="sectlevel4">
 <li><a href="#_下载源代码">下载源代码</a></li>
-<li><a href="#_默认配置编译">默认配置编译</a></li>
-<li><a href="#_支持websockts客户端">支持WebSockts客户端</a></li>
+<li><a href="#_编译默认配置">编译：默认配置</a></li>
+<li><a href="#_编译支持websockts客户端">编译：支持WebSockts客户端</a></li>
 </ul>
 </li>
 </ul>
@@ -6483,7 +6483,7 @@ tar xf mosquitto-1.6.9.tar.gz</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_默认配置编译">默认配置编译</h5>
+<h5 id="_编译默认配置">编译：默认配置</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd mosquitto-1.6.9
@@ -6493,7 +6493,7 @@ make install prefix=/usr/local/mosquitto-1.6.9</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_支持websockts客户端">支持WebSockts客户端</h5>
+<h5 id="_编译支持websockts客户端">编译：支持WebSockts客户端</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/libwebsockets-4.0.1/lib/pkgconfig
@@ -6511,13 +6511,13 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_配置_2">14.2. 配置</h3>
+<div class="paragraph">
+<p>加入环境变量：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>/etc/mosquitto/
-├── aclfile.example
-├── mosquitto.conf
-├── pskfile.example
-└── pwfile.example</pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s /usr/local/mosquitto-1.6.9/bin/* /usr/loca/bin/
+ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/loca/bin/</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6526,6 +6526,50 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -c "mosquitto server user" -d /var/lib/mosquitto -s /sbin/nologin  mosquitto</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建配置文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/mosquitto/mosquitto.conf.example /etc/mosquitto/mosquitto.conf
+sed -i '588s/#log_dest stderr/log_dest file \/var\/log\/mosquitto.log/g' /etc/mosquitto/mosquitto.conf
+touch /var/log/mosquitto.log
+chown mosquitto:mosquitto /var/log/mosquitto.log</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建系统服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/mosquitto.service
+[Unit]
+Description=Eclipse Mosquitto - An open source MQTT broker
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+
+User=mosquitto
+Group=mosquitto
+ExecStart=/usr/local/mosquitto-1.6.9/sbin/mosquitto -d -c /etc/mosquitto/mosquitto.conf -v
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable mosquitto</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>启动服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mosquitto
+systemctl status mosquitto</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
