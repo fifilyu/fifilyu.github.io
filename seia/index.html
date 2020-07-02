@@ -1117,7 +1117,13 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_配置_2">14.2. 配置</a></li>
+<li><a href="#_配置_2">14.2. 配置</a>
+<ul class="sectlevel3">
+<li><a href="#_基础配置">14.2.1. 基础配置</a></li>
+<li><a href="#_创建系统服务">14.2.2. 创建系统服务</a></li>
+<li><a href="#_权限设置">14.2.3. 权限设置</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_Terminal_chapter">15. Terminal</a>
@@ -1337,7 +1343,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装依赖_4">安装依赖</a></li>
 <li><a href="#_安装_polipo">安装 Polipo</a></li>
 <li><a href="#_配置文件_polipo">配置文件 Polipo</a></li>
-<li><a href="#_创建系统服务">创建系统服务</a></li>
+<li><a href="#_创建系统服务_2">创建系统服务</a></li>
 <li><a href="#_启动服务">启动服务</a></li>
 </ul>
 </li>
@@ -6511,13 +6517,17 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_配置_2">14.2. 配置</h3>
+<div class="sect3">
+<h4 id="_基础配置">14.2.1. 基础配置</h4>
 <div class="paragraph">
 <p>加入环境变量：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s /usr/local/mosquitto-1.6.9/bin/* /usr/loca/bin/
-ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/loca/bin/</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s /usr/local/mosquitto-1.6.9/bin/* /usr/local/bin/
+ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/local/bin/
+
+/usr/local/mosquitto-1.6.9/lib/</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6534,14 +6544,18 @@ ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/loca/bin/</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/mosquitto/mosquitto.conf.example /etc/mosquitto/mosquitto.conf
-sed -i '588s/#log_dest stderr/log_dest file \/var\/log\/mosquitto.log/g' /etc/mosquitto/mosquitto.conf
-touch /var/log/mosquitto.log
-chown mosquitto:mosquitto /var/log/mosquitto.log</code></pre>
+touch /etc/mosquitto/pwfile /etc/mosquitto/aclfile /var/log/mosquitto.log
+chown mosquitto:mosquitto /var/log/mosquitto.log
+
+sed -i '588s/#log_dest stderr/log_dest file \/var\/log\/mosquitto.log/' /etc/mosquitto/mosquitto.conf
+sed -i '669s/# password_file/password_file \/etc\/mosquitto\/pwfile/' /etc/mosquitto/mosquitto.conf
+sed -i '728s/#acl_file/acl_file \/etc\/mosquitto\/aclfile/' /etc/mosquitto/mosquitto.conf
+sed -i '651s/#allow_anonymous true/allow_anonymous false/' /etc/mosquitto/mosquitto.conf</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>创建系统服务：</p>
 </div>
+<div class="sect3">
+<h4 id="_创建系统服务">14.2.2. 创建系统服务</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/mosquitto.service
@@ -6572,7 +6586,22 @@ systemctl enable mosquitto</code></pre>
 systemctl status mosquitto</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_权限设置">14.2.3. 权限设置</h4>
+<div class="paragraph">
+<p>创建用户 foo：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mosquitto_passwd -b /etc/mosquitto/pwfile foo 'ugnCy55jZpJj0Xnh0ucS'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>另外，可以在 '/etc/mosquitto/aclfile' 文件中设置用户可读写的 topic。详情参考 <code>/etc/mosquitto/aclfile.example</code>。</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -9217,7 +9246,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_创建系统服务">创建系统服务</h5>
+<h5 id="_创建系统服务_2">创建系统服务</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/polipo.service
