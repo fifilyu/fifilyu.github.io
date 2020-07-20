@@ -9320,9 +9320,10 @@ cd proxychains-4.3.0
 make &amp;&amp; make install
 cp src/proxychains.conf /usr/local/proxychains-4.3.0/etc
 
-sed -E -i 's/socks4\s+127.0.0.1 9050/socks4  127.0.0.1 1080/' /usr/local/proxychains-4.3.0/etc/proxychains.conf
+sed -E -i 's/socks4\s+127.0.0.1 9050/socks5 127.0.0.1 1080/' /usr/local/proxychains-4.3.0/etc/proxychains.conf
+sed -i 's/#quiet_mode/quiet_mode/g' /usr/local/proxychains-4.3.0/etc/proxychains.conf
 
-echo 'alias p="proxychains4"' &gt;&gt; ~/.bashrc
+echo 'alias p="/usr/local/proxychains-4.3.0/bin/proxychains4"' &gt;&gt; ~/.bashrc
 # 不重启终端生效环境配置
 source ~/.bashrc
 
@@ -16629,7 +16630,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-23 23:44:45 +0800
+Last updated 2020-06-28 15:24:34 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
