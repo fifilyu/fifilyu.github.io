@@ -1078,7 +1078,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_lnmp_环境测试">13.4.4. LNMP 环境测试</a></li>
 </ul>
 </li>
-<li><a href="#_centos8配置文档">13.5. Centos8配置文档</a>
+<li><a href="#_centos8配置文档">13.5. CentOS8配置文档</a>
 <ul class="sectlevel3">
 <li><a href="#_安装_nginx_2">13.5.1. 安装 Nginx</a></li>
 <li><a href="#_安装_mysql_2">13.5.2. 安装 MySQL</a></li>
@@ -5797,7 +5797,7 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8配置文档">13.5. Centos8配置文档</h3>
+<h3 id="_centos8配置文档">13.5. CentOS8配置文档</h3>
 <div class="sect3">
 <h4 id="_安装_nginx_2">13.5.1. 安装 Nginx</h4>
 <div class="listingblock">
@@ -6527,7 +6527,8 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s /usr/local/mosquitto-1.6.9/bin/* /usr/local/bin/
 ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/local/bin/
 
-/usr/local/mosquitto-1.6.9/lib/</code></pre>
+echo /usr/local/mosquitto-1.6.9/lib/ &gt;&gt; /etc/ld.so.conf
+ldconfig</code></pre>
 </div>
 </div>
 <div class="paragraph">
