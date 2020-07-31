@@ -1143,9 +1143,10 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_FFmpeg_chapter">16. FFmpeg</a>
 <ul class="sectlevel2">
-<li><a href="#_命令合集">16.1. 命令合集</a>
+<li><a href="#_centos8_安装">16.1. CentOS8 安装</a></li>
+<li><a href="#_命令合集">16.2. 命令合集</a>
 <ul class="sectlevel3">
-<li><a href="#_mp4转换为mp3">16.1.1. mp4转换为mp3</a></li>
+<li><a href="#_mp4转换为mp3">16.2.1. mp4转换为mp3</a></li>
 </ul>
 </li>
 </ul>
@@ -5127,6 +5128,9 @@ firewall-cmd --reload</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y iproute rsync epel-release vim-enhanced wget curl
 
+dnf install -y dnf-plugins-core
+dnf config-manager --set-enabled PowerTools
+
 # PHP 7
 dnf install centos-release-scl
 
@@ -6734,9 +6738,22 @@ To disable a shortcut, edit it and press the Backspace instead of the new shortc
 <h2 id="_FFmpeg_chapter">16. FFmpeg</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_命令合集">16.1. 命令合集</h3>
+<h3 id="_centos8_安装">16.1. CentOS8 安装</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/free/el/rpmfusion-free-release-8.noarch.rpm
+dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+
+dnf install -y dnf-plugins-core
+dnf config-manager --set-enabled PowerTools
+dnf install -y ffmpeg</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_命令合集">16.2. 命令合集</h3>
 <div class="sect3">
-<h4 id="_mp4转换为mp3">16.1.1. mp4转换为mp3</h4>
+<h4 id="_mp4转换为mp3">16.2.1. mp4转换为mp3</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ffmpeg -i 'BLACKPINK - Really.mp4'  -vn -ar 44100 -ac 2 -b:a 192k 'BLACKPINK - Really.mp3'</code></pre>
