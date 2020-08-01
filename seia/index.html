@@ -837,11 +837,8 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_烤机必备">5.1.1. 烤机必备</a></li>
 <li><a href="#_find分别查找目录和文件">5.1.2. find分别查找目录和文件</a></li>
 <li><a href="#_创建用于运行服务的用户">5.1.3. 创建用于运行服务的用户</a></li>
-</ul>
-</li>
-<li><a href="#_networkmanager">5.2. NetworkManager</a>
-<ul class="sectlevel3">
-<li><a href="#_nmcli">5.2.1. nmcli</a>
+<li><a href="#_仅修改子目录中的文件权限忽略目录">5.1.4. 仅修改子目录中的文件权限，忽略目录</a></li>
+<li><a href="#_nmcli">5.1.5. nmcli</a>
 <ul class="sectlevel4">
 <li><a href="#_配置ip地址">配置IP地址</a></li>
 <li><a href="#_物理网卡加入网桥">物理网卡加入网桥</a></li>
@@ -980,11 +977,23 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_解决方法">8.6.2. 解决方法</a></li>
 </ul>
 </li>
+<li><a href="#_打印机">8.7. 打印机</a>
+<ul class="sectlevel3">
+<li><a href="#_安装配置_3">8.7.1. 安装配置</a></li>
+<li><a href="#_打印机驱动">8.7.2. 打印机驱动</a></li>
+<li><a href="#_添加打印机">8.7.3. 添加打印机</a>
+<ul class="sectlevel4">
+<li><a href="#_惠普打印机惠普工具">惠普打印机：惠普工具</a></li>
+<li><a href="#_web">Web</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_XXL-JOB_chapter">9. XXL-JOB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_3">9.1. 安装配置</a>
+<li><a href="#_安装配置_4">9.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装依赖">9.1.1. 安装依赖</a>
 <ul class="sectlevel4">
@@ -1066,7 +1075,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_lnmp_环境测试">13.4.4. LNMP 环境测试</a></li>
 </ul>
 </li>
-<li><a href="#_centos8配置文档">13.5. Centos8配置文档</a>
+<li><a href="#_centos8配置文档">13.5. CentOS8配置文档</a>
 <ul class="sectlevel3">
 <li><a href="#_安装_nginx_2">13.5.1. 安装 Nginx</a></li>
 <li><a href="#_安装_mysql_2">13.5.2. 安装 MySQL</a></li>
@@ -1099,13 +1108,19 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_编译">14.1.2. 编译</a>
 <ul class="sectlevel4">
 <li><a href="#_下载源代码">下载源代码</a></li>
-<li><a href="#_默认配置编译">默认配置编译</a></li>
-<li><a href="#_支持websockts客户端">支持WebSockts客户端</a></li>
+<li><a href="#_编译默认配置">编译：默认配置</a></li>
+<li><a href="#_编译支持websockts客户端">编译：支持WebSockts客户端</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_配置_2">14.2. 配置</a></li>
+<li><a href="#_配置_2">14.2. 配置</a>
+<ul class="sectlevel3">
+<li><a href="#_基础配置">14.2.1. 基础配置</a></li>
+<li><a href="#_创建系统服务">14.2.2. 创建系统服务</a></li>
+<li><a href="#_权限设置">14.2.3. 权限设置</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_Terminal_chapter">15. Terminal</a>
@@ -1125,9 +1140,10 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_FFmpeg_chapter">16. FFmpeg</a>
 <ul class="sectlevel2">
-<li><a href="#_命令合集">16.1. 命令合集</a>
+<li><a href="#_centos8_安装">16.1. CentOS8 安装</a></li>
+<li><a href="#_命令合集">16.2. 命令合集</a>
 <ul class="sectlevel3">
-<li><a href="#_mp4转换为mp3">16.1.1. mp4转换为mp3</a></li>
+<li><a href="#_mp4转换为mp3">16.2.1. mp4转换为mp3</a></li>
 </ul>
 </li>
 </ul>
@@ -1203,7 +1219,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Redis_chapter">22. Redis</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_4">22.1. 安装配置</a></li>
+<li><a href="#_安装配置_5">22.1. 安装配置</a></li>
 <li><a href="#_常用命令_4">22.2. 常用命令</a>
 <ul class="sectlevel3">
 <li><a href="#_键key">22.2.1. 键（key）</a></li>
@@ -1316,71 +1332,93 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_常用命令_5">28.1. 常用命令</a></li>
 </ul>
 </li>
-<li><a href="#_ImageMagick_chapter">29. ImageMagick</a>
+<li><a href="#_Polipo_chapter">29. Polipo</a>
 <ul class="sectlevel2">
-<li><a href="#_批量图片转pdf">29.1. 批量图片转PDF</a></li>
-</ul>
-</li>
-<li><a href="#_Rsync_chapter">30. Rsync</a>
-<ul class="sectlevel2">
-<li><a href="#_使用实例">30.1. 使用实例</a></li>
-</ul>
-</li>
-<li><a href="#_Dante_chapter">31. Dante</a>
-<ul class="sectlevel2">
-<li><a href="#_安装配置_5">31.1. 安装配置</a>
+<li><a href="#_安装配置_6">29.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_4">31.1.1. 安装</a></li>
-<li><a href="#_配置_3">31.1.2. 配置</a></li>
-<li><a href="#_运行_2">31.1.3. 运行</a></li>
+<li><a href="#_centos8_2">29.1.1. CentOS8</a>
+<ul class="sectlevel4">
+<li><a href="#_安装依赖_4">安装依赖</a></li>
+<li><a href="#_安装_polipo">安装 Polipo</a></li>
+<li><a href="#_配置文件_polipo">配置文件 Polipo</a></li>
+<li><a href="#_创建系统服务_2">创建系统服务</a></li>
+<li><a href="#_启动服务">启动服务</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_frp_chapter">32. frp</a>
+</ul>
+</li>
+<li><a href="#_Proxychains_chapter">30. Proxychains</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_6">32.1. 安装配置</a>
-<ul class="sectlevel3">
-<li><a href="#_初始配置">32.1.1. 初始配置</a></li>
-<li><a href="#_服务端">32.1.2. 服务端</a></li>
-<li><a href="#_客户端">32.1.3. 客户端</a></li>
+<li><a href="#_安装配置_7">30.1. 安装配置</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_npm_chapter">33. npm</a>
+<li><a href="#_ImageMagick_chapter">31. ImageMagick</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_7">33.1. 安装配置</a>
-<ul class="sectlevel3">
-<li><a href="#_初始配置_2">33.1.1. 初始配置</a></li>
+<li><a href="#_批量图片转pdf">31.1. 批量图片转PDF</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_lftp_chapter">34. lftp</a>
+<li><a href="#_Rsync_chapter">32. Rsync</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_8">34.1. 安装配置</a>
-<ul class="sectlevel3">
-<li><a href="#_初始配置_3">34.1.1. 初始配置</a></li>
+<li><a href="#_使用实例">32.1. 使用实例</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_gradle_chapter">35. gradle</a>
+<li><a href="#_Dante_chapter">33. Dante</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_9">35.1. 安装配置</a>
+<li><a href="#_安装配置_8">33.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_全局源">35.1.1. 全局源</a></li>
+<li><a href="#_安装_4">33.1.1. 安装</a></li>
+<li><a href="#_配置_3">33.1.2. 配置</a></li>
+<li><a href="#_运行_2">33.1.3. 运行</a></li>
 </ul>
 </li>
-<li><a href="#_使用方法">35.2. 使用方法</a></li>
 </ul>
 </li>
-<li><a href="#_uWSGI_chapter">36. uWSGI</a>
+<li><a href="#_frp_chapter">34. frp</a>
 <ul class="sectlevel2">
-<li><a href="#_uwsgi">36.1. uWSGI</a>
+<li><a href="#_安装配置_9">34.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos6">36.1.1. CentOS6</a>
+<li><a href="#_初始配置">34.1.1. 初始配置</a></li>
+<li><a href="#_服务端">34.1.2. 服务端</a></li>
+<li><a href="#_客户端">34.1.3. 客户端</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_npm_chapter">35. npm</a>
+<ul class="sectlevel2">
+<li><a href="#_安装配置_10">35.1. 安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_初始配置_2">35.1.1. 初始配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_lftp_chapter">36. lftp</a>
+<ul class="sectlevel2">
+<li><a href="#_安装配置_11">36.1. 安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_初始配置_3">36.1.1. 初始配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_gradle_chapter">37. gradle</a>
+<ul class="sectlevel2">
+<li><a href="#_安装配置_12">37.1. 安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_全局源">37.1.1. 全局源</a></li>
+</ul>
+</li>
+<li><a href="#_使用方法">37.2. 使用方法</a></li>
+</ul>
+</li>
+<li><a href="#_uWSGI_chapter">38. uWSGI</a>
+<ul class="sectlevel2">
+<li><a href="#_uwsgi">38.1. uWSGI</a>
+<ul class="sectlevel3">
+<li><a href="#_centos6">38.1.1. CentOS6</a>
 <ul class="sectlevel4">
 <li><a href="#_uwsgi_2">uWSGI</a>
 <ul class="sectlevel5">
@@ -1396,35 +1434,62 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_ElasticStack_chapter">37. ElasticStack</a>
+<li><a href="#_ElasticStack_chapter">39. ElasticStack</a>
 <ul class="sectlevel2">
-<li><a href="#_elasticsearch_安装配置">37.1. Elasticsearch 安装配置</a>
+<li><a href="#_centos8elk环境配置">39.1. CentOS8+ELK环境配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7_yum">37.1.1. CentOS7 Yum</a>
+<li><a href="#_安装java">39.1.1. 安装Java</a></li>
+<li><a href="#_增加yum源">39.1.2. 增加YUM源</a></li>
+<li><a href="#_elasticsearch">39.1.3. Elasticsearch</a>
 <ul class="sectlevel4">
-<li><a href="#_配置yum源">配置Yum源</a></li>
-<li><a href="#_安装elasticsearch">安装ElasticSearch</a></li>
-<li><a href="#_安装kibana">安装Kibana</a></li>
-<li><a href="#_安装logstash">安装Logstash</a></li>
+<li><a href="#_安装_5">安装</a></li>
+<li><a href="#_配置_4">配置</a></li>
+<li><a href="#_开机启动">开机启动</a></li>
+<li><a href="#_启动服务_2">启动服务</a></li>
 </ul>
 </li>
-<li><a href="#_docker_方式">37.1.2. Docker 方式</a></li>
-<li><a href="#_配置_4">37.1.3. 配置</a></li>
+<li><a href="#_kibana">39.1.4. Kibana</a>
+<ul class="sectlevel4">
+<li><a href="#_安装_6">安装</a></li>
+<li><a href="#_配置_5">配置</a></li>
+<li><a href="#_开机启动_2">开机启动</a></li>
+<li><a href="#_启动服务_3">启动服务</a></li>
+<li><a href="#_最后_2">最后</a></li>
 </ul>
 </li>
-<li><a href="#_elasticstack_使用教程">37.2. ElasticStack 使用教程</a>
+<li><a href="#_logstash">39.1.5. Logstash</a>
+<ul class="sectlevel4">
+<li><a href="#_日志处理管道">日志处理管道</a></li>
+<li><a href="#_准备日志文件">准备日志文件</a></li>
+<li><a href="#_配置文件_2">配置文件</a></li>
+<li><a href="#_导入nginx日志到elasticsearch">导入Nginx日志到Elasticsearch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_过时centos7elk环境配置">39.2. （过时）CentOS7+ELK环境配置</a>
 <ul class="sectlevel3">
-<li><a href="#_索引文档">37.2.1. 索引文档</a></li>
-<li><a href="#_搜索">37.2.2. 搜索</a>
+<li><a href="#_配置yum源">39.2.1. 配置Yum源</a></li>
+<li><a href="#_安装elasticsearch">39.2.2. 安装ElasticSearch</a></li>
+<li><a href="#_安装kibana">39.2.3. 安装Kibana</a></li>
+<li><a href="#_安装logstash">39.2.4. 安装Logstash</a></li>
+<li><a href="#_docker方式安装elasticsearch">39.2.5. Docker方式安装ElasticSearch</a></li>
+<li><a href="#_配置_6">39.2.6. 配置</a></li>
+</ul>
+</li>
+<li><a href="#_部分过时elasticstack使用教程">39.3. （部分过时）ElasticStack使用教程</a>
+<ul class="sectlevel3">
+<li><a href="#_索引文档">39.3.1. 索引文档</a></li>
+<li><a href="#_搜索">39.3.2. 搜索</a>
 <ul class="sectlevel4">
 <li><a href="#_短语搜索">短语搜索</a></li>
 <li><a href="#_高亮我们的搜索">高亮我们的搜索</a></li>
 </ul>
 </li>
-<li><a href="#_聚合">37.2.3. 聚合</a></li>
-<li><a href="#_更新文档">37.2.4. 更新文档</a></li>
-<li><a href="#_删除文档">37.2.5. 删除文档</a></li>
-<li><a href="#_结构化查询">37.2.6. 结构化查询</a>
+<li><a href="#_聚合">39.3.3. 聚合</a></li>
+<li><a href="#_更新文档">39.3.4. 更新文档</a></li>
+<li><a href="#_删除文档">39.3.5. 删除文档</a></li>
+<li><a href="#_结构化查询">39.3.6. 结构化查询</a>
 <ul class="sectlevel4">
 <li><a href="#_最重要的查询过滤语句">最重要的查询过滤语句</a>
 <ul class="sectlevel5">
@@ -1436,99 +1501,109 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_dsl查询实例">37.2.7. DSL查询实例</a></li>
+<li><a href="#_dsl查询实例">39.3.7. DSL查询实例</a></li>
 </ul>
 </li>
-<li><a href="#_从mysql同步数据到elasticsearch">37.3. 从MySQL同步数据到ElasticSearch</a></li>
-<li><a href="#_elasticsearch在线迁移">37.4. ElasticSearch在线迁移</a></li>
+<li><a href="#_从mysql同步数据到elasticsearch">39.4. 从MySQL同步数据到ElasticSearch</a></li>
+<li><a href="#_elasticsearch在线迁移">39.5. ElasticSearch在线迁移</a></li>
 </ul>
 </li>
-<li><a href="#_youtube_dl_chapter">38. youtube-dl</a>
+<li><a href="#_youtube_dl_chapter">40. youtube-dl</a>
 <ul class="sectlevel2">
-<li><a href="#_使用实例_2">38.1. 使用实例</a></li>
+<li><a href="#_使用实例_2">40.1. 使用实例</a></li>
 </ul>
 </li>
-<li><a href="#_maven_chapter">39. maven</a>
+<li><a href="#_maven_chapter">41. maven</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_10">39.1. 安装配置</a>
+<li><a href="#_安装配置_13">41.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_全局源_2">39.1.1. 全局源</a></li>
+<li><a href="#_全局源_2">41.1.1. 全局源</a></li>
 </ul>
 </li>
-<li><a href="#_使用方法_2">39.2. 使用方法</a>
+<li><a href="#_使用方法_2">41.2. 使用方法</a>
 <ul class="sectlevel3">
-<li><a href="#_build_lifecycle">39.2.1. Build Lifecycle</a></li>
+<li><a href="#_build_lifecycle">41.2.1. Build Lifecycle</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_MongoDB_chapter">40. MongoDB</a>
+<li><a href="#_MongoDB_chapter">42. MongoDB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_11">40.1. 安装配置</a></li>
-<li><a href="#_安装_5">40.2. 安装</a>
+<li><a href="#_安装配置_14">42.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_文件目录结构">40.2.1. 文件目录结构</a></li>
-</ul>
-</li>
-<li><a href="#_配置_5">40.3. 配置</a>
-<ul class="sectlevel3">
-<li><a href="#_禁用selinux重启生效">40.3.1. 禁用SELINUX（重启生效）</a></li>
-<li><a href="#_设置_ulimit">40.3.2. 设置 <code>ulimit</code></a></li>
-<li><a href="#_开机启动">40.3.3. 开机启动</a></li>
-<li><a href="#_服务管理">40.3.4. 服务管理</a></li>
-<li><a href="#_验证服务">40.3.5. 验证服务</a></li>
-<li><a href="#_开始使用_mongodb">40.3.6. 开始使用 <code>MongoDB</code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_LinuxWifiDriver_chapter">41. Linux Wifi Driver</a>
-<ul class="sectlevel2">
-<li><a href="#_tl_wdn5200h">41.1. TL_WDN5200H</a>
-<ul class="sectlevel3">
-<li><a href="#_centos8_安装驱动">41.1.1. CentOS8 安装驱动</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_Kafka_chapter">42. Kafka</a>
-<ul class="sectlevel2">
-<li><a href="#_安装配置_12">42.1. 安装配置</a>
-<ul class="sectlevel3">
-<li><a href="#_linux">42.1.1. Linux</a>
+<li><a href="#_安装_7">42.1.1. 安装</a>
 <ul class="sectlevel4">
-<li><a href="#_安装_6">安装</a></li>
+<li><a href="#_文件目录结构">文件目录结构</a></li>
+</ul>
+</li>
+<li><a href="#_配置_7">42.1.2. 配置</a>
+<ul class="sectlevel4">
+<li><a href="#_禁用selinux重启生效">禁用SELINUX（重启生效）</a></li>
+<li><a href="#_设置_ulimit">设置 <code>ulimit</code></a></li>
+<li><a href="#_其它优化">其它优化</a></li>
+<li><a href="#_启用权限验证">启用权限验证</a></li>
+<li><a href="#_开机启动_3">开机启动</a></li>
+<li><a href="#_服务管理">服务管理</a></li>
+<li><a href="#_验证服务">验证服务</a></li>
+</ul>
+</li>
+<li><a href="#_创建用户_2">42.1.3. 创建用户</a>
+<ul class="sectlevel4">
+<li><a href="#_创建root帐号">创建root帐号</a></li>
+<li><a href="#_创建普通用户">创建普通用户</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_LinuxWifiDriver_chapter">43. Linux Wifi Driver</a>
+<ul class="sectlevel2">
+<li><a href="#_tl_wdn5200h">43.1. TL_WDN5200H</a>
+<ul class="sectlevel3">
+<li><a href="#_centos8_安装驱动">43.1.1. CentOS8 安装驱动</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_Kafka_chapter">44. Kafka</a>
+<ul class="sectlevel2">
+<li><a href="#_安装配置_15">44.1. 安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_linux">44.1.1. Linux</a>
+<ul class="sectlevel4">
+<li><a href="#_安装_8">安装</a></li>
 <li><a href="#_topic">Topic</a></li>
 <li><a href="#_测试">测试</a></li>
 </ul>
 </li>
-<li><a href="#_windows">42.1.2. Windows</a></li>
-<li><a href="#_配置_6">42.1.3. 配置</a></li>
+<li><a href="#_windows">44.1.2. Windows</a></li>
+<li><a href="#_配置_8">44.1.3. 配置</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Pure-FTPd_chapter">43. Pure-FTPd</a>
+<li><a href="#_Pure-FTPd_chapter">45. Pure-FTPd</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_13">43.1. 安装配置</a>
+<li><a href="#_安装配置_16">45.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos6_安装">43.1.1. CentOS6 安装</a></li>
+<li><a href="#_centos6_安装">45.1.1. CentOS6 安装</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Shadowsocks_chapter">44. Shadowsocks</a>
+<li><a href="#_Shadowsocks_chapter">46. Shadowsocks</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_14">44.1. 安装配置</a>
+<li><a href="#_安装配置_17">46.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7_2">44.1.1. CentOS7</a>
+<li><a href="#_centos7_2">46.1.1. CentOS7</a>
 <ul class="sectlevel4">
 <li><a href="#_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></a></li>
 <li><a href="#_开启_tcp_bbr_塞控制算法">开启 <code>TCP BBR</code> 塞控制算法</a></li>
 </ul>
 </li>
-<li><a href="#_安装_shadowsocks">44.1.2. 安装 <code>Shadowsocks</code></a></li>
-<li><a href="#_配置_shadowsocks">44.1.3. 配置 <code>Shadowsocks</code></a>
+<li><a href="#_安装_shadowsocks">46.1.2. 安装 <code>Shadowsocks</code></a></li>
+<li><a href="#_配置_shadowsocks">46.1.3. 配置 <code>Shadowsocks</code></a>
 <ul class="sectlevel4">
 <li><a href="#_centos7_一键安装脚本">CentOS7 一键安装脚本</a></li>
 </ul>
@@ -1537,34 +1612,34 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_WSL_chapter">45. WSL</a>
+<li><a href="#_WSL_chapter">47. WSL</a>
 <ul class="sectlevel2">
-<li><a href="#_修复wsl文件权限问题">45.1. 修复WSL文件权限问题</a>
+<li><a href="#_修复wsl文件权限问题">47.1. 修复WSL文件权限问题</a>
 <ul class="sectlevel3">
-<li><a href="#_解决方法_2">45.1.1. 解决方法</a></li>
+<li><a href="#_解决方法_2">47.1.1. 解决方法</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_Aliyun_chapter">46. Aliyun</a>
+<li><a href="#_Aliyun_chapter">48. Aliyun</a>
 <ul class="sectlevel2">
-<li><a href="#_cli工具">46.1. CLI工具</a>
+<li><a href="#_cli工具">48.1. CLI工具</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_7">46.1.1. 安装</a></li>
-<li><a href="#_配置凭证">46.1.2. 配置凭证</a></li>
-<li><a href="#_ecs相关参数查询">46.1.3. ECS相关参数查询</a></li>
-<li><a href="#_创建ecs">46.1.4. 创建ECS</a></li>
-<li><a href="#_ecs实例管理">46.1.5. ECS实例管理</a></li>
-<li><a href="#_删除ecs实例">46.1.6. 删除ECS实例</a></li>
+<li><a href="#_安装_9">48.1.1. 安装</a></li>
+<li><a href="#_配置凭证">48.1.2. 配置凭证</a></li>
+<li><a href="#_ecs相关参数查询">48.1.3. ECS相关参数查询</a></li>
+<li><a href="#_创建ecs">48.1.4. 创建ECS</a></li>
+<li><a href="#_ecs实例管理">48.1.5. ECS实例管理</a></li>
+<li><a href="#_删除ecs实例">48.1.6. 删除ECS实例</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_RabbitMQ_chapter">47. RabbitMQ</a>
+<li><a href="#_RabbitMQ_chapter">49. RabbitMQ</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_15">47.1. 安装配置</a>
+<li><a href="#_安装配置_18">49.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos_8">47.1.1. CentOS 8</a>
+<li><a href="#_centos_8">49.1.1. CentOS 8</a>
 <ul class="sectlevel4">
 <li><a href="#_安装rabbitmq">安装RabbitMQ</a></li>
 <li><a href="#_参数优化">参数优化</a></li>
@@ -1577,10 +1652,10 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_支持mqtt">47.2. 支持MQTT</a>
+<li><a href="#_支持mqtt">49.2. 支持MQTT</a>
 <ul class="sectlevel3">
-<li><a href="#_新增虚拟主机">47.2.1. 新增虚拟主机</a></li>
-<li><a href="#_为mqtt连接创建新用户">47.2.2. 为MQTT连接创建新用户</a></li>
+<li><a href="#_新增虚拟主机">49.2.1. 新增虚拟主机</a></li>
+<li><a href="#_为mqtt连接创建新用户">49.2.2. 为MQTT连接创建新用户</a></li>
 </ul>
 </li>
 </ul>
@@ -2284,11 +2359,17 @@ server {
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_networkmanager">5.2. NetworkManager</h3>
 <div class="sect3">
-<h4 id="_nmcli">5.2.1. nmcli</h4>
+<h4 id="_仅修改子目录中的文件权限忽略目录">5.1.4. 仅修改子目录中的文件权限，忽略目录</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">find . -type f -exec chmod 644 -- {} +
+=== NetworkManager</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nmcli">5.1.5. nmcli</h4>
 <div class="sect4">
 <h5 id="_配置ip地址">配置IP地址</h5>
 <div class="listingblock">
@@ -2394,8 +2475,7 @@ sysctl -p</code></pre>
 <div class="listingblock">
 <div class="title">重启libvirtd</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart libvirtd
-brctl stp virbr0 on</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart libvirtd</code></pre>
 </div>
 </div>
 </div>
@@ -2415,6 +2495,18 @@ brctl stp virbr0 on</code></pre>
 bridge name	bridge id		STP enabled	interfaces
 virbr0		8000.525400dd9ee0	off		virbr0-nic</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+CentOS 8可以使用 <code>bridge link show</code> 或 <code>nmcli -f bridge c s virbr0</code>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2500,7 +2592,9 @@ CentOS 7 上意外关闭了 NetworkManager 服务，重启后导致无法访问�
 <h4 id="_增加虚拟机">6.1.5. 增加虚拟机</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virt-install \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">qemu-img create -f qcow2 /data/libvirt/images/192168100009.img 30G
+
+virt-install \
 --name 192168100009 \
 --ram 4096 \
 --disk path=/data/libvirt/images/192168100009.img,size=30 \
@@ -2545,7 +2639,9 @@ virt-install \
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">    &lt;bootmenu enable='yes'/&gt;</code></pre>
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">  &lt;os&gt;
+    &lt;bootmenu enable='yes'/&gt;
+  &lt;/os&gt;</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -3138,7 +3234,8 @@ swapon /dev/sda2</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S dosfstools
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
+pacman -S dosfstools
 mkfs.fat -F32 /dev/sda1</code></pre>
 </div>
 </div>
@@ -3421,7 +3518,7 @@ exit</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
 
-pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl</code></pre>
+pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl wireshark-qt</code></pre>
 </div>
 </div>
 </div>
@@ -3444,10 +3541,14 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length
 # virtualbox 设置
 sudo gpasswd -a root vboxusers
 sudo gpasswd -a $USER vboxusers
+# wireshark 设置
+sudo gpasswd -a root wireshark
+sudo gpasswd -a $USER wireshark
 sudo grpunconv
 
 # 开机启动
-sudo systemctl enable ntpd
+systemctl enable systemd-timesyncd
+systemctl start systemd-timesyncd
 sudo systemctl enable sshd
 sudo systemctl mask tmp.mount</code></pre>
 </div>
@@ -4050,7 +4151,64 @@ sudo pacman -S gst-libav</code></pre>
 <div class="paragraph">
 <p>最后，按 <kbd>Ctrl-R</kbd> 刷新 <code>Nautilus</code> 窗口。</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_打印机">8.7. 打印机</h3>
+<div class="sect3">
+<h4 id="_安装配置_3">8.7.1. 安装配置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable cups-browsed
+systemctl enable org.cups.cupsd
+
+# 将当前用户加入打印机管理员组，否则无法添加打印机提示 “已禁止”
+sed -i "s/^SystemGroup sys root wheel$/SystemGroup sys root wheel $USER/" /etc/cups/cups-files.conf
+
+systemctl restart cups-browsed
+systemctl restart org.cups.cupsd</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_打印机驱动">8.7.2. 打印机驱动</h4>
+<div class="listingblock">
+<div class="title">惠普打印机（HP Color LaserJet MFP M181fw）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 安装打印机驱动
+pacman -S hplip
+
+# 查看支持的型号
+pacman -Ql hplip</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加打印机">8.7.3. 添加打印机</h4>
+<div class="sect4">
+<h5 id="_惠普打印机惠普工具">惠普打印机：惠普工具</h5>
+<div class="paragraph">
+<p>运行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">hp-toolbox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>然后，单击 <code>Setup Device</code> 安装打印机驱动。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_web">Web</h5>
+<div class="paragraph">
+<p>访问 <a href="http://localhost:631/" class="bare">http://localhost:631/</a> ，单击 <code>"Administration"</code> &#8594; <code>"Printer"</code> &#8594; <code>"Add Printer"</code> 添加打印机。</p>
+</div>
+<div class="paragraph">
+<p>如果提示输入帐号密码，请填写当前登录用户的帐号和密码。</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -4059,7 +4217,7 @@ sudo pacman -S gst-libav</code></pre>
 <h2 id="_XXL-JOB_chapter">9. XXL-JOB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_3">9.1. 安装配置</h3>
+<h3 id="_安装配置_4">9.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_安装依赖">9.1.1. 安装依赖</h4>
 <div class="sect4">
@@ -4973,6 +5131,9 @@ firewall-cmd --reload</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y iproute rsync epel-release vim-enhanced wget curl
 
+dnf install -y dnf-plugins-core
+dnf config-manager --set-enabled PowerTools
+
 # PHP 7
 dnf install centos-release-scl
 
@@ -5002,11 +5163,16 @@ echo "set fencs=utf-8,gbk" &gt;&gt; /etc/vimrc
 yes|cp /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
 
 #时间同步
+dnf install -y systemd-timesyncd
 systemctl enable systemd-timesyncd
 systemctl start systemd-timesyncd
 
 #如果是x86_64系统，排除32位包
-echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf</code></pre>
+echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf
+
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl mask firewalld</code></pre>
 </div>
 </div>
 </div>
@@ -5638,7 +5804,7 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8配置文档">13.5. Centos8配置文档</h3>
+<h3 id="_centos8配置文档">13.5. CentOS8配置文档</h3>
 <div class="sect3">
 <h4 id="_安装_nginx_2">13.5.1. 安装 Nginx</h4>
 <div class="listingblock">
@@ -6330,7 +6496,7 @@ tar xf mosquitto-1.6.9.tar.gz</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_默认配置编译">默认配置编译</h5>
+<h5 id="_编译默认配置">编译：默认配置</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd mosquitto-1.6.9
@@ -6340,7 +6506,7 @@ make install prefix=/usr/local/mosquitto-1.6.9</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_支持websockts客户端">支持WebSockts客户端</h5>
+<h5 id="_编译支持websockts客户端">编译：支持WebSockts客户端</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/libwebsockets-4.0.1/lib/pkgconfig
@@ -6358,16 +6524,112 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_配置_2">14.2. 配置</h3>
+<div class="sect3">
+<h4 id="_基础配置">14.2.1. 基础配置</h4>
+<div class="paragraph">
+<p>加入环境变量：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>/etc/mosquitto/
-├── aclfile.example
-├── mosquitto.conf
-├── pskfile.example
-└── pwfile.example</pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s /usr/local/mosquitto-1.6.9/bin/* /usr/local/bin/
+ln -s /usr/local/mosquitto-1.6.9/sbin/* /usr/local/bin/
+
+echo /usr/local/mosquitto-1.6.9/lib/ &gt;&gt; /etc/ld.so.conf
+ldconfig</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>创建用户：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -c "mosquitto server user" -d /var/lib/mosquitto -s /sbin/nologin  mosquitto</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建配置文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/mosquitto/mosquitto.conf.example /etc/mosquitto/mosquitto.conf
+touch /etc/mosquitto/pwfile /etc/mosquitto/aclfile /var/log/mosquitto.log
+chown mosquitto:mosquitto /var/log/mosquitto.log
+
+sed -i '588s/#log_dest stderr/log_dest file \/var\/log\/mosquitto.log/' /etc/mosquitto/mosquitto.conf
+sed -i '669s/# password_file/password_file \/etc\/mosquitto\/pwfile/' /etc/mosquitto/mosquitto.conf
+sed -i '728s/#acl_file/acl_file \/etc\/mosquitto\/aclfile/' /etc/mosquitto/mosquitto.conf
+sed -i '651s/#allow_anonymous true/allow_anonymous false/' /etc/mosquitto/mosquitto.conf</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_创建系统服务">14.2.2. 创建系统服务</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/mosquitto.service
+[Unit]
+Description=Eclipse Mosquitto - An open source MQTT broker
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+
+User=mosquitto
+Group=mosquitto
+ExecStart=/usr/local/mosquitto-1.6.9/sbin/mosquitto -d -c /etc/mosquitto/mosquitto.conf -v
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable mosquitto</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>启动服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mosquitto
+systemctl status mosquitto</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_权限设置">14.2.3. 权限设置</h4>
+<div class="paragraph">
+<p>创建用户 foo：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mosquitto_passwd -b /etc/mosquitto/pwfile foo 'ugnCy55jZpJj0Xnh0ucS'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>另外，可以在 '/etc/mosquitto/aclfile' 文件中设置用户可读写的 topic。比如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/mosquitto/aclfile
+# This affects access control for clients with no username.
+topic read $SYS/#
+
+# This affects all clients.
+pattern readwrite #
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以上权限设置表示 <code>$SYS/#</code> 可以被所有客户端只读，<code>pattern readwrite #</code> 表示所有客户端可以访问任何topic。</p>
+</div>
+<div class="paragraph">
+<p>详情参考 <code>/etc/mosquitto/aclfile.example</code>。</p>
+</div>
+<div class="paragraph">
+<p>在主配置中启用了权限控制（<code>/etc/mosquitto/aclfile</code> ）之后，必须配置规则。否则，客户端无法推送消息。</p>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -6479,9 +6741,22 @@ To disable a shortcut, edit it and press the Backspace instead of the new shortc
 <h2 id="_FFmpeg_chapter">16. FFmpeg</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_命令合集">16.1. 命令合集</h3>
+<h3 id="_centos8_安装">16.1. CentOS8 安装</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/free/el/rpmfusion-free-release-8.noarch.rpm
+dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+
+dnf install -y dnf-plugins-core
+dnf config-manager --set-enabled PowerTools
+dnf install -y ffmpeg</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_命令合集">16.2. 命令合集</h3>
 <div class="sect3">
-<h4 id="_mp4转换为mp3">16.1.1. mp4转换为mp3</h4>
+<h4 id="_mp4转换为mp3">16.2.1. mp4转换为mp3</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ffmpeg -i 'BLACKPINK - Really.mp4'  -vn -ar 44100 -ac 2 -b:a 192k 'BLACKPINK - Really.mp3'</code></pre>
@@ -7488,7 +7763,7 @@ ss -antpl|grep 8000</code></pre>
 <h2 id="_Redis_chapter">22. Redis</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_4">22.1. 安装配置</h3>
+<h3 id="_安装配置_5">22.1. 安装配置</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y redis
@@ -8808,10 +9083,284 @@ gpg --verify config.properties.sha1sum.asc</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ImageMagick_chapter">29. ImageMagick</h2>
+<h2 id="_Polipo_chapter">29. Polipo</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_批量图片转pdf">29.1. 批量图片转PDF</h3>
+<h3 id="_安装配置_6">29.1. 安装配置</h3>
+<div class="sect3">
+<h4 id="_centos8_2">29.1.1. CentOS8</h4>
+<div class="sect4">
+<h5 id="_安装依赖_4">安装依赖</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://ftp.gnu.org/gnu/texinfo/texinfo-6.7.tar.xz -O texinfo-6.7.tar.xz
+tar xf texinfo-6.7.tar.xz
+cd texinfo-6.7
+./configure --prefix=/usr/local/texinfo-6.7
+make &amp;&amp; make install
+ln -s /usr/local/texinfo-6.7/bin/makeinfo /usr/local/bin/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_安装_polipo">安装 Polipo</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget https://github.com/jech/polipo/archive/polipo-1.1.1.tar.gz -O polipo-1.1.1.tar.gz
+tar xf polipo-1.1.1.tar.gz
+cd polipo-polipo-1.1.1
+make all
+make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_配置文件_polipo">配置文件 Polipo</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /etc/polipo/ /tmp/polipo-cache/
+
+cat &lt;&lt; EOF &gt; /etc/polipo/config1
+# Sample configuration file for Polipo. -*-sh-*-
+
+# You should not need to use a configuration file; all configuration
+# variables have reasonable defaults.  If you want to use one, you
+# can copy this to /etc/polipo/config or to ~/.polipo and modify.
+
+# This file only contains some of the configuration variables; see the
+# list given by "polipo -v" and the manual for more.
+
+
+### Basic configuration
+### *******************
+
+# Uncomment one of these if you want to allow remote clients to
+# connect:
+
+# proxyAddress = "::0"        # both IPv4 and IPv6
+proxyAddress = "0.0.0.0"    # IPv4 only
+
+# If you do that, you'll want to restrict the set of hosts allowed to
+# connect:
+
+# allowedClients = 127.0.0.1, 134.157.168.57
+# allowedClients = 127.0.0.1, 134.157.168.0/24
+
+# Uncomment this if you want your Polipo to identify itself by
+# something else than the host name:
+
+# proxyName = "polipo.example.org"
+
+# Uncomment this if there's only one user using this instance of Polipo:
+
+# cacheIsShared = false
+
+# Uncomment this if you want to use a parent proxy:
+
+# parentProxy = "squid.example.org:3128"
+
+# Uncomment this if you want to use a parent SOCKS proxy:
+
+socksParentProxy = "127.0.0.1:1080"
+socksProxyType = socks5
+
+# Uncomment this if you want to scrub private information from the log:
+
+# scrubLogs = true
+
+
+### Memory
+### ******
+
+# Uncomment this if you want Polipo to use a ridiculously small amount
+# of memory (a hundred C-64 worth or so):
+
+# chunkHighMark = 819200
+# objectHighMark = 128
+
+# Uncomment this if you've got plenty of memory:
+
+# chunkHighMark = 50331648
+# objectHighMark = 16384
+
+
+### On-disk data
+### ************
+
+# Uncomment this if you want to disable the on-disk cache:
+
+diskCacheRoot = "/tmp/polipo-cache"
+
+# Uncomment this if you want to put the on-disk cache in a
+# non-standard location:
+
+# diskCacheRoot = "~/.polipo-cache/"
+
+# Uncomment this if you want to disable the local web server:
+
+# localDocumentRoot = ""
+
+# Uncomment this if you want to enable the pages under /polipo/index?
+# and /polipo/servers?.  This is a serious privacy leak if your proxy
+# is shared.
+
+# disableIndexing = false
+# disableServersList = false
+
+
+### Domain Name System
+### ******************
+
+# Uncomment this if you want to contact IPv4 hosts only (and make DNS
+# queries somewhat faster):
+
+# dnsQueryIPv6 = no
+
+# Uncomment this if you want Polipo to prefer IPv4 to IPv6 for
+# double-stack hosts:
+
+# dnsQueryIPv6 = reluctantly
+
+# Uncomment this to disable Polipo's DNS resolver and use the system's
+# default resolver instead.  If you do that, Polipo will freeze during
+# every DNS query:
+
+# dnsUseGethostbyname = yes
+
+
+### HTTP
+### ****
+
+# Uncomment this if you want to enable detection of proxy loops.
+# This will cause your hostname (or whatever you put into proxyName
+# above) to be included in every request:
+
+# disableVia=false
+
+# Uncomment this if you want to slightly reduce the amount of
+# information that you leak about yourself:
+
+# censoredHeaders = from, accept-language
+# censorReferer = maybe
+
+# Uncomment this if you're paranoid.  This will break a lot of sites,
+# though:
+
+# censoredHeaders = set-cookie, cookie, cookie2, from, accept-language
+# censorReferer = true
+
+# Uncomment this if you want to use Poor Man's Multiplexing; increase
+# the sizes if you're on a fast line.  They should each amount to a few
+# seconds' worth of transfer; if pmmSize is small, you'll want
+# pmmFirstSize to be larger.
+
+# Note that PMM is somewhat unreliable.
+
+# pmmFirstSize = 16384
+# pmmSize = 8192
+
+# Uncomment this if your user-agent does something reasonable with
+# Warning headers (most don't):
+
+# relaxTransparency = maybe
+
+# Uncomment this if you never want to revalidate instances for which
+# data is available (this is not a good idea):
+
+# relaxTransparency = yes
+
+# Uncomment this if you have no network:
+
+# proxyOffline = yes
+
+# Uncomment this if you want to avoid revalidating instances with a
+# Vary header (this is not a good idea):
+
+# mindlesslyCacheVary = true
+
+# Uncomment this if you want to add a no-transform directive to all
+# outgoing requests.
+
+# alwaysAddNoTransform = true
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_创建系统服务_2">创建系统服务</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/polipo.service
+[Unit]
+Description=polipo - a caching web proxy
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+ExecStart=/usr/local/bin/polipo
+
+[Install]
+WantedBy=multi-user.target
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_启动服务">启动服务</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable polipo
+systemctl start polipo
+systemctl status polipo
+
+ss -antpl|grep 8123</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_Proxychains_chapter">30. Proxychains</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装配置_7">30.1. 安装配置</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y gcc make
+
+wget https://github.com/haad/proxychains/archive/4.3.0.tar.gz -O 4.3.0.tar.gz
+tar xf 4.3.0.tar.gz
+cd proxychains-4.3.0
+
+
+./configure --prefix=/usr/local/proxychains-4.3.0
+make &amp;&amp; make install
+cp src/proxychains.conf /usr/local/proxychains-4.3.0/etc
+
+sed -E -i 's/socks4\s+127.0.0.1 9050/socks5 127.0.0.1 1080/' /usr/local/proxychains-4.3.0/etc/proxychains.conf
+sed -i 's/#quiet_mode/quiet_mode/g' /usr/local/proxychains-4.3.0/etc/proxychains.conf
+
+echo 'alias p="/usr/local/proxychains-4.3.0/bin/proxychains4"' &gt;&gt; ~/.bashrc
+# 不重启终端生效环境配置
+source ~/.bashrc
+
+# 测试访问
+p curl -I www.youtube.com</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ImageMagick_chapter">31. ImageMagick</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_批量图片转pdf">31.1. 批量图片转PDF</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[fifilyu@t430-arch ~]$ tree /home/fifilyu/Pictures/hetong/发票合同/2015/发票
@@ -8894,27 +9443,27 @@ echo 'out.pdf' &gt;&gt; make_pdf.sh</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Rsync_chapter">30. Rsync</h2>
+<h2 id="_Rsync_chapter">32. Rsync</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_使用实例">30.1. 使用实例</h3>
+<h3 id="_使用实例">32.1. 使用实例</h3>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Dante_chapter">31. Dante</h2>
+<h2 id="_Dante_chapter">33. Dante</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Dante 是一个SOCKS服务端和客户端。这里，用来作为服务端。</p>
 </div>
 <div class="sect2">
-<h3 id="_安装配置_5">31.1. 安装配置</h3>
+<h3 id="_安装配置_8">33.1. 安装配置</h3>
 <div class="paragraph">
 <p>官方下载页面： <a href="https://www.inet.no/dante/sslfiles/binaries.html" class="bare">https://www.inet.no/dante/sslfiles/binaries.html</a></p>
 </div>
 <div class="sect3">
-<h4 id="_安装_4">31.1.1. 安装</h4>
+<h4 id="_安装_4">33.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
@@ -8931,7 +9480,7 @@ sockd --help</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_3">31.1.2. 配置</h4>
+<h4 id="_配置_3">33.1.2. 配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -r -s /bin/false  sockd
@@ -9226,7 +9775,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_运行_2">31.1.3. 运行</h4>
+<h4 id="_运行_2">33.1.3. 运行</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sockd -f /etc/sockd.conf -D</code></pre>
@@ -9238,12 +9787,12 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_frp_chapter">32. frp</h2>
+<h2 id="_frp_chapter">34. frp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_6">32.1. 安装配置</h3>
+<h3 id="_安装配置_9">34.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_初始配置">32.1.1. 初始配置</h4>
+<h4 id="_初始配置">34.1.1. 初始配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget -c https://github.com/fatedier/frp/releases/download/v0.31.1/frp_0.31.1_linux_amd64.tar.gz
@@ -9261,7 +9810,7 @@ useradd -M -s /sbin/nologin frp</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_服务端">32.1.2. 服务端</h4>
+<h4 id="_服务端">34.1.2. 服务端</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt;  /etc/frp/frps.ini
@@ -9292,7 +9841,7 @@ systemctl  status frps</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_客户端">32.1.3. 客户端</h4>
+<h4 id="_客户端">34.1.3. 客户端</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt;  /etc/frp/frpc.ini
@@ -9328,12 +9877,12 @@ systemctl  status frpc</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_npm_chapter">33. npm</h2>
+<h2 id="_npm_chapter">35. npm</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_7">33.1. 安装配置</h3>
+<h3 id="_安装配置_10">35.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_初始配置_2">33.1.1. 初始配置</h4>
+<h4 id="_初始配置_2">35.1.1. 初始配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">npm config set registry https://registry.npm.taobao.org
@@ -9349,12 +9898,12 @@ npm run build</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lftp_chapter">34. lftp</h2>
+<h2 id="_lftp_chapter">36. lftp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_8">34.1. 安装配置</h3>
+<h3 id="_安装配置_11">36.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_初始配置_3">34.1.1. 初始配置</h4>
+<h4 id="_初始配置_3">36.1.1. 初始配置</h4>
 <div class="paragraph">
 <p>编辑 <code>/etc/lftp.conf</code>，加入下面内容：</p>
 </div>
@@ -9372,12 +9921,12 @@ npm run build</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_chapter">35. gradle</h2>
+<h2 id="_gradle_chapter">37. gradle</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_9">35.1. 安装配置</h3>
+<h3 id="_安装配置_12">37.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_全局源">35.1.1. 全局源</h4>
+<h4 id="_全局源">37.1.1. 全局源</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.gradle/init.gradle
@@ -9410,7 +9959,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_使用方法">35.2. 使用方法</h3>
+<h3 id="_使用方法">37.2. 使用方法</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">gradle build</dt>
@@ -9428,15 +9977,15 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_uWSGI_chapter">36. uWSGI</h2>
+<h2 id="_uWSGI_chapter">38. uWSGI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>基于 CentOS 7</strong></p>
 </div>
 <div class="sect2">
-<h3 id="_uwsgi">36.1. uWSGI</h3>
+<h3 id="_uwsgi">38.1. uWSGI</h3>
 <div class="sect3">
-<h4 id="_centos6">36.1.1. CentOS6</h4>
+<h4 id="_centos6">38.1.1. CentOS6</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y epel</code></pre>
@@ -9581,14 +10130,429 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ElasticStack_chapter">37. ElasticStack</h2>
+<h2 id="_ElasticStack_chapter">39. ElasticStack</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_elasticsearch_安装配置">37.1. Elasticsearch 安装配置</h3>
+<h3 id="_centos8elk环境配置">39.1. CentOS8+ELK环境配置</h3>
+<div class="paragraph">
+<p><strong>CentOS 8</strong></p>
+</div>
 <div class="sect3">
-<h4 id="_centos7_yum">37.1.1. CentOS7 Yum</h4>
+<h4 id="_安装java">39.1.1. 安装Java</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_增加yum源">39.1.2. 增加YUM源</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+cat &lt;&lt; EOF &gt; /etc/yum.repos.d/elasticsearch.repo
+[elasticsearch]
+name=Elasticsearch repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/7.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=0
+autorefresh=1
+type=rpm-md
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看elasticsearch源中的包列表：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ dnf --disablerepo="*" --enablerepo="elasticsearch" list available
+Available Packages
+apm-server.x86_64                            7.7.1-1                       elasticsearch
+app-search.noarch                            7.6.2-1                       elasticsearch
+auditbeat.x86_64                             7.7.1-1                       elasticsearch
+elasticsearch.aarch64                        7.7.1-1                       elasticsearch
+elasticsearch.x86_64                         7.7.1-1                       elasticsearch
+enterprise-search.noarch                     7.7.1-1                       elasticsearch
+filebeat.x86_64                              7.7.1-1                       elasticsearch
+heartbeat-elastic.x86_64                     7.7.1-1                       elasticsearch
+journalbeat.x86_64                           7.7.1-1                       elasticsearch
+kibana.x86_64                                7.7.1-1                       elasticsearch
+logstash.noarch                              1:7.7.1-1                     elasticsearch
+metricbeat.x86_64                            7.7.1-1                       elasticsearch
+packetbeat.x86_64                            7.7.1-1                       elasticsearch</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_elasticsearch">39.1.3. Elasticsearch</h4>
 <div class="sect4">
-<h5 id="_配置yum源">配置Yum源</h5>
+<h5 id="_安装_5">安装</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_配置_4">配置</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '17s/#cluster.name: my-application/cluster.name: myapp/' /etc/elasticsearch/elasticsearch.yml
+
+sed -i '23s/#node.name: node-1/node.name: node-1/' /etc/elasticsearch/elasticsearch.yml
+
+sed -i '55s/#network.host: 192.168.0.1/network.host: 0.0.0.0/' /etc/elasticsearch/elasticsearch.yml
+
+sed -i '68s/#discovery.seed_hosts: .*/discovery.seed_hosts: ["0.0.0.0\/0"]/' /etc/elasticsearch/elasticsearch.yml
+
+sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>使用阿里云的ECS服务器配置Elasticsearch时，需要明确指定本机内网IP地址。否则，会出现9200端口已经启动，但无法创建或查询index。</p>
+</div>
+<div class="paragraph">
+<p>ECS配置示例：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>network.host: 172.24.109.12</p>
+</li>
+<li>
+<p>discovery.seed_hosts: ["172.24.109.12"]</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_开机启动">开机启动</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable elasticsearch</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_启动服务_2">启动服务</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start elasticsearch</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_kibana">39.1.4. Kibana</h4>
+<div class="sect4">
+<h5 id="_安装_6">安装</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y kibana</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_配置_5">配置</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '7s/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
+sed -i '28s/#elasticsearch.hosts: .*/elasticsearch.hosts: ["http:\/\/0.0.0.0:9200"]/' /etc/kibana/kibana.yml
+sed -i '115s/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果Elasticsearch的 <code>"network.host"</code> 参数值为具体的IP地址，比如 <code>"172.24.109.12"</code>。</p>
+</div>
+<div class="paragraph">
+<p>那么，Kibana中的 <code>"elasticsearch.hosts"</code> 同样需要设置为 <code>"172.24.109.12"</code>，而不能使用 <code>"0.0.0.0"</code>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_开机启动_2">开机启动</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable kibana</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_启动服务_3">启动服务</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start kibana</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_最后_2">最后</h5>
+<div class="paragraph">
+<p>如果系统IP为 172.24.109.12，则访问 <a href="http://172.24.109.12:5601/" class="bare">http://172.24.109.12:5601/</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logstash">39.1.5. Logstash</h4>
+<div class="paragraph">
+<p><span class="red">“如何将Nginx的Web日志导入Elasticsearch？”</span></p>
+</div>
+<div class="sect4">
+<h5 id="_日志处理管道">日志处理管道</h5>
+<div class="paragraph">
+<p>日志记录增加到Elasticsearch时，需要使用管道实时清洗、处理日志格式。</p>
+</div>
+<div class="listingblock">
+<div class="title">Nginx日志格式</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">log_format  main  '$host $remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>执行以下命令，在Elasticsearch中增加管道：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -H "Content-Type: application/json" -X PUT http://0.0.0.0:9200/_ingest/pipeline/web_log -d '
+{
+    "description": "",
+    "processors": [
+        {
+            "dissect": {
+                "field": "message",
+                "pattern": "%{domain} %{server_port} %{client_ip} - - [%{web_timestamp}] \"%{method} %{uri} HTTP/%{version}\" %{status} %{response_time} %{body_bytes} \"%{referer}\" \"%{user_agent}\" \"%{x_forwarded_for}\" %{server_ip}"
+            }
+        },
+        {
+            "grok": {
+                "field": "uri",
+                "on_failure": [
+                    {
+                "set": {
+                    "field": "ext",
+                    "value": ""
+                }
+                    },
+                    {
+                "set": {
+                    "field": "url_base",
+                    "value": "{{uri}}"
+                }
+                    }
+                ],
+                "patterns": [
+                    "%{GREEDYDATA:url_base}\\.%{WORD:ext}"
+                ]
+            }
+        },
+        {
+            "geoip": {
+                "field": "client_ip",
+                "target_field": "client_ip_geo"
+            }
+        },
+        {
+            "geoip": {
+                "field": "server_ip",
+                "target_field": "server_ip_geo"
+            }
+        },
+        {
+            "user_agent": {
+                "field": "user_agent"
+            }
+        },
+        {
+            "date": {
+                "field": "web_timestamp",
+                "target_field": "@timestamp",
+                "formats": [
+                    "dd/MMM/yyyy:HH:mm:ss Z"
+                ],
+                "timezone" : "Asia/Shanghai"
+            }
+        },
+        {
+            "convert": {
+                "field": "server_port",
+                "type": "integer"
+            }
+        },
+        {
+            "convert": {
+                "field": "status",
+                "type": "integer"
+            }
+        },
+        {
+            "convert": {
+                "field": "response_time",
+                "type": "float"
+            }
+        },
+        {
+            "convert": {
+                "field": "body_bytes",
+                "type": "integer"
+            }
+        },
+        {
+            "set": {
+                "field": "hour_of_day",
+                "value": 12
+            }
+        },
+        {
+            "grok": {
+                "field": "web_timestamp",
+                "patterns": [
+                    "\\d+/\\w+/\\d+:%{NUMBER:hour_of_day:int}:\\d+:\\d+ \\+\\d+"
+                ]
+            }
+        }
+    ]
+}
+'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_准备日志文件">准备日志文件</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">日志文件存放路径</dt>
+<dd>
+<p>~/es_log/nginx_logs</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@dell7 nginx_logs]# ls
+access.log-20200501  access.log-20200512  access.log-20200523  access.log-20200603
+access.log-20200502  access.log-20200513  access.log-20200524  access.log-20200604
+access.log-20200503  access.log-20200514  access.log-20200525  access.log-20200605
+access.log-20200504  access.log-20200515  access.log-20200526  access.log-20200606
+access.log-20200505  access.log-20200516  access.log-20200527  access.log-20200607
+access.log-20200506  access.log-20200517  access.log-20200528  access.log-20200608
+access.log-20200507  access.log-20200518  access.log-20200529  access.log-20200609
+access.log-20200508  access.log-20200519  access.log-20200530  access.log-20200610
+access.log-20200509  access.log-20200520  access.log-20200531
+access.log-20200510  access.log-20200521  access.log-20200601
+access.log-20200511  access.log-20200522  access.log-20200602</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_配置文件_2">配置文件</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/es_log
+
+cat &lt;&lt; EOF &gt; ~/es_log/logstash.conf
+input{
+  file {
+    # https://www.elastic.co/guide/en/logstash/current/plugins-inputs-file.html#plugins-inputs-file-delimiter
+    # 默认以"\n"分割，文件必须至少一个换行符
+    path =&gt; "${HOME}/es_log/nginx_logs/access.log*"
+    start_position =&gt; "end"
+    stat_interval =&gt; "1 second"
+  }
+}
+output{
+    elasticsearch {
+            #这里可以是数组，可以是多个节点的地址，会自动启用负载均衡
+            hosts =&gt; ["0.0.0.0:9200"]
+            index =&gt; "foo_com"
+            pipeline =&gt; "web_log"
+    }
+    #file  {
+    #    path =&gt; "/var/log/logstash.log"
+    #    codec =&gt; json
+    #}
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果Elasticsearch的 <code>"network.host"</code> 参数值为具体的IP地址，比如 <code>"172.24.109.12"</code>。</p>
+</div>
+<div class="paragraph">
+<p>那么，Logstash配置中的 <code>output.elasticsearch.hosts</code> 需要设置为 <code>["172.24.109.12:9200"]</code>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_导入nginx日志到elasticsearch">导入Nginx日志到Elasticsearch</h5>
+<div class="paragraph">
+<p>导入数据到ES：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">/usr/share/logstash/bin/logstash -f ~/es_log/logstash.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>每次运行的结果会记录到文件：</p>
+</div>
+<div class="paragraph">
+<p>/usr/share/logstash/data/plugins/inputs/file/.sincedb_100caf6f694120ba2483577719e4a564</p>
+</div>
+<div class="paragraph">
+<p>文件内容为：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">270004749 0 2049 584450300 1592393767.626652 /root/es_log/nginx_logs/access.log-20200501
+272281186 0 2049 471367497 1592394059.861428 /root/es_log/nginx_logs/access.log-20200502</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果想重新导入，删除 .sincedb 文件即可。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_过时centos7elk环境配置">39.2. （过时）CentOS7+ELK环境配置</h3>
+<div class="sect3">
+<h4 id="_配置yum源">39.2.1. 配置Yum源</h4>
 <div class="paragraph">
 <p>增加源：</p>
 </div>
@@ -9641,8 +10605,8 @@ packetbeat.x86_64                                                               
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_安装elasticsearch">安装ElasticSearch</h5>
+<div class="sect3">
+<h4 id="_安装elasticsearch">39.2.2. 安装ElasticSearch</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch
@@ -9656,8 +10620,8 @@ systemctl start elasticsearch</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_安装kibana">安装Kibana</h5>
+<div class="sect3">
+<h4 id="_安装kibana">39.2.3. 安装Kibana</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y kibana
@@ -9672,17 +10636,16 @@ systemctl start kibana
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_安装logstash">安装Logstash</h5>
+<div class="sect3">
+<h4 id="_安装logstash">39.2.4. 安装Logstash</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y logstash</code></pre>
 </div>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_docker_方式">37.1.2. Docker 方式</h4>
+<h4 id="_docker方式安装elasticsearch">39.2.5. Docker方式安装ElasticSearch</h4>
 <div class="paragraph">
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html">Install Elasticsearch(官方文档)</a></p>
 </div>
@@ -9771,7 +10734,7 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_4">37.1.3. 配置</h4>
+<h4 id="_配置_6">39.2.6. 配置</h4>
 <div class="paragraph">
 <p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
 </div>
@@ -9821,12 +10784,12 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_elasticstack_使用教程">37.2. ElasticStack 使用教程</h3>
+<h3 id="_部分过时elasticstack使用教程">39.3. （部分过时）ElasticStack使用教程</h3>
 <div class="paragraph">
 <p>我们以 <code>wecompany</code> 公司的员工信息管理为例来学习 <code>Elasticsearch</code> 中的基本操作。</p>
 </div>
 <div class="sect3">
-<h4 id="_索引文档">37.2.1. 索引文档</h4>
+<h4 id="_索引文档">39.3.1. 索引文档</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">向名称为 <code>wecompany</code> 的索引中添加类型为 <code>employee</code> 的3个员工信息的文档</dt>
@@ -9867,7 +10830,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_搜索">37.2.2. 搜索</h4>
+<h4 id="_搜索">39.3.2. 搜索</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">获取ID为1的文档</dt>
@@ -10223,7 +11186,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_聚合">37.2.3. 聚合</h4>
+<h4 id="_聚合">39.3.3. 聚合</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">先启用相关字段的分析功能</dt>
@@ -10469,7 +11432,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_更新文档">37.2.4. 更新文档</h4>
+<h4 id="_更新文档">39.3.4. 更新文档</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">更新ID为2的文档，只需再次PUT即可</dt>
@@ -10490,7 +11453,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除文档">37.2.5. 删除文档</h4>
+<h4 id="_删除文档">39.3.5. 删除文档</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -H "Content-Type: application/json" -X DELETE 'http://localhost:9200/wecompany/employee/1?pretty'</code></pre>
@@ -10498,7 +11461,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_结构化查询">37.2.6. 结构化查询</h4>
+<h4 id="_结构化查询">39.3.6. 结构化查询</h4>
 <div class="sect4">
 <h5 id="_最重要的查询过滤语句">最重要的查询过滤语句</h5>
 <div class="sect5">
@@ -10593,7 +11556,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dsl查询实例">37.2.7. DSL查询实例</h4>
+<h4 id="_dsl查询实例">39.3.7. DSL查询实例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
@@ -10662,7 +11625,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 </div>
 </div>
 <div class="sect2">
-<h3 id="_从mysql同步数据到elasticsearch">37.3. 从MySQL同步数据到ElasticSearch</h3>
+<h3 id="_从mysql同步数据到elasticsearch">39.4. 从MySQL同步数据到ElasticSearch</h3>
 <div class="paragraph">
 <p>参考文档：</p>
 </div>
@@ -10763,7 +11726,7 @@ systemctl start redas_meta_sync</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_elasticsearch在线迁移">37.4. ElasticSearch在线迁移</h3>
+<h3 id="_elasticsearch在线迁移">39.5. ElasticSearch在线迁移</h3>
 <div class="paragraph">
 <p>参考文档：</p>
 </div>
@@ -10803,10 +11766,10 @@ EOF
 </div>
 </div>
 <div class="sect1">
-<h2 id="_youtube_dl_chapter">38. youtube-dl</h2>
+<h2 id="_youtube_dl_chapter">40. youtube-dl</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_使用实例_2">38.1. 使用实例</h3>
+<h3 id="_使用实例_2">40.1. 使用实例</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">youtube-dl --sub-lang en --write-sub --sub-format srt https://www.youtube.com/watch?v=ptVqRCRPN9I
@@ -10849,12 +11812,12 @@ youtube-dl -f 137+140 'https://www.youtube.com/watch?v=lrDlTEbHw3g'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_chapter">39. maven</h2>
+<h2 id="_maven_chapter">41. maven</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_10">39.1. 安装配置</h3>
+<h3 id="_安装配置_13">41.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_全局源_2">39.1.1. 全局源</h4>
+<h4 id="_全局源_2">41.1.1. 全局源</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.m2/settings.xml
@@ -10874,9 +11837,9 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_使用方法_2">39.2. 使用方法</h3>
+<h3 id="_使用方法_2">41.2. 使用方法</h3>
 <div class="sect3">
-<h4 id="_build_lifecycle">39.2.1. Build Lifecycle</h4>
+<h4 id="_build_lifecycle">41.2.1. Build Lifecycle</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">mvn clean</dt>
@@ -10949,10 +11912,10 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_MongoDB_chapter">40. MongoDB</h2>
+<h2 id="_MongoDB_chapter">42. MongoDB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_11">40.1. 安装配置</h3>
+<h3 id="_安装配置_14">42.1. 安装配置</h3>
 <div class="paragraph">
 <p><strong>基于 CentOS8</strong></p>
 </div>
@@ -10964,15 +11927,14 @@ EOF</code></pre>
 </dd>
 </dl>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_安装_5">40.2. 安装</h3>
+<div class="sect3">
+<h4 id="_安装_7">42.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &gt; /etc/yum.repos.d/mongodb-org-4.2.repo &lt;&lt; EOF
 [mongodb-org-4.2]
 name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/4.2/x86_64/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
@@ -10981,8 +11943,8 @@ EOF
 dnf install -y mongodb-org</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_文件目录结构">40.2.1. 文件目录结构</h4>
+<div class="sect4">
+<h5 id="_文件目录结构">文件目录结构</h5>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">配置文件</dt>
@@ -11022,10 +11984,10 @@ dnf install -y mongodb-org</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_配置_5">40.3. 配置</h3>
 <div class="sect3">
-<h4 id="_禁用selinux重启生效">40.3.1. 禁用SELINUX（重启生效）</h4>
+<h4 id="_配置_7">42.1.2. 配置</h4>
+<div class="sect4">
+<h5 id="_禁用selinux重启生效">禁用SELINUX（重启生效）</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo SELINUX=disabled&gt;/etc/selinux/config
@@ -11033,24 +11995,37 @@ echo SELINUXTYPE=targeted&gt;&gt;/etc/selinux/config</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_设置_ulimit">40.3.2. 设置 <code>ulimit</code></h4>
+<div class="sect4">
+<h5 id="_设置_ulimit">设置 <code>ulimit</code></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "*               soft   nofile            65535" &gt;&gt; /etc/security/limits.conf
 echo "*               hard   nofile            65535" &gt;&gt; /etc/security/limits.conf</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="2">
-<li>
-<p>文件路径</p>
-</li>
-</ol>
+</div>
+<div class="sect4">
+<h5 id="_其它优化">其它优化</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'never' &gt; /sys/kernel/mm/transparent_hugepage/enabled</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_开机启动">40.3.3. 开机启动</h4>
+<div class="paragraph">
+<p>这个设置需要每次开机时设置，需要自行处理。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_启用权限验证">启用权限验证</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'security:' &gt;&gt; /etc/mongod.conf
+echo '  authorization: enabled' &gt;&gt; /etc/mongod.conf</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_开机启动_3">开机启动</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11062,8 +12037,8 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_服务管理">40.3.4. 服务管理</h4>
+<div class="sect4">
+<h5 id="_服务管理">服务管理</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11081,8 +12056,8 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_验证服务">40.3.5. 验证服务</h4>
+<div class="sect4">
+<h5 id="_验证服务">验证服务</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11100,24 +12075,70 @@ echo "*               hard   nofile            65535" &gt;&gt; /etc/security/lim
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_开始使用_mongodb">40.3.6. 开始使用 <code>MongoDB</code></h4>
+<h4 id="_创建用户_2">42.1.3. 创建用户</h4>
+<div class="sect4">
+<h5 id="_创建root帐号">创建root帐号</h5>
+<div class="paragraph">
+<p>进入控制台：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># mongo
-MongoDB shell version v4.2.1
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># mongo
+MongoDB shell version v4.2.8
 connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&amp;gssapiServiceName=mongodb
-Implicit session: session { "id" : UUID("62502a6d-2c7f-4f29-9a16-df0454f87baa") }
-MongoDB server version: 4.2.1
-Server has startup warnings:
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten]
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten]
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten]
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten] **        We suggest setting it to 'never'
-2019-10-24T20:41:22.868+0800 I  CONTROL  [initandlisten]
+Implicit session: session { "id" : UUID("62e222b7-8022-443c-b355-53d1a0dcdea0") }
+MongoDB server version: 4.2.8
+&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>切换到 admin 数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">&gt; use admin</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">&gt; db.createUser(
+  {
+    user: "root",
+    pwd: "thcl",
+    roles: [ "root"]
+  }
+)</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>切换到 admin 数据库，然后可以用 <code>db.dropUser("root")</code> 命令删除用户。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_创建普通用户">创建普通用户</h5>
+<div class="paragraph">
+<p>用刚才设置的root密码登录：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># mongo -uroot -pthcl
+MongoDB shell version v4.2.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&amp;gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("a7541379-f92f-4d68-9060-36d2f9e7839b") }
+MongoDB server version: 4.2.8
 ---
 Enable MongoDB's free cloud-based monitoring service, which will then receive and display
 metrics about your deployment (disk utilization, CPU, operation statistics, etc).
@@ -11133,18 +12154,53 @@ To permanently disable this reminder, run the following command: db.disableFreeM
 &gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>切换到 thcl 数据库，如果不存在则自动创建：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">&gt; use thcl</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">&gt; db.createUser(
+  {
+    user: "thcl",
+    pwd: "thcl",
+    roles: [ { role: "readWrite", db: "thcl" } ]
+  }
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>测试新用户登录：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># mongo -uthcl -pthcl thcl
+MongoDB shell version v4.2.8
+connecting to: mongodb://127.0.0.1:27017/thcl?compressors=disabled&amp;gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("509c1c6f-55c6-406e-ab13-3e8deb76bd66") }
+MongoDB server version: 4.2.8
+&gt; db
+thcl
+&gt;</code></pre>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_LinuxWifiDriver_chapter">41. Linux Wifi Driver</h2>
+<h2 id="_LinuxWifiDriver_chapter">43. Linux Wifi Driver</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_tl_wdn5200h">41.1. TL_WDN5200H</h3>
+<h3 id="_tl_wdn5200h">43.1. TL_WDN5200H</h3>
 <div class="sect3">
-<h4 id="_centos8_安装驱动">41.1.1. CentOS8 安装驱动</h4>
+<h4 id="_centos8_安装驱动">43.1.1. CentOS8 安装驱动</h4>
 <div class="listingblock">
 <div class="title">安装工具</div>
 <div class="content">
@@ -11347,14 +12403,14 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Kafka_chapter">42. Kafka</h2>
+<h2 id="_Kafka_chapter">44. Kafka</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_12">42.1. 安装配置</h3>
+<h3 id="_安装配置_15">44.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_linux">42.1.1. Linux</h4>
+<h4 id="_linux">44.1.1. Linux</h4>
 <div class="sect4">
-<h5 id="_安装_6">安装</h5>
+<h5 id="_安装_8">安装</h5>
 <div class="listingblock">
 <div class="title">下载解压</div>
 <div class="content">
@@ -11415,7 +12471,7 @@ This is another message</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_windows">42.1.2. Windows</h4>
+<h4 id="_windows">44.1.2. Windows</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bat" class="language-bat hljs">bin\windows\zookeeper-server-start.bat config\zookeeper.properties
@@ -11433,7 +12489,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_6">42.1.3. 配置</h4>
+<h4 id="_配置_8">44.1.3. 配置</h4>
 <div class="paragraph">
 <p>开启对外端口监听，编辑文件 <code>config/server.properties</code> 修改以下参数：</p>
 </div>
@@ -11448,12 +12504,12 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Pure-FTPd_chapter">43. Pure-FTPd</h2>
+<h2 id="_Pure-FTPd_chapter">45. Pure-FTPd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_13">43.1. 安装配置</h3>
+<h3 id="_安装配置_16">45.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos6_安装">43.1.1. CentOS6 安装</h4>
+<h4 id="_centos6_安装">45.1.1. CentOS6 安装</h4>
 <div class="listingblock">
 <div class="title">安装EPEL源</div>
 <div class="content">
@@ -11580,12 +12636,12 @@ pure-pw list</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Shadowsocks_chapter">44. Shadowsocks</h2>
+<h2 id="_Shadowsocks_chapter">46. Shadowsocks</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_14">44.1. 安装配置</h3>
+<h3 id="_安装配置_17">46.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos7_2">44.1.1. CentOS7</h4>
+<h4 id="_centos7_2">46.1.1. CentOS7</h4>
 <div class="sect4">
 <h5 id="_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></h5>
 <div class="listingblock">
@@ -11666,7 +12722,7 @@ net.ipv4.tcp_congestion_control = bbr</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_shadowsocks">44.1.2. 安装 <code>Shadowsocks</code></h4>
+<h4 id="_安装_shadowsocks">46.1.2. 安装 <code>Shadowsocks</code></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11708,7 +12764,7 @@ pip install pyopenssl ndg-httpsclient pyasn</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_shadowsocks">44.1.3. 配置 <code>Shadowsocks</code></h4>
+<h4 id="_配置_shadowsocks">46.1.3. 配置 <code>Shadowsocks</code></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11932,10 +12988,10 @@ firewall-cmd --list-all
 </div>
 </div>
 <div class="sect1">
-<h2 id="_WSL_chapter">45. WSL</h2>
+<h2 id="_WSL_chapter">47. WSL</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_修复wsl文件权限问题">45.1. 修复WSL文件权限问题</h3>
+<h3 id="_修复wsl文件权限问题">47.1. 修复WSL文件权限问题</h3>
 <div class="paragraph">
 <p>参考：</p>
 </div>
@@ -11949,7 +13005,7 @@ firewall-cmd --list-all
 <p>安装 <code>WSL</code> 后，使用 <code>ls</code> 查看文件权限全部是 <code>777</code>，还伴随着其它权限问题。</p>
 </div>
 <div class="sect3">
-<h4 id="_解决方法_2">45.1.1. 解决方法</h4>
+<h4 id="_解决方法_2">47.1.1. 解决方法</h4>
 <div class="listingblock">
 <div class="title">修复WSL挂载问题</div>
 <div class="content">
@@ -12030,10 +13086,10 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Aliyun_chapter">46. Aliyun</h2>
+<h2 id="_Aliyun_chapter">48. Aliyun</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_cli工具">46.1. CLI工具</h3>
+<h3 id="_cli工具">48.1. CLI工具</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">阿里云CLI文档</dt>
@@ -12043,7 +13099,7 @@ EOF</code></pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装_7">46.1.1. 安装</h4>
+<h4 id="_安装_9">48.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/Downloads
@@ -12056,7 +13112,7 @@ aliyun help</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置凭证">46.1.2. 配置凭证</h4>
+<h4 id="_配置凭证">48.1.2. 配置凭证</h4>
 <div class="dlist">
 <div class="title">启用 AccessKey</div>
 <dl>
@@ -12117,7 +13173,7 @@ aliyun help</code></pre>
 <div class="listingblock">
 <div class="title">查看配置列表</div>
 <div class="content">
-<pre>[mk@archlinux ~]$ ali configure list
+<pre>[mk@archlinux ~]$ aliyun configure list
 Profile   | Credential         | Valid   | Region           | Language
 --------- | ------------------ | ------- | ---------------- | --------
 default * | AK:***MWZ          | Valid   | cd               | zh</pre>
@@ -12162,7 +13218,7 @@ Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ecs相关参数查询">46.1.3. ECS相关参数查询</h4>
+<h4 id="_ecs相关参数查询">48.1.3. ECS相关参数查询</h4>
 <div class="listingblock">
 <div class="title">查询可选区域</div>
 <div class="content">
@@ -12430,7 +13486,7 @@ Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_创建ecs">46.1.4. 创建ECS</h4>
+<h4 id="_创建ecs">48.1.4. 创建ECS</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs CreateInstance \
@@ -12555,7 +13611,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ecs实例管理">46.1.5. ECS实例管理</h4>
+<h4 id="_ecs实例管理">48.1.5. ECS实例管理</h4>
 <div class="paragraph">
 <p>启动ECS实例：<br></p>
 </div>
@@ -12574,7 +13630,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除ecs实例">46.1.6. 删除ECS实例</h4>
+<h4 id="_删除ecs实例">48.1.6. 删除ECS实例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DeleteInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
@@ -12586,12 +13642,12 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_RabbitMQ_chapter">47. RabbitMQ</h2>
+<h2 id="_RabbitMQ_chapter">49. RabbitMQ</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_15">47.1. 安装配置</h3>
+<h3 id="_安装配置_18">49.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos_8">47.1.1. CentOS 8</h4>
+<h4 id="_centos_8">49.1.1. CentOS 8</h4>
 <div class="paragraph">
 <p>参考： <a href="https://www.rabbitmq.com/install-rpm.html" class="bare">https://www.rabbitmq.com/install-rpm.html</a></p>
 </div>
@@ -12868,7 +13924,7 @@ rabbitmqctl set_user_tags thcl administrator</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_支持mqtt">47.2. 支持MQTT</h3>
+<h3 id="_支持mqtt">49.2. 支持MQTT</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">参考</dt>
@@ -12906,7 +13962,7 @@ started 1 plugins.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_新增虚拟主机">47.2.1. 新增虚拟主机</h4>
+<h4 id="_新增虚拟主机">49.2.1. 新增虚拟主机</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rabbitmqctl add_vhost device</code></pre>
@@ -12914,7 +13970,7 @@ started 1 plugins.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_为mqtt连接创建新用户">47.2.2. 为MQTT连接创建新用户</h4>
+<h4 id="_为mqtt连接创建新用户">49.2.2. 为MQTT连接创建新用户</h4>
 <div class="paragraph">
 <p>用户只能写，不能配置，不能读。</p>
 </div>
@@ -15595,7 +16651,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-30 13:06:29 +0800
+Last updated 2020-06-23 23:44:45 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
