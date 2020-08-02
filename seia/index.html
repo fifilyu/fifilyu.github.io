@@ -1627,10 +1627,23 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel3">
 <li><a href="#_安装_9">48.1.1. 安装</a></li>
 <li><a href="#_配置凭证">48.1.2. 配置凭证</a></li>
-<li><a href="#_ecs相关参数查询">48.1.3. ECS相关参数查询</a></li>
-<li><a href="#_创建ecs">48.1.4. 创建ECS</a></li>
-<li><a href="#_ecs实例管理">48.1.5. ECS实例管理</a></li>
-<li><a href="#_删除ecs实例">48.1.6. 删除ECS实例</a></li>
+<li><a href="#_ecs">48.1.3. ECS</a>
+<ul class="sectlevel4">
+<li><a href="#_创建ecs">创建ECS</a></li>
+<li><a href="#_实例管理">实例管理</a></li>
+<li><a href="#_删除ecs实例">删除ECS实例</a></li>
+</ul>
+</li>
+<li><a href="#_域名解析_2">48.1.4. 域名解析</a>
+<ul class="sectlevel4">
+<li><a href="#_获取解析记录列表">获取解析记录列表</a></li>
+<li><a href="#_获取解析记录信息">获取解析记录信息</a></li>
+<li><a href="#_添加解析记录">添加解析记录</a></li>
+<li><a href="#_删除解析记录">删除解析记录</a></li>
+<li><a href="#_修改解析记录">修改解析记录</a></li>
+<li><a href="#_获取子域名解析记录列表">获取子域名解析记录列表</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -13218,7 +13231,7 @@ Use `aliyun --help` for more information.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ecs相关参数查询">48.1.3. ECS相关参数查询</h4>
+<h4 id="_ecs">48.1.3. ECS</h4>
 <div class="listingblock">
 <div class="title">查询可选区域</div>
 <div class="content">
@@ -13484,9 +13497,8 @@ Use `aliyun --help` for more information.</pre>
 }</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_创建ecs">48.1.4. 创建ECS</h4>
+<div class="sect4">
+<h5 id="_创建ecs">创建ECS</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs CreateInstance \
@@ -13610,8 +13622,8 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_ecs实例管理">48.1.5. ECS实例管理</h4>
+<div class="sect4">
+<h5 id="_实例管理">实例管理</h5>
 <div class="paragraph">
 <p>启动ECS实例：<br></p>
 </div>
@@ -13629,14 +13641,104 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_删除ecs实例">48.1.6. 删除ECS实例</h4>
+<div class="sect4">
+<h5 id="_删除ecs实例">删除ECS实例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun ecs DeleteInstance --InstanceId i-6wedke5p0mk9pnk5gwxd</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_域名解析_2">48.1.4. 域名解析</h4>
+<div class="sect4">
+<h5 id="_获取解析记录列表">获取解析记录列表</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeDomainRecords --DomainName thopenapi.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_获取解析记录信息">获取解析记录信息</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeDomainRecordInfo --help</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_添加解析记录">添加解析记录</h5>
+<div class="literalblock">
+<div class="content">
+<pre>--DomainName   String  Required
+--RR           String  Required
+--Type         String  Required
+--Value        String  Required
+--AccessKeyId  String  Optional
+--Lang         String  Optional
+--Line         String  Optional
+--Priority     Long    Optional
+--TTL          Long    Optional
+--UserClientIp String  Optional</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns AddDomainRecord --DomainName thopenapi.com -RR _acme-challenge --TTL 600 --Type TXT --Value test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_删除解析记录">删除解析记录</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DeleteDomainRecord --RecordId</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_修改解析记录">修改解析记录</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns UpdateDomainRecord --help</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_获取子域名解析记录列表">获取子域名解析记录列表</h5>
+<div class="paragraph">
+<p>可用来判断域名解析是否存在</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeSubDomainRecords --SubDomain _acme-challenge.data.thopenapi.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo '1='$1 &gt;&gt; /root/test.log
+echo '2='$2 &gt;&gt; /root/test.log
+
+domain = os.environ['CERTBOT_DOMAIN']
+echo 'domain='$domain &gt;&gt; /root/test.log
+value = os.environ['CERTBOT_VALIDATION']
+echo 'value='$value &gt;&gt; /root/test.log
+
+if [ "$1" = "--auth" ]; then
+    echo "添加记录" &gt;&gt; /root/test.log
+	#aliyun alidns UpdateDomainRecord --RecordId 19632471762415616 --RR _acme-challenge --Type TXT --Value test
+else
+    echo "删除记录" &gt;&gt; /root/test.log
+fi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>aliyun alidns UpdateDomainRecord --RecordId 19632471762415616 --RR _acme-challenge --Type TXT --Value test</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -16651,7 +16753,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-23 23:44:45 +0800
+Last updated 2020-07-31 22:28:45 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
