@@ -1702,6 +1702,11 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
+<li><a href="#_Frida_chapter">50. Frida</a>
+<ul class="sectlevel2">
+<li><a href="#_安装_10">50.1. 安装</a></li>
+</ul>
+</li>
 <li><a href="#_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</a>
 <ul class="sectlevel2">
 <li><a href="#_ascii_control_characters_character_code_0_31">A.1. ASCII control characters (character code 0-31)</a></li>
@@ -14370,6 +14375,48 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_Frida_chapter">50. Frida</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装_10">50.1. 安装</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip3 install frida frida-tools</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果安装过程出现网络错误，如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@75ca21b76384 ~]# pip38 --trusted-host pypi.python.org install frida-tools
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+...
+...
+  running build_ext
+  looking for prebuilt extension in home directory, i.e. /root/frida-12.11.17-py3.8-linux-x86_64.egg
+  prebuilt extension not found in home directory, will try downloading it
+  querying pypi for available prebuilds
+  error: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1108)&gt;
+  ----------------------------------------
+  ERROR: Failed building wheel for frida</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>可以手动下载 <code>frida-12.11.17-py3.8-linux-x86_64.egg</code> 到当前目录，然后再安装：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget https://mirrors.aliyun.com/pypi/packages/f9/b5/98077736bdce758adb73a54d46bbd1ac08ca0951e6db986a9b087e8d91eb/frida-12.11.17-py3.8-linux-x86_64.egg -o frida-12.11.17-py3.8-linux-x86_64.egg
+
+pip3 install frida==12.11.17 frida-tools</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -17034,7 +17081,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-23 23:44:45 +0800
+Last updated 2020-10-06 13:10:42 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
