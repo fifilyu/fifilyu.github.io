@@ -1843,8 +1843,12 @@ mkdir /etc/docker
 cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://registry.docker-cn.com"],
-  "data-root": "/data/var/lib/docker",
-  "storage-driver": "overlay2"
+  "graph": "/var/lib/docker",
+  "storage-driver": "overlay2",
+  "dns" : [
+    "223.5.5.5",
+    "223.6.6.6"
+  ]
 }
 EOF</code></pre>
 </div>
@@ -1856,6 +1860,10 @@ EOF</code></pre>
 <dd>
 <p>Docker 中国官方镜像</p>
 </dd>
+<dt class="hdlist1">graph</dt>
+<dd>
+<p>Docker数据目录</p>
+</dd>
 <dt class="hdlist1">data-root</dt>
 <dd>
 <p>Docker 数据文件存储路径</p>
@@ -1863,6 +1871,10 @@ EOF</code></pre>
 <dt class="hdlist1">storage-driver</dt>
 <dd>
 <p>Docker 数据文件存储路径</p>
+</dd>
+<dt class="hdlist1">dns</dt>
+<dd>
+<p>容器默认DNS。如果不设置可能出现 <code>git pull</code> 缓慢</p>
 </dd>
 </dl>
 </div>
@@ -17084,7 +17096,7 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-06 13:10:42 +0800
+Last updated 2020-10-11 01:03:31 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
