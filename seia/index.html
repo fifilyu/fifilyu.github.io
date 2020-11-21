@@ -762,21 +762,28 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Docker_chapter">1. Docker</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置">1.1. 安装配置</a>
+<li><a href="#_centos7安装配置">1.1. CentOS7安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装">1.1.1. 安装</a>
-<ul class="sectlevel4">
-<li><a href="#_centos7">CentOS7</a></li>
+<li><a href="#_准备分区">1.1.1. 准备分区</a></li>
+<li><a href="#_升级内核">1.1.2. 升级内核</a></li>
+<li><a href="#_安装">1.1.3. 安装</a></li>
+<li><a href="#_配置">1.1.4. 配置</a></li>
+<li><a href="#_启动">1.1.5. 启动</a></li>
+<li><a href="#_新建自定义网桥">1.1.6. 新建自定义网桥</a></li>
 </ul>
 </li>
-<li><a href="#_配置">1.1.2. 配置</a></li>
-<li><a href="#_启动">1.1.3. 启动</a></li>
-<li><a href="#_新建自定义网桥">1.1.4. 新建自定义网桥</a></li>
+<li><a href="#_centos8安装配置">1.2. CentOS8安装配置</a>
+<ul class="sectlevel3">
+<li><a href="#_准备分区_2">1.2.1. 准备分区</a></li>
+<li><a href="#_安装_2">1.2.2. 安装</a></li>
+<li><a href="#_配置_2">1.2.3. 配置</a></li>
+<li><a href="#_查看docker运行信息">1.2.4. 查看Docker运行信息</a></li>
+<li><a href="#_测试">1.2.5. 测试</a></li>
 </ul>
 </li>
-<li><a href="#_pure_ftpd_in_docker">1.2. Pure-FTPd in Docker</a>
+<li><a href="#_pure_ftpd_in_docker">1.3. Pure-FTPd in Docker</a>
 <ul class="sectlevel3">
-<li><a href="#_重新打包">1.2.1. 重新打包</a>
+<li><a href="#_重新打包">1.3.1. 重新打包</a>
 <ul class="sectlevel4">
 <li><a href="#_准备打包环境">准备打包环境</a></li>
 <li><a href="#_修改包文件">修改包文件</a></li>
@@ -787,9 +794,9 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_容器启动命令">1.3. 容器启动命令</a>
+<li><a href="#_容器启动命令">1.4. 容器启动命令</a>
 <ul class="sectlevel3">
-<li><a href="#_程序启动命令汇总">1.3.1. 程序启动命令汇总</a>
+<li><a href="#_程序启动命令汇总">1.4.1. 程序启动命令汇总</a>
 <ul class="sectlevel4">
 <li><a href="#_psql">PSQL</a></li>
 <li><a href="#_mysql5_1">MySQL5.1</a></li>
@@ -854,7 +861,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Libvirt_chapter">6. Libvirt</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_2">6.1. 安装配置</a>
+<li><a href="#_安装配置">6.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装kvm环境">6.1.1. 安装kvm环境</a></li>
 <li><a href="#_设置网桥">6.1.2. 设置网桥</a>
@@ -983,7 +990,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_打印机">8.7. 打印机</a>
 <ul class="sectlevel3">
-<li><a href="#_安装配置_3">8.7.1. 安装配置</a></li>
+<li><a href="#_安装配置_2">8.7.1. 安装配置</a></li>
 <li><a href="#_打印机驱动">8.7.2. 打印机驱动</a></li>
 <li><a href="#_添加打印机">8.7.3. 添加打印机</a>
 <ul class="sectlevel4">
@@ -997,7 +1004,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_XXL-JOB_chapter">9. XXL-JOB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_4">9.1. 安装配置</a>
+<li><a href="#_安装配置_3">9.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装依赖">9.1.1. 安装依赖</a>
 <ul class="sectlevel4">
@@ -1101,7 +1108,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Mosquitto_chapter">14. Mosquitto</a>
 <ul class="sectlevel2">
-<li><a href="#_安装_2">14.1. 安装</a>
+<li><a href="#_安装_3">14.1. 安装</a>
 <ul class="sectlevel3">
 <li><a href="#_依赖">14.1.1. 依赖</a>
 <ul class="sectlevel4">
@@ -1118,7 +1125,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_配置_2">14.2. 配置</a>
+<li><a href="#_配置_3">14.2. 配置</a>
 <ul class="sectlevel3">
 <li><a href="#_基础配置">14.2.1. 基础配置</a></li>
 <li><a href="#_创建系统服务">14.2.2. 创建系统服务</a></li>
@@ -1204,7 +1211,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_GitLab_chapter">21. GitLab</a>
 <ul class="sectlevel2">
-<li><a href="#_centos7安装配置">21.1. CentOS7安装配置</a></li>
+<li><a href="#_centos7安装配置_2">21.1. CentOS7安装配置</a></li>
 <li><a href="#_centos8_安装配置">21.2. CentOS8 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装依赖_3">21.2.1. 安装依赖</a></li>
@@ -1223,7 +1230,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Redis_chapter">22. Redis</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_5">22.1. 安装配置</a></li>
+<li><a href="#_安装配置_4">22.1. 安装配置</a></li>
 <li><a href="#_常用命令_4">22.2. 常用命令</a>
 <ul class="sectlevel3">
 <li><a href="#_键key">22.2.1. 键（key）</a></li>
@@ -1322,7 +1329,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Axel_chapter">25. Axel</a>
 <ul class="sectlevel2">
-<li><a href="#_安装_3">25.1. 安装</a>
+<li><a href="#_安装_4">25.1. 安装</a>
 <ul class="sectlevel3">
 <li><a href="#_arch_linux">25.1.1. Arch Linux</a></li>
 <li><a href="#_centos8">25.1.2. CentOS8</a></li>
@@ -1363,7 +1370,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Polipo_chapter">29. Polipo</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_6">29.1. 安装配置</a>
+<li><a href="#_安装配置_5">29.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_centos8_2">29.1.1. CentOS8</a>
 <ul class="sectlevel4">
@@ -1380,7 +1387,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Proxychains_chapter">30. Proxychains</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_7">30.1. 安装配置</a></li>
+<li><a href="#_安装配置_6">30.1. 安装配置</a></li>
 </ul>
 </li>
 <li><a href="#_ImageMagick_chapter">31. ImageMagick</a>
@@ -1395,10 +1402,10 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Dante_chapter">33. Dante</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_8">33.1. 安装配置</a>
+<li><a href="#_安装配置_7">33.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_4">33.1.1. 安装</a></li>
-<li><a href="#_配置_3">33.1.2. 配置</a></li>
+<li><a href="#_安装_5">33.1.1. 安装</a></li>
+<li><a href="#_配置_4">33.1.2. 配置</a></li>
 <li><a href="#_运行_2">33.1.3. 运行</a></li>
 </ul>
 </li>
@@ -1406,7 +1413,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_frp_chapter">34. frp</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_9">34.1. 安装配置</a>
+<li><a href="#_安装配置_8">34.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置">34.1.1. 初始配置</a></li>
 <li><a href="#_服务端">34.1.2. 服务端</a></li>
@@ -1417,7 +1424,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_npm_chapter">35. npm</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_10">35.1. 安装配置</a>
+<li><a href="#_安装配置_9">35.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置_2">35.1.1. 初始配置</a></li>
 </ul>
@@ -1426,7 +1433,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_lftp_chapter">36. lftp</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_11">36.1. 安装配置</a>
+<li><a href="#_安装配置_10">36.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_初始配置_3">36.1.1. 初始配置</a></li>
 </ul>
@@ -1435,7 +1442,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_gradle_chapter">37. gradle</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_12">37.1. 安装配置</a>
+<li><a href="#_安装配置_11">37.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_全局源">37.1.1. 全局源</a></li>
 </ul>
@@ -1471,16 +1478,16 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_增加yum源">39.1.2. 增加YUM源</a></li>
 <li><a href="#_elasticsearch">39.1.3. Elasticsearch</a>
 <ul class="sectlevel4">
-<li><a href="#_安装_5">安装</a></li>
-<li><a href="#_配置_4">配置</a></li>
+<li><a href="#_安装_6">安装</a></li>
+<li><a href="#_配置_5">配置</a></li>
 <li><a href="#_开机启动">开机启动</a></li>
 <li><a href="#_启动服务_2">启动服务</a></li>
 </ul>
 </li>
 <li><a href="#_kibana">39.1.4. Kibana</a>
 <ul class="sectlevel4">
-<li><a href="#_安装_6">安装</a></li>
-<li><a href="#_配置_5">配置</a></li>
+<li><a href="#_安装_7">安装</a></li>
+<li><a href="#_配置_6">配置</a></li>
 <li><a href="#_开机启动_2">开机启动</a></li>
 <li><a href="#_启动服务_3">启动服务</a></li>
 <li><a href="#_最后_2">最后</a></li>
@@ -1503,7 +1510,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装kibana">39.2.3. 安装Kibana</a></li>
 <li><a href="#_安装logstash">39.2.4. 安装Logstash</a></li>
 <li><a href="#_docker方式安装elasticsearch">39.2.5. Docker方式安装ElasticSearch</a></li>
-<li><a href="#_配置_6">39.2.6. 配置</a></li>
+<li><a href="#_配置_7">39.2.6. 配置</a></li>
 </ul>
 </li>
 <li><a href="#_部分过时elasticstack使用教程">39.3. （部分过时）ElasticStack使用教程</a>
@@ -1544,7 +1551,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_maven_chapter">41. maven</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_13">41.1. 安装配置</a>
+<li><a href="#_安装配置_12">41.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_全局源_2">41.1.1. 全局源</a></li>
 </ul>
@@ -1558,14 +1565,14 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_MongoDB_chapter">42. MongoDB</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_14">42.1. 安装配置</a>
+<li><a href="#_安装配置_13">42.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_7">42.1.1. 安装</a>
+<li><a href="#_安装_8">42.1.1. 安装</a>
 <ul class="sectlevel4">
 <li><a href="#_文件目录结构">文件目录结构</a></li>
 </ul>
 </li>
-<li><a href="#_配置_7">42.1.2. 配置</a>
+<li><a href="#_配置_8">42.1.2. 配置</a>
 <ul class="sectlevel4">
 <li><a href="#_禁用selinux重启生效">禁用SELINUX（重启生效）</a></li>
 <li><a href="#_设置_ulimit">设置 <code>ulimit</code></a></li>
@@ -1597,24 +1604,24 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Kafka_chapter">44. Kafka</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_15">44.1. 安装配置</a>
+<li><a href="#_安装配置_14">44.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_linux">44.1.1. Linux</a>
 <ul class="sectlevel4">
-<li><a href="#_安装_8">安装</a></li>
+<li><a href="#_安装_9">安装</a></li>
 <li><a href="#_topic">Topic</a></li>
-<li><a href="#_测试">测试</a></li>
+<li><a href="#_测试_2">测试</a></li>
 </ul>
 </li>
 <li><a href="#_windows">44.1.2. Windows</a></li>
-<li><a href="#_配置_8">44.1.3. 配置</a></li>
+<li><a href="#_配置_9">44.1.3. 配置</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_Pure-FTPd_chapter">45. Pure-FTPd</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_16">45.1. 安装配置</a>
+<li><a href="#_安装配置_15">45.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_centos6_安装">45.1.1. CentOS6 安装</a></li>
 </ul>
@@ -1623,9 +1630,9 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Shadowsocks_chapter">46. Shadowsocks</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_17">46.1. 安装配置</a>
+<li><a href="#_安装配置_16">46.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7_2">46.1.1. CentOS7</a>
+<li><a href="#_centos7">46.1.1. CentOS7</a>
 <ul class="sectlevel4">
 <li><a href="#_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></a></li>
 <li><a href="#_开启_tcp_bbr_塞控制算法">开启 <code>TCP BBR</code> 塞控制算法</a></li>
@@ -1654,7 +1661,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_cli工具">48.1. CLI工具</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_9">48.1.1. 安装</a></li>
+<li><a href="#_安装_10">48.1.1. 安装</a></li>
 <li><a href="#_配置凭证">48.1.2. 配置凭证</a></li>
 <li><a href="#_ecs">48.1.3. ECS</a>
 <ul class="sectlevel4">
@@ -1679,7 +1686,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_RabbitMQ_chapter">49. RabbitMQ</a>
 <ul class="sectlevel2">
-<li><a href="#_安装配置_18">49.1. 安装配置</a>
+<li><a href="#_安装配置_17">49.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_centos_8">49.1.1. CentOS 8</a>
 <ul class="sectlevel4">
@@ -1704,7 +1711,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Frida_chapter">50. Frida</a>
 <ul class="sectlevel2">
-<li><a href="#_安装_10">50.1. 安装</a></li>
+<li><a href="#_安装_11">50.1. 安装</a></li>
 </ul>
 </li>
 <li><a href="#_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</a>
@@ -1750,27 +1757,29 @@ p { margin-bottom: 1.25rem; }
 <p><strong>基于 CentOS 7</strong></p>
 </div>
 <div class="sect2">
-<h3 id="_安装配置">1.1. 安装配置</h3>
+<h3 id="_centos7安装配置">1.1. CentOS7安装配置</h3>
 <div class="sect3">
-<h4 id="_安装">1.1.1. 安装</h4>
+<h4 id="_准备分区">1.1.1. 准备分区</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># XFS必须启用ftype参数，比如硬盘分区 /dev/sda1
+mkfs.xfs -n ftype=1 -f $硬盘分区
 
-yum-config-manager \
-    --add-repo \
-    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# 挂载硬盘分区，用于存储Docker数据
+echo `ll /dev/disk/by-uuid/|grep $硬盘分区|awk '{print "UUID="$9" /data                   xfs     defaults        0 0"}'` &gt;&gt; /etc/fstab
 
-yum install -y docker-ce
-curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+# 自动挂载所有分区
+mount -a
 
-systemctl disable docker</code></pre>
+# 验证挂载
+df -h|grep /data
+
+mkdir -p /data/var/lib/docker</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_centos7">CentOS7</h5>
+</div>
+<div class="sect3">
+<h4 id="_升级内核">1.1.2. 升级内核</h4>
 <div class="paragraph">
 <p>由于内核版本太低，Docker 存储方面有限制。需要升级到更版本内核。</p>
 </div>
@@ -1788,21 +1797,7 @@ systemctl disable docker</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># XFS必须启用ftype参数，比如硬盘分区 /dev/sda1
-mkfs.xfs -n ftype=1 -f $硬盘分区
-
-# 挂载硬盘分区，用于存储Docker数据
-echo `ll /dev/disk/by-uuid/|grep $硬盘分区|awk '{print "UUID="$9" /data                   xfs     defaults        0 0"}'` &gt;&gt; /etc/fstab
-
-# 自动挂载所有分区
-mount -a
-
-# 验证挂载
-df -h|grep /data
-
-mkdir -p /data/var/lib/docker
-
-rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 
 # 稳定版本内核
@@ -1828,9 +1823,25 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_安装">1.1.3. 安装</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+yum install -y docker-ce
+curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_配置">1.1.2. 配置</h4>
+<h4 id="_配置">1.1.4. 配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "net.bridge.bridge-nf-call-ip6tables = 1" &gt;&gt; /etc/sysctl.conf
@@ -1839,10 +1850,13 @@ echo "net.ipv4.ip_forward = 1" &gt;&gt; /etc/sysctl.conf
 
 sysctl -p
 
-mkdir /etc/docker
+mkdir -p /etc/docker
 cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 {
-  "registry-mirrors": ["https://registry.docker-cn.com"],
+  "registry-mirrors": [
+    "https://hub-mirror.c.163.com",
+    "https://registry.docker-cn.com"
+  ],
   "graph": "/var/lib/docker",
   "storage-driver": "overlay2",
   "dns" : [
@@ -1858,15 +1872,11 @@ EOF</code></pre>
 <dl>
 <dt class="hdlist1">registry-mirrors</dt>
 <dd>
-<p>Docker 中国官方镜像</p>
+<p>Docker镜像源</p>
 </dd>
 <dt class="hdlist1">graph</dt>
 <dd>
 <p>Docker数据目录</p>
-</dd>
-<dt class="hdlist1">data-root</dt>
-<dd>
-<p>Docker 数据文件存储路径</p>
 </dd>
 <dt class="hdlist1">storage-driver</dt>
 <dd>
@@ -1878,21 +1888,9 @@ EOF</code></pre>
 </dd>
 </dl>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-如果 <a href="https://registry.docker-cn.com" class="bare">https://registry.docker-cn.com</a> 连接有问题，可以使用 <a href="https://docker.mirrors.ustc.edu.cn" class="bare">https://docker.mirrors.ustc.edu.cn</a>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect3">
-<h4 id="_启动">1.1.3. 启动</h4>
+<h4 id="_启动">1.1.5. 启动</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable docker
@@ -1903,17 +1901,235 @@ docker info</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_新建自定义网桥">1.1.4. 新建自定义网桥</h4>
+<h4 id="_新建自定义网桥">1.1.6. 新建自定义网桥</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker network create --subnet=10.10.10.0/16 --gateway=10.10.10.1 mwteck
-docker network inspect mwteck</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker network create --subnet=10.10.10.0/16 --gateway=10.10.10.1 fifilyu
+docker network inspect fifilyu</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pure_ftpd_in_docker">1.2. Pure-FTPd in Docker</h3>
+<h3 id="_centos8安装配置">1.2. CentOS8安装配置</h3>
+<div class="sect3">
+<h4 id="_准备分区_2">1.2.1. 准备分区</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># XFS必须启用ftype参数，比如硬盘分区 /dev/sda1
+mkfs.xfs -n ftype=1 -f $硬盘分区
+
+# 挂载硬盘分区，用于存储Docker数据
+echo `ll /dev/disk/by-uuid/|grep $硬盘分区|awk '{print "UUID="$9" /data                   xfs     defaults        0 0"}'` &gt;&gt; /etc/fstab
+
+# 自动挂载所有分区
+mount -a
+
+# 验证挂载
+df -h|grep /data
+
+mkdir -p /data/var/lib/docker</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_安装_2">1.2.2. 安装</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y yum-utils
+
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+dnf install -y docker-ce docker-ce-cli containerd.io
+
+systemctl enable docker</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_配置_2">1.2.3. 配置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "net.bridge.bridge-nf-call-ip6tables = 1" &gt;&gt; /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables = 1" &gt;&gt; /etc/sysctl.conf
+echo "net.ipv4.ip_forward = 1" &gt;&gt; /etc/sysctl.conf
+
+sysctl -p
+
+mkdir -p /etc/docker
+cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
+{
+  "registry-mirrors": [
+    "https://hub-mirror.c.163.com",
+    "https://registry.docker-cn.com"
+  ],
+  "graph": "/var/lib/docker",
+  "storage-driver": "overlay2",
+  "dns" : [
+    "223.5.5.5",
+    "223.6.6.6"
+  ]
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="dlist">
+<div class="title">参数说明</div>
+<dl>
+<dt class="hdlist1">registry-mirrors</dt>
+<dd>
+<p>Docker镜像源</p>
+</dd>
+<dt class="hdlist1">graph</dt>
+<dd>
+<p>Docker数据目录</p>
+</dd>
+<dt class="hdlist1">storage-driver</dt>
+<dd>
+<p>Docker 数据文件存储路径</p>
+</dd>
+<dt class="hdlist1">dns</dt>
+<dd>
+<p>容器默认DNS。如果不设置可能出现 <code>git pull</code> 缓慢</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>最后，启动或重启docker服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart docker</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_查看docker运行信息">1.2.4. 查看Docker运行信息</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@dell7 ~]# docker info
+Client:
+ Debug Mode: false
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 1
+ Server Version: 19.03.13
+ Storage Driver: overlay2
+  Backing Filesystem: xfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 8fba4e9a7d01810a393d5d25a3621dc101981175
+ runc version: dc9208a3303feef5b3839f4323d9beb36df0a9dd
+ init version: fec3683
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 4.18.0-147.8.1.el8_1.x86_64
+ Operating System: CentOS Linux 8 (Core)
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 4
+ Total Memory: 15.46GiB
+ Name: dell7
+ ID: WFX3:WXWH:WPML:VRCA:QRTN:LGCB:6UBM:V73O:QEGU:KADY:V3FH:E4Q6
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Registry Mirrors:
+  https://docker.mirrors.ustc.edu.cn/
+ Live Restore Enabled: false</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_测试">1.2.5. 测试</h4>
+<div class="paragraph">
+<p>拉取测试镜像：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker pull hello-world</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@dell7 ~]# docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+0e03bdcc26d7: Already exists
+Digest: sha256:e7c70bb24b462baa86c102610182e3efcb12a04854e8c582838d92970a09f323
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建测试容器：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run --name hello hello-world</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@dell7 ~]# docker run --name hello hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+......</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看已经创建的容器：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker ps -a</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@dell7 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+59cc42b09fce        hello-world         "/hello"            24 seconds ago      Exited (0) 22 seconds ago                       hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>删除测试容器：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker rm hello</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pure_ftpd_in_docker">1.3. Pure-FTPd in Docker</h3>
 <div class="paragraph">
 <p>必须使用 <code>--without-capabilities</code> 参数重新编译 Pure-FTPd，否则会出现以下错误：</p>
 </div>
@@ -1924,7 +2140,7 @@ docker network inspect mwteck</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_重新打包">1.2.1. 重新打包</h4>
+<h4 id="_重新打包">1.3.1. 重新打包</h4>
 <div class="sect4">
 <h5 id="_准备打包环境">准备打包环境</h5>
 <div class="listingblock">
@@ -1975,7 +2191,7 @@ ps aux|grep ftp</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_容器启动命令">1.3. 容器启动命令</h3>
+<h3 id="_容器启动命令">1.4. 容器启动命令</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run -d --restart=always --name test  centos:7 docker-entrypoint.sh</code></pre>
@@ -2013,7 +2229,7 @@ done</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_程序启动命令汇总">1.3.1. 程序启动命令汇总</h4>
+<h4 id="_程序启动命令汇总">1.4.1. 程序启动命令汇总</h4>
 <div class="sect4">
 <h5 id="_psql">PSQL</h5>
 <div class="listingblock">
@@ -2475,7 +2691,7 @@ rm -f /tmp/set_br1.sh</code></pre>
 <h2 id="_Libvirt_chapter">6. Libvirt</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_2">6.1. 安装配置</h3>
+<h3 id="_安装配置">6.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_安装kvm环境">6.1.1. 安装kvm环境</h4>
 <div class="listingblock">
@@ -4219,7 +4435,7 @@ sudo pacman -S gst-libav</code></pre>
 <div class="sect2">
 <h3 id="_打印机">8.7. 打印机</h3>
 <div class="sect3">
-<h4 id="_安装配置_3">8.7.1. 安装配置</h4>
+<h4 id="_安装配置_2">8.7.1. 安装配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable cups-browsed
@@ -4280,7 +4496,7 @@ pacman -Ql hplip</code></pre>
 <h2 id="_XXL-JOB_chapter">9. XXL-JOB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_4">9.1. 安装配置</h3>
+<h3 id="_安装配置_3">9.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_安装依赖">9.1.1. 安装依赖</h4>
 <div class="sect4">
@@ -6495,7 +6711,7 @@ If you have a IR mode (RAID via the controller) configuration, you may need the 
 <h2 id="_Mosquitto_chapter">14. Mosquitto</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装_2">14.1. 安装</h3>
+<h3 id="_安装_3">14.1. 安装</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -6586,7 +6802,7 @@ unlink /usr/lib/libwebsockets.so</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_配置_2">14.2. 配置</h3>
+<h3 id="_配置_3">14.2. 配置</h3>
 <div class="sect3">
 <h4 id="_基础配置">14.2.1. 基础配置</h4>
 <div class="paragraph">
@@ -7384,7 +7600,7 @@ java -cp ./bin:/usr/share/java/postgresql-jdbc-8.4.704.jar statistics.Test</code
 <h2 id="_GitLab_chapter">21. GitLab</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_centos7安装配置">21.1. CentOS7安装配置</h3>
+<h3 id="_centos7安装配置_2">21.1. CentOS7安装配置</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">官方文档</dt>
@@ -7826,7 +8042,7 @@ ss -antpl|grep 8000</code></pre>
 <h2 id="_Redis_chapter">22. Redis</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_5">22.1. 安装配置</h3>
+<h3 id="_安装配置_4">22.1. 安装配置</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y redis
@@ -8340,7 +8556,7 @@ LibreSSL 2.6.4 and earlier do not provide the necessary APIs, https://github.com
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2u.tar.gz -o openssl-1.0.2u.tar.gz
+wget https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz
 tar xf openssl-1.0.2u.tar.gz
 cd openssl-1.0.2u
 ./config --prefix=/usr/local/openssl-1.0.2u -fPIC
@@ -8357,7 +8573,7 @@ make install</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz -o sqlite-autoconf-3330000.tar.gz
+wget https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz -O sqlite-autoconf-3330000.tar.gz
 tar xf sqlite-autoconf-3330000.tar.gz
 cd sqlite-autoconf-3330000
 ./configure --prefix=/usr/local/sqlite-3.33
@@ -8985,7 +9201,7 @@ password: &lt;密码&gt;</pre>
 <p>有时候，yum/dnf/wget下载国外软件。一开始速度很快，之后速度降了下去。这个时候用多线程下载可以加速下载。</p>
 </div>
 <div class="sect2">
-<h3 id="_安装_3">25.1. 安装</h3>
+<h3 id="_安装_4">25.1. 安装</h3>
 <div class="sect3">
 <h4 id="_arch_linux">25.1.1. Arch Linux</h4>
 <div class="listingblock">
@@ -9398,7 +9614,7 @@ gpg --verify config.properties.sha1sum.asc</code></pre>
 <h2 id="_Polipo_chapter">29. Polipo</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_6">29.1. 安装配置</h3>
+<h3 id="_安装配置_5">29.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos8_2">29.1.1. CentOS8</h4>
 <div class="sect4">
@@ -9639,7 +9855,7 @@ ss -antpl|grep 8123</code></pre>
 <h2 id="_Proxychains_chapter">30. Proxychains</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_7">30.1. 安装配置</h3>
+<h3 id="_安装配置_6">30.1. 安装配置</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y gcc make
@@ -9770,12 +9986,12 @@ echo 'out.pdf' &gt;&gt; make_pdf.sh</code></pre>
 <p>Dante 是一个SOCKS服务端和客户端。这里，用来作为服务端。</p>
 </div>
 <div class="sect2">
-<h3 id="_安装配置_8">33.1. 安装配置</h3>
+<h3 id="_安装配置_7">33.1. 安装配置</h3>
 <div class="paragraph">
 <p>官方下载页面： <a href="https://www.inet.no/dante/sslfiles/binaries.html" class="bare">https://www.inet.no/dante/sslfiles/binaries.html</a></p>
 </div>
 <div class="sect3">
-<h4 id="_安装_4">33.1.1. 安装</h4>
+<h4 id="_安装_5">33.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
@@ -9792,7 +10008,7 @@ sockd --help</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_3">33.1.2. 配置</h4>
+<h4 id="_配置_4">33.1.2. 配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">useradd -r -s /bin/false  sockd
@@ -10102,7 +10318,7 @@ EOF</code></pre>
 <h2 id="_frp_chapter">34. frp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_9">34.1. 安装配置</h3>
+<h3 id="_安装配置_8">34.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置">34.1.1. 初始配置</h4>
 <div class="listingblock">
@@ -10192,7 +10408,7 @@ systemctl  status frpc</code></pre>
 <h2 id="_npm_chapter">35. npm</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_10">35.1. 安装配置</h3>
+<h3 id="_安装配置_9">35.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置_2">35.1.1. 初始配置</h4>
 <div class="listingblock">
@@ -10213,7 +10429,7 @@ npm run build</code></pre>
 <h2 id="_lftp_chapter">36. lftp</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_11">36.1. 安装配置</h3>
+<h3 id="_安装配置_10">36.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_初始配置_3">36.1.1. 初始配置</h4>
 <div class="paragraph">
@@ -10236,7 +10452,7 @@ npm run build</code></pre>
 <h2 id="_gradle_chapter">37. gradle</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_12">37.1. 安装配置</h3>
+<h3 id="_安装配置_11">37.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_全局源">37.1.1. 全局源</h4>
 <div class="listingblock">
@@ -10501,7 +10717,7 @@ packetbeat.x86_64                            7.7.1-1                       elast
 <div class="sect3">
 <h4 id="_elasticsearch">39.1.3. Elasticsearch</h4>
 <div class="sect4">
-<h5 id="_安装_5">安装</h5>
+<h5 id="_安装_6">安装</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
@@ -10509,7 +10725,7 @@ packetbeat.x86_64                            7.7.1-1                       elast
 </div>
 </div>
 <div class="sect4">
-<h5 id="_配置_4">配置</h5>
+<h5 id="_配置_5">配置</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '17s/#cluster.name: my-application/cluster.name: myapp/' /etc/elasticsearch/elasticsearch.yml
@@ -10571,7 +10787,7 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 <div class="sect3">
 <h4 id="_kibana">39.1.4. Kibana</h4>
 <div class="sect4">
-<h5 id="_安装_6">安装</h5>
+<h5 id="_安装_7">安装</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y kibana</code></pre>
@@ -10579,7 +10795,7 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 </div>
 </div>
 <div class="sect4">
-<h5 id="_配置_5">配置</h5>
+<h5 id="_配置_6">配置</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '7s/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
@@ -11046,7 +11262,7 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_6">39.2.6. 配置</h4>
+<h4 id="_配置_7">39.2.6. 配置</h4>
 <div class="paragraph">
 <p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
 </div>
@@ -12127,7 +12343,7 @@ youtube-dl -f 137+140 'https://www.youtube.com/watch?v=lrDlTEbHw3g'</code></pre>
 <h2 id="_maven_chapter">41. maven</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_13">41.1. 安装配置</h3>
+<h3 id="_安装配置_12">41.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_全局源_2">41.1.1. 全局源</h4>
 <div class="listingblock">
@@ -12227,7 +12443,7 @@ EOF</code></pre>
 <h2 id="_MongoDB_chapter">42. MongoDB</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_14">42.1. 安装配置</h3>
+<h3 id="_安装配置_13">42.1. 安装配置</h3>
 <div class="paragraph">
 <p><strong>基于 CentOS8</strong></p>
 </div>
@@ -12240,7 +12456,7 @@ EOF</code></pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装_7">42.1.1. 安装</h4>
+<h4 id="_安装_8">42.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &gt; /etc/yum.repos.d/mongodb-org-4.2.repo &lt;&lt; EOF
@@ -12297,7 +12513,7 @@ dnf install -y mongodb-org</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_7">42.1.2. 配置</h4>
+<h4 id="_配置_8">42.1.2. 配置</h4>
 <div class="sect4">
 <h5 id="_禁用selinux重启生效">禁用SELINUX（重启生效）</h5>
 <div class="listingblock">
@@ -12718,11 +12934,11 @@ IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
 <h2 id="_Kafka_chapter">44. Kafka</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_15">44.1. 安装配置</h3>
+<h3 id="_安装配置_14">44.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_linux">44.1.1. Linux</h4>
 <div class="sect4">
-<h5 id="_安装_8">安装</h5>
+<h5 id="_安装_9">安装</h5>
 <div class="listingblock">
 <div class="title">下载解压</div>
 <div class="content">
@@ -12763,7 +12979,7 @@ mv kafka_2.12-2.3.1 /usr/local/kafka_2.12-2.3.1</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_测试">测试</h5>
+<h5 id="_测试_2">测试</h5>
 <div class="listingblock">
 <div class="title">启动生产者发送消息</div>
 <div class="content">
@@ -12801,7 +13017,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置_8">44.1.3. 配置</h4>
+<h4 id="_配置_9">44.1.3. 配置</h4>
 <div class="paragraph">
 <p>开启对外端口监听，编辑文件 <code>config/server.properties</code> 修改以下参数：</p>
 </div>
@@ -12819,7 +13035,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <h2 id="_Pure-FTPd_chapter">45. Pure-FTPd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_16">45.1. 安装配置</h3>
+<h3 id="_安装配置_15">45.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos6_安装">45.1.1. CentOS6 安装</h4>
 <div class="listingblock">
@@ -12950,9 +13166,9 @@ pure-pw list</code></pre>
 <h2 id="_Shadowsocks_chapter">46. Shadowsocks</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_17">46.1. 安装配置</h3>
+<h3 id="_安装配置_16">46.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos7_2">46.1.1. CentOS7</h4>
+<h4 id="_centos7">46.1.1. CentOS7</h4>
 <div class="sect4">
 <h5 id="_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></h5>
 <div class="listingblock">
@@ -13410,7 +13626,7 @@ EOF</code></pre>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_安装_9">48.1.1. 安装</h4>
+<h4 id="_安装_10">48.1.1. 安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/Downloads
@@ -14045,7 +14261,7 @@ fi</code></pre>
 <h2 id="_RabbitMQ_chapter">49. RabbitMQ</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装配置_18">49.1. 安装配置</h3>
+<h3 id="_安装配置_17">49.1. 安装配置</h3>
 <div class="sect3">
 <h4 id="_centos_8">49.1.1. CentOS 8</h4>
 <div class="paragraph">
@@ -14390,7 +14606,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 <h2 id="_Frida_chapter">50. Frida</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_安装_10">50.1. 安装</h3>
+<h3 id="_安装_11">50.1. 安装</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip3 install frida frida-tools</code></pre>
@@ -14419,7 +14635,7 @@ Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget https://mirrors.aliyun.com/pypi/packages/f9/b5/98077736bdce758adb73a54d46bbd1ac08ca0951e6db986a9b087e8d91eb/frida-12.11.17-py3.8-linux-x86_64.egg -o frida-12.11.17-py3.8-linux-x86_64.egg
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget https://mirrors.aliyun.com/pypi/packages/f9/b5/98077736bdce758adb73a54d46bbd1ac08ca0951e6db986a9b087e8d91eb/frida-12.11.17-py3.8-linux-x86_64.egg -O frida-12.11.17-py3.8-linux-x86_64.egg
 
 pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
@@ -17096,7 +17312,7 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-11 01:03:31 +0800
+Last updated 2020-10-06 13:10:42 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
