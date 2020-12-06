@@ -5321,8 +5321,32 @@ The whole CentOS 6 is <strong>dead</strong> and <strong>shouldn&#8217;t</strong>
 </div>
 </div>
 <div class="paragraph">
-<p>生产服务器不能换系统，挂载ISO文件做仓库成唯一方法。</p>
+<p>生产服务器不能换系统，挂载ISO文件做仓库成唯一快速方法。</p>
 </div>
+<hr>
+<div class="paragraph">
+<p>另外一种方法是替换 <code>/etc/yum.repos.d/CentOS-Base.repo</code> 中的URL：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>baseurl=http://mirror.centos.org/centos/$releasever/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>替换为：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>baseurl=https://vault.centos.org/6.10/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>6.10</code> 注意替换为当前系统的版本号。</p>
+</div>
+<div class="paragraph">
+<p>替换后下载速度慢，建议加代理使用，比如 <code>all_proxy=http://x.x.x.x:8123</code>。</p>
+</div>
+<hr>
 <div class="admonitionblock tip">
 <table>
 <tr>
