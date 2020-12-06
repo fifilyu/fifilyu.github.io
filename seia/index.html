@@ -5411,7 +5411,7 @@ mount -o loop,ro CentOS-6.10-x86_64-bin-DVD2.iso /media/CentOS-DVD2</code></pre>
 #  yum --disablerepo=\* --enablerepo=c6-media [command]
 
 [c6-media]
-name=CentOS-$releasever - Media
+name=CentOS-\$releasever - Media
 baseurl=file:///media/CentOS-DVD1
         file:///media/CentOS-DVD2
 gpgcheck=1
