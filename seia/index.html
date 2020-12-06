@@ -1077,28 +1077,42 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_CentOS_chapter">13. CentOS</a>
 <ul class="sectlevel2">
-<li><a href="#_centos6初始化">13.1. CentOS6初始化</a></li>
-<li><a href="#_centos7初始化">13.2. CentOS7初始化</a></li>
-<li><a href="#_centos8初始化">13.3. CentOS8初始化</a></li>
-<li><a href="#_centos7_install_lnmp">13.4. CentOS7 Install LNMP</a>
+<li><a href="#_centos6挂载iso文件做仓库">13.1. CentOS6挂载ISO文件做仓库</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_nginx">13.4.1. 安装 Nginx</a></li>
-<li><a href="#_安装_mysql">13.4.2. 安装 MySQL</a></li>
-<li><a href="#_安装_php7">13.4.3. 安装 PHP7</a></li>
-<li><a href="#_lnmp_环境测试">13.4.4. LNMP 环境测试</a></li>
+<li><a href="#_下载_centos6_iso镜像">13.1.1. 下载 CentOS6 ISO镜像</a></li>
+<li><a href="#_设置本地软件仓库">13.1.2. 设置本地软件仓库</a>
+<ul class="sectlevel4">
+<li><a href="#_创建挂载目录">创建挂载目录</a></li>
+<li><a href="#_挂载iso镜像">挂载ISO镜像</a></li>
+<li><a href="#_设置仓库文件">设置仓库文件</a></li>
+<li><a href="#_禁用在线仓库">禁用在线仓库</a></li>
+<li><a href="#_确认本地仓库生效">确认本地仓库生效</a></li>
 </ul>
 </li>
-<li><a href="#_centos8配置文档">13.5. CentOS8配置文档</a>
-<ul class="sectlevel3">
-<li><a href="#_安装_nginx_2">13.5.1. 安装 Nginx</a></li>
-<li><a href="#_安装_mysql_2">13.5.2. 安装 MySQL</a></li>
-<li><a href="#_安装_php7_2">13.5.3. 安装 PHP7</a></li>
-<li><a href="#_lnmp环境测试">13.5.4. LNMP环境测试</a></li>
 </ul>
 </li>
-<li><a href="#_centos8安装前加载驱动">13.6. CentOS8安装前加载驱动</a>
+<li><a href="#_centos6初始化">13.2. CentOS6初始化</a></li>
+<li><a href="#_centos7初始化">13.3. CentOS7初始化</a></li>
+<li><a href="#_centos8初始化">13.4. CentOS8初始化</a></li>
+<li><a href="#_centos7_install_lnmp">13.5. CentOS7 Install LNMP</a>
 <ul class="sectlevel3">
-<li><a href="#_dell_precision_t3600">13.6.1. Dell Precision T3600</a>
+<li><a href="#_安装_nginx">13.5.1. 安装 Nginx</a></li>
+<li><a href="#_安装_mysql">13.5.2. 安装 MySQL</a></li>
+<li><a href="#_安装_php7">13.5.3. 安装 PHP7</a></li>
+<li><a href="#_lnmp_环境测试">13.5.4. LNMP 环境测试</a></li>
+</ul>
+</li>
+<li><a href="#_centos8配置文档">13.6. CentOS8配置文档</a>
+<ul class="sectlevel3">
+<li><a href="#_安装_nginx_2">13.6.1. 安装 Nginx</a></li>
+<li><a href="#_安装_mysql_2">13.6.2. 安装 MySQL</a></li>
+<li><a href="#_安装_php7_2">13.6.3. 安装 PHP7</a></li>
+<li><a href="#_lnmp环境测试">13.6.4. LNMP环境测试</a></li>
+</ul>
+</li>
+<li><a href="#_centos8安装前加载驱动">13.7. CentOS8安装前加载驱动</a>
+<ul class="sectlevel3">
+<li><a href="#_dell_precision_t3600">13.7.1. Dell Precision T3600</a>
 <ul class="sectlevel4">
 <li><a href="#_storage_controller">Storage Controller</a></li>
 <li><a href="#_dud">DUD</a></li>
@@ -5280,7 +5294,244 @@ dist/
 <h2 id="_CentOS_chapter">13. CentOS</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_centos6初始化">13.1. CentOS6初始化</h3>
+<h3 id="_centos6挂载iso文件做仓库">13.1. CentOS6挂载ISO文件做仓库</h3>
+<div class="paragraph">
+<p>CentOS6官方已经停止支持，软件仓库被移除（涉及所有仓库镜像，包括国内镜像）。</p>
+</div>
+<div class="paragraph">
+<p>现在，<code>yum</code> 命令已经不能在线安装任何软件包。</p>
+</div>
+<div class="paragraph">
+<p>详情见： <a href="http://mirror.centos.org/centos/6/readme" class="bare">http://mirror.centos.org/centos/6/readme</a></p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>This directory (and version of CentOS) is deprecated. Please see this FAQ
+concerning the CentOS release scheme:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://wiki.centos.org/FAQ/General" class="bare">https://wiki.centos.org/FAQ/General</a></p>
+</div>
+<div class="paragraph">
+<p>Please keep in mind that 6.0, 6.1, 6.2, 6.3, 6.4 , 6.5, 6.6, 6.7, 6.8 , 6.9 and 6.10 no longer get any updates, nor
+any security fix&#8217;s.
+The whole CentOS 6 is <strong>dead</strong> and <strong>shouldn&#8217;t</strong> be used anywhere at <strong>all</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>生产服务器不能换系统，挂载ISO文件做仓库成唯一方法。</p>
+</div>
+<div class="sect3">
+<h4 id="_下载_centos6_iso镜像">13.1.1. 下载 CentOS6 ISO镜像</h4>
+<div class="paragraph">
+<p>国内CentOS镜像已经无法下载，只能从CentOS官方提供的地址下载。</p>
+</div>
+<div class="paragraph">
+<p>地址： <a href="https://vault.centos.org/6.10/isos/x86_64/" class="bare">https://vault.centos.org/6.10/isos/x86_64/</a></p>
+</div>
+<div class="paragraph">
+<p>需要下载 CentOS-6.10-x86_64-bin-DVD1.iso 和 CentOS-6.10-x86_64-bin-DVD2.iso。</p>
+</div>
+<div class="paragraph">
+<p>推荐用种子下载，更快：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1to2.torrent" class="bare">https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1to2.torrent</a></p>
+</div>
+<div class="paragraph">
+<p>也可以直接下载，只是更慢：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1.iso" class="bare">https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1.iso</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD2.iso" class="bare">https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD2.iso</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_设置本地软件仓库">13.1.2. 设置本地软件仓库</h4>
+<div class="sect4">
+<h5 id="_创建挂载目录">创建挂载目录</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /media/CentOS-DVD1 /media/CentOS-DVD2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_挂载iso镜像">挂载ISO镜像</h5>
+<div class="paragraph">
+<p>方法一：从光驱挂载</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mount -o loop,ro /dev/cdrom /media/CentOS-DVD1
+mount -o loop,ro /dev/cdrom1 /media/CentOS-DVD2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>方法二：从ISO文件挂载</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mount -o loop,ro CentOS-6.10-x86_64-bin-DVD1.iso /media/CentOS-DVD1
+mount -o loop,ro CentOS-6.10-x86_64-bin-DVD2.iso /media/CentOS-DVD2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_设置仓库文件">设置仓库文件</h5>
+<div class="paragraph">
+<p>先备份：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp /etc/yum.repos.d/CentOS-Media.repo /etc/yum.repos.d/CentOS-Media.repo.bak</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建配置文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/yum.repos.d/CentOS-Media.repo
+# CentOS-Media.repo
+#
+#  This repo can be used with mounted DVD media, verify the mount point for
+#  CentOS-6.  You can use this repo and yum to install items directly off the
+#  DVD ISO that we release.
+#
+# To use this repo, put in your DVD and use it with the other repos too:
+#  yum --enablerepo=c6-media [command]
+#
+# or for ONLY the media repo, do this:
+#
+#  yum --disablerepo=\* --enablerepo=c6-media [command]
+
+[c6-media]
+name=CentOS-$releasever - Media
+baseurl=file:///media/CentOS-DVD1
+        file:///media/CentOS-DVD2
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>清除YUM安装包缓存：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum clean all</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_禁用在线仓库">禁用在线仓库</h5>
+<div class="paragraph">
+<p>因为在线仓库已经不可用，禁用所有在线仓库。</p>
+</div>
+<div class="paragraph">
+<p>安装 <code>yum-config-manager</code> 命令所属的软件包 <code>yum-utils</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo=\* --enablerepo=c6-media install -y yum-utils</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>yum-utils</code> 包含很多有用的命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@localhost ~]# rpm -ql yum-utils|grep bin/
+/usr/bin/debuginfo-install
+/usr/bin/find-repos-of-install
+/usr/bin/needs-restarting
+/usr/bin/package-cleanup
+/usr/bin/repo-graph
+/usr/bin/repo-rss
+/usr/bin/repoclosure
+/usr/bin/repodiff
+/usr/bin/repomanage
+/usr/bin/repoquery
+/usr/bin/reposync
+/usr/bin/repotrack
+/usr/bin/show-changed-rco
+/usr/bin/show-installed
+/usr/bin/verifytree
+/usr/bin/yum-builddep
+/usr/bin/yum-config-manager
+/usr/bin/yum-debug-dump
+/usr/bin/yum-debug-restore
+/usr/bin/yum-groups-manager
+/usr/bin/yumdownloader
+/usr/sbin/yum-complete-transaction
+/usr/sbin/yumdb</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>永久禁用默认启用的仓库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum-config-manager --disable base updates extras</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用 <code>yum repolist</code> 命令确认只有 <code>"c6-media"</code> 仓库被启用：</p>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@localhost ~]# yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+repo id                            repo name                                 status
+c6-media                           CentOS- - Media                           6,713
+repolist: 6,713</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认本地仓库生效">确认本地仓库生效</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum list|grep vim</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">vim-common.x86_64                          2:7.4.629-5.el6_8.1         @c6-media
+vim-enhanced.x86_64                        2:7.4.629-5.el6_8.1         @c6-media
+vim-filesystem.x86_64                      2:7.4.629-5.el6_8.1         @c6-media
+vim-minimal.x86_64                         2:7.4.629-5.el6_8.1         @anaconda-CentOS-201806291108.x86_64/6.10
+vim-X11.x86_64                             2:7.4.629-5.el6_8.1         c6-media</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>现在，可以用 <code>yum install</code> 安装软件包了。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_centos6初始化">13.2. CentOS6初始化</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum -y erase iscsi* NetworkManager
@@ -5371,7 +5622,7 @@ chkconfig  lvm2-monitor off 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos7初始化">13.2. CentOS7初始化</h3>
+<h3 id="_centos7初始化">13.3. CentOS7初始化</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#禁止关闭显示器 archlinux wiki 提及的方法
@@ -5452,7 +5703,7 @@ firewall-cmd --reload</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8初始化">13.3. CentOS8初始化</h3>
+<h3 id="_centos8初始化">13.4. CentOS8初始化</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y iproute rsync epel-release vim-enhanced wget curl
@@ -5503,9 +5754,9 @@ systemctl mask firewalld</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos7_install_lnmp">13.4. CentOS7 Install LNMP</h3>
+<h3 id="_centos7_install_lnmp">13.5. CentOS7 Install LNMP</h3>
 <div class="sect3">
-<h4 id="_安装_nginx">13.4.1. 安装 Nginx</h4>
+<h4 id="_安装_nginx">13.5.1. 安装 Nginx</h4>
 <div class="listingblock">
 <div class="title">增加 Nginx 官方源</div>
 <div class="content">
@@ -5732,7 +5983,7 @@ LISTEN     0      128         :::80                      :::*                   
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_mysql">13.4.2. 安装 MySQL</h4>
+<h4 id="_安装_mysql">13.5.2. 安装 MySQL</h4>
 <div class="listingblock">
 <div class="title">安装 MySQL</div>
 <div class="content">
@@ -5868,7 +6119,7 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_php7">13.4.3. 安装 PHP7</h4>
+<h4 id="_安装_php7">13.5.3. 安装 PHP7</h4>
 <div class="listingblock">
 <div class="title">增加SCL源</div>
 <div class="content">
@@ -5967,7 +6218,7 @@ LISTEN     0      128    127.0.0.1:9000                     *:*                 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lnmp_环境测试">13.4.4. LNMP 环境测试</h4>
+<h4 id="_lnmp_环境测试">13.5.4. LNMP 环境测试</h4>
 <div class="listingblock">
 <div class="title">增加数据库</div>
 <div class="content">
@@ -6130,9 +6381,9 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8配置文档">13.5. CentOS8配置文档</h3>
+<h3 id="_centos8配置文档">13.6. CentOS8配置文档</h3>
 <div class="sect3">
-<h4 id="_安装_nginx_2">13.5.1. 安装 Nginx</h4>
+<h4 id="_安装_nginx_2">13.6.1. 安装 Nginx</h4>
 <div class="listingblock">
 <div class="title">增加EPEL源</div>
 <div class="content">
@@ -6300,7 +6551,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_mysql_2">13.5.2. 安装 MySQL</h4>
+<h4 id="_安装_mysql_2">13.6.2. 安装 MySQL</h4>
 <div class="listingblock">
 <div class="title">安装 MySQL</div>
 <div class="content">
@@ -6405,7 +6656,7 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_php7_2">13.5.3. 安装 PHP7</h4>
+<h4 id="_安装_php7_2">13.6.3. 安装 PHP7</h4>
 <div class="listingblock">
 <div class="title">安装PHP7</div>
 <div class="content">
@@ -6457,7 +6708,7 @@ sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/php.ini</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lnmp环境测试">13.5.4. LNMP环境测试</h4>
+<h4 id="_lnmp环境测试">13.6.4. LNMP环境测试</h4>
 <div class="listingblock">
 <div class="title">增加数据库</div>
 <div class="content">
@@ -6520,7 +6771,7 @@ chmod -R 755 /data/web/drupal.foo.com</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8安装前加载驱动">13.6. CentOS8安装前加载驱动</h3>
+<h3 id="_centos8安装前加载驱动">13.7. CentOS8安装前加载驱动</h3>
 <div class="paragraph">
 <p>RedHat7中支持，但是在RedHat8中已经移除的硬件列表。特别是一些老的存储相关硬件。</p>
 </div>
@@ -6570,7 +6821,7 @@ In RHEL 8.0, support for a good number of hardware devices has been removed. A l
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dell_precision_t3600">13.6.1. Dell Precision T3600</h4>
+<h4 id="_dell_precision_t3600">13.7.1. Dell Precision T3600</h4>
 <div class="paragraph">
 <p><a href="https://www.dell.com/learn/us/en/04/shared-content~data-sheets~en/documents~dell_precision_t3600_spec_sheet.pdf">Dell Precision T3600 Spec Sheet</a></p>
 </div>
