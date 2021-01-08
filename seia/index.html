@@ -1873,8 +1873,8 @@ mkdir -p /etc/docker
 cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://registry.docker-cn.com"
+    "https://registry.docker-cn.com",
+    "https://hub-mirror.c.163.com"
   ],
   "graph": "/var/lib/docker",
   "storage-driver": "overlay2",
@@ -1885,6 +1885,18 @@ cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 }
 EOF</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+mirrors 位置最后一个优先级高
+</td>
+</tr>
+</table>
 </div>
 <div class="dlist">
 <div class="title">参数说明</div>
@@ -1981,9 +1993,9 @@ mkdir -p /etc/docker
 cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 {
   "registry-mirrors": [
+    "https://registry.docker-cn.com",
     "https://dockerhub.azk8s.cn",
-    "https://hub-mirror.c.163.com",
-    "https://registry.docker-cn.com"
+    "https://hub-mirror.c.163.com"
   ],
   "graph": "/var/lib/docker",
   "storage-driver": "overlay2",
@@ -1994,6 +2006,18 @@ cat &lt;&lt; EOF &gt; /etc/docker/daemon.json
 }
 EOF</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+mirrors 位置最后一个优先级高
+</td>
+</tr>
+</table>
 </div>
 <div class="dlist">
 <div class="title">参数说明</div>
