@@ -3288,6 +3288,45 @@ flush privileges;</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_查看字符集">7.1.5. 查看字符集</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>utf8mb4_unicode_ci</code> 是用UNICODE排序，不是中文！</p>
+</div>
+<div class="paragraph">
+<p>需要中文可以考虑用 <code>utf8mb4_zh_0900_as_cs</code>。</p>
+</div>
+<div class="paragraph">
+<p>修改表排序规则：</p>
+</div>
+<div class="paragraph">
+<p><code>ALTER TABLE project CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_zh_0900_as_cs;</code></p>
+</div>
+<div class="paragraph">
+<p>查看表排序规则：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>`show table project`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>参考：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>https://dev.mysql.com/doc/refman/8.0/en/charset-unicode-sets.html</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">查看数据库字符集1</div>
 <div class="content">
@@ -17773,7 +17812,7 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-11 01:03:31 +0800
+Last updated 2020-11-25 15:00:02 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
