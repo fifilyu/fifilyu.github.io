@@ -3100,9 +3100,8 @@ virt-install \
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; guest-device.xml
 &lt;disk type='block' device='cdrom'&gt;
   &lt;driver name='qemu' type='raw'/&gt;
-  &lt;target dev='hdc' bus='ide'/&gt;
+  &lt;target dev='vdc' bus='sata'/&gt;
   &lt;readonly/&gt;
-  &lt;alias name='ide0-1-0'/&gt;
 &lt;/disk&gt;
 EOF
 
@@ -3112,8 +3111,32 @@ virsh attach-device --config tpl_win2k12r2 guest-device.xml</code></pre>
 <div class="listingblock">
 <div class="title">有光驱，动态插入ISO</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virsh attach-disk tpl_win2k12r2 /data/libvirt/iso/win2k12r2.iso hdc --type cdrom --mode readonly</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virsh change-media tpl_win2k12r2 vdc /data/libvirt/iso/win2k12r2.iso</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>注意设置启动菜单：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;os&gt;
+  ....
+  &lt;boot dev='cdrom'/&gt;
+  &lt;boot dev='hd'/&gt;
+  &lt;bootmenu enable='yes'/&gt;
+&lt;/os&gt;</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">内网NAT</div>
@@ -3178,7 +3201,7 @@ cat &lt;&lt;EOF &gt; NewStorage.xml
 &lt;disk type='file' device='disk'&gt;
   &lt;driver name='qemu' type='qcow2' cache='none'/&gt;
   &lt;source file='/var/lib/libvirt/images/vm192168122253_1.img'/&gt;
-  &lt;target dev='hdb' bus='ide'/&gt;
+  &lt;target dev='vdb' bus='sata'/&gt;
 &lt;/disk&gt;
 EOF
 
@@ -17812,7 +17835,7 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-06 13:10:42 +0800
+Last updated 2020-11-25 15:00:02 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
