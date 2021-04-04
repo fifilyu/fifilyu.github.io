@@ -1733,6 +1733,29 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装_11">50.1. 安装</a></li>
 </ul>
 </li>
+<li><a href="#_Rust_chapter">51. Rust</a>
+<ul class="sectlevel2">
+<li><a href="#_安装_12">51.1. 安装</a>
+<ul class="sectlevel3">
+<li><a href="#_arch_linux_2">51.1.1. Arch Linux</a></li>
+</ul>
+</li>
+<li><a href="#_rustup">51.2. rustup</a>
+<ul class="sectlevel3">
+<li><a href="#_rustup参数">51.2.1. rustup参数</a></li>
+<li><a href="#_rustup源设置">51.2.2. rustup源设置</a></li>
+<li><a href="#_rustup实践">51.2.3. rustup实践</a></li>
+</ul>
+</li>
+<li><a href="#_cargo">51.3. Cargo</a>
+<ul class="sectlevel3">
+<li><a href="#_cargo参数">51.3.1. Cargo参数</a></li>
+<li><a href="#_cargo源设置">51.3.2. Cargo源设置</a></li>
+<li><a href="#_cargo实践">51.3.3. Cargo实践</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</a>
 <ul class="sectlevel2">
 <li><a href="#_ascii_control_characters_character_code_0_31">A.1. ASCII control characters (character code 0-31)</a></li>
@@ -3100,8 +3123,9 @@ virt-install \
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; guest-device.xml
 &lt;disk type='block' device='cdrom'&gt;
   &lt;driver name='qemu' type='raw'/&gt;
-  &lt;target dev='vdc' bus='sata'/&gt;
+  &lt;target dev='hdc' bus='ide'/&gt;
   &lt;readonly/&gt;
+  &lt;alias name='ide0-1-0'/&gt;
 &lt;/disk&gt;
 EOF
 
@@ -3111,32 +3135,8 @@ virsh attach-device --config tpl_win2k12r2 guest-device.xml</code></pre>
 <div class="listingblock">
 <div class="title">有光驱，动态插入ISO</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virsh change-media tpl_win2k12r2 vdc /data/libvirt/iso/win2k12r2.iso</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">virsh attach-disk tpl_win2k12r2 /data/libvirt/iso/win2k12r2.iso hdc --type cdrom --mode readonly</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>注意设置启动菜单：</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;os&gt;
-  ....
-  &lt;boot dev='cdrom'/&gt;
-  &lt;boot dev='hd'/&gt;
-  &lt;bootmenu enable='yes'/&gt;
-&lt;/os&gt;</pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="listingblock">
 <div class="title">内网NAT</div>
@@ -3201,7 +3201,7 @@ cat &lt;&lt;EOF &gt; NewStorage.xml
 &lt;disk type='file' device='disk'&gt;
   &lt;driver name='qemu' type='qcow2' cache='none'/&gt;
   &lt;source file='/var/lib/libvirt/images/vm192168122253_1.img'/&gt;
-  &lt;target dev='vdb' bus='sata'/&gt;
+  &lt;target dev='hdb' bus='ide'/&gt;
 &lt;/disk&gt;
 EOF
 
@@ -15171,6 +15171,352 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_Rust_chapter">51. Rust</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装_12">51.1. 安装</h3>
+<div class="sect3">
+<h4 id="_arch_linux_2">51.1.1. Arch Linux</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo pacman -S rustup
+
+# 启用 TUNA 源
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+echo 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.bash_profile
+
+rustup install stable
+
+rustup default stable
+
+rustup toolchain list
+
+rustup update</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rustup">51.2. rustup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">官方文档</dt>
+<dd>
+<p><a href="https://rust-lang.github.io/rustup/">The rustup book</a></p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_rustup参数">51.2.1. rustup参数</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>pacman</code> 方式安装的 <code>rustup</code> 不能使用 <code>rustup self update</code> 更新 <code>rustup</code>。只能通过 <code>pacman</code> 更新。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>rustup -h</code> 帮助信息：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">rustup 1.23.1 (2020-12-18)
+The Rust toolchain installer
+
+USAGE:
+    rustup [FLAGS] [+toolchain] &lt;SUBCOMMAND&gt;
+
+FLAGS:
+    -v, --verbose    Enable verbose output
+    -q, --quiet      Disable progress output
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+ARGS:
+    &lt;+toolchain&gt;    release channel (e.g. +stable) or custom toolchain to set override
+
+SUBCOMMANDS:
+    show           Show the active and installed toolchains or profiles
+    update         Update Rust toolchains and rustup
+    check          Check for updates to Rust toolchains
+    default        Set the default toolchain
+    toolchain      Modify or query the installed toolchains
+    target         Modify a toolchain's supported targets
+    component      Modify a toolchain's installed components
+    override       Modify directory toolchain overrides
+    run            Run a command with an environment configured for a given toolchain
+    which          Display which binary will be run for a given command
+    doc            Open the documentation for the current toolchain
+    man            View the man page for a given command
+    self           Modify the rustup installation
+    set            Alter rustup settings
+    completions    Generate tab-completion scripts for your shell
+    help           Prints this message or the help of the given subcommand(s)
+
+DISCUSSION:
+    rustup installs The Rust Programming Language from the official
+    release channels, enabling you to easily switch between stable,
+    beta, and nightly compilers and keep them updated. It makes
+    cross-compiling simpler with binary builds of the standard library
+    for common platforms.
+
+    If you are new to Rust consider running `rustup doc --book` to
+    learn Rust.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>rustup toolchain  -h</code> 帮助信息：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">rustup-toolchain
+Modify or query the installed toolchains
+
+USAGE:
+    rustup toolchain &lt;SUBCOMMAND&gt;
+
+FLAGS:
+    -h, --help    Prints help information
+
+SUBCOMMANDS:
+    list         List installed toolchains
+    install      Install or update a given toolchain
+    uninstall    Uninstall a toolchain
+    link         Create a custom toolchain by symlinking to a directory
+    help         Prints this message or the help of the given subcommand(s)
+
+DISCUSSION:
+    Many `rustup` commands deal with *toolchains*, a single
+    installation of the Rust compiler. `rustup` supports multiple
+    types of toolchains. The most basic track the official release
+    channels: 'stable', 'beta' and 'nightly'; but `rustup` can also
+    install toolchains from the official archives, for alternate host
+    platforms, and from local builds.
+
+    Standard release channel toolchain names have the following form:
+
+        &lt;channel&gt;[-&lt;date&gt;][-&lt;host&gt;]
+
+        &lt;channel&gt;       = stable|beta|nightly|&lt;major.minor&gt;|&lt;major.minor.patch&gt;
+        &lt;date&gt;          = YYYY-MM-DD
+        &lt;host&gt;          = &lt;target-triple&gt;
+
+    'channel' is a named release channel, a major and minor version
+    number such as `1.42`, or a fully specified version number, such
+    as `1.42.0`. Channel names can be optionally appended with an
+    archive date, as in `nightly-2014-12-18`, in which case the
+    toolchain is downloaded from the archive for that date.
+
+    The host may be specified as a target triple. This is most useful
+    for installing a 32-bit compiler on a 64-bit platform, or for
+    installing the [MSVC-based toolchain] on Windows. For example:
+
+        $ rustup toolchain install stable-x86_64-pc-windows-msvc
+
+    For convenience, omitted elements of the target triple will be
+    inferred, so the above could be written:
+
+        $ rustup toolchain install stable-msvc
+
+    The `rustup default` command may be used to both install and set
+    the desired toolchain as default in a single command:
+
+        $ rustup default stable-msvc
+
+    rustup can also manage symlinked local toolchain builds, which are
+    often used for developing Rust itself. For more information see
+    `rustup toolchain help link`.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rustup源设置">51.2.2. rustup源设置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+echo 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt;&gt; ~/.bash_profile</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rustup实践">51.2.3. rustup实践</h4>
+<div class="paragraph">
+<p>用默认浏览器打开 <code>"The Rust Programming Language"</code> 文档：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup doc --book</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装工具链：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup install stable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>或</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup toolchain install stable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>设置默认工具链：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup default stable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查询当前安装的工具链：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup toolchain list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>移除指定的工具链：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup toolchain uninstall 1.48-x86_64-unknown-linux-gnu</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>更新工具链：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup update</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cargo">51.3. Cargo</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">官方文档</dt>
+<dd>
+<p><a href="https://doc.rust-lang.org/cargo/">The Cargo Book</a></p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_cargo参数">51.3.1. Cargo参数</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ cargo -h
+Rust's package manager
+
+USAGE:
+    cargo [+toolchain] [OPTIONS] [SUBCOMMAND]
+
+OPTIONS:
+    -V, --version                  Print version info and exit
+        --list                     List installed commands
+        --explain &lt;CODE&gt;           Run `rustc --explain CODE`
+    -v, --verbose                  Use verbose output (-vv very verbose/build.rs output)
+    -q, --quiet                    No output printed to stdout
+        --color &lt;WHEN&gt;             Coloring: auto, always, never
+        --frozen                   Require Cargo.lock and cache are up to date
+        --locked                   Require Cargo.lock is up to date
+        --offline                  Run without accessing the network
+        --config &lt;KEY=VALUE&gt;...    Override a configuration value (unstable)
+    -Z &lt;FLAG&gt;...                   Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details
+    -h, --help                     Prints help information
+
+Some common cargo commands are (see all commands with --list):
+    build, b    Compile the current package
+    check, c    Analyze the current package and report errors, but don't build object files
+    clean       Remove the target directory
+    doc         Build this package's and its dependencies' documentation
+    new         Create a new cargo package
+    init        Create a new cargo package in an existing directory
+    run, r      Run a binary or example of the local package
+    test, t     Run the tests
+    bench       Run the benchmarks
+    update      Update dependencies listed in Cargo.lock
+    search      Search registry for crates
+    publish     Package and upload this package to the registry
+    install     Install a Rust binary. Default location is $HOME/.cargo/bin
+    uninstall   Uninstall a Rust binary
+
+See 'cargo help &lt;command&gt;' for more information on a specific command.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cargo源设置">51.3.2. Cargo源设置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.cargo/config
+[source.crates-io]
+replace-with = 'tuna'
+
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cargo实践">51.3.3. Cargo实践</h4>
+<div class="paragraph">
+<p>用cargo基于Git仓库创建一个Rust项目：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cargo new --vcs=git hello_cargo
+cd hello_cargo
+
+ls .git*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编译并运行，方法一：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cargo build
+cargo build --release
+
+./target/debug/hello_cargo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编译并运行，方法二：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cargo run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>分析当前项目，报告错误信息（不编译）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cargo check</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -17835,7 +18181,7 @@ pip3 install frida==12.11.17 frida-tools</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-25 15:00:02 +0800
+Last updated 2021-04-04 14:21:03 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
