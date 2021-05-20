@@ -1532,7 +1532,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_配置_7">39.2.6. 配置</a></li>
 </ul>
 </li>
-<li><a href="#_部分过时elasticstack使用教程">39.3. （部分过时）ElasticStack使用教程</a>
+<li><a href="#_elasticstack使用教程">39.3. ElasticStack使用教程</a>
 <ul class="sectlevel3">
 <li><a href="#_索引文档">39.3.1. 索引文档</a></li>
 <li><a href="#_搜索">39.3.2. 搜索</a>
@@ -11858,7 +11858,7 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_部分过时elasticstack使用教程">39.3. （部分过时）ElasticStack使用教程</h3>
+<h3 id="_elasticstack使用教程">39.3. ElasticStack使用教程</h3>
 <div class="paragraph">
 <p>我们以 <code>wecompany</code> 公司的员工信息管理为例来学习 <code>Elasticsearch</code> 中的基本操作。</p>
 </div>
@@ -12025,22 +12025,22 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -H "Content-Type: application/json" -X GET 'http://localhost:9200/wecompany/employee/_search?pretty' -d '
 {
-  "query": {
-    "filtered": {
-      "filter": {
-        "range": {
-          "age": {
-            "gt": 30
-          }
+    "query": {
+        "bool": {
+            "must": {
+                "match": {
+                    "last_name": "smith"
+                }
+            },
+            "filter": {
+                "range": {
+                    "age": {
+                        "gt": 30
+                    }
+                }
+            }
         }
-      },
-      "query": {
-        "match": {
-          "last_name": "smith"
-        }
-      }
     }
-  }
 }
 '</code></pre>
 </div>
@@ -12263,32 +12263,6 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 <h4 id="_聚合">39.3.3. 聚合</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">先启用相关字段的分析功能</dt>
-</dl>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany/_mapping/employee?pretty' -d '
-{
-    "properties": {
-        "interests": {
-            "type":     "text",
-            "fielddata": true
-        }
-    }
-}
-'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
-  "acknowledged" : true
-}</code></pre>
-</div>
-</div>
-<div class="dlist">
-<dl>
 <dt class="hdlist1">查询聚合结果</dt>
 </dl>
 </div>
@@ -12298,7 +12272,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
 {
     "aggs": {
         "all_interests": {
-            "terms": { "field": "interests" }
+            "terms": { "field": "interests.keyword" }
         }
     }
 }
@@ -12406,7 +12380,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
   "aggs": {
     "all_interests": {
       "terms": {
-        "field": "interests"
+        "field": "interests.keyword"
       }
     }
   }
@@ -12449,7 +12423,7 @@ curl -H "Content-Type: application/json" -X PUT 'http://localhost:9200/wecompany
   "aggs": {
     "all_interests": {
       "terms": {
-        "field": "interests"
+        "field": "interests.keyword"
       },
       "aggs": {
         "avg_age": {
