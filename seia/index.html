@@ -1171,6 +1171,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_命令合集">16.2. 命令合集</a>
 <ul class="sectlevel3">
 <li><a href="#_mp4转换为mp3">16.2.1. mp4转换为mp3</a></li>
+<li><a href="#_dvd_iso转换为_matroska_视频格式">16.2.2. DVD-ISO转换为 matroska 视频格式</a></li>
 </ul>
 </li>
 </ul>
@@ -7487,6 +7488,58 @@ dnf install -y ffmpeg</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ffmpeg -i 'BLACKPINK - Really.mp4'  -vn -ar 44100 -ac 2 -b:a 192k 'BLACKPINK - Really.mp3'</code></pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dvd_iso转换为_matroska_视频格式">16.2.2. DVD-ISO转换为 matroska 视频格式</h4>
+<div class="paragraph">
+<p>在GNOME文件管理窗口选中 <code>BoA_Who&#8217;s back 2014 Live Tour_Blu-ray.iso</code> （DVD-ISO）文件，右键选择 “磁盘映像挂载器”，将ISO文件挂载好。</p>
+</div>
+<div class="paragraph">
+<p>找到挂载目录下的 <code>.m2ts</code> 文件（ <code>STREAM</code> 目录下），人工筛选出需要的文件，写入到 <code>m2ts_list.txt</code> 文件。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+不是所有 <code>.m2ts</code> 文件都需要，有些是DVD片头或播放菜单
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "file '/run/media/BOA_LIVE_TOUR2014/BDMV/STREAM/00004.m2ts'" &gt; m2ts_list.txt
+echo "file '/run/media/BOA_LIVE_TOUR2014/BDMV/STREAM/00005.m2ts'" &gt;&gt; m2ts_list.txt
+
+ffmpeg -f concat -safe 0 -i m2ts_list.txt  -vcodec copy -acodec pcm_s24le output.mkv</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参数解释</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>pcm_s24le</code></dt>
+<dd>
+<p><code>pcm_bluray</code> 音频编码只能用于m2ts文件，mkv文件格式最多支持到 <code>pcm_s24le</code></p>
+</dd>
+<dt class="hdlist1"><code>-vcodec copy</code></dt>
+<dd>
+<p>保留视频原始比特率，保持画面质量</p>
+</dd>
+<dt class="hdlist1"><code>m2ts_list.txt</code></dt>
+<dd>
+<p>多输入文件需要使用到清单文件，官方文档 <a href="https://trac.ffmpeg.org/wiki/Concatenate" class="bare">https://trac.ffmpeg.org/wiki/Concatenate</a></p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -18178,7 +18231,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-18 19:57:08 +0800
+Last updated 2021-04-04 14:21:03 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
