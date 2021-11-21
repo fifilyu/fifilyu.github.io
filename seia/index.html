@@ -835,7 +835,29 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_PostgreSQL_chapter">4. PostgreSQL</a>
 <ul class="sectlevel2">
-<li><a href="#_常用参数">4.1. 常用参数</a></li>
+<li><a href="#_基础入门">4.1. 基础入门</a>
+<ul class="sectlevel3">
+<li><a href="#_初始化">4.1.1. 初始化</a></li>
+<li><a href="#_配置文件">4.1.2. 配置文件</a>
+<ul class="sectlevel4">
+<li><a href="#_socket连接">socket连接</a></li>
+<li><a href="#_连接指定主机端口5432">连接指定主机（端口5432）</a></li>
+</ul>
+</li>
+<li><a href="#_启动服务">4.1.3. 启动服务</a></li>
+<li><a href="#_通过socket登录数据库">4.1.4. 通过socket登录数据库</a></li>
+<li><a href="#_psql创建用户">4.1.5. psql创建用户</a></li>
+<li><a href="#_psql创建数据库">4.1.6. psql创建数据库</a></li>
+<li><a href="#_测试通过网络登录数据库">4.1.7. 测试通过网络登录数据库</a></li>
+<li><a href="#_导入导出">4.1.8. 导入导出</a></li>
+<li><a href="#_pgsql控制台命令">4.1.9. pgsql控制台命令</a></li>
+</ul>
+</li>
+<li><a href="#_常用技巧">4.2. 常用技巧</a>
+<ul class="sectlevel3">
+<li><a href="#_查看表大小">4.2.1. 查看表大小</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_Linux_chapter">5. Linux</a>
@@ -1204,7 +1226,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_GCC_chapter">19. GCC</a>
 <ul class="sectlevel2">
-<li><a href="#_常用技巧">19.1. 常用技巧</a></li>
+<li><a href="#_常用技巧_2">19.1. 常用技巧</a></li>
 </ul>
 </li>
 <li><a href="#_Java_chapter">20. Java</a>
@@ -1334,7 +1356,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_上传_pypi">24.6. 上传 <code>PyPI</code></a>
 <ul class="sectlevel3">
-<li><a href="#_配置文件">24.6.1. 配置文件</a></li>
+<li><a href="#_配置文件_2">24.6.1. 配置文件</a></li>
 <li><a href="#_打包_2">24.6.2. 打包</a></li>
 <li><a href="#_测试上传">24.6.3. 测试上传</a></li>
 <li><a href="#_上传">24.6.4. 上传</a></li>
@@ -1398,7 +1420,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装_polipo">安装 Polipo</a></li>
 <li><a href="#_配置文件_polipo">配置文件 Polipo</a></li>
 <li><a href="#_创建系统服务_2">创建系统服务</a></li>
-<li><a href="#_启动服务">启动服务</a></li>
+<li><a href="#_启动服务_2">启动服务</a></li>
 </ul>
 </li>
 </ul>
@@ -1501,7 +1523,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装_6">安装</a></li>
 <li><a href="#_配置_5">配置</a></li>
 <li><a href="#_开机启动">开机启动</a></li>
-<li><a href="#_启动服务_2">启动服务</a></li>
+<li><a href="#_启动服务_3">启动服务</a></li>
 </ul>
 </li>
 <li><a href="#_kibana">39.1.4. Kibana</a>
@@ -1509,7 +1531,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装_7">安装</a></li>
 <li><a href="#_配置_6">配置</a></li>
 <li><a href="#_开机启动_2">开机启动</a></li>
-<li><a href="#_启动服务_3">启动服务</a></li>
+<li><a href="#_启动服务_4">启动服务</a></li>
 <li><a href="#_最后_2">最后</a></li>
 </ul>
 </li>
@@ -1517,7 +1539,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel4">
 <li><a href="#_日志处理管道">日志处理管道</a></li>
 <li><a href="#_准备日志文件">准备日志文件</a></li>
-<li><a href="#_配置文件_2">配置文件</a></li>
+<li><a href="#_配置文件_3">配置文件</a></li>
 <li><a href="#_导入nginx日志到elasticsearch">导入Nginx日志到Elasticsearch</a></li>
 </ul>
 </li>
@@ -2651,22 +2673,390 @@ server {
 <h2 id="_PostgreSQL_chapter">4. PostgreSQL</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_常用参数">4.1. 常用参数</h3>
+<h3 id="_基础入门">4.1. 基础入门</h3>
+<div class="sect3">
+<h4 id="_初始化">4.1.1. 初始化</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /var/lib/postgres/data
+chown -R postgres:postgres /var/lib/postgres
+su - postgres -c "initdb --locale en_US.UTF-8 -D '/var/lib/postgres/data'"</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+默认数据库
+</td>
+<td class="hdlist2">
+<p>postgres</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+默认用户名称
+</td>
+<td class="hdlist2">
+<p>postgres</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+默认用户密码
+</td>
+<td class="hdlist2">
+<p>无</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_配置文件">4.1.2. 配置文件</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><code>\l</code></dt>
+<dt class="hdlist1">主配置文件</dt>
 <dd>
-<p>查看所有表</p>
+<p>/var/lib/postgres/data/postgresql.conf</p>
+</dd>
+<dt class="hdlist1">客户端认证配置文件</dt>
+<dd>
+<p>/var/lib/postgres/data/pg_hba.conf</p>
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p><code>pg_hba.conf</code> 中有：</p>
+</div>
 <div class="listingblock">
-<div class="title">查看表大小</div>
+<div class="content">
+<pre># TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_socket连接">socket连接</h5>
+<div class="paragraph">
+<p><code>local</code> 行表示任意用户使用socket（不指定 <code>-h</code> 参数）时连接连接所有数据库，不需要密码。比如，</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[postgres@ryzen7 ~]$ psql
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+postgres=#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这种连接和监听端口 <code>5432</code> 无关。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_连接指定主机端口5432">连接指定主机（端口5432）</h5>
+<div class="paragraph">
+<p><code>host</code> 行表示任意用户通过 <code>-h 127.0.0.1</code> 连接所有数据库，不需要密码。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[postgres@ryzen7 ~]$ psql -h 127.0.0.1
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+postgres=</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>通常，我会将上面这行修改为：</p>
+</div>
+<div class="paragraph">
+<p><code>host    all             all             0.0.0.0/0               password</code></p>
+</div>
+<div class="paragraph">
+<p>表示 <code>-h</code> 指定主机时，必须使用密码登录。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_启动服务">4.1.3. 启动服务</h4>
+<div class="listingblock">
+<div class="title">Arch Linux</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable postgresql
+
+systemctl start postgresql
+
+systemctl status postgresql</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_通过socket登录数据库">4.1.4. 通过socket登录数据库</h4>
+<div class="paragraph">
+<p>切换到postgres用户：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo su - postgres</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ sudo su - postgres
+[sudo] fifilyu 的密码：
+
+[postgres@ryzen7 ~]$ id
+用户id=88(postgres) 组id=88(postgres) 组=88(postgres)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>直接socket登录pg，不需要 <code>-h</code> 参数：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo su - postgres -c psql</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ sudo su - postgres -c psql
+[sudo] fifilyu 的密码：
+
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+postgres=#</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_psql创建用户">4.1.5. psql创建用户</h4>
+<div class="paragraph">
+<p><code>psql</code> 登录pg后，新建用户 <code>foo</code>，同时设置密码：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">create user foo with password 'password';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ sudo su - postgres -c psql
+[sudo] fifilyu 的密码：
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+postgres=# create user foo with password 'password';
+CREATE ROLE
+postgres=#</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_psql创建数据库">4.1.6. psql创建数据库</h4>
+<div class="paragraph">
+<p><code>psql</code> 登录pg后，新建数据库 <code>testdb</code>，同时设置数据库主用户：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">create database testdb owner foo;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ sudo su - postgres -c psql
+[sudo] fifilyu 的密码：
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+postgres=# create database testdb owner foo;
+CREATE DATABASE
+postgres=#</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_测试通过网络登录数据库">4.1.7. 测试通过网络登录数据库</h4>
+<div class="paragraph">
+<p>用新建的用户登录数据库 <code>testdb</code>：</p>
+</div>
+<div class="paragraph">
+<p><code>psql -h 127.0.0.1 -U foo testdb</code></p>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出——密码验证成功</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ psql -h 127.0.0.1 -U foo testdb
+用户 foo 的口令：
+psql (13.4)
+输入 "help" 来获取帮助信息.
+
+testdb=&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">控制台输出——密码错误提示</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[fifilyu@ryzen7 ~]$ psql -h 127.0.0.1 -U foo testdb
+用户 foo 的口令：
+psql: 错误: FATAL:  password authentication failed for user "foo"</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>pg_hba.conf</code> 中必须设置 <code>password</code> 认证密码登录才会有效。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_导入导出">4.1.8. 导入导出</h4>
+<div class="listingblock">
+<div class="title">导出指定数据库数据到SQL文件</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pg_dump --inserts -h 127.0.0.1 -U foo testdb -f testdb.sql</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">导入SQL文件到指定数据库</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">psql -h 127.0.0.1 -U foo testdb -f testdb.sql</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pgsql控制台命令">4.1.9. pgsql控制台命令</h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+\h
+</td>
+<td class="hdlist2">
+<p>查看SQL命令的解释，比如\h select。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\?
+</td>
+<td class="hdlist2">
+<p>查看psql命令列表。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\l
+</td>
+<td class="hdlist2">
+<p>列出所有数据库。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\c [database_name]
+</td>
+<td class="hdlist2">
+<p>连接其他数据库。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\d
+</td>
+<td class="hdlist2">
+<p>列出当前数据库的所有表格。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\d [table_name]
+</td>
+<td class="hdlist2">
+<p>列出某一张表格的结构。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\du
+</td>
+<td class="hdlist2">
+<p>列出所有用户。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\e
+</td>
+<td class="hdlist2">
+<p>打开文本编辑器。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\conninfo
+</td>
+<td class="hdlist2">
+<p>列出当前数据库和连接的信息。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\password
+</td>
+<td class="hdlist2">
+<p>修改当前用户密码</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+\q
+</td>
+<td class="hdlist2">
+<p>退出pgsql</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_常用技巧">4.2. 常用技巧</h3>
+<div class="sect3">
+<h4 id="_查看表大小">4.2.1. 查看表大小</h4>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">select relname, pg_size_pretty(pg_relation_size(relid)) from pg_stat_user_tables where schemaname='public' order by pg_relation_size(relid) desc;</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">控制台输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">zpmod=&gt; select relname, pg_size_pretty(pg_relation_size(relid)) from pg_stat_user_tables where schemaname='public' order by pg_relation_size(relid) desc;
+  relname  | pg_size_pretty
+-----------+----------------
+ node      | 8192 bytes
+ node_attr | 0 bytes
+(2 行记录)</code></pre>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -7886,7 +8276,7 @@ jd+6Xb3y6/u2+H0WrdV9D6kqmLn8bsuuz6/V1z73+rpe37W015dH23jvczjC49l6e+W17Xh0rNzT</pr
 <h2 id="_GCC_chapter">19. GCC</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_常用技巧">19.1. 常用技巧</h3>
+<h3 id="_常用技巧_2">19.1. 常用技巧</h3>
 <div class="paragraph">
 <p>我以CentOS6编译安装mosquitto为例。</p>
 </div>
@@ -9609,7 +9999,7 @@ pip38 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code
 <p><a href="https://docs.python.org/3.3/distutils/packageindex.html#pypirc" class="bare">https://docs.python.org/3.3/distutils/packageindex.html#pypirc</a></p>
 </div>
 <div class="sect3">
-<h4 id="_配置文件">24.6.1. 配置文件</h4>
+<h4 id="_配置文件_2">24.6.1. 配置文件</h4>
 <div class="listingblock">
 <div class="title">~/.pypirc</div>
 <div class="content">
@@ -10434,7 +10824,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_启动服务">启动服务</h5>
+<h5 id="_启动服务_2">启动服务</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable polipo
@@ -11375,7 +11765,7 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 </div>
 </div>
 <div class="sect4">
-<h5 id="_启动服务_2">启动服务</h5>
+<h5 id="_启动服务_3">启动服务</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start elasticsearch</code></pre>
@@ -11429,7 +11819,7 @@ sed -i '115s/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml</code
 </div>
 </div>
 <div class="sect4">
-<h5 id="_启动服务_3">启动服务</h5>
+<h5 id="_启动服务_4">启动服务</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start kibana</code></pre>
@@ -11597,7 +11987,7 @@ access.log-20200511  access.log-20200522  access.log-20200602</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_配置文件_2">配置文件</h5>
+<h5 id="_配置文件_3">配置文件</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/es_log
