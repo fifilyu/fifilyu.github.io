@@ -853,9 +853,10 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_pgsql控制台命令">4.1.9. pgsql控制台命令</a></li>
 </ul>
 </li>
-<li><a href="#_常用技巧">4.2. 常用技巧</a>
+<li><a href="#_常用sql">4.2. 常用SQL</a></li>
+<li><a href="#_常用技巧">4.3. 常用技巧</a>
 <ul class="sectlevel3">
-<li><a href="#_查看表大小">4.2.1. 查看表大小</a></li>
+<li><a href="#_查看表大小">4.3.1. 查看表大小</a></li>
 </ul>
 </li>
 </ul>
@@ -3036,9 +3037,105 @@ psql: 错误: FATAL:  password authentication failed for user "foo"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_常用技巧">4.2. 常用技巧</h3>
+<h3 id="_常用sql">4.2. 常用SQL</h3>
+<div class="listingblock">
+<div class="title">创建用户</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">create user dbuser with password 'password';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">用户权限设置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">grant all privileges on database db to dbuser;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">创建数据库</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">create database db;
+
+create database db owner dbuser;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">重命名数据库</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter database db RENAME to newdb;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">创建新表</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">create table table_name(name varchar(20), signup_date date);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">插入数据</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">insert into table_name(name, signup_date) values('张三', '2013-12-22');</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看记录</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">select * from table_name;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">更新数据</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">update table_name set name = '李四' where name = '张三';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">删除记录</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">delete from table_name where name = '李四' ;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">新增表字段</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter table table_name add email varchar(40);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">修改表字段</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter table table_name alter column signup_date set not null;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">重命名表字段</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs"># 更名栏位
+alter table table_name rename column signup_date to signup;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">删除表字段</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter table table_name drop column email;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">重命名表</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter table table_name rename to new_table_name;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">删除表</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">drop table if exists table_name;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_常用技巧">4.3. 常用技巧</h3>
 <div class="sect3">
-<h4 id="_查看表大小">4.2.1. 查看表大小</h4>
+<h4 id="_查看表大小">4.3.1. 查看表大小</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">select relname, pg_size_pretty(pg_relation_size(relid)) from pg_stat_user_tables where schemaname='public' order by pg_relation_size(relid) desc;</code></pre>
@@ -18621,7 +18718,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-04-04 14:21:03 +0800
+Last updated 2021-04-28 11:06:17 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
