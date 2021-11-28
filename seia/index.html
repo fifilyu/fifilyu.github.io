@@ -2732,12 +2732,12 @@ su - postgres -c "initdb --locale en_US.UTF-8 -D '/var/lib/postgres/data'"</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre># TYPE  DATABASE        USER            ADDRESS                 METHOD
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs"># TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 # IPv4 local connections:
-host    all             all             127.0.0.1/32            trust</pre>
+host    all             all             127.0.0.1/32            trust</code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2775,8 +2775,10 @@ postgres=</code></pre>
 <div class="paragraph">
 <p>通常，我会将上面这行修改为：</p>
 </div>
-<div class="paragraph">
-<p><code>host    all             all             0.0.0.0/0               password</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">host    all             all             0.0.0.0/0               password</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>表示 <code>-h</code> 指定主机时，必须使用密码登录。</p>
@@ -3061,7 +3063,7 @@ create database db owner dbuser;</code></pre>
 <div class="listingblock">
 <div class="title">重命名数据库</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter database db RENAME to newdb;</code></pre>
+<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">alter database db rename to newdb;</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -18717,7 +18719,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-04-28 11:06:17 +0800
+Last updated 2021-05-18 19:57:08 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
