@@ -941,24 +941,25 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_本地化语言支持">8.1.9. 本地化语言支持</a></li>
 <li><a href="#_键盘布局">8.1.10. 键盘布局</a></li>
 <li><a href="#_设置主机名">8.1.11. 设置主机名</a></li>
-<li><a href="#_设置root密码">8.1.12. 设置root密码</a></li>
-<li><a href="#_创建用户">8.1.13. 创建用户</a></li>
-<li><a href="#_安装grub引导">8.1.14. 安装Grub引导</a>
+<li><a href="#_本地网络配置">8.1.12. 本地网络配置</a></li>
+<li><a href="#_设置root密码">8.1.13. 设置root密码</a></li>
+<li><a href="#_创建用户">8.1.14. 创建用户</a></li>
+<li><a href="#_安装grub引导">8.1.15. 安装Grub引导</a>
 <ul class="sectlevel4">
 <li><a href="#_使用传统方式启动的bios">使用传统方式启动的BIOS</a></li>
 <li><a href="#_使用uefi启动的bios">使用UEFI启动的BIOS</a></li>
 </ul>
 </li>
-<li><a href="#_安装桌面">8.1.15. 安装桌面</a></li>
-<li><a href="#_重启">8.1.16. 重启</a></li>
-<li><a href="#_设置pacman">8.1.17. 设置pacman</a></li>
-<li><a href="#_安装常用软件">8.1.18. 安装常用软件</a></li>
-<li><a href="#_系统设置">8.1.19. 系统设置</a>
+<li><a href="#_安装桌面">8.1.16. 安装桌面</a></li>
+<li><a href="#_重启">8.1.17. 重启</a></li>
+<li><a href="#_设置pacman">8.1.18. 设置pacman</a></li>
+<li><a href="#_安装常用软件">8.1.19. 安装常用软件</a></li>
+<li><a href="#_系统设置">8.1.20. 系统设置</a>
 <ul class="sectlevel4">
 <li><a href="#_gedit_编辑器设置">gedit 编辑器设置</a></li>
 </ul>
 </li>
-<li><a href="#_faq">8.1.20. FAQ</a>
+<li><a href="#_faq">8.1.21. FAQ</a>
 <ul class="sectlevel4">
 <li><a href="#_e495">E495</a></li>
 </ul>
@@ -4306,6 +4307,14 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code></pre>
 <h4 id="_设置主机名">8.1.11. 设置主机名</h4>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'archlinux' &gt; /etc/hostname</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_本地网络配置">8.1.12. 本地网络配置</h4>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo '127.0.0.1 localhost' &gt; /etc/hosts
 # 添加主机名对应的设置
 echo '127.0.0.1 archlinux' &gt;&gt; /etc/hosts</code></pre>
@@ -4313,7 +4322,7 @@ echo '127.0.0.1 archlinux' &gt;&gt; /etc/hosts</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置root密码">8.1.12. 设置root密码</h4>
+<h4 id="_设置root密码">8.1.13. 设置root密码</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">passwd</code></pre>
@@ -4321,7 +4330,7 @@ echo '127.0.0.1 archlinux' &gt;&gt; /etc/hosts</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_创建用户">8.1.13. 创建用户</h4>
+<h4 id="_创建用户">8.1.14. 创建用户</h4>
 <div class="paragraph">
 <p>新增用户：</p>
 </div>
@@ -4350,7 +4359,7 @@ echo 'mk   ALL=(ALL) ALL' &gt;&gt; /etc/sudoers</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装grub引导">8.1.14. 安装Grub引导</h4>
+<h4 id="_安装grub引导">8.1.15. 安装Grub引导</h4>
 <div class="sect4">
 <h5 id="_使用传统方式启动的bios">使用传统方式启动的BIOS</h5>
 <div class="listingblock">
@@ -4384,7 +4393,7 @@ grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装桌面">8.1.15. 安装桌面</h4>
+<h4 id="_安装桌面">8.1.16. 安装桌面</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 更新软件包索引
@@ -4412,7 +4421,7 @@ systemctl enable gdm</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_重启">8.1.16. 重启</h4>
+<h4 id="_重启">8.1.17. 重启</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">exit
@@ -4425,7 +4434,7 @@ reboot</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置pacman">8.1.17. 设置pacman</h4>
+<h4 id="_设置pacman">8.1.18. 设置pacman</h4>
 <div class="paragraph">
 <p>增加 <code>Arch Linux 中文社区仓库</code> 的腾讯镜像服务器：</p>
 </div>
@@ -4450,7 +4459,7 @@ exit</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装常用软件">8.1.18. 安装常用软件</h4>
+<h4 id="_安装常用软件">8.1.19. 安装常用软件</h4>
 <div class="paragraph">
 <p>在桌面打开终端，复制以下命令一次性安装：</p>
 </div>
@@ -4465,7 +4474,7 @@ pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-compl
 </div>
 </div>
 <div class="sect3">
-<h4 id="_系统设置">8.1.19. 系统设置</h4>
+<h4 id="_系统设置">8.1.20. 系统设置</h4>
 <div class="paragraph">
 <p>在桌面打开终端，执行以下命令：</p>
 </div>
@@ -4526,7 +4535,7 @@ sudo systemctl mask tmp.mount</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_faq">8.1.20. FAQ</h4>
+<h4 id="_faq">8.1.21. FAQ</h4>
 <div class="sect4">
 <h5 id="_e495">E495</h5>
 <div class="ulist">
