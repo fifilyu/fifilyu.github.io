@@ -15600,7 +15600,8 @@ started 3 plugins.</pre>
 <div class="listingblock">
 <div class="content">
 <pre>rabbitmqctl add_user thcl oN3soB7xasaizieG0pop
-rabbitmqctl set_user_tags thcl administrator</pre>
+rabbitmqctl set_user_tags thcl administrator
+rabbitmqctl set_permissions -p / thcl thcl ".*" ".*"</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -18728,7 +18729,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-18 19:57:08 +0800
+Last updated 2021-04-28 11:06:17 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
