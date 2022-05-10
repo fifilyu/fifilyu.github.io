@@ -1781,6 +1781,15 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
+<li><a href="#_Misc_chapter">52. 杂项</a>
+<ul class="sectlevel2">
+<li><a href="#_chrome">52.1. Chrome</a>
+<ul class="sectlevel3">
+<li><a href="#_安装_proxy_switchyomega_扩展">52.1.1. 安装 Proxy SwitchyOmega 扩展</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</a>
 <ul class="sectlevel2">
 <li><a href="#_ascii_control_characters_character_code_0_31">A.1. ASCII control characters (character code 0-31)</a></li>
@@ -16065,6 +16074,36 @@ cargo build --release
 </div>
 </div>
 <div class="sect1">
+<h2 id="_Misc_chapter">52. 杂项</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_chrome">52.1. Chrome</h3>
+<div class="sect3">
+<h4 id="_安装_proxy_switchyomega_扩展">52.1.1. 安装 Proxy SwitchyOmega 扩展</h4>
+<div class="paragraph">
+<p>安装 <code>Proxy SwitchyOmega</code> 之前，需要访问Google应用商店，让Chrome挂全局代理：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Linux</dt>
+<dd>
+<p>google-chrome-stable --proxy-server="socks5://192.168.1.5:1080"</p>
+</dd>
+<dt class="hdlist1">Windows</dt>
+<dd>
+<p><code>Google Chrome</code> 快捷方式的属性中，追加程序运行参数，得到 <code>"C:\xxxx\chrome.exe" --proxy-server="socks5://192.168.1.5:1080"</code></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>然后，安装扩展 <a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN">Proxy SwitchyOmega</a></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_TheExtendedASCIITable_chapter">Appendix A: The Extended ASCII Table</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -18729,7 +18768,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-04-28 11:06:17 +0800
+Last updated 2022-05-10 14:38:49 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
