@@ -1775,9 +1775,13 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_rustup_doc_book_执行无响应"><code>rustup doc --book</code> 执行无响应</a></li>
 </ul>
 </li>
-<li><a href="#_cargo参数">51.2.5. Cargo参数</a></li>
-<li><a href="#_cargo源设置">51.2.6. Cargo源设置</a></li>
-<li><a href="#_cargo实践">51.2.7. Cargo实践</a></li>
+</ul>
+</li>
+<li><a href="#_cargo">51.3. Cargo</a>
+<ul class="sectlevel3">
+<li><a href="#_cargo参数">51.3.1. Cargo参数</a></li>
+<li><a href="#_cargo源设置">51.3.2. Cargo源设置</a></li>
+<li><a href="#_cargo实践">51.3.3. Cargo实践</a></li>
 </ul>
 </li>
 </ul>
@@ -16078,9 +16082,13 @@ Set google-chrome.desktop as the default for text/html</pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>OK，<code>rustup doc --book</code> 可以看离线文档了。
-=== Cargo</p>
+<p>OK，<code>rustup doc --book</code> 可以看离线文档了。</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cargo">51.3. Cargo</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">官方文档</dt>
@@ -16089,10 +16097,8 @@ Set google-chrome.desktop as the default for text/html</pre>
 </dd>
 </dl>
 </div>
-</div>
-</div>
 <div class="sect3">
-<h4 id="_cargo参数">51.2.5. Cargo参数</h4>
+<h4 id="_cargo参数">51.3.1. Cargo参数</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ cargo -h
@@ -16136,7 +16142,7 @@ See 'cargo help &lt;command&gt;' for more information on a specific command.</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cargo源设置">51.2.6. Cargo源设置</h4>
+<h4 id="_cargo源设置">51.3.2. Cargo源设置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.cargo/config
@@ -16150,7 +16156,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cargo实践">51.2.7. Cargo实践</h4>
+<h4 id="_cargo实践">51.3.3. Cargo实践</h4>
 <div class="paragraph">
 <p>用cargo基于Git仓库创建一个Rust项目：</p>
 </div>
