@@ -1770,13 +1770,14 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_rustup参数">51.2.1. rustup参数</a></li>
 <li><a href="#_rustup源设置">51.2.2. rustup源设置</a></li>
 <li><a href="#_rustup实践">51.2.3. rustup实践</a></li>
+<li><a href="#_faq_2">51.2.4. FAQ</a>
+<ul class="sectlevel4">
+<li><a href="#_rustup_doc_book_执行无响应"><code>rustup doc --book</code> 执行无响应</a></li>
 </ul>
 </li>
-<li><a href="#_cargo">51.3. Cargo</a>
-<ul class="sectlevel3">
-<li><a href="#_cargo参数">51.3.1. Cargo参数</a></li>
-<li><a href="#_cargo源设置">51.3.2. Cargo源设置</a></li>
-<li><a href="#_cargo实践">51.3.3. Cargo实践</a></li>
+<li><a href="#_cargo参数">51.2.5. Cargo参数</a></li>
+<li><a href="#_cargo源设置">51.2.6. Cargo源设置</a></li>
+<li><a href="#_cargo实践">51.2.7. Cargo实践</a></li>
 </ul>
 </li>
 </ul>
@@ -15959,9 +15960,127 @@ echo 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_faq_2">51.2.4. FAQ</h4>
+<div class="sect4">
+<h5 id="_rustup_doc_book_执行无响应"><code>rustup doc --book</code> 执行无响应</h5>
+<div class="paragraph">
+<p>执行 <code>rustup doc --book</code> 通过默认浏览器查看离线文档，命令返回值为0(正常)，浏览器未打开文档。</p>
 </div>
-<div class="sect2">
-<h3 id="_cargo">51.3. Cargo</h3>
+<div class="literalblock">
+<div class="content">
+<pre>$ rustup doc --help
+rustup-doc
+Open the documentation for the current toolchain
+......</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>问题分析：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>用 <code>strace -o output.log -f rustup doc --book</code> 跟踪系统调用和信号，输出日志到文件 <code>output.log</code>；</p>
+</li>
+<li>
+<p>分析日志最后报错信息 <code>killed by SIGSEGV (core dumped)</code>，向上跟踪看到 <code>baidunetdi:sh3</code> 字样，猜测是百度网盘应用被设置成了默认MIME的应用；</p>
+<div class="literalblock">
+<div class="content">
+<pre>23318 statx(AT_FDCWD, "/home/lyuqiang/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/book/index.html", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW|AT_NO_AUTOMOUNT, STATX_ALL, {stx_mask=STATX_ALL|STATX_MNT_ID, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=27034, ...}) = 0
+23318 openat(AT_FDCWD, "/home/lyuqiang/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/book/index.html", O_RDONLY|O_NOATIME) = 8
+23318 read(8, "&lt;!DOCTYPE HTML&gt;\n&lt;html lang=\"en\" "..., 4096) = 4096
+23318 close(8)                          = 0
+......
+......
+......
+......
+23315 openat(AT_FDCWD, "/usr/share/applications/baidunetdisk.desktop", O_RDONLY) = 8
+23315 newfstatat(8, "", {st_mode=S_IFREG|0664, st_size=252, ...}, AT_EMPTY_PATH) = 0
+23315 read(8, "[Desktop Entry]\nName=baidunetdis"..., 4096) = 252
+23315 read(8, "", 4096)                 = 0
+23315 close(8)                          = 0
+23315 access("/usr/lib/baidunetdisk/baidunetdisk", X_OK) = 0
+23315 getuid()                          = 1000
+23315 newfstatat(AT_FDCWD, "/usr/lib/baidunetdisk/baidunetdisk", {st_mode=S_IFREG|0755, st_size=129796744, ...}, 0) = 0
+23315 openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY) = 8
+23315 newfstatat(8, "", {st_mode=S_IFREG|0644, st_size=2998, ...}, AT_EMPTY_PATH) = 0
+23315 read(8, "# Locale name alias data base.\n#"..., 4096) = 2998
+......
+......
+23473 prctl(PR_SET_NAME, "baidunetdi:sh3" &lt;unfinished ...&gt;
+......
+......
+23443 +++ killed by SIGSEGV (core dumped) +++
+23447 +++ killed by SIGSEGV (core dumped) +++
+23449 +++ killed by SIGSEGV (core dumped) +++
+23446 +++ killed by SIGSEGV (core dumped) +++
+23451 +++ killed by SIGSEGV (core dumped) +++
+23445 +++ killed by SIGSEGV (core dumped) +++</pre>
+</div>
+</div>
+</li>
+<li>
+<p>确认 <code>text/html</code> 的MIME设置，确实 <code>baidunetdisk.desktop</code> 是默认设置；</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ gio mime text/html
+用于“text/html”的默认应用程序：baidunetdisk.desktop
+已注册的应用程序：
+    google-chrome.desktop
+    firefox.desktop
+    calibre-ebook-edit.desktop
+    org.gnome.Epiphany.desktop
+    org.gnome.gedit.desktop
+    code-oss.desktop
+    aegisub.desktop
+    vim.desktop
+推荐的应用程序：
+    google-chrome.desktop
+    firefox.desktop
+    calibre-ebook-edit.desktop
+    org.gnome.Epiphany.desktop</pre>
+</div>
+</div>
+</li>
+<li>
+<p>执行命令 <code>gio mime text/html google-chrome.desktop</code> 重置MIME设置；</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ gio mime text/html google-chrome.desktop
+Set google-chrome.desktop as the default for text/html</pre>
+</div>
+</div>
+</li>
+<li>
+<p>重新确认MIME设置；</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ gio mime text/html
+用于“text/html”的默认应用程序：google-chrome.desktop
+已注册的应用程序：
+    google-chrome.desktop
+    firefox.desktop
+    calibre-ebook-edit.desktop
+    org.gnome.Epiphany.desktop
+    org.gnome.gedit.desktop
+    code-oss.desktop
+    aegisub.desktop
+    vim.desktop
+推荐的应用程序：
+    google-chrome.desktop
+    firefox.desktop
+    calibre-ebook-edit.desktop
+    org.gnome.Epiphany.desktop</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>OK，<code>rustup doc --book</code> 可以看离线文档了。
+=== Cargo</p>
+</div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">官方文档</dt>
@@ -15970,8 +16089,10 @@ echo 'export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup' &gt
 </dd>
 </dl>
 </div>
+</div>
+</div>
 <div class="sect3">
-<h4 id="_cargo参数">51.3.1. Cargo参数</h4>
+<h4 id="_cargo参数">51.2.5. Cargo参数</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ cargo -h
@@ -16015,7 +16136,7 @@ See 'cargo help &lt;command&gt;' for more information on a specific command.</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cargo源设置">51.3.2. Cargo源设置</h4>
+<h4 id="_cargo源设置">51.2.6. Cargo源设置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; ~/.cargo/config
@@ -16029,7 +16150,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cargo实践">51.3.3. Cargo实践</h4>
+<h4 id="_cargo实践">51.2.7. Cargo实践</h4>
 <div class="paragraph">
 <p>用cargo基于Git仓库创建一个Rust项目：</p>
 </div>
@@ -18768,7 +18889,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-10 14:38:49 +0800
+Last updated 2022-06-06 16:23:55 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
