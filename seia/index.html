@@ -784,30 +784,12 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_拉取镜像慢的问题">1.3. 拉取镜像慢的问题</a></li>
 <li><a href="#_pure_ftpd_in_docker">1.4. Pure-FTPd in Docker</a>
 <ul class="sectlevel3">
-<li><a href="#_重新打包">1.4.1. 重新打包</a>
-<ul class="sectlevel4">
-<li><a href="#_准备打包环境">准备打包环境</a></li>
-<li><a href="#_修改包文件">修改包文件</a></li>
-<li><a href="#_准备源代码">准备源代码</a></li>
-<li><a href="#_重新打包_2">重新打包</a></li>
-<li><a href="#_安装测试">安装测试</a></li>
-</ul>
-</li>
+<li><a href="#_重新打包">1.4.1. 重新打包</a></li>
 </ul>
 </li>
 <li><a href="#_容器启动命令">1.5. 容器启动命令</a>
 <ul class="sectlevel3">
-<li><a href="#_程序启动命令汇总">1.5.1. 程序启动命令汇总</a>
-<ul class="sectlevel4">
-<li><a href="#_psql">PSQL</a></li>
-<li><a href="#_mysql5_1">MySQL5.1</a></li>
-<li><a href="#_mysql5_6">MySQL5.6+</a></li>
-<li><a href="#_tomcat">Tomcat</a></li>
-<li><a href="#_zookeeper">zookeeper</a></li>
-<li><a href="#_nginx">Nginx</a></li>
-<li><a href="#_pure_ftpd">Pure-FTPd</a></li>
-</ul>
-</li>
+<li><a href="#_程序启动命令汇总">1.5.1. 程序启动命令汇总</a></li>
 </ul>
 </li>
 </ul>
@@ -821,11 +803,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_http基本身份验证">3.1. HTTP基本身份验证</a>
 <ul class="sectlevel3">
-<li><a href="#_生成密码文件">3.1.1. 生成密码文件</a>
-<ul class="sectlevel4">
-<li><a href="#_配置nginx">配置Nginx</a></li>
-</ul>
-</li>
+<li><a href="#_生成密码文件">3.1.1. 生成密码文件</a></li>
 </ul>
 </li>
 <li><a href="#_proxy_pass_传递查询参数">3.2. <code>proxy_pass</code> 传递查询参数</a></li>
@@ -838,12 +816,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_基础入门">4.1. 基础入门</a>
 <ul class="sectlevel3">
 <li><a href="#_初始化">4.1.1. 初始化</a></li>
-<li><a href="#_配置文件">4.1.2. 配置文件</a>
-<ul class="sectlevel4">
-<li><a href="#_socket连接">socket连接</a></li>
-<li><a href="#_连接指定主机端口5432">连接指定主机（端口5432）</a></li>
-</ul>
-</li>
+<li><a href="#_配置文件">4.1.2. 配置文件</a></li>
 <li><a href="#_启动服务">4.1.3. 启动服务</a></li>
 <li><a href="#_通过socket登录数据库">4.1.4. 通过socket登录数据库</a></li>
 <li><a href="#_psql创建用户">4.1.5. psql创建用户</a></li>
@@ -873,12 +846,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_networkmanager">5.2. NetworkManager</a>
 <ul class="sectlevel3">
-<li><a href="#_nmcli">5.2.1. nmcli</a>
-<ul class="sectlevel4">
-<li><a href="#_配置ip地址">配置IP地址</a></li>
-<li><a href="#_物理网卡加入网桥">物理网卡加入网桥</a></li>
-</ul>
-</li>
+<li><a href="#_nmcli">5.2.1. nmcli</a></li>
 </ul>
 </li>
 </ul>
@@ -888,12 +856,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_安装配置">6.1. 安装配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装kvm环境">6.1.1. 安装kvm环境</a></li>
-<li><a href="#_设置网桥">6.1.2. 设置网桥</a>
-<ul class="sectlevel4">
-<li><a href="#_设置内网网桥和_dhcp">设置内网网桥和 DHCP</a></li>
-<li><a href="#_查看默认网桥virbr0">查看默认网桥virbr0</a></li>
-</ul>
-</li>
+<li><a href="#_设置网桥">6.1.2. 设置网桥</a></li>
 <li><a href="#_配置公网网桥使虚拟机可以绑定公网ip">6.1.3. 配置公网网桥，使虚拟机可以绑定公网IP</a></li>
 <li><a href="#_查看_os_variant_类型">6.1.4. 查看 os-variant 类型</a></li>
 <li><a href="#_增加虚拟机">6.1.5. 增加虚拟机</a></li>
@@ -944,51 +907,19 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_本地网络配置">8.1.12. 本地网络配置</a></li>
 <li><a href="#_设置root密码">8.1.13. 设置root密码</a></li>
 <li><a href="#_创建用户">8.1.14. 创建用户</a></li>
-<li><a href="#_安装grub引导">8.1.15. 安装Grub引导</a>
-<ul class="sectlevel4">
-<li><a href="#_使用传统方式启动的bios">使用传统方式启动的BIOS</a></li>
-<li><a href="#_使用uefi启动的bios">使用UEFI启动的BIOS</a></li>
-</ul>
-</li>
+<li><a href="#_安装grub引导">8.1.15. 安装Grub引导</a></li>
 <li><a href="#_安装桌面">8.1.16. 安装桌面</a></li>
 <li><a href="#_重启">8.1.17. 重启</a></li>
 <li><a href="#_设置pacman">8.1.18. 设置pacman</a></li>
 <li><a href="#_安装常用软件">8.1.19. 安装常用软件</a></li>
-<li><a href="#_系统设置">8.1.20. 系统设置</a>
-<ul class="sectlevel4">
-<li><a href="#_gedit_编辑器设置">gedit 编辑器设置</a></li>
-</ul>
-</li>
-<li><a href="#_faq">8.1.21. FAQ</a>
-<ul class="sectlevel4">
-<li><a href="#_e495">E495</a></li>
-</ul>
-</li>
+<li><a href="#_系统设置">8.1.20. 系统设置</a></li>
+<li><a href="#_faq">8.1.21. FAQ</a></li>
 </ul>
 </li>
 <li><a href="#_pacman">8.2. pacman</a>
 <ul class="sectlevel3">
-<li><a href="#_用法">8.2.1. 用法</a>
-<ul class="sectlevel4">
-<li><a href="#_安装包">安装包</a>
-<ul class="sectlevel5">
-<li><a href="#_安装指定的包">安装指定的包</a></li>
-<li><a href="#_安装包组">安装包组</a></li>
-</ul>
-</li>
-<li><a href="#_移除包">移除包</a></li>
-<li><a href="#_升级包">升级包</a></li>
-<li><a href="#_查询包数据库">查询包数据库</a></li>
-<li><a href="#_清除包缓存">清除包缓存</a></li>
-<li><a href="#_其它命令">其它命令</a></li>
-<li><a href="#_search_for_a_package_that_contains_a_specific_file">Search for a package that contains a specific file</a></li>
-</ul>
-</li>
-<li><a href="#_troubleshooting">8.2.2. Troubleshooting</a>
-<ul class="sectlevel4">
-<li><a href="#_signature_from_user_emailexample_org_is_unknown_trust_installation_failed">Signature from "User &lt;email@example.org&gt;" is unknown trust, installation failed</a></li>
-</ul>
-</li>
+<li><a href="#_用法">8.2.1. 用法</a></li>
+<li><a href="#_troubleshooting">8.2.2. Troubleshooting</a></li>
 </ul>
 </li>
 <li><a href="#_wireshark">8.3. Wireshark</a>
@@ -1018,12 +949,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel3">
 <li><a href="#_安装配置_2">8.7.1. 安装配置</a></li>
 <li><a href="#_打印机驱动">8.7.2. 打印机驱动</a></li>
-<li><a href="#_添加打印机">8.7.3. 添加打印机</a>
-<ul class="sectlevel4">
-<li><a href="#_惠普打印机惠普工具">惠普打印机：惠普工具</a></li>
-<li><a href="#_web">Web</a></li>
-</ul>
-</li>
+<li><a href="#_添加打印机">8.7.3. 添加打印机</a></li>
 </ul>
 </li>
 </ul>
@@ -1032,35 +958,9 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_3">9.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装依赖">9.1.1. 安装依赖</a>
-<ul class="sectlevel4">
-<li><a href="#_git">Git</a></li>
-<li><a href="#_maven_java_8">Maven &amp;&amp; Java 8</a></li>
-<li><a href="#_java_11可选">Java 11（可选）</a></li>
-<li><a href="#_mysql">MySQL</a></li>
-</ul>
-</li>
+<li><a href="#_安装依赖">9.1.1. 安装依赖</a></li>
 <li><a href="#_xxl_job_安装">9.1.2. XXL-JOB 安装</a></li>
-<li><a href="#_xxl_job_运行前">9.1.3. XXL-JOB 运行前</a>
-<ul class="sectlevel4">
-<li><a href="#_xxl_job_服务端">XXL-JOB 服务端</a>
-<ul class="sectlevel5">
-<li><a href="#_mysql配置">MySQL配置</a></li>
-<li><a href="#_设置配置文件">设置配置文件</a></li>
-<li><a href="#_创建系统用户">创建系统用户</a></li>
-<li><a href="#_增加_systemd_文件">增加 systemd 文件</a></li>
-</ul>
-</li>
-<li><a href="#_xxl_job_客户端">XXL-JOB 客户端</a>
-<ul class="sectlevel5">
-<li><a href="#_创建目录">创建目录</a></li>
-<li><a href="#_设置配置文件_2">设置配置文件</a></li>
-<li><a href="#_创建系统用户_2">创建系统用户</a></li>
-<li><a href="#_增加_systemd_文件_2">增加 systemd 文件</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#_xxl_job_运行前">9.1.3. XXL-JOB 运行前</a></li>
 <li><a href="#_启动_xxl_job_服务端">9.1.4. 启动 XXL-JOB 服务端</a></li>
 <li><a href="#_启动_xxl_job_客户端">9.1.5. 启动 XXL-JOB 客户端</a></li>
 <li><a href="#_工作状态确认">9.1.6. 工作状态确认</a></li>
@@ -1077,12 +977,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_技巧汇总">11.1. 技巧汇总</a>
 <ul class="sectlevel3">
-<li><a href="#_捕获过滤器">11.1.1. 捕获过滤器</a>
-<ul class="sectlevel4">
-<li><a href="#_捕获微信回调">捕获微信回调</a></li>
-<li><a href="#_捕获过滤器常用表达式">捕获过滤器常用表达式</a></li>
-</ul>
-</li>
+<li><a href="#_捕获过滤器">11.1.1. 捕获过滤器</a></li>
 </ul>
 </li>
 </ul>
@@ -1104,15 +999,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_centos6挂载iso文件做仓库">13.1. CentOS6挂载ISO文件做仓库</a>
 <ul class="sectlevel3">
 <li><a href="#_下载_centos6_iso镜像">13.1.1. 下载 CentOS6 ISO镜像</a></li>
-<li><a href="#_设置本地软件仓库">13.1.2. 设置本地软件仓库</a>
-<ul class="sectlevel4">
-<li><a href="#_创建挂载目录">创建挂载目录</a></li>
-<li><a href="#_挂载iso镜像">挂载ISO镜像</a></li>
-<li><a href="#_设置仓库文件">设置仓库文件</a></li>
-<li><a href="#_禁用在线仓库">禁用在线仓库</a></li>
-<li><a href="#_确认本地仓库生效">确认本地仓库生效</a></li>
-</ul>
-</li>
+<li><a href="#_设置本地软件仓库">13.1.2. 设置本地软件仓库</a></li>
 </ul>
 </li>
 <li><a href="#_centos6初始化">13.2. CentOS6初始化</a></li>
@@ -1136,12 +1023,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_centos8安装前加载驱动">13.7. CentOS8安装前加载驱动</a>
 <ul class="sectlevel3">
-<li><a href="#_dell_precision_t3600">13.7.1. Dell Precision T3600</a>
-<ul class="sectlevel4">
-<li><a href="#_storage_controller">Storage Controller</a></li>
-<li><a href="#_dud">DUD</a></li>
-</ul>
-</li>
+<li><a href="#_dell_precision_t3600">13.7.1. Dell Precision T3600</a></li>
 </ul>
 </li>
 </ul>
@@ -1150,19 +1032,8 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装_3">14.1. 安装</a>
 <ul class="sectlevel3">
-<li><a href="#_依赖">14.1.1. 依赖</a>
-<ul class="sectlevel4">
-<li><a href="#_系统依赖">系统依赖</a></li>
-<li><a href="#_第三方依赖可选">第三方依赖（可选）</a></li>
-</ul>
-</li>
-<li><a href="#_编译">14.1.2. 编译</a>
-<ul class="sectlevel4">
-<li><a href="#_下载源代码">下载源代码</a></li>
-<li><a href="#_编译默认配置">编译：默认配置</a></li>
-<li><a href="#_编译支持websockts客户端">编译：支持WebSockts客户端</a></li>
-</ul>
-</li>
+<li><a href="#_依赖">14.1.1. 依赖</a></li>
+<li><a href="#_编译">14.1.2. 编译</a></li>
 </ul>
 </li>
 <li><a href="#_配置_3">14.2. 配置</a>
@@ -1279,14 +1150,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_列表list">22.2.3. 列表(List)</a></li>
 <li><a href="#_集合set">22.2.4. 集合(Set)</a></li>
 <li><a href="#_有序集合sorted_set">22.2.5. 有序集合(sorted set)</a></li>
-<li><a href="#_哈希表hash">22.2.6. 哈希表（Hash）</a>
-<ul class="sectlevel4">
-<li><a href="#_增加字段或设置字段">增加字段或设置字段</a></li>
-<li><a href="#_获取字段">获取字段</a></li>
-<li><a href="#_字段是否存在">字段是否存在</a></li>
-<li><a href="#_删除字段">删除字段</a></li>
-</ul>
-</li>
+<li><a href="#_哈希表hash">22.2.6. 哈希表（Hash）</a></li>
 <li><a href="#_删除键">22.2.7. 删除键</a></li>
 </ul>
 </li>
@@ -1306,40 +1170,15 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_centos6_install_python310">24.1. CentOS6 Install Python310</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装">24.1.1. 编译安装</a>
-<ul class="sectlevel4">
-<li><a href="#_环境准备">环境准备</a></li>
-<li><a href="#_安装依赖openssl">安装依赖——OpenSSL</a></li>
-<li><a href="#_安装依赖sqlite">安装依赖——SQLite</a></li>
-<li><a href="#_安装python">安装Python</a></li>
-<li><a href="#_fqa">FQA</a></li>
-</ul>
-</li>
-<li><a href="#_二进制压缩包安装">24.1.2. 二进制压缩包安装</a>
-<ul class="sectlevel4">
-<li><a href="#_安装openssl">安装OpenSSL</a></li>
-<li><a href="#_安装sqlite">安装SQLite</a></li>
-<li><a href="#_安装python3">安装Python3</a></li>
-</ul>
-</li>
+<li><a href="#_编译安装">24.1.1. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装">24.1.2. 二进制压缩包安装</a></li>
 <li><a href="#_设置环境变量">24.1.3. 设置环境变量</a></li>
 </ul>
 </li>
 <li><a href="#_centos7_install_python310">24.2. CentOS7 Install Python310</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装_2">24.2.1. 编译安装</a>
-<ul class="sectlevel4">
-<li><a href="#_环境准备_2">环境准备</a></li>
-<li><a href="#_安装依赖openssl_2">安装依赖——OpenSSL</a></li>
-<li><a href="#_安装python_2">安装Python</a></li>
-</ul>
-</li>
-<li><a href="#_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</a>
-<ul class="sectlevel4">
-<li><a href="#_安装openssl_2">安装OpenSSL</a></li>
-<li><a href="#_安装python3_2">安装Python3</a></li>
-</ul>
-</li>
+<li><a href="#_编译安装_2">24.2.1. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</a></li>
 <li><a href="#_设置环境变量_2">24.2.3. 设置环境变量</a></li>
 </ul>
 </li>
@@ -1350,12 +1189,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_ubuntu_install_python310">24.4. Ubuntu Install Python310</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装_3">24.4.1. 编译安装</a>
-<ul class="sectlevel4">
-<li><a href="#_环境准备_3">环境准备</a></li>
-<li><a href="#_安装python_3">安装Python</a></li>
-</ul>
-</li>
+<li><a href="#_编译安装_3">24.4.1. 编译安装</a></li>
 <li><a href="#_二进制压缩包安装_3">24.4.2. 二进制压缩包安装</a></li>
 </ul>
 </li>
@@ -1393,35 +1227,37 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_le_chapter">26. Let’s Encrypt</a>
 <ul class="sectlevel2">
-<li><a href="#_安装使用">26.1. 安装使用</a>
+<li><a href="#_安装certbot">26.1. 安装certbot</a></li>
+<li><a href="#_签发https证书之dns签发通配符域名证书">26.2. 签发HTTPS证书之DNS签发通配符域名证书</a>
 <ul class="sectlevel3">
-<li><a href="#_安装certbot">26.1.1. 安装certbot</a></li>
-<li><a href="#_申请方式一dns方式申请通配符域名证书">26.1.2. 申请方式一：DNS方式申请通配符域名证书</a>
-<ul class="sectlevel4">
-<li><a href="#_申请通配符域名验证一">申请通配符域名验证（一）</a></li>
-<li><a href="#_域名解析">域名解析</a></li>
-<li><a href="#_申请通配符域名验证二">申请通配符域名验证（二）</a></li>
-<li><a href="#_生成交换密钥">生成交换密钥</a></li>
+<li><a href="#_签发通配符域名https证书一">26.2.1. 签发通配符域名HTTPS证书（一）</a></li>
+<li><a href="#_设置域名解析">26.2.2. 设置域名解析</a></li>
+<li><a href="#_检查域名解析">26.2.3. 检查域名解析</a></li>
+<li><a href="#_签发通配符域名https证书二">26.2.4. 签发通配符域名HTTPS证书（二）</a></li>
 </ul>
 </li>
-<li><a href="#_申请方式二网站验证仅单域名">26.1.3. 申请方式二：网站验证（仅单域名）</a>
-<ul class="sectlevel4">
-<li><a href="#_修改_www_xxx_com_nginx配置">修改 <code>www.xxx.com</code> Nginx配置</a></li>
-<li><a href="#_申请单域名证书">申请单域名证书</a></li>
-<li><a href="#_生成交换密钥_2">生成交换密钥</a></li>
+<li><a href="#_签发https证书之标准方式签发单域名证书">26.3. 签发HTTPS证书之标准方式签发单域名证书</a>
+<ul class="sectlevel3">
+<li><a href="#_添加nginx站点">26.3.1. 添加Nginx站点</a></li>
+<li><a href="#_签发单域名https证书">26.3.2. 签发单域名HTTPS证书</a></li>
+<li><a href="#_生成交换密钥_2">26.3.3. 生成交换密钥</a></li>
 </ul>
 </li>
-<li><a href="#_nginx_配置">26.1.4. Nginx 配置</a></li>
-<li><a href="#_自动续签">26.1.5. 自动续签</a>
-<ul class="sectlevel4">
-<li><a href="#_创建续签系统服务">创建续签系统服务</a></li>
-<li><a href="#_创建续签定时器">创建续签定时器</a></li>
-<li><a href="#_重载系统服务">重载系统服务</a></li>
-<li><a href="#_设置开机启动">设置开机启动</a></li>
-<li><a href="#_启动定时器">启动定时器</a></li>
-<li><a href="#_查看定时器">查看定时器</a></li>
+<li><a href="#_添加https站点">26.4. 添加HTTPS站点</a>
+<ul class="sectlevel3">
+<li><a href="#_创建配置文件">26.4.1. 创建配置文件</a></li>
+<li><a href="#_重载配置">26.4.2. 重载配置</a></li>
+<li><a href="#_ssl安全级别测试">26.4.3. SSL安全级别测试</a></li>
 </ul>
 </li>
+<li><a href="#_自动续签">26.5. 自动续签</a>
+<ul class="sectlevel3">
+<li><a href="#_创建续签系统服务">26.5.1. 创建续签系统服务</a></li>
+<li><a href="#_创建续签定时器">26.5.2. 创建续签定时器</a></li>
+<li><a href="#_重载系统服务">26.5.3. 重载系统服务</a></li>
+<li><a href="#_设置开机启动">26.5.4. 设置开机启动</a></li>
+<li><a href="#_启动定时器">26.5.5. 启动定时器</a></li>
+<li><a href="#_查看定时器">26.5.6. 查看定时器</a></li>
 </ul>
 </li>
 </ul>
@@ -1440,15 +1276,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_5">29.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos8_2">29.1.1. CentOS8</a>
-<ul class="sectlevel4">
-<li><a href="#_安装依赖_4">安装依赖</a></li>
-<li><a href="#_安装_polipo">安装 Polipo</a></li>
-<li><a href="#_配置文件_polipo">配置文件 Polipo</a></li>
-<li><a href="#_创建系统服务_2">创建系统服务</a></li>
-<li><a href="#_启动服务_2">启动服务</a></li>
-</ul>
-</li>
+<li><a href="#_centos8_2">29.1.1. CentOS8</a></li>
 </ul>
 </li>
 </ul>
@@ -1522,18 +1350,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_uwsgi">38.1. uWSGI</a>
 <ul class="sectlevel3">
-<li><a href="#_centos6">38.1.1. CentOS6</a>
-<ul class="sectlevel4">
-<li><a href="#_uwsgi_2">uWSGI</a>
-<ul class="sectlevel5">
-<li><a href="#_yum">YUM</a></li>
-<li><a href="#_python3">Python3</a></li>
-</ul>
-</li>
-<li><a href="#_管理_uwsgi">管理 uWSGI</a></li>
-<li><a href="#_nginx_2">Nginx</a></li>
-</ul>
-</li>
+<li><a href="#_centos6">38.1.1. CentOS6</a></li>
 </ul>
 </li>
 </ul>
@@ -1544,31 +1361,9 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel3">
 <li><a href="#_安装java">39.1.1. 安装Java</a></li>
 <li><a href="#_增加yum源">39.1.2. 增加YUM源</a></li>
-<li><a href="#_elasticsearch">39.1.3. Elasticsearch</a>
-<ul class="sectlevel4">
-<li><a href="#_安装_6">安装</a></li>
-<li><a href="#_配置_5">配置</a></li>
-<li><a href="#_开机启动">开机启动</a></li>
-<li><a href="#_启动服务_3">启动服务</a></li>
-</ul>
-</li>
-<li><a href="#_kibana">39.1.4. Kibana</a>
-<ul class="sectlevel4">
-<li><a href="#_安装_7">安装</a></li>
-<li><a href="#_配置_6">配置</a></li>
-<li><a href="#_开机启动_2">开机启动</a></li>
-<li><a href="#_启动服务_4">启动服务</a></li>
-<li><a href="#_最后_2">最后</a></li>
-</ul>
-</li>
-<li><a href="#_logstash">39.1.5. Logstash</a>
-<ul class="sectlevel4">
-<li><a href="#_日志处理管道">日志处理管道</a></li>
-<li><a href="#_准备日志文件">准备日志文件</a></li>
-<li><a href="#_配置文件_3">配置文件</a></li>
-<li><a href="#_导入nginx日志到elasticsearch">导入Nginx日志到Elasticsearch</a></li>
-</ul>
-</li>
+<li><a href="#_elasticsearch">39.1.3. Elasticsearch</a></li>
+<li><a href="#_kibana">39.1.4. Kibana</a></li>
+<li><a href="#_logstash">39.1.5. Logstash</a></li>
 </ul>
 </li>
 <li><a href="#_过时centos7elk环境配置">39.2. （过时）CentOS7+ELK环境配置</a>
@@ -1584,27 +1379,11 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_elasticstack使用教程">39.3. ElasticStack使用教程</a>
 <ul class="sectlevel3">
 <li><a href="#_索引文档">39.3.1. 索引文档</a></li>
-<li><a href="#_搜索">39.3.2. 搜索</a>
-<ul class="sectlevel4">
-<li><a href="#_短语搜索">短语搜索</a></li>
-<li><a href="#_高亮我们的搜索">高亮我们的搜索</a></li>
-</ul>
-</li>
+<li><a href="#_搜索">39.3.2. 搜索</a></li>
 <li><a href="#_聚合">39.3.3. 聚合</a></li>
 <li><a href="#_更新文档">39.3.4. 更新文档</a></li>
 <li><a href="#_删除文档">39.3.5. 删除文档</a></li>
-<li><a href="#_结构化查询">39.3.6. 结构化查询</a>
-<ul class="sectlevel4">
-<li><a href="#_最重要的查询过滤语句">最重要的查询过滤语句</a>
-<ul class="sectlevel5">
-<li><a href="#_term_查询">term 查询</a></li>
-<li><a href="#_terms_查询">terms 查询</a></li>
-<li><a href="#_range_过滤">range 过滤</a></li>
-<li><a href="#_exists_和_missing_过滤">exists 和 missing 过滤</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#_结构化查询">39.3.6. 结构化查询</a></li>
 <li><a href="#_dsl查询实例">39.3.7. DSL查询实例</a></li>
 </ul>
 </li>
@@ -1635,28 +1414,9 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_13">42.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_8">42.1.1. 安装</a>
-<ul class="sectlevel4">
-<li><a href="#_文件目录结构">文件目录结构</a></li>
-</ul>
-</li>
-<li><a href="#_配置_8">42.1.2. 配置</a>
-<ul class="sectlevel4">
-<li><a href="#_禁用selinux重启生效">禁用SELINUX（重启生效）</a></li>
-<li><a href="#_设置_ulimit">设置 <code>ulimit</code></a></li>
-<li><a href="#_其它优化">其它优化</a></li>
-<li><a href="#_启用权限验证">启用权限验证</a></li>
-<li><a href="#_开机启动_3">开机启动</a></li>
-<li><a href="#_服务管理">服务管理</a></li>
-<li><a href="#_验证服务">验证服务</a></li>
-</ul>
-</li>
-<li><a href="#_创建用户_2">42.1.3. 创建用户</a>
-<ul class="sectlevel4">
-<li><a href="#_创建root帐号">创建root帐号</a></li>
-<li><a href="#_创建普通用户">创建普通用户</a></li>
-</ul>
-</li>
+<li><a href="#_安装_8">42.1.1. 安装</a></li>
+<li><a href="#_配置_8">42.1.2. 配置</a></li>
+<li><a href="#_创建用户_2">42.1.3. 创建用户</a></li>
 </ul>
 </li>
 </ul>
@@ -1674,13 +1434,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_14">44.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_linux">44.1.1. Linux</a>
-<ul class="sectlevel4">
-<li><a href="#_安装_9">安装</a></li>
-<li><a href="#_topic">Topic</a></li>
-<li><a href="#_测试_2">测试</a></li>
-</ul>
-</li>
+<li><a href="#_linux">44.1.1. Linux</a></li>
 <li><a href="#_windows">44.1.2. Windows</a></li>
 <li><a href="#_配置_9">44.1.3. 配置</a></li>
 </ul>
@@ -1700,18 +1454,9 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_16">46.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos7">46.1.1. CentOS7</a>
-<ul class="sectlevel4">
-<li><a href="#_升级内核以支持_tcp_bbr">升级内核以支持 <code>TCP BBR</code></a></li>
-<li><a href="#_开启_tcp_bbr_塞控制算法">开启 <code>TCP BBR</code> 塞控制算法</a></li>
-</ul>
-</li>
+<li><a href="#_centos7">46.1.1. CentOS7</a></li>
 <li><a href="#_安装_shadowsocks">46.1.2. 安装 <code>Shadowsocks</code></a></li>
-<li><a href="#_配置_shadowsocks">46.1.3. 配置 <code>Shadowsocks</code></a>
-<ul class="sectlevel4">
-<li><a href="#_centos7_一键安装脚本">CentOS7 一键安装脚本</a></li>
-</ul>
-</li>
+<li><a href="#_配置_shadowsocks">46.1.3. 配置 <code>Shadowsocks</code></a></li>
 </ul>
 </li>
 </ul>
@@ -1731,23 +1476,8 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel3">
 <li><a href="#_安装_10">48.1.1. 安装</a></li>
 <li><a href="#_配置凭证">48.1.2. 配置凭证</a></li>
-<li><a href="#_ecs">48.1.3. ECS</a>
-<ul class="sectlevel4">
-<li><a href="#_创建ecs">创建ECS</a></li>
-<li><a href="#_实例管理">实例管理</a></li>
-<li><a href="#_删除ecs实例">删除ECS实例</a></li>
-</ul>
-</li>
-<li><a href="#_域名解析_2">48.1.4. 域名解析</a>
-<ul class="sectlevel4">
-<li><a href="#_获取解析记录列表">获取解析记录列表</a></li>
-<li><a href="#_获取解析记录信息">获取解析记录信息</a></li>
-<li><a href="#_添加解析记录">添加解析记录</a></li>
-<li><a href="#_删除解析记录">删除解析记录</a></li>
-<li><a href="#_修改解析记录">修改解析记录</a></li>
-<li><a href="#_获取子域名解析记录列表">获取子域名解析记录列表</a></li>
-</ul>
-</li>
+<li><a href="#_ecs">48.1.3. ECS</a></li>
+<li><a href="#_域名解析">48.1.4. 域名解析</a></li>
 </ul>
 </li>
 </ul>
@@ -1756,17 +1486,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_17">49.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos_8">49.1.1. CentOS 8</a>
-<ul class="sectlevel4">
-<li><a href="#_安装rabbitmq">安装RabbitMQ</a></li>
-<li><a href="#_参数优化">参数优化</a></li>
-<li><a href="#_启动rabbitmq服务">启动RabbitMQ服务</a></li>
-<li><a href="#_查看rabbitmq服务状态">查看RabbitMQ服务状态</a></li>
-<li><a href="#_基本配置">基本配置</a></li>
-<li><a href="#_日志">日志</a></li>
-<li><a href="#_管理工具">管理工具</a></li>
-</ul>
-</li>
+<li><a href="#_centos_8">49.1.1. CentOS 8</a></li>
 </ul>
 </li>
 <li><a href="#_支持mqtt">49.2. 支持MQTT</a>
@@ -1794,11 +1514,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_rustup参数">51.2.1. rustup参数</a></li>
 <li><a href="#_rustup源设置">51.2.2. rustup源设置</a></li>
 <li><a href="#_rustup实践">51.2.3. rustup实践</a></li>
-<li><a href="#_faq_2">51.2.4. FAQ</a>
-<ul class="sectlevel4">
-<li><a href="#_rustup_doc_book_执行无响应"><code>rustup doc --book</code> 执行无响应</a></li>
-</ul>
-</li>
+<li><a href="#_faq_2">51.2.4. FAQ</a></li>
 </ul>
 </li>
 <li><a href="#_cargo">51.3. Cargo</a>
@@ -10328,21 +10044,21 @@ ln -s /usr/local/axel-2.17.8/bin/axel /usr/local/bin/axel</code></pre>
 <p>LE证书的可以通过网站验证或DNS验证方式申请，有效期为三个月。三个月后，可以通过系统计划任务自动续签。</p>
 </div>
 <div class="sect2">
-<h3 id="_安装使用">26.1. 安装使用</h3>
-<div class="sect3">
-<h4 id="_安装certbot">26.1.1. 安装certbot</h4>
+<h3 id="_安装certbot">26.1. 安装certbot</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip38 install certbot
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip3 install certbot
 
-ln -s /usr/local/python-3.8.1/bin/certbot /usr/local/bin/certbot</code></pre>
+python_bin_dir=$(pip3 show certbot | grep 'Location:' | cut -d ' ' -f 2)/../../../bin
+python_bin_dir=$(realpath ${python_bin_dir})
+ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_签发https证书之dns签发通配符域名证书">26.2. 签发HTTPS证书之DNS签发通配符域名证书</h3>
 <div class="sect3">
-<h4 id="_申请方式一dns方式申请通配符域名证书">26.1.2. 申请方式一：DNS方式申请通配符域名证书</h4>
-<div class="sect4">
-<h5 id="_申请通配符域名验证一">申请通配符域名验证（一）</h5>
+<h4 id="_签发通配符域名https证书一">26.2.1. 签发通配符域名HTTPS证书（一）</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certonly  -d *.xxx.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory</code></pre>
@@ -10396,8 +10112,8 @@ ln -s /usr/local/python-3.8.1/bin/certbot /usr/local/bin/certbot</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_域名解析">域名解析</h5>
+<div class="sect3">
+<h4 id="_设置域名解析">26.2.2. 设置域名解析</h4>
 <div class="paragraph">
 <p>登录域名管理面板，在新增域名解析记录，如下图所示：</p>
 </div>
@@ -10414,16 +10130,16 @@ ln -s /usr/local/python-3.8.1/bin/certbot /usr/local/bin/certbot</code></pre>
 <img src="images/dns_settings.png" alt="dns settings">
 </div>
 </div>
-<div class="paragraph">
-<p>查询TXT解析：</p>
 </div>
+<div class="sect3">
+<h4 id="_检查域名解析">26.2.3. 检查域名解析</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig _acme-challenge.thopenapi.com TXT</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">dig命令查询结果</div>
+<div class="title">终端输出</div>
 <div class="content">
 <pre>; &lt;&lt;&gt;&gt; DiG 9.16.2 &lt;&lt;&gt;&gt; _acme-challenge.thopenapi.com TXT
 ;; global options: +cmd
@@ -10444,8 +10160,8 @@ _acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_申请通配符域名验证二">申请通配符域名验证（二）</h5>
+<div class="sect3">
+<h4 id="_签发通配符域名https证书二">26.2.4. 签发通配符域名HTTPS证书（二）</h4>
 <div class="paragraph">
 <p>域名解析完成后，在 <code>Press Enter to Continue</code> 处按 <kbd>Enter</kbd> 继续操作&#8230;&#8203;&#8230;&#8203;</p>
 </div>
@@ -10473,7 +10189,6 @@ _acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb
     Donating to EFF:                    https://eff.org/donate-le</pre>
 </div>
 </div>
-</div>
 <div class="sect4">
 <h5 id="_生成交换密钥">生成交换密钥</h5>
 <div class="listingblock">
@@ -10483,19 +10198,34 @@ _acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_签发https证书之标准方式签发单域名证书">26.3. 签发HTTPS证书之标准方式签发单域名证书</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+标准方式签发HTTPS证书，必须保证 <a href="http://www.xxx.com" class="bare">http://www.xxx.com</a> 能够访问
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
-<h4 id="_申请方式二网站验证仅单域名">26.1.3. 申请方式二：网站验证（仅单域名）</h4>
-<div class="sect4">
-<h5 id="_修改_www_xxx_com_nginx配置">修改 <code>www.xxx.com</code> Nginx配置</h5>
+<h4 id="_添加nginx站点">26.3.1. 添加Nginx站点</h4>
 <div class="listingblock">
-<div class="title">/etc/nginx/conf.d/www.xxx.com.conf</div>
 <div class="content">
-<pre>server {
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/nginx/conf.d/www.xxx.com.conf
+server {
     listen 80;
     server_name www.xxx.com;
     root /data/web/www.xxx.com;
 
-    ......
+    location / {
+        return 301 https://www.xxx.com;
+    }
 
     location ^~ /.well-known/acme-challenge/ {
        default_type "text/plain";
@@ -10504,18 +10234,15 @@ _acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb
     location = /.well-known/acme-challenge/ {
        return 404;
     }
-}</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">重载Nginx配置</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -s reload</code></pre>
+}
+EOF
+
+nginx -s reload</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_申请单域名证书">申请单域名证书</h5>
+<div class="sect3">
+<h4 id="_签发单域名https证书">26.3.2. 签发单域名HTTPS证书</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certonly --email webmaster@xxx.com -w /date/web/www.xxx.com -d www.xxx.com</code></pre>
@@ -10593,8 +10320,8 @@ If you like Certbot, please consider supporting our work by:
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_生成交换密钥_2">生成交换密钥</h5>
+<div class="sect3">
+<h4 id="_生成交换密钥_2">26.3.3. 生成交换密钥</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/www.xxx.com/dhparam.pem 2048</code></pre>
@@ -10602,28 +10329,13 @@ If you like Certbot, please consider supporting our work by:
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_添加https站点">26.4. 添加HTTPS站点</h3>
 <div class="sect3">
-<h4 id="_nginx_配置">26.1.4. Nginx 配置</h4>
+<h4 id="_创建配置文件">26.4.1. 创建配置文件</h4>
 <div class="listingblock">
-<div class="title">通配符域名</div>
 <div class="content">
-<pre>server {
-    listen 80;
-    server_name *.xxx.com;
-
-    location / {
-        return 301 https://*.xxx.com;
-    }
-
-    location ^~ /.well-known/acme-challenge/ {
-       default_type "text/plain";
-    }
-
-    location = /.well-known/acme-challenge/ {
-       return 404;
-    }
-}
-
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/nginx/conf.d/xxx.com_ssl.conf
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
@@ -10660,7 +10372,8 @@ server {
     location ~ ^/\.git/? {
         return 404;
     }
-}</pre>
+}
+EOF</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -10672,7 +10385,7 @@ server {
 <td class="content">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">单域名Nginx配置</dt>
+<dt class="hdlist1">单域名的站点配置</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -10691,23 +10404,26 @@ server {
 </tr>
 </table>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_重载配置">26.4.2. 重载配置</h4>
 <div class="listingblock">
-<div class="title">重载Nginx配置</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">nginx -s reload</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>安全级别测试：</p>
-</div>
-<div class="paragraph">
-<p><a href="https://www.ssllabs.com/ssltest/" class="bare">https://www.ssllabs.com/ssltest/</a></p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="_自动续签">26.1.5. 自动续签</h4>
-<div class="sect4">
-<h5 id="_创建续签系统服务">创建续签系统服务</h5>
+<h4 id="_ssl安全级别测试">26.4.3. SSL安全级别测试</h4>
+<div class="paragraph">
+<p><a href="https://www.ssllabs.com/ssltest/" class="bare" target="blank">https://www.ssllabs.com/ssltest/</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_自动续签">26.5. 自动续签</h3>
+<div class="sect3">
+<h4 id="_创建续签系统服务">26.5.1. 创建续签系统服务</h4>
 <div class="listingblock">
 <div class="title">通配符域名</div>
 <div class="content">
@@ -10747,8 +10463,8 @@ EOF</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_创建续签定时器">创建续签定时器</h5>
+<div class="sect3">
+<h4 id="_创建续签定时器">26.5.2. 创建续签定时器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/systemd/system/letsencrypt.timer
@@ -10765,16 +10481,16 @@ EOF</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_重载系统服务">重载系统服务</h5>
+<div class="sect3">
+<h4 id="_重载系统服务">26.5.3. 重载系统服务</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl daemon-reload</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_设置开机启动">设置开机启动</h5>
+<div class="sect3">
+<h4 id="_设置开机启动">26.5.4. 设置开机启动</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable letsencrypt.service
@@ -10782,23 +10498,22 @@ systemctl enable letsencrypt.timer</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_启动定时器">启动定时器</h5>
+<div class="sect3">
+<h4 id="_启动定时器">26.5.5. 启动定时器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start letsencrypt.timer</code></pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_查看定时器">查看定时器</h5>
+<div class="sect3">
+<h4 id="_查看定时器">26.5.6. 查看定时器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl list-timers letsencrypt.timer</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -15406,7 +15121,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_域名解析_2">48.1.4. 域名解析</h4>
+<h4 id="_域名解析">48.1.4. 域名解析</h4>
 <div class="sect4">
 <h5 id="_获取解析记录列表">获取解析记录列表</h5>
 <div class="listingblock">
@@ -15859,7 +15574,7 @@ rabbitmqctl set_user_tags device none</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@75ca21b76384 ~]# pip38 --trusted-host pypi.python.org install frida-tools
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">[root@75ca21b76384 ~]# pip310 --trusted-host pypi.python.org install frida-tools
 Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
 ...
 ...
@@ -19959,7 +19674,7 @@ cargo build --release
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-12-16 14:31:58 +0800
+Last updated 2023-02-16 21:07:49 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
