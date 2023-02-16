@@ -10070,7 +10070,7 @@ ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
 <pre>    Saving debug log to /var/log/letsencrypt/letsencrypt.log
     Plugins selected: Authenticator manual, Installer None
     Enter email address (used for urgent renewal and security notices) (Enter 'c' to
-    cancel): xxxx@xxxxx.com
+    cancel): webmaster@xxx.com
 
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Please read the Terms of Service at
@@ -10089,7 +10089,7 @@ ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
     (Y)es/(N)o: Y
     Obtaining a new certificate
     Performing the following challenges:
-    dns-01 challenge for thopenapi.com
+    dns-01 challenge for xxx.com
 
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     NOTE: The IP of this machine will be publicly logged as having requested this
@@ -10102,7 +10102,7 @@ ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
 
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Please deploy a DNS TXT record under the name
-    _acme-challenge.thopenapi.com with the following value:
+    _acme-challenge.xxx.com with the following value:
 
     1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb46zMjM
 
@@ -10115,7 +10115,10 @@ ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
 <div class="sect3">
 <h4 id="_设置域名解析">26.2.2. 设置域名解析</h4>
 <div class="paragraph">
-<p>登录域名管理面板，在新增域名解析记录，如下图所示：</p>
+<p>登录域名管理面板，新增 <code>TXT</code> 类型的域名解析记录，主机记录名称： <code>_acme-challenge</code></p>
+</div>
+<div class="paragraph">
+<p>如下图所示：</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -10135,23 +10138,23 @@ ln -s ${python_bin_dir}/certbot /usr/local/bin/certbot</code></pre>
 <h4 id="_检查域名解析">26.2.3. 检查域名解析</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig _acme-challenge.thopenapi.com TXT</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig _acme-challenge.xxx.com TXT</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">终端输出</div>
 <div class="content">
-<pre>; &lt;&lt;&gt;&gt; DiG 9.16.2 &lt;&lt;&gt;&gt; _acme-challenge.thopenapi.com TXT
+<pre>; &lt;&lt;&gt;&gt; DiG 9.16.2 &lt;&lt;&gt;&gt; _acme-challenge.xxx.com TXT
 ;; global options: +cmd
 ;; Got answer:
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 64914
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
 
 ;; QUESTION SECTION:
-;_acme-challenge.thopenapi.com.	IN	TXT
+;_acme-challenge.xxx.com.	IN	TXT
 
 ;; ANSWER SECTION:
-_acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb46zMjM"
+_acme-challenge.xxx.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb46zMjM"
 
 ;; Query time: 10 msec
 ;; SERVER: 223.5.5.5#53(223.5.5.5)
@@ -10176,9 +10179,9 @@ _acme-challenge.thopenapi.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb
 
     IMPORTANT NOTES:
     - Congratulations! Your certificate and chain have been saved at:
-    /etc/letsencrypt/live/thopenapi.com/fullchain.pem
+    /etc/letsencrypt/live/xxx.com/fullchain.pem
     Your key file has been saved at:
-    /etc/letsencrypt/live/thopenapi.com/privkey.pem
+    /etc/letsencrypt/live/xxx.com/privkey.pem
     Your cert will expire on 2020-07-31. To obtain a new or tweaked
     version of this certificate in the future, simply run certbot
     again. To non-interactively renew *all* of your certificates, run
@@ -15126,7 +15129,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 <h5 id="_获取解析记录列表">获取解析记录列表</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeDomainRecords --DomainName thopenapi.com</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeDomainRecords --DomainName xxx.com</code></pre>
 </div>
 </div>
 </div>
@@ -15156,7 +15159,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns AddDomainRecord --DomainName thopenapi.com -RR _acme-challenge --TTL 600 --Type TXT --Value test</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns AddDomainRecord --DomainName xxx.com -RR _acme-challenge --TTL 600 --Type TXT --Value test</code></pre>
 </div>
 </div>
 </div>
@@ -15183,7 +15186,7 @@ Message: Request validation has been passed with DryRun flag set.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeSubDomainRecords --SubDomain _acme-challenge.data.thopenapi.com</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">aliyun alidns DescribeSubDomainRecords --SubDomain _acme-challenge.xxx.com</code></pre>
 </div>
 </div>
 <div class="listingblock">
