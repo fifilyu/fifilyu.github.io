@@ -1530,16 +1530,16 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_查询systemd服务">52.1. 查询systemd服务</a>
 <ul class="sectlevel3">
-<li><a href="#_获取定时器对象路径">52.1.1. 获取定时器对象路径</a></li>
-<li><a href="#_查看对象结构">52.1.2. 查看对象结构</a></li>
-<li><a href="#_获取对象的服务相关属性">52.1.3. 获取对象的服务相关属性</a></li>
-<li><a href="#_获取对象的服务状态">52.1.4. 获取对象的服务状态</a></li>
+<li><a href="#_获取服务的路径">52.1.1. 获取服务的路径</a></li>
+<li><a href="#_查看服务的结构">52.1.2. 查看服务的结构</a></li>
+<li><a href="#_获取服务的属性">52.1.3. 获取服务的属性</a></li>
+<li><a href="#_获取服务状态">52.1.4. 获取服务状态</a></li>
 </ul>
 </li>
 <li><a href="#_查询systemd定时器">52.2. 查询systemd定时器</a>
 <ul class="sectlevel3">
-<li><a href="#_获取定时器对象路径_2">52.2.1. 获取定时器对象路径</a></li>
-<li><a href="#_查看对象结构_2">52.2.2. 查看对象结构</a></li>
+<li><a href="#_获取定时器对象路径">52.2.1. 获取定时器对象路径</a></li>
+<li><a href="#_查看对象结构">52.2.2. 查看对象结构</a></li>
 <li><a href="#_获取对象的定时器相关属性">52.2.3. 获取对象的定时器相关属性</a></li>
 <li><a href="#_获取对象定时器上次运行结果">52.2.4. 获取对象定时器上次运行结果</a></li>
 </ul>
@@ -16081,7 +16081,7 @@ cargo build --release
 <div class="sect2">
 <h3 id="_查询systemd服务">52.1. 查询systemd服务</h3>
 <div class="sect3">
-<h4 id="_获取定时器对象路径">52.1.1. 获取定时器对象路径</h4>
+<h4 id="_获取服务的路径">52.1.1. 获取服务的路径</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus call \
@@ -16099,7 +16099,7 @@ cargo build --release
 </div>
 </div>
 <div class="sect3">
-<h4 id="_查看对象结构">52.1.2. 查看对象结构</h4>
+<h4 id="_查看服务的结构">52.1.2. 查看服务的结构</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus introspect \
@@ -16569,7 +16569,7 @@ cargo build --release
 </div>
 </div>
 <div class="sect3">
-<h4 id="_获取对象的服务相关属性">52.1.3. 获取对象的服务相关属性</h4>
+<h4 id="_获取服务的属性">52.1.3. 获取服务的属性</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus call \
@@ -16659,7 +16659,7 @@ cargo build --release
 </div>
 </div>
 <div class="sect3">
-<h4 id="_获取对象的服务状态">52.1.4. 获取对象的服务状态</h4>
+<h4 id="_获取服务状态">52.1.4. 获取服务状态</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus call \
@@ -16680,7 +16680,7 @@ cargo build --release
 <div class="sect2">
 <h3 id="_查询systemd定时器">52.2. 查询systemd定时器</h3>
 <div class="sect3">
-<h4 id="_获取定时器对象路径_2">52.2.1. 获取定时器对象路径</h4>
+<h4 id="_获取定时器对象路径">52.2.1. 获取定时器对象路径</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus call \
@@ -16698,7 +16698,7 @@ cargo build --release
 </div>
 </div>
 <div class="sect3">
-<h4 id="_查看对象结构_2">52.2.2. 查看对象结构</h4>
+<h4 id="_查看对象结构">52.2.2. 查看对象结构</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gdbus introspect \
