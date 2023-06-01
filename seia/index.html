@@ -896,24 +896,25 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_建立硬盘分区">8.1.1. 建立硬盘分区</a></li>
 <li><a href="#_格式化分区">8.1.2. 格式化分区</a></li>
 <li><a href="#_挂载分区">8.1.3. 挂载分区</a></li>
-<li><a href="#_设置国内镜像源">8.1.4. 设置国内镜像源</a></li>
-<li><a href="#_安装基础包">8.1.5. 安装基础包</a></li>
-<li><a href="#_开机挂载分区">8.1.6. 开机挂载分区</a></li>
-<li><a href="#_切换到全新_arch_linux_系统">8.1.7. 切换到全新 Arch Linux 系统</a></li>
-<li><a href="#_设置时区">8.1.8. 设置时区</a></li>
-<li><a href="#_本地化语言支持">8.1.9. 本地化语言支持</a></li>
-<li><a href="#_键盘布局">8.1.10. 键盘布局</a></li>
-<li><a href="#_设置主机名">8.1.11. 设置主机名</a></li>
-<li><a href="#_本地网络配置">8.1.12. 本地网络配置</a></li>
-<li><a href="#_设置root密码">8.1.13. 设置root密码</a></li>
-<li><a href="#_创建用户">8.1.14. 创建用户</a></li>
-<li><a href="#_安装grub引导">8.1.15. 安装Grub引导</a></li>
-<li><a href="#_安装桌面">8.1.16. 安装桌面</a></li>
-<li><a href="#_重启">8.1.17. 重启</a></li>
-<li><a href="#_设置pacman">8.1.18. 设置pacman</a></li>
-<li><a href="#_安装常用软件">8.1.19. 安装常用软件</a></li>
-<li><a href="#_系统设置">8.1.20. 系统设置</a></li>
-<li><a href="#_faq">8.1.21. FAQ</a></li>
+<li><a href="#_连接wifi">8.1.4. 连接WIFI</a></li>
+<li><a href="#_设置国内镜像源">8.1.5. 设置国内镜像源</a></li>
+<li><a href="#_安装基础包">8.1.6. 安装基础包</a></li>
+<li><a href="#_开机挂载分区">8.1.7. 开机挂载分区</a></li>
+<li><a href="#_切换到全新_arch_linux_系统">8.1.8. 切换到全新 Arch Linux 系统</a></li>
+<li><a href="#_设置时区">8.1.9. 设置时区</a></li>
+<li><a href="#_本地化语言支持">8.1.10. 本地化语言支持</a></li>
+<li><a href="#_键盘布局">8.1.11. 键盘布局</a></li>
+<li><a href="#_设置主机名">8.1.12. 设置主机名</a></li>
+<li><a href="#_本地网络配置">8.1.13. 本地网络配置</a></li>
+<li><a href="#_设置root密码">8.1.14. 设置root密码</a></li>
+<li><a href="#_创建用户">8.1.15. 创建用户</a></li>
+<li><a href="#_安装grub引导">8.1.16. 安装Grub引导</a></li>
+<li><a href="#_安装桌面">8.1.17. 安装桌面</a></li>
+<li><a href="#_重启">8.1.18. 重启</a></li>
+<li><a href="#_设置pacman">8.1.19. 设置pacman</a></li>
+<li><a href="#_安装常用软件">8.1.20. 安装常用软件</a></li>
+<li><a href="#_系统设置">8.1.21. 系统设置</a></li>
+<li><a href="#_faq">8.1.22. FAQ</a></li>
 </ul>
 </li>
 <li><a href="#_pacman">8.2. pacman</a>
@@ -3995,7 +3996,48 @@ mount /dev/sda1 /mnt/boot/efi</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置国内镜像源">8.1.4. 设置国内镜像源</h4>
+<h4 id="_连接wifi">8.1.4. 连接WIFI</h4>
+<div class="paragraph">
+<p>请查看官方文档 <a href="https://wiki.archlinux.org/title/Iwd#iwctl" class="bare">https://wiki.archlinux.org/title/Iwd#iwctl</a></p>
+</div>
+<div class="paragraph">
+<p>执行 <code>iwctl</code> 命令，进入iwd交互Shell：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 获得WIFI网卡名称 wlan0  和 WIFI硬件名称 phy0
+device list
+
+device wlan0 set-property Powered on
+adapter phy0 set-property Powered on
+
+# 不会有任何屏幕输出
+station wlan0 scan
+
+# 列表WIFI清单
+station wlan0 get-networks
+
+# 会提示输入连接密码，其中 GEEKCAMP_5G 是选择的WIFI SSID
+station wlan0 connect GEEKCAMP_5G
+
+# 查看WIFI连接
+station  wlan0 show
+
+# 退出iwd Shell
+exit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>测试网络连接：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ping qq.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_设置国内镜像源">8.1.5. 设置国内镜像源</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/pacman.d/mirrorlist
@@ -4005,7 +4047,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装基础包">8.1.5. 安装基础包</h4>
+<h4 id="_安装基础包">8.1.6. 安装基础包</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacstrap /mnt base</code></pre>
@@ -4013,7 +4055,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_开机挂载分区">8.1.6. 开机挂载分区</h4>
+<h4 id="_开机挂载分区">8.1.7. 开机挂载分区</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></pre>
@@ -4024,7 +4066,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_切换到全新_arch_linux_系统">8.1.7. 切换到全新 Arch Linux 系统</h4>
+<h4 id="_切换到全新_arch_linux_系统">8.1.8. 切换到全新 Arch Linux 系统</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">arch-chroot /mnt</code></pre>
@@ -4032,7 +4074,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置时区">8.1.8. 设置时区</h4>
+<h4 id="_设置时区">8.1.9. 设置时区</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre>
@@ -4040,7 +4082,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_本地化语言支持">8.1.9. 本地化语言支持</h4>
+<h4 id="_本地化语言支持">8.1.10. 本地化语言支持</h4>
 <div class="paragraph">
 <p>启用语言参数：</p>
 </div>
@@ -4077,7 +4119,7 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_键盘布局">8.1.10. 键盘布局</h4>
+<h4 id="_键盘布局">8.1.11. 键盘布局</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "KEYMAP=us" &gt; /etc/vconsole.conf</code></pre>
@@ -4085,7 +4127,7 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置主机名">8.1.11. 设置主机名</h4>
+<h4 id="_设置主机名">8.1.12. 设置主机名</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo 'archlinux' &gt; /etc/hostname</code></pre>
@@ -4093,7 +4135,7 @@ echo "zh_CN GB2312" &gt;&gt; /etc/locale.gen</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_本地网络配置">8.1.12. 本地网络配置</h4>
+<h4 id="_本地网络配置">8.1.13. 本地网络配置</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo '127.0.0.1 localhost' &gt; /etc/hosts
@@ -4103,7 +4145,7 @@ echo '127.0.0.1 archlinux' &gt;&gt; /etc/hosts</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置root密码">8.1.13. 设置root密码</h4>
+<h4 id="_设置root密码">8.1.14. 设置root密码</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">passwd</code></pre>
@@ -4111,7 +4153,7 @@ echo '127.0.0.1 archlinux' &gt;&gt; /etc/hosts</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_创建用户">8.1.14. 创建用户</h4>
+<h4 id="_创建用户">8.1.15. 创建用户</h4>
 <div class="paragraph">
 <p>新增用户：</p>
 </div>
@@ -4140,7 +4182,7 @@ echo 'mk   ALL=(ALL) ALL' &gt;&gt; /etc/sudoers</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装grub引导">8.1.15. 安装Grub引导</h4>
+<h4 id="_安装grub引导">8.1.16. 安装Grub引导</h4>
 <div class="sect4">
 <h5 id="_使用传统方式启动的bios">使用传统方式启动的BIOS</h5>
 <div class="listingblock">
@@ -4174,7 +4216,7 @@ grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装桌面">8.1.16. 安装桌面</h4>
+<h4 id="_安装桌面">8.1.17. 安装桌面</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 更新软件包索引
@@ -4202,7 +4244,7 @@ systemctl enable gdm</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_重启">8.1.17. 重启</h4>
+<h4 id="_重启">8.1.18. 重启</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">exit
@@ -4215,7 +4257,7 @@ reboot</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置pacman">8.1.18. 设置pacman</h4>
+<h4 id="_设置pacman">8.1.19. 设置pacman</h4>
 <div class="paragraph">
 <p>增加 <code>Arch Linux 中文社区仓库</code> 的腾讯镜像服务器：</p>
 </div>
@@ -4240,22 +4282,24 @@ exit</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装常用软件">8.1.19. 安装常用软件</h4>
+<h4 id="_安装常用软件">8.1.20. 安装常用软件</h4>
 <div class="paragraph">
 <p>在桌面打开终端，复制以下命令一次性安装：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -Syy
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo pacman -Syy
 
-pacman -S archlinuxcn-keyring
+sudo pacman -S archlinuxcn-keyring
 
-pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot google-chrome openssl wireshark-qt</code></pre>
+sudo pacman -S gedit vim screen thunderbird thunderbird-i18n-zh-cn openssh bash-completion cmake git curl wget filezilla gcc make  mlocate  nginx ntp p7zip rsync virtualbox  virtualbox-guest-iso virtualbox-host-dkms file-roller parted sshpass rdesktop qt5 fakeroot yay openssl wireshark-qt
+
+yay install google-chrome</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_系统设置">8.1.20. 系统设置</h4>
+<h4 id="_系统设置">8.1.21. 系统设置</h4>
 <div class="paragraph">
 <p>在桌面打开终端，执行以下命令：</p>
 </div>
@@ -4316,7 +4360,7 @@ sudo systemctl mask tmp.mount</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_faq">8.1.21. FAQ</h4>
+<h4 id="_faq">8.1.22. FAQ</h4>
 <div class="sect4">
 <h5 id="_e495">E495</h5>
 <div class="ulist">
