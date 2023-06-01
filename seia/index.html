@@ -4184,6 +4184,19 @@ echo 'mk   ALL=(ALL) ALL' &gt;&gt; /etc/sudoers</code></pre>
 <div class="sect3">
 <h4 id="_安装grub引导">8.1.16. 安装Grub引导</h4>
 <div class="sect4">
+<h5 id="_windowslinux双引导">Windows+Linux双引导</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' /etc/default/grub
+
+pacman -S os-prober</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>下次执行 <code>grub-mkconfig</code> 命令就会自动将Windows系统加入到Grub启动菜单</p>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_使用传统方式启动的bios">使用传统方式启动的BIOS</h5>
 <div class="listingblock">
 <div class="content">
