@@ -4205,7 +4205,7 @@ echo 'mk   ALL=(ALL) ALL' &gt;&gt; /etc/sudoers</code></pre>
 <h5 id="_windowslinux双引导">Windows+Linux双引导</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S grub os-prober
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pacman -S grub os-prober ntfs-3g
 sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' /etc/default/grub</code></pre>
 </div>
 </div>
