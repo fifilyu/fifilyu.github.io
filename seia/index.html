@@ -4210,7 +4210,7 @@ sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' /etc/def
 </div>
 </div>
 <div class="paragraph">
-<p>下次执行 <code>grub-mkconfig</code> 命令就会自动将Windows系统加入到Grub启动菜单</p>
+<p>下次进入GNOME桌面后，执行 <code>grub-mkconfig -o &#8230;&#8203;</code> 命令就会自动将Windows系统加入到Grub启动菜单</p>
 </div>
 </div>
 <div class="sect4">
@@ -4415,6 +4415,57 @@ sudo systemctl mask tmp.mount</code></pre>
 </div>
 <div class="paragraph">
 <p>如果不设置，安装Linux后显卡硬件不会被识别。在日志文件 <code>"Xorg.0.log"</code> 中会出现 <code>"(EE) open /dev/dri/card0: No such file or directory"</code> 的错误，无法进入桌面。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_a485显卡驱动无法加载导致桌面问题">A485显卡驱动无法加载，导致桌面问题</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>禁用安全启动；</p>
+</li>
+<li>
+<p>启用 <code>amdgpu</code> 驱动；</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo -i
+
+cat &lt;&lt; EOF &gt; /etc/modprobe.d/amdgpu.conf
+options amdgpu si_support=1
+options amdgpu cik_support=1
+EOF
+
+cat &lt;&lt; EOF &gt; /etc/modprobe.d/radeon.conf
+options radeon si_support=0
+options radeon cik_support=0
+EOF
+
+mkinitcpio -P</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重启后，验证：</p>
+</div>
+<div class="paragraph">
+<p><code>lspci -k | grep -A 3 -E "(VGA|3D)"</code></p>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre>06:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Raven Ridge [Radeon Vega Series / Radeon Vega Mobile Series] (rev d1)
+	Subsystem: Lenovo Raven Ridge [Radeon Vega Series / Radeon Vega Mobile Series]
+	Kernel driver in use: amdgpu
+	Kernel modules: amdgpu</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中，<code>Kernel driver in use: amdgpu</code> 表示设置已经生效。</p>
+</div>
+<div class="paragraph">
+<p>参考： <a href="https://wiki.archlinux.org/title/AMDGPU" class="bare">https://wiki.archlinux.org/title/AMDGPU</a></p>
 </div>
 </div>
 </div>
