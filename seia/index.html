@@ -1203,10 +1203,10 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_二进制压缩包安装_4">24.5.2. 二进制压缩包安装</a></li>
 </ul>
 </li>
-<li><a href="#_设置pip国内镜像">24.6. 设置PIP国内镜像</a>
+<li><a href="#_pip常用设置">24.6. PIP常用设置</a>
 <ul class="sectlevel3">
-<li><a href="#_临时使用">24.6.1. 临时使用</a></li>
-<li><a href="#_设为默认">24.6.2. 设为默认</a></li>
+<li><a href="#_设置pip国内镜像">24.6.1. 设置PIP国内镜像</a></li>
+<li><a href="#_常用设置">24.6.2. 常用设置</a></li>
 </ul>
 </li>
 <li><a href="#_上传_pypi">24.7. 上传 <code>PyPI</code></a>
@@ -9964,9 +9964,11 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_设置pip国内镜像">24.6. 设置PIP国内镜像</h3>
+<h3 id="_pip常用设置">24.6. PIP常用设置</h3>
 <div class="sect3">
-<h4 id="_临时使用">24.6.1. 临时使用</h4>
+<h4 id="_设置pip国内镜像">24.6.1. 设置PIP国内镜像</h4>
+<div class="sect4">
+<h5 id="_临时使用">临时使用</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名称</code></pre>
@@ -9987,8 +9989,8 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_设为默认">24.6.2. 设为默认</h4>
+<div class="sect4">
+<h5 id="_设为默认">设为默认</h5>
 <div class="listingblock">
 <div class="title">先升级PIP</div>
 <div class="content">
@@ -10018,6 +10020,18 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 <div class="title">设置默认镜像</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_常用设置">24.6.2. 常用设置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 允许在venv以外对安装包、卸载包
+pip config set global.break-system-packages true
+# 安装包时，不使用隔离模式。正常情况下，建议使用 `pip install --no-build-isolation xxx` 方式
+pip config set global.no-build-isolation true</code></pre>
 </div>
 </div>
 </div>
