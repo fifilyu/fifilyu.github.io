@@ -1539,6 +1539,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_cargo实践">51.3.3. Cargo实践</a></li>
 </ul>
 </li>
+<li><a href="#_静态二进制构建">51.4. 静态二进制构建</a></li>
 </ul>
 </li>
 <li><a href="#_GDBus_chapter">52. GDBus</a>
@@ -16403,8 +16404,27 @@ cargo build --release
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cargo check</code></pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_静态二进制构建">51.4. 静态二进制构建</h3>
+<div class="paragraph">
+<p>参考文档：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://rustwiki.org/zh-CN/edition-guide/rust-2018/platform-and-target-support/musl-support-for-fully-static-binaries.html#musl-%E6%94%AF%E6%8C%81%E5%AE%8C%E5%85%A8%E9%9D%99%E6%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6">《Rust 版本指南 中文版》之MUSL 支持完全静态二进制文件</a></p>
+</div>
+<div class="paragraph">
+<p>一般情况下，编写的项目代码没有使用C代码，可以直接构建不依赖libc的静态二进制文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rustup update
+rustup target add x86_64-unknown-linux-musl
+cargo build --target x86_64-unknown-linux-musl</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
