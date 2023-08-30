@@ -974,6 +974,15 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_LVM_chapter">10. LVM</a>
 <ul class="sectlevel2">
 <li><a href="#_增加硬盘">10.1. 增加硬盘</a></li>
+<li><a href="#_在线扩容">10.2. 在线扩容</a>
+<ul class="sectlevel3">
+<li><a href="#_创建分区">10.2.1. 创建分区</a></li>
+<li><a href="#_创建物理卷">10.2.2. 创建物理卷</a></li>
+<li><a href="#_扩容卷组">10.2.3. 扩容卷组</a></li>
+<li><a href="#_扩容逻辑卷">10.2.4. 扩容逻辑卷</a></li>
+<li><a href="#_在线扩容分区">10.2.5. 在线扩容分区</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_Wireshark_chapter">11. Wireshark</a>
@@ -1008,25 +1017,26 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_centos6初始化">13.2. CentOS6初始化</a></li>
 <li><a href="#_centos7初始化">13.3. CentOS7初始化</a></li>
 <li><a href="#_centos8初始化">13.4. CentOS8初始化</a></li>
-<li><a href="#_centos7_install_lnmp">13.5. CentOS7 Install LNMP</a>
+<li><a href="#_centos9初始化">13.5. CentOS9初始化</a></li>
+<li><a href="#_centos7_install_lnmp">13.6. CentOS7 Install LNMP</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_nginx">13.5.1. 安装 Nginx</a></li>
-<li><a href="#_安装_mysql">13.5.2. 安装 MySQL</a></li>
-<li><a href="#_安装_php7">13.5.3. 安装 PHP7</a></li>
-<li><a href="#_lnmp_环境测试">13.5.4. LNMP 环境测试</a></li>
+<li><a href="#_安装_nginx">13.6.1. 安装 Nginx</a></li>
+<li><a href="#_安装_mysql">13.6.2. 安装 MySQL</a></li>
+<li><a href="#_安装_php7">13.6.3. 安装 PHP7</a></li>
+<li><a href="#_lnmp_环境测试">13.6.4. LNMP 环境测试</a></li>
 </ul>
 </li>
-<li><a href="#_centos8配置文档">13.6. CentOS8配置文档</a>
+<li><a href="#_centos8配置文档">13.7. CentOS8配置文档</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_nginx_2">13.6.1. 安装 Nginx</a></li>
-<li><a href="#_安装_mysql_2">13.6.2. 安装 MySQL</a></li>
-<li><a href="#_安装_php7_2">13.6.3. 安装 PHP7</a></li>
-<li><a href="#_lnmp环境测试">13.6.4. LNMP环境测试</a></li>
+<li><a href="#_安装_nginx_2">13.7.1. 安装 Nginx</a></li>
+<li><a href="#_安装_mysql_2">13.7.2. 安装 MySQL</a></li>
+<li><a href="#_安装_php7_2">13.7.3. 安装 PHP7</a></li>
+<li><a href="#_lnmp环境测试">13.7.4. LNMP环境测试</a></li>
 </ul>
 </li>
-<li><a href="#_centos8安装前加载驱动">13.7. CentOS8安装前加载驱动</a>
+<li><a href="#_centos8安装前加载驱动">13.8. CentOS8安装前加载驱动</a>
 <ul class="sectlevel3">
-<li><a href="#_dell_precision_t3600">13.7.1. Dell Precision T3600</a></li>
+<li><a href="#_dell_precision_t3600">13.8.1. Dell Precision T3600</a></li>
 </ul>
 </li>
 </ul>
@@ -5630,7 +5640,290 @@ df -h
 ls /data</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_在线扩容">10.2. 在线扩容</h3>
+<div class="sect3">
+<h4 id="_创建分区">10.2.1. 创建分区</h4>
+<div class="sect4">
+<h5 id="_查看硬盘分区">查看硬盘分区</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">fdisk -l /dev/vda</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Disk /dev/vda: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x9b35f2fd
+
+Device     Boot Start      End  Sectors Size Id Type
+/dev/vda1  *     2048 62912511 62910464  30G 8e Linux LVM</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_创建分区_2">创建分区</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">fdisk /dev/vda</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Welcome to fdisk (util-linux 2.31.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): n
+Partition type
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended (container for logical partitions)
+Select (default p):
+
+Using default response p.
+Partition number (2-4, default 2):
+First sector (62912512-209715199, default 62912512):
+Last sector, +sectors or +size{K,M,G,T,P} (62912512-209715199, default 209715199):
+
+Created a new partition 2 of type 'Linux' and of size 70 GiB.
+
+Command (m for help): w
+The partition table has been altered.
+Syncing disks.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认分区">确认分区</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">fdisk -l /dev/vda</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Disk /dev/vda: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x9b35f2fd
+
+Device     Boot    Start       End   Sectors Size Id Type
+/dev/vda1  *        2048  62912511  62910464  30G 8e Linux LVM
+/dev/vda2       62912512 209715199 146802688  70G 83 Linux</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_创建物理卷">10.2.2. 创建物理卷</h4>
+<div class="sect4">
+<h5 id="_创建物理卷_2">创建物理卷</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pvcreate /dev/vda2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  Physical volume "/dev/vda2" successfully created.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认物理卷">确认物理卷</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pvs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  PV         VG      Fmt  Attr PSize   PFree
+  /dev/vda1  geek-vg lvm2 a--  &lt;30.00g 12.00m
+  /dev/vda2          lvm2 ---   70.00g 70.00g</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_扩容卷组">10.2.3. 扩容卷组</h4>
+<div class="sect4">
+<h5 id="_查看卷组">查看卷组</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vgs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  VG      #PV #LV #SN Attr   VSize   VFree
+  geek-vg   1   2   0 wz--n- &lt;30.00g 12.00m</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_扩容卷组_2">扩容卷组</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vgextend geek-vg /dev/vda2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  Volume group "geek-vg" successfully extended</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认卷组">确认卷组</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vgs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  VG      #PV #LV #SN Attr   VSize    VFree
+  geek-vg   2   2   0 wz--n- &lt;100.00g 70.01g</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_扩容逻辑卷">10.2.4. 扩容逻辑卷</h4>
+<div class="sect4">
+<h5 id="_查看逻辑卷">查看逻辑卷</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lvs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  LV     VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   geek-vg -wi-ao---- 29.03g
+  swap_1 geek-vg -wi-ao---- 976.00m</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_扩容逻辑卷_2">扩容逻辑卷</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lvextend -L+70G /dev/geek-vg/root</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  Size of logical volume geek-vg/root changed from 29.03 GiB (7432 extents) to 99.03 GiB (25352 extents).
+  Logical volume geek-vg/root successfully resized.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认逻辑卷">确认逻辑卷</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lvs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">  LV     VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   geek-vg -wi-ao---- 99.03g
+  swap_1 geek-vg -wi-ao---- 976.00m</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_在线扩容分区">10.2.5. 在线扩容分区</h4>
+<div class="sect4">
+<h5 id="_查看文件系统">查看文件系统</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">df -Th</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Filesystem                Type      Size  Used Avail Use% Mounted on
+udev                      devtmpfs  464M     0  464M   0% /dev
+tmpfs                     tmpfs      99M  664K   98M   1% /run
+/dev/mapper/geek--vg-root ext4       29G   26G  1.2G  96% /</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_扩容文件系统">扩容文件系统</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">resize2fs /dev/mapper/geek--vg-root</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">resize2fs 1.44.1 (24-Mar-2018)
+Filesystem at /dev/mapper/geek--vg-root is mounted on /; on-line resizing required
+old_desc_blocks = 4, new_desc_blocks = 13
+The filesystem on /dev/mapper/geek--vg-root is now 25960448 (4k) blocks long.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_确认文件系统">确认文件系统</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">df -Th</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Filesystem                Type      Size  Used Avail Use% Mounted on
+udev                      devtmpfs  464M     0  464M   0% /dev
+tmpfs                     tmpfs      99M  664K   98M   1% /run
+/dev/mapper/geek--vg-root ext4       98G   26G   68G  28% /</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果是XFS分区，使用 <code>xfs_growfs /</code> 在线扩容</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -6312,9 +6605,60 @@ systemctl mask firewalld</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos7_install_lnmp">13.5. CentOS7 Install LNMP</h3>
+<h3 id="_centos9初始化">13.5. CentOS9初始化</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rm -f ~/anaconda-ks.cfg
+
+dnf install -y iproute rsync epel-release vim-enhanced wget curl
+
+dnf install -y dnf-plugins-core
+# The CodeReady Linux Builder repository contains additional packages for use by developers.
+dnf config-manager --set-enabled crb
+# dnf repo-pkgs crb list
+
+
+#禁用SELINUX，必须重启才能生效
+echo SELINUX=disabled&gt;/etc/selinux/config
+echo SELINUXTYPE=targeted&gt;&gt;/etc/selinux/config
+
+#最大可以打开的文件
+echo "*               soft   nofile            65535" &gt;&gt; /etc/security/limits.conf
+echo "*               hard   nofile            65535" &gt;&gt; /etc/security/limits.conf
+
+# ssh登录时，登录ip被会反向解析为域名，导致ssh登录缓慢
+sed -i "s/#UseDNS yes/UseDNS no/" /etc/ssh/sshd_config
+sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/" /etc/ssh/sshd_config
+sed -i "s/GSSAPICleanupCredentials yes/GSSAPICleanupCredentials no/" /etc/ssh/sshd_config
+sed -i "s/#MaxAuthTries 6/MaxAuthTries 10/" /etc/ssh/sshd_config
+# server每隔30秒发送一次请求给client，然后client响应，从而保持连接
+sed -i "s/#ClientAliveInterval 0/ClientAliveInterval 30/" /etc/ssh/sshd_config
+# server发出请求后，客户端没有响应得次数达到3，就自动断开连接，正常情况下，client不会不响应
+sed -i "s/#ClientAliveCountMax 3/ClientAliveCountMax 10/" /etc/ssh/sshd_config
+
+#支持gbk文件显示
+echo "set fencs=utf-8,gbk" &gt;&gt; /etc/vimrc
+
+#设定系统时区
+yes|cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+#时间同步
+dnf install -y systemd-timesyncd
+systemctl enable systemd-timesyncd --now
+
+#如果是x86_64系统，排除32位包
+echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf
+
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl mask firewalld</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_centos7_install_lnmp">13.6. CentOS7 Install LNMP</h3>
 <div class="sect3">
-<h4 id="_安装_nginx">13.5.1. 安装 Nginx</h4>
+<h4 id="_安装_nginx">13.6.1. 安装 Nginx</h4>
 <div class="listingblock">
 <div class="title">增加 Nginx 官方源</div>
 <div class="content">
@@ -6541,7 +6885,7 @@ LISTEN     0      128         :::80                      :::*                   
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_mysql">13.5.2. 安装 MySQL</h4>
+<h4 id="_安装_mysql">13.6.2. 安装 MySQL</h4>
 <div class="listingblock">
 <div class="title">安装 MySQL</div>
 <div class="content">
@@ -6677,7 +7021,7 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_php7">13.5.3. 安装 PHP7</h4>
+<h4 id="_安装_php7">13.6.3. 安装 PHP7</h4>
 <div class="listingblock">
 <div class="title">增加SCL源</div>
 <div class="content">
@@ -6776,7 +7120,7 @@ LISTEN     0      128    127.0.0.1:9000                     *:*                 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lnmp_环境测试">13.5.4. LNMP 环境测试</h4>
+<h4 id="_lnmp_环境测试">13.6.4. LNMP 环境测试</h4>
 <div class="listingblock">
 <div class="title">增加数据库</div>
 <div class="content">
@@ -6939,9 +7283,9 @@ Server is a backwards-compatible replacement for MySQL.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8配置文档">13.6. CentOS8配置文档</h3>
+<h3 id="_centos8配置文档">13.7. CentOS8配置文档</h3>
 <div class="sect3">
-<h4 id="_安装_nginx_2">13.6.1. 安装 Nginx</h4>
+<h4 id="_安装_nginx_2">13.7.1. 安装 Nginx</h4>
 <div class="listingblock">
 <div class="title">增加EPEL源</div>
 <div class="content">
@@ -7109,7 +7453,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_mysql_2">13.6.2. 安装 MySQL</h4>
+<h4 id="_安装_mysql_2">13.7.2. 安装 MySQL</h4>
 <div class="listingblock">
 <div class="title">安装 MySQL</div>
 <div class="content">
@@ -7214,7 +7558,7 @@ mysql -uroot -pgeek -e 'flush privileges;'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_安装_php7_2">13.6.3. 安装 PHP7</h4>
+<h4 id="_安装_php7_2">13.7.3. 安装 PHP7</h4>
 <div class="listingblock">
 <div class="title">安装PHP7</div>
 <div class="content">
@@ -7266,7 +7610,7 @@ sed -i '902s#;date.timezone =#date.timezone = Asia/Shanghai#' /etc/php.ini</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lnmp环境测试">13.6.4. LNMP环境测试</h4>
+<h4 id="_lnmp环境测试">13.7.4. LNMP环境测试</h4>
 <div class="listingblock">
 <div class="title">增加数据库</div>
 <div class="content">
@@ -7329,7 +7673,7 @@ chmod -R 755 /data/web/drupal.foo.com</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8安装前加载驱动">13.7. CentOS8安装前加载驱动</h3>
+<h3 id="_centos8安装前加载驱动">13.8. CentOS8安装前加载驱动</h3>
 <div class="paragraph">
 <p>RedHat7中支持，但是在RedHat8中已经移除的硬件列表。特别是一些老的存储相关硬件。</p>
 </div>
@@ -7379,7 +7723,7 @@ In RHEL 8.0, support for a good number of hardware devices has been removed. A l
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dell_precision_t3600">13.7.1. Dell Precision T3600</h4>
+<h4 id="_dell_precision_t3600">13.8.1. Dell Precision T3600</h4>
 <div class="paragraph">
 <p><a href="https://www.dell.com/learn/us/en/04/shared-content~data-sheets~en/documents~dell_precision_t3600_spec_sheet.pdf">Dell Precision T3600 Spec Sheet</a></p>
 </div>
