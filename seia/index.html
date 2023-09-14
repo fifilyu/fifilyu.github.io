@@ -6669,7 +6669,10 @@ echo "exclude=*.i386 *.i586 *.i686" &gt;&gt; /etc/yum.conf
 
 systemctl stop firewalld
 systemctl disable firewalld
-systemctl mask firewalld</code></pre>
+systemctl mask firewalld
+
+dnf install -y iptables-services
+systemctl enable iptables --now</code></pre>
 </div>
 </div>
 </div>
