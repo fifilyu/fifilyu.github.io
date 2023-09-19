@@ -3651,12 +3651,22 @@ flush privileges;</code></pre>
 <h4 id="_本机无密码登录">7.1.4. 本机无密码登录</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql_config_editor set --login-path=local --host=localhost --user=root --password</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql_config_editor set --login-path=client --host=localhost --user=root --password</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql --login-path=local db_name</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql_config_editor print</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql --login-path=client db_name</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysql db_name</code></pre>
 </div>
 </div>
 </div>
