@@ -842,11 +842,8 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_find分别查找目录和文件">5.1.2. find分别查找目录和文件</a></li>
 <li><a href="#_创建用于运行服务的用户">5.1.3. 创建用于运行服务的用户</a></li>
 <li><a href="#_仅修改子目录中的文件权限忽略目录">5.1.4. 仅修改子目录中的文件权限，忽略目录</a></li>
-</ul>
-</li>
-<li><a href="#_networkmanager">5.2. NetworkManager</a>
-<ul class="sectlevel3">
-<li><a href="#_nmcli">5.2.1. nmcli</a></li>
+<li><a href="#_跨行替换文件内容">5.1.5. 跨行替换文件内容</a></li>
+<li><a href="#_nmcli">5.1.6. nmcli</a></li>
 </ul>
 </li>
 </ul>
@@ -3039,11 +3036,34 @@ create database db owner dbuser;</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_networkmanager">5.2. NetworkManager</h3>
 <div class="sect3">
-<h4 id="_nmcli">5.2.1. nmcli</h4>
+<h4 id="_跨行替换文件内容">5.1.5. 跨行替换文件内容</h4>
+<div class="paragraph">
+<p>需要将</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>INSERT INTO `tb1` VALUES (1, 607);
+INSERT INTO `tb1` VALUES (2, 1851);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>替换为</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>INSERT INTO `tb1` VALUES (1, 607)，(2, 1851);</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">perl -i -p -E 'BEGIN{undef $/;} s/;\r\nINSERT INTO `[a-zA-Z0-9_]+` VALUES \(/, \(/smg' unilive.sql.test
+=== NetworkManager</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nmcli">5.1.6. nmcli</h4>
 <div class="sect4">
 <h5 id="_配置ip地址">配置IP地址</h5>
 <div class="listingblock">
