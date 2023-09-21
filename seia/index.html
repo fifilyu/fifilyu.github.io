@@ -1379,23 +1379,20 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_ElasticStack_chapter">39. ElasticStack</a>
 <ul class="sectlevel2">
-<li><a href="#_centos8elk环境配置">39.1. CentOS8+ELK环境配置</a>
+<li><a href="#_centos7elk环境配置">39.1. CentOS7+ELK环境配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装java">39.1.1. 安装Java</a></li>
 <li><a href="#_增加yum源">39.1.2. 增加YUM源</a></li>
 <li><a href="#_elasticsearch">39.1.3. Elasticsearch</a></li>
 <li><a href="#_kibana">39.1.4. Kibana</a></li>
-<li><a href="#_logstash">39.1.5. Logstash</a></li>
+<li><a href="#_docker_方式">39.1.5. Docker 方式</a></li>
+<li><a href="#_配置_7">39.1.6. 配置</a></li>
 </ul>
 </li>
-<li><a href="#_过时centos7elk环境配置">39.2. （过时）CentOS7+ELK环境配置</a>
+<li><a href="#_centos8elk环境配置">39.2. CentOS8+ELK环境配置</a>
 <ul class="sectlevel3">
-<li><a href="#_配置yum源">39.2.1. 配置Yum源</a></li>
-<li><a href="#_安装elasticsearch">39.2.2. 安装ElasticSearch</a></li>
-<li><a href="#_安装kibana">39.2.3. 安装Kibana</a></li>
-<li><a href="#_安装logstash">39.2.4. 安装Logstash</a></li>
-<li><a href="#_docker方式安装elasticsearch">39.2.5. Docker方式安装ElasticSearch</a></li>
-<li><a href="#_配置_7">39.2.6. 配置</a></li>
+<li><a href="#_安装elk">39.2.1. 安装ELK</a></li>
+<li><a href="#_logstash">39.2.2. Logstash</a></li>
 </ul>
 </li>
 <li><a href="#_elasticstack使用教程">39.3. ElasticStack使用教程</a>
@@ -12415,15 +12412,12 @@ EOF</code></pre>
 <h2 id="_ElasticStack_chapter">39. ElasticStack</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_centos8elk环境配置">39.1. CentOS8+ELK环境配置</h3>
-<div class="paragraph">
-<p><strong>CentOS 8</strong></p>
-</div>
+<h3 id="_centos7elk环境配置">39.1. CentOS7+ELK环境配置</h3>
 <div class="sect3">
 <h4 id="_安装java">39.1.1. 安装Java</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
 </div>
 </div>
 </div>
@@ -12450,7 +12444,7 @@ EOF</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ dnf --disablerepo="*" --enablerepo="elasticsearch" list available
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ yum --disablerepo="*" --enablerepo="elasticsearch" list available
 Available Packages
 apm-server.x86_64                            7.7.1-1                       elasticsearch
 app-search.noarch                            7.6.2-1                       elasticsearch
@@ -12474,7 +12468,7 @@ packetbeat.x86_64                            7.7.1-1                       elast
 <h5 id="_安装_6">安装</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
 </div>
 </div>
 </div>
@@ -12482,15 +12476,19 @@ packetbeat.x86_64                            7.7.1-1                       elast
 <h5 id="_配置_5">配置</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '17s/#cluster.name: my-application/cluster.name: myapp/' /etc/elasticsearch/elasticsearch.yml
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '/#cluster.name: my-application/cluster.name: myapp/' /etc/elasticsearch/elasticsearch.yml
 
-sed -i '23s/#node.name: node-1/node.name: node-1/' /etc/elasticsearch/elasticsearch.yml
+sed -i '/#node.name: node-1/node.name: node-1/' /etc/elasticsearch/elasticsearch.yml
 
-sed -i '55s/#network.host: 192.168.0.1/network.host: 0.0.0.0/' /etc/elasticsearch/elasticsearch.yml
+sed -i '/#network.host: 192.168.0.1/network.host: 0.0.0.0/' /etc/elasticsearch/elasticsearch.yml
 
-sed -i '68s/#discovery.seed_hosts: .*/discovery.seed_hosts: ["0.0.0.0\/0"]/' /etc/elasticsearch/elasticsearch.yml
+sed -i '/#discovery.seed_hosts: .*/discovery.seed_hosts: ["0.0.0.0\/0"]/' /etc/elasticsearch/elasticsearch.yml
 
-sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml</code></pre>
+sed -i '/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml
+
+# 启用权限认证
+echo 'xpack.security.enabled: true' &gt;&gt; /etc/elasticsearch/elasticsearch.yml
+echo 'xpack.security.transport.ssl.enabled: true' &gt;&gt; /etc/elasticsearch/elasticsearch.yml</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -12536,6 +12534,25 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start elasticsearch</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>systemctl enable elasticsearch --now</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_生成随机密码">生成随机密码</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">/usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_访问">访问</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -u 'elastic:password' http://localhost:9200</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -12544,7 +12561,7 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 <h5 id="_安装_7">安装</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf --disablerepo="*" --enablerepo="elasticsearch" install -y kibana</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y kibana</code></pre>
 </div>
 </div>
 </div>
@@ -12552,9 +12569,14 @@ sed -i '72s/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["no
 <h5 id="_配置_6">配置</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '7s/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
-sed -i '28s/#elasticsearch.hosts: .*/elasticsearch.hosts: ["http:\/\/0.0.0.0:9200"]/' /etc/kibana/kibana.yml
-sed -i '115s/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
+sed -i '/#elasticsearch.hosts: .*/elasticsearch.hosts: ["http:\/\/0.0.0.0:9200"]/' /etc/kibana/kibana.yml
+sed -i '/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml
+
+echo 'elasticsearch.username: "elastic"' &gt;&gt;  /etc/kibana/kibana.yml
+echo 'elasticsearch.password: "password"' &gt;&gt;  /etc/kibana/kibana.yml
+echo 'xpack.security.enabled: true' &gt;&gt;  /etc/kibana/kibana.yml
+echo 'xpack.security.encryptionKey: "4297f44b13955235245b2497399d7a93"' &gt;&gt;  /etc/kibana/kibana.yml</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -12592,14 +12614,169 @@ sed -i '115s/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml</code
 </div>
 </div>
 <div class="sect4">
-<h5 id="_最后_2">最后</h5>
+<h5 id="_访问_2">访问</h5>
 <div class="paragraph">
-<p>如果系统IP为 172.24.109.12，则访问 <a href="http://172.24.109.12:5601/" class="bare">http://172.24.109.12:5601/</a></p>
+<p>使用Elasticsearch随机密码登录 <a href="http://172.24.109.12:5601/" class="bare">http://172.24.109.12:5601/</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_安装logstash">安装Logstash</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y logstash</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_logstash">39.1.5. Logstash</h4>
+<h4 id="_docker_方式">39.1.5. Docker 方式</h4>
+<div class="paragraph">
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html">Install Elasticsearch(官方文档)</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "vm.max_map_count=262144" &gt;&gt; /etc/sysctl.conf
+sysctl -p</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>必须设置，否则无法启动 <code>Elasticsearch</code> 容器。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">docker-compose.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="yml" class="language-yml hljs">version: '2.2'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    container_name: elasticsearch
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+        - 9200:9200
+    networks:
+      - esnet
+  elasticsearch2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    container_name: elasticsearch2
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - esdata2:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+
+networks:
+  esnet:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /data/workspace/docker/es
+cp docker-compose.yml /data/workspace/docker/es
+cd /data/workspace/docker/es
+docker-compose up</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_配置_7">39.1.6. 配置</h4>
+<div class="paragraph">
+<p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
+</div>
+<div class="listingblock">
+<div class="title">监听网络IP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">network.host: 192.168.0.4</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">允许的客户端</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">discovery.seed_hosts: ["192.168.0.0/24"]`</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>network.host</code> 参数不支持 <code>0.0.0.0</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Elasticsearch 在老旧硬件上需要关闭机器学习模块，</p>
+</div>
+<div class="paragraph">
+<p>在配置文件中增加参数： <code>xpack.ml.enabled: false</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_centos8elk环境配置">39.2. CentOS8+ELK环境配置</h3>
+<div class="sect3">
+<h4 id="_安装elk">39.2.1. 安装ELK</h4>
+<div class="paragraph">
+<p>同 <a href="#_centos7elk环境配置">CentOS7+ELK环境配置</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logstash">39.2.2. Logstash</h4>
 <div class="paragraph">
 <p><span class="red">“如何将Nginx的Web日志导入Elasticsearch？”</span></p>
 </div>
@@ -12828,240 +13005,6 @@ EOF</code></pre>
 <div class="paragraph">
 <p>如果想重新导入，删除 .sincedb 文件即可。</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_过时centos7elk环境配置">39.2. （过时）CentOS7+ELK环境配置</h3>
-<div class="sect3">
-<h4 id="_配置yum源">39.2.1. 配置Yum源</h4>
-<div class="paragraph">
-<p>增加源：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
-cat &lt;&lt; EOF &gt; /etc/yum.repos.d/elasticsearch.repo
-[elasticsearch]
-name=Elasticsearch repository for 7.x packages
-baseurl=https://artifacts.elastic.co/packages/7.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=0
-autorefresh=1
-type=rpm-md
-EOF</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>查看包列表：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>[root@localhost ~]# yum --disablerepo="*" --enablerepo="elasticsearch" list available
-Loaded plugins: fastestmirror
-Loading mirror speeds from cached hostfile
-elasticsearch                                                                                                                          | 1.3 kB  00:00:00
-elasticsearch/primary                                                                                                                  |  88 kB  00:00:04
-elasticsearch                                                                                                                                         243/243
-Available Packages
-apm-server.i686                                                                 7.5.1-1                                                          elasticsearch
-apm-server.x86_64                                                               7.5.1-1                                                          elasticsearch
-app-search.noarch                                                               7.5.1-1                                                          elasticsearch
-auditbeat.i686                                                                  7.5.1-1                                                          elasticsearch
-auditbeat.x86_64                                                                7.5.1-1                                                          elasticsearch
-elasticsearch.x86_64                                                            7.5.1-1                                                          elasticsearch
-filebeat.i686                                                                   7.5.1-1                                                          elasticsearch
-filebeat.x86_64                                                                 7.5.1-1                                                          elasticsearch
-heartbeat-elastic.i686                                                          7.5.1-1                                                          elasticsearch
-heartbeat-elastic.x86_64                                                        7.5.1-1                                                          elasticsearch
-journalbeat.i686                                                                7.5.1-1                                                          elasticsearch
-journalbeat.x86_64                                                              7.5.1-1                                                          elasticsearch
-kibana.x86_64                                                                   7.5.1-1                                                          elasticsearch
-logstash.noarch                                                                 1:7.5.1-1                                                        elasticsearch
-metricbeat.i686                                                                 7.5.1-1                                                          elasticsearch
-metricbeat.x86_64                                                               7.5.1-1                                                          elasticsearch
-packetbeat.i686                                                                 7.5.1-1                                                          elasticsearch
-packetbeat.x86_64                                                               7.5.1-1                                                          elasticsearch</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_安装elasticsearch">39.2.2. 安装ElasticSearch</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch
-
-sed -i '55s/#network.host: 192.168.0.1/network.host: 0.0.0.0/' /etc/elasticsearch/elasticsearch.yml
-sed -i '68s/#discovery.seed_hosts: .*/discovery.seed_hosts: ["0.0.0.0\/0"]/' /etc/elasticsearch/elasticsearch.yml
-
-systemctl daemon-reload
-systemctl enable elasticsearch.service
-systemctl start elasticsearch</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_安装kibana">39.2.3. 安装Kibana</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y kibana
-
-sed -i '7s/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
-iptables -F
-service  iptables save
-systemctl enable kibana
-systemctl start kibana
-
-访问 http://192.168.2.8:5601/</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_安装logstash">39.2.4. 安装Logstash</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y logstash</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_docker方式安装elasticsearch">39.2.5. Docker方式安装ElasticSearch</h4>
-<div class="paragraph">
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html">Install Elasticsearch(官方文档)</a></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "vm.max_map_count=262144" &gt;&gt; /etc/sysctl.conf
-sysctl -p</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>必须设置，否则无法启动 <code>Elasticsearch</code> 容器。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">docker-compose.yml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="yml" class="language-yml hljs">version: '2.2'
-services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-    container_name: elasticsearch
-    environment:
-      - TZ=Asia/Shanghai
-      - LANG=en_US.UTF-8
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - esdata1:/usr/share/elasticsearch/data
-    ports:
-        - 9200:9200
-    networks:
-      - esnet
-  elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-    container_name: elasticsearch2
-    environment:
-      - TZ=Asia/Shanghai
-      - LANG=en_US.UTF-8
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - esdata2:/usr/share/elasticsearch/data
-    networks:
-      - esnet
-
-volumes:
-  esdata1:
-    driver: local
-  esdata2:
-    driver: local
-
-networks:
-  esnet:</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /data/workspace/docker/es
-cp docker-compose.yml /data/workspace/docker/es
-cd /data/workspace/docker/es
-docker-compose up</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_配置_7">39.2.6. 配置</h4>
-<div class="paragraph">
-<p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
-</div>
-<div class="listingblock">
-<div class="title">监听网络IP</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">network.host: 192.168.0.4</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">允许的客户端</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">discovery.seed_hosts: ["192.168.0.0/24"]`</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>network.host</code> 参数不支持 <code>0.0.0.0</code></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Elasticsearch 在老旧硬件上需要关闭机器学习模块，</p>
-</div>
-<div class="paragraph">
-<p>在配置文件中增加参数： <code>xpack.ml.enabled: false</code></p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
