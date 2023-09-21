@@ -2444,14 +2444,46 @@ htpasswd -b -c /etc/nginx/conf.d/dl.2012iot.com.pass admin CaNxR7doJLW76HPXGkrsM
         server_name dl.cdgeekcamp.com;
         root /data/web/dl.cdgeekcamp.com;
 
-        location / {
-            autoindex on;
-            autoindex_localtime on;
-            # 设置文件大小显示单位
-            autoindex_exact_size off;
-        }
+        autoindex on;
+        autoindex_localtime on;
+        # 设置文件大小显示单位
+        autoindex_exact_size off;
 }</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>日志文件设置MIME，支持直接浏览器显示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>server {
+    listen       34567;
+
+    server_name _;
+    root /var/log/nginx;
+
+    autoindex on;
+    autoindex_localtime on;
+    # 设置文件大小显示单位
+    autoindex_exact_size off;
+
+    location ~ \.log$ {
+        default_type        text/plain;
+    }
+}</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>.gz</code> 文件会提示下载（MIME：application/octet-stream）
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
