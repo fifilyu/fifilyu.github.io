@@ -1013,7 +1013,7 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_centos6初始化">13.2. CentOS6初始化</a></li>
 <li><a href="#_centos7初始化">13.3. CentOS7初始化</a></li>
-<li><a href="#_centos8初始化">13.4. CentOS8初始化</a></li>
+<li><a href="#_centos8初始化过时">13.4. CentOS8初始化（过时）</a></li>
 <li><a href="#_centos9初始化">13.5. CentOS9初始化</a></li>
 <li><a href="#_centos7_install_lnmp">13.6. CentOS7 Install LNMP</a>
 <ul class="sectlevel3">
@@ -1714,8 +1714,7 @@ yum-config-manager \
     --add-repo \
     http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-yum install -y docker-ce
-curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</code></pre>
+yum install -y docker-ce</code></pre>
 </div>
 </div>
 </div>
@@ -1723,7 +1722,10 @@ curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compos
 <h4 id="_配置">1.1.4. 配置</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "net.bridge.bridge-nf-call-ip6tables = 1" &gt;&gt; /etc/sysctl.conf
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">modprobe br_netfilter
+echo br_netfilter &gt;&gt; /etc/modules-load.d/modules.conf
+
+echo "net.bridge.bridge-nf-call-ip6tables = 1" &gt;&gt; /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-iptables = 1" &gt;&gt; /etc/sysctl.conf
 echo "net.ipv4.ip_forward = 1" &gt;&gt; /etc/sysctl.conf
 
@@ -6566,7 +6568,12 @@ chkconfig  lvm2-monitor off 1</code></pre>
 echo -ne "\033[9;0]" &gt;&gt; /etc/issue
 # 重启，cat /sys/module/kernel/parameters/consoleblank 为空表示生效
 
-yum install -y iproute rsync epel-release vim-enhanced wget curl screen lbzip2 tcpdump unzip
+yum install -y iproute rsync epel-release yum-utils tree pwgen vim-enhanced wget curl screen lbzip2 tcpdump unzip tar xz bash-completion-extras xmlstarlet crudini
+
+wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /usr/local/bin/jq
+chmod 755 /usr/local/bin/jq
+
+pip310 install --root-user-action=ignore -U yq toml-cli
 
 # PHP 7
 yum install centos-release-scl
@@ -6640,10 +6647,10 @@ firewall-cmd --reload</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos8初始化">13.4. CentOS8初始化</h3>
+<h3 id="_centos8初始化过时">13.4. CentOS8初始化（过时）</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y iproute rsync epel-release vim-enhanced wget curl
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y iproute rsync epel-release vim-enhanced wget curl screen lbzip2 tcpdump unzip bash-completion
 
 dnf install -y dnf-plugins-core
 dnf config-manager --set-enabled PowerTools
@@ -6696,7 +6703,12 @@ systemctl mask firewalld</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rm -f ~/anaconda-ks.cfg
 
-dnf install -y iproute rsync epel-release vim-enhanced wget curl
+dnf install -y iproute rsync epel-release yum-utils tree pwgen vim-enhanced wget curl screen lbzip2 tcpdump unzip tar xz bash-completion xmlstarlet crudini
+
+wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /usr/local/bin/jq
+chmod 755 /usr/local/bin/jq
+
+pip310 install --root-user-action=ignore -U yq toml-cli
 
 dnf install -y dnf-plugins-core
 # The CodeReady Linux Builder repository contains additional packages for use by developers.
