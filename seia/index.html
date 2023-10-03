@@ -3332,8 +3332,8 @@ virt-install \
 --name 192168100009 \
 --ram 4096 \
 --disk path=/data/libvirt/images/192168100009.img,size=30 \
---vcpus 2 \
---os-type linux \
+--vcpus 4 \
+--cpu host-model,topology.sockets=1,topology.cores=4,topology.threads=1 \
 --os-variant centos6 \
 --network bridge=br0 \
 --console pty,target_type=serial \
@@ -3345,7 +3345,8 @@ virt-install \
 --ram 4048 \
 --disk path=/data/libvirt/images/tpl_win2k12r2_hd0.img,size=100 \
 --vcpus 4 \
---os-type windows \
+--vcpus 4 \
+--cpu host-model,topology.sockets=1,topology.cores=4,topology.threads=1 \
 --os-variant win2k12r2 \
 --network bridge=virbr0 \
 --console pty,target_type=serial \
@@ -3358,13 +3359,44 @@ virt-install \
 --ram 4048 \
 --disk path=/data/libvirt/images/tpl_win2k12r2.img \
 --vcpus 4 \
---os-type windows \
+--cpu host-model,topology.sockets=1,topology.cores=4,topology.threads=1 \
 --os-variant win2k12r2 \
 --network bridge=virbr0 \
 --console pty,target_type=serial \
 --import \
 --graphics vnc,password=aC8W5It9nOyrXchH,port=-1,listen=0.0.0.0</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>CPU核心数设置：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>--vcpus 4 \
+--cpu host-model,topology.sockets=1,topology.cores=4,topology.threads=1 \</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>对应的XML配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">  &lt;vcpu placement='static'&gt;4&lt;/vcpu&gt;
+  &lt;cpu mode='host-passthrough' check='none' migratable='on'&gt;
+    &lt;topology sockets='2' cores='4' threads='2'/&gt;
+  &lt;/cpu&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="dlist">
 <dl>
