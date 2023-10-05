@@ -3867,9 +3867,21 @@ Current database: db_name
 <h4 id="_备份和还原">7.1.7. 备份和还原</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqldump -uusername -p'password' --add-drop-table db_name &gt; db_name_dump.sql
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 导出数据库
+mysqldump db_name &gt; db_name_dump.sql
 
-mysql -uusername -p'password' db_name &lt; db_name_dump.sql</code></pre>
+# 导出数据库并压缩
+mysqldump db_name | gzip &gt; db_name_$(date +%Y_%m_%d_%H_%M_%S).sql.gz
+
+# 导出不带create table的表数据，每行一个INSERT INTO
+mysqldump db_name table_name --no-create-info --extended-insert=false
+
+# 每行一个INSERT INTO，替换成INSERT IGNORE INTO，用于合并同表的数据
+# 如果表ID存在，则跳过插入
+mysqldump db_name table_name --no-create-info --extended-insert=false | grep -E '(INSERT INTO)|LOCK' |sed 's/INSERT INTO /INSERT IGNORE INTO /'
+
+# 导入SQL文件
+mysql db_name &lt; db_name_dump.sql</code></pre>
 </div>
 </div>
 </div>
@@ -3887,9 +3899,29 @@ show profile for query query_id;</code></pre>
 <h4 id="_查看全局变量">7.1.9. 查看全局变量</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">set global query_cache_type=on;
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 开启SQL日志
+#
+set global general_log = ON;
+set gloabl general_log_file = /var/lib/mysql/hostname.log;
+show global variables like '%general_log%';
 
-show global variables like '%time%';</code></pre>
+# 开启慢查询
+set global long_query_time = 10;
+set global slow_query_log = ON;
+set gloabl slow_query_log_file = /var/lib/mysql/hostname-slow.log;
+show global variables like '%_query_%';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">my.cnf</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="ini" class="language-ini hljs">[mysqld]
+general_log = ON
+general_log_file = /var/lib/mysql/general.log
+
+long-query-time = 10
+slow_query_log = ON
+slow_query_log_file = /var/lib/mysql/slow.log</code></pre>
 </div>
 </div>
 </div>
@@ -4493,6 +4525,15 @@ sudo gpasswd -a $USER vboxusers
 # wireshark 设置
 sudo gpasswd -a root wireshark
 sudo gpasswd -a $USER wireshark
+
+# 系统日志
+sudo gpasswd -a $USER adm
+sudo gpasswd -a $USER systemd-journal
+sudo gpasswd -a $USER wheel
+
+# docker
+#sudo gpasswd -a $USER docker
+
 sudo grpunconv
 
 # 开机启动
