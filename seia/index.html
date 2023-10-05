@@ -1282,6 +1282,13 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_查看定时器">26.5.6. 查看定时器</a></li>
 </ul>
 </li>
+<li><a href="#_日常使用">26.6. 日常使用</a>
+<ul class="sectlevel3">
+<li><a href="#_查看证书域名列表">26.6.1. 查看证书域名列表</a></li>
+<li><a href="#_同时签发根域名foo_com和泛域名_foo_com至一个证书">26.6.2. 同时签发根域名（foo.com）和泛域名（*.foo.com）至一个证书</a></li>
+<li><a href="#_前后签发根域名foo_com和泛域名_foo_com至一个证书">26.6.3. 前后签发根域名（foo.com）和泛域名（*.foo.com）至一个证书</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_GPG_chapter">27. GPG</a>
@@ -11326,6 +11333,494 @@ systemctl enable letsencrypt.timer</code></pre>
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl list-timers letsencrypt.timer</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_日常使用">26.6. 日常使用</h3>
+<div class="paragraph">
+<p><a href="https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-commands">Certbot Commands文档</a></p>
+</div>
+<div class="sect3">
+<h4 id="_查看证书域名列表">26.6.1. 查看证书域名列表</h4>
+<div class="sect4">
+<h5 id="_方法一openssl_x509_打印证书信息">方法一：OpenSSL + x509 打印证书信息</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl x509 -in /etc/letsencrypt/live/foo.com/fullchain.pem -text -noout | grep DNS</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">DNS:*.foo.com, DNS:foo.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_方法二打印指定证书foo_com的信息">方法二：打印指定证书（foo.com）的信息</h5>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>certbot --help certificates</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certificates --cert-name foo.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following matching certs:
+  Certificate Name: foo.com
+    Serial Number: 3709aba3222e0229f3f9b2e49b1f5664131
+    Key Type: ECDSA
+    Domains: foo.com *.foo.com
+    Expiry Date: 2024-01-03 06:19:50+00:00 (VALID: 89 days)
+    Certificate Path: /etc/letsencrypt/live/foo.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/foo.com/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_方法三查找同时包括foo_com和_foo_com域名的证书">方法三：查找同时包括foo.com和*.foo.com域名的证书</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certificates -d foo.com -d *.foo.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following matching certs:
+  Certificate Name: foo.com
+    Serial Number: 3709aba3222e0229f3f9b2e49b1f5664131
+    Key Type: ECDSA
+    Domains: foo.com *.foo.com
+    Expiry Date: 2024-01-03 06:19:50+00:00 (VALID: 89 days)
+    Certificate Path: /etc/letsencrypt/live/foo.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/foo.com/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_同时签发根域名foo_com和泛域名_foo_com至一个证书">26.6.2. 同时签发根域名（foo.com）和泛域名（*.foo.com）至一个证书</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>certbot --help certonly</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>签发多域名（foo.com、*.foo.com）证书：</p>
+<div class="listingblock">
+<div class="title">位置：签发界面</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certonly -d foo.com -d *.foo.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-d foo.com -d *.foo.com</code> 参数</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">顺序不能错乱</dt>
+<dd>
+<p>默认用第一个域名作为证书名称，如 <code>/etc/letsencrypt/live/foo.com</code></p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">签发界面的屏幕输出（1）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Requesting a certificate for foo.com and *.foo.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.foo.com.
+
+with the following value:
+
+KhfLnoh0x77HK9mdxCZfpWN9RA-J-eXmPvZTpvX9ReA
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>直接按 <kbd>Enter</kbd></td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">签发界面的屏幕输出（2）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">【接 签发界面的屏幕输出（1） 的内容】
+......
+......
+......
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.foo.com.
+
+with the following value:
+
+0XfJQBCwpgzREwrxSiBOQRMmn7iNNE3X71QSjhUZbMs
+
+(This must be set up in addition to the previous challenges; do not remove,
+replace, or undo the previous challenge tasks yet. Note that you might be
+asked to create multiple distinct TXT records with the same name. This is
+permitted by DNS standards.)
+
+Before continuing, verify the TXT record has been deployed. Depending on the DNS
+provider, this may take some time, from a few seconds to multiple minutes. You can
+check if it has finished deploying with aid of online tools, such as the Google
+Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.foo.com.
+Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
+value(s) you've just added.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>解析没生效前，不要按 <kbd>Enter</kbd></td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+现在，已经拿到两条DNS TXT解析记录字符串，接着去做解析
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>登录域名管理界面，新增 <span class="red big">两条相同名称的 TXT 解析记录</span>，主机记录名称： _acme-challenge</p>
+<div class="paragraph">
+<p>如下图所示：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dns_settings_two_txt.png" alt="dns settings two txt">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>确认域名解析已经生效</p>
+<div class="listingblock">
+<div class="title">位置：域名验证界面</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig _acme-challenge.foo.com TXT</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">; &lt;&lt;&gt;&gt; DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.14 &lt;&lt;&gt;&gt; _acme-challenge.foo.com TXT
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 57330
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;_acme-challenge.foo.com.	IN	TXT
+
+;; ANSWER SECTION:
+_acme-challenge.foo.com. 600	IN	TXT	"0XfJQBCwpgzREwrxSiBOQRMmn7iNNE3X71QSjhUZbMs" <i class="conum" data-value="1"></i><b>(1)</b>
+_acme-challenge.foo.com. 600	IN	TXT	"KhfLnoh0x77HK9mdxCZfpWN9RA-J-eXmPvZTpvX9ReA" <i class="conum" data-value="2"></i><b>(2)</b>
+
+;; Query time: 172 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: Thu Oct 05 16:02:59 CST 2023
+;; MSG SIZE  rcvd: 165</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>第一条 <code>_acme-challenge.foo.com</code> DNS TXT解析记录</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>第二条 <code>_acme-challenge.foo.com</code> DNS TXT解析记录</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>继续完成签发多域名（foo.com、*.foo.com）证书：</p>
+<div class="listingblock">
+<div class="title">签发界面的屏幕输出（3）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">【接 签发界面的屏幕输出（2） 的内容】
+......
+......
+......
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/foo.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/foo.com/privkey.pem
+This certificate expires on 2024-01-03.
+These files will be updated when the certificate renews.
+
+NEXT STEPS:
+- This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>生成交换密钥</p>
+<div class="listingblock">
+<div class="title">位置：签发界面</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_前后签发根域名foo_com和泛域名_foo_com至一个证书">26.6.3. 前后签发根域名（foo.com）和泛域名（*.foo.com）至一个证书</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>certbot --help certonly</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>已有包含根域名的证书：/etc/letsencrypt/live/foo.com</p>
+</li>
+<li>
+<p>在根域名证书中追加新域名（*.foo.com）：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">certbot certonly -d foo.com -d *.foo.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-d foo.com -d *.foo.com</code> 参数</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">顺序不能错乱</dt>
+<dd>
+<p>默认用第一个域名作为证书名称，如 <code>/etc/letsencrypt/live/foo.com</code></p>
+</dd>
+<dt class="hdlist1">列表不能缺失</dt>
+<dd>
+<p>新证书仅签发 <code>-d</code> 指定的域名列表，所以不能有缺失</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">签发证书的屏幕输出（1）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+You have an existing certificate that contains a portion of the domains you
+requested (ref: /etc/letsencrypt/renewal/foo.com.conf)
+
+It contains these names: foo.com <i class="conum" data-value="1"></i><b>(1)</b>
+
+You requested these names for the new certificate: foo.com, *.foo.com. <i class="conum" data-value="2"></i><b>(2)</b>
+
+Do you want to expand and replace this existing certificate with the new
+certificate?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(E)xpand/(C)ancel: E  <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>根证书包含的域名列表</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>本次签发指定的域名列表</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>询问用新生成的域名证书替换老证书，确认请输入 <span class="red big">E</span></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>接下来的步骤就非常熟悉了，不再多说：</p>
+<div class="listingblock">
+<div class="title">签发证书的屏幕输出（2）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">【接 签发证书的屏幕输出（1） 的内容】
+......
+......
+......
+
+(E)xpand/(C)ancel: E
+Renewing an existing certificate for foo.com and *.foo.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.foo.com.
+
+with the following value:
+
+_V7Odzo7QopP9Pi2q_GMbvXyVkcUVhHIn4YVS-4M_Og
+
+Before continuing, verify the TXT record has been deployed. Depending on the DNS
+provider, this may take some time, from a few seconds to multiple minutes. You can
+check if it has finished deploying with aid of online tools, such as the Google
+Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.foo.com.
+Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
+value(s) you've just added.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/foo.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/foo.com/privkey.pem
+This certificate expires on 2024-01-03.
+These files will be updated when the certificate renews.
+
+NEXT STEPS:
+- This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>生成交换密钥</p>
+<div class="listingblock">
+<div class="title">位置：签发界面</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -20653,7 +21148,7 @@ flutter doctor -v</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-09-29 12:39:29 +0800
+Last updated 2023-09-05 14:13:10 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
