@@ -11474,6 +11474,18 @@ Found the following matching certs:
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+如果域名证书用于CDN，注意使用 <code>certbot certonly --key-type rsa</code> 签发RSA格式私钥才能用
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -11687,6 +11699,58 @@ If you like Certbot, please consider supporting our work by:
 </div>
 </li>
 </ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">关于CDN+域名证书的说明</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://letsencrypt.org/zh-cn/certificates/">Let’s Encrypt证书信任链</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://letsencrypt.org/certs/isrgrootx1.pem">根证书&#8594;活跃证书&#8594;ISRG Root X1&#8594;自签名&#8594;PEM</a></p>
+</li>
+<li>
+<p><a href="https://letsencrypt.org/certs/lets-encrypt-r3.pem">中间证书&#8594;活跃证书&#8594;Let’s Encrypt R3&#8594;通过 ISRG Root X1 签出&#8594;PEM</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果域名证书用于CDN，除了需要RSA格式的私钥外，还需要证书信任链。</p>
+</div>
+<div class="paragraph">
+<p>本来 <code>fullchain.pem</code> 已经包含了证书信任链，分别是域名证书（cert.pem）、中间证书（chain.pem中第一个证书）和根证书（chain.pem中第二个证书）。</p>
+</div>
+<div class="paragraph">
+<p>结果，CDN厂商验证信任链是从互联网渠道获得的中间证书和根证书，和 <code>chain.pem</code> 文件中的证书内容不匹配。</p>
+</div>
+<div class="paragraph">
+<p>手动生成CDN厂商支持的 <code>fullchain.pem</code> 证书文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">test -f /etc/letsencrypt/isrgrootx1.pem || wget https://letsencrypt.org/certs/isrgrootx1.pem -O /etc/letsencrypt/isrgrootx1.pem
+test -f /etc/letsencrypt/lets-encrypt-r3.pem || wget https://letsencrypt.org/certs/isrgrootx1.pem -O /etc/letsencrypt/lets-encrypt-r3.pem
+
+cat /etc/letsencrypt/live/foo.com/cert.pem /etc/letsencrypt/lets-encrypt-r3.pem /etc/letsencrypt/isrgrootx1.pem &gt; /etc/letsencrypt/live/foo.com/fullchain_for_cdn.pem</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>将 <code>/etc/letsencrypt/live/foo.com/fullchain_for_cdn.pem</code> 上传到CDN厂商即可。</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="5">
@@ -21189,7 +21253,7 @@ flutter doctor -v</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-09-05 14:13:10 +0800
+Last updated 2023-09-29 12:39:29 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
