@@ -1072,7 +1072,12 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_FFmpeg_chapter">16. FFmpeg</a>
 <ul class="sectlevel2">
-<li><a href="#_centos8_安装">16.1. CentOS8 安装</a></li>
+<li><a href="#_安装最新版ffmpeg">16.1. 安装最新版FFmpeg</a>
+<ul class="sectlevel3">
+<li><a href="#_安装静态构建版">16.1.1. 安装静态构建版</a></li>
+<li><a href="#_查看版本">16.1.2. 查看版本</a></li>
+</ul>
+</li>
 <li><a href="#_命令合集">16.2. 命令合集</a>
 <ul class="sectlevel3">
 <li><a href="#_mp4转换为mp3">16.2.1. mp4转换为mp3</a></li>
@@ -8428,15 +8433,73 @@ To disable a shortcut, edit it and press the Backspace instead of the new shortc
 <h2 id="_FFmpeg_chapter">16. FFmpeg</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_centos8_安装">16.1. CentOS8 安装</h3>
+<h3 id="_安装最新版ffmpeg">16.1. 安装最新版FFmpeg</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>RPM Fusion</code> 仓库的 <code>ffmpeg</code> 版本太老
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_安装静态构建版">16.1.1. 安装静态构建版</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+以下内容根据 <a href="https://ffmpeg.org/download.html#build-linux">Linux Static Builds</a> 整理
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/free/el/rpmfusion-free-release-8.noarch.rpm
-dnf install -y http://mirrors.ustc.edu.cn/rpmfusion/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
+cd ~/downloads
 
-dnf install -y dnf-plugins-core
-dnf config-manager --set-enabled PowerTools
-dnf install -y ffmpeg</code></pre>
+wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg-release-amd64-static.tar.xz
+tar xf ffmpeg-release-amd64-static.tar.xz
+
+rm -rf /usr/local/ffmpeg-6.0
+mv ffmpeg-6.0-amd64-static /usr/local/ffmpeg-6.0/
+
+mkdir -p /usr/local/ffmpeg-6.0/bin
+mv /usr/local/ffmpeg-6.0/ffmpeg /usr/local/ffmpeg-6.0/bin/
+mv /usr/local/ffmpeg-6.0/ffprobe /usr/local/ffmpeg-6.0/bin/
+mv /usr/local/ffmpeg-6.0/qt-faststart /usr/local/ffmpeg-6.0/bin/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_查看版本">16.1.2. 查看版本</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">/usr/local/ffmpeg-6.0/bin/ffmpeg -version</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">ffmpeg version 6.0-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2023 the FFmpeg developers
+built with gcc 8 (Debian 8.3.0-6)
+configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gmp --enable-libgme --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libdav1d --enable-libxvid --enable-libzvbi --enable-libzimg
+libavutil      58.  2.100 / 58.  2.100
+libavcodec     60.  3.100 / 60.  3.100
+libavformat    60.  3.100 / 60.  3.100
+libavdevice    60.  1.100 / 60.  1.100
+libavfilter     9.  3.100 /  9.  3.100
+libswscale      7.  1.100 /  7.  1.100
+libswresample   4. 10.100 /  4. 10.100
+libpostproc    57.  1.100 / 57.  1.100</code></pre>
+</div>
 </div>
 </div>
 </div>
