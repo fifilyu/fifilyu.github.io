@@ -1317,7 +1317,25 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_ImageMagick_chapter">31. ImageMagick</a>
 <ul class="sectlevel2">
-<li><a href="#_批量图片转pdf">31.1. 批量图片转PDF</a></li>
+<li><a href="#_查看图片元数据">31.1. 查看图片元数据</a>
+<ul class="sectlevel3">
+<li><a href="#_file_命令">31.1.1. <code>file</code> 命令</a></li>
+<li><a href="#_identify_命令">31.1.2. <code>identify</code> 命令</a></li>
+</ul>
+</li>
+<li><a href="#_转换单张图片">31.2. 转换单张图片</a>
+<ul class="sectlevel3">
+<li><a href="#_直接转换格式">31.2.1. 直接转换格式</a></li>
+<li><a href="#_转换格式并调整参数">31.2.2. 转换格式并调整参数</a></li>
+</ul>
+</li>
+<li><a href="#_批量修改图片">31.3. 批量修改图片</a>
+<ul class="sectlevel3">
+<li><a href="#_按比例缩放图片分辨率">31.3.1. 按比例缩放图片（分辨率）</a></li>
+<li><a href="#_按比例调整图片质量文件大小">31.3.2. 按比例调整图片质量（文件大小）</a></li>
+</ul>
+</li>
+<li><a href="#_批量图片转pdf">31.4. 批量图片转PDF</a></li>
 </ul>
 </li>
 <li><a href="#_Rsync_chapter">32. Rsync</a>
@@ -12291,8 +12309,133 @@ p curl -I www.youtube.com</code></pre>
 <div class="sect1">
 <h2 id="_ImageMagick_chapter">31. ImageMagick</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y ImageMagick</code></pre>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_批量图片转pdf">31.1. 批量图片转PDF</h3>
+<h3 id="_查看图片元数据">31.1. 查看图片元数据</h3>
+<div class="sect3">
+<h4 id="_file_命令">31.1.1. <code>file</code> 命令</h4>
+<div class="listingblock">
+<div class="title">PNG图片</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># file foo.png
+foo.png: PNG image data, 425 x 239, 8-bit/color RGB, non-interlaced</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">JPG图片</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># file bar.jpg
+bar.jpg: JPEG image data, JFIF standard 1.01 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>看不到JPG图片的分辨率</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>file *.jpg *.png</code> 支持通配符指定多个文件
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_identify_命令">31.1.2. <code>identify</code> 命令</h4>
+<div class="listingblock">
+<div class="title">PNG图片</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># identify foo.png
+foo.png PNG 425x239 425x239+0+0 8-bit sRGB 143444B 0.000u 0:00.000</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">JPG图片</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs"># identify bar.jpg
+bar.jpg JPEG 540x1080 540x1080+0+0 8-bit sRGB 50405B 0.000u 0:00.000</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>identify *.jpg *.png</code> 支持通配符指定多个文件
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_转换单张图片">31.2. 转换单张图片</h3>
+<div class="paragraph">
+<p><code>convert</code> 命令可在转换图片格式时，调整图片参数，如分辨率、质量等等。</p>
+</div>
+<div class="sect3">
+<h4 id="_直接转换格式">31.2.1. 直接转换格式</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">convert foo.png bar.jpg</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_转换格式并调整参数">31.2.2. 转换格式并调整参数</h4>
+<div class="listingblock">
+<div class="title">按比例缩放图片（分辨率）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">convert foo.png -resize 50% quz.png</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">按比例调整图片质量（文件大小）</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">convert foo.png -quality 50% quz.png</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_批量修改图片">31.3. 批量修改图片</h3>
+<div class="paragraph">
+<p><code>mogrify</code> 命令能直接修改原始文件（适合批量操作），而 <code>convert</code> 需要指定新文件名称。</p>
+</div>
+<div class="sect3">
+<h4 id="_按比例缩放图片分辨率">31.3.1. 按比例缩放图片（分辨率）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mogrify -resize 50% *.jpg</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_按比例调整图片质量文件大小">31.3.2. 按比例调整图片质量（文件大小）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mogrify -quality 50% foo.jpg</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_批量图片转pdf">31.4. 批量图片转PDF</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[fifilyu@t430-arch ~]$ tree /home/fifilyu/Pictures/hetong/发票合同/2015/发票
