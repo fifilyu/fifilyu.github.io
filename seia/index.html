@@ -1591,11 +1591,20 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_环境配置_2">54.1. 环境配置</a></li>
 </ul>
 </li>
-<li><a href="#_Misc_chapter">55. 杂项</a>
+<li><a href="#_Systemd_chapter">55. Systemd</a>
 <ul class="sectlevel2">
-<li><a href="#_chrome">55.1. Chrome</a>
+<li><a href="#_最佳实践">55.1. 最佳实践</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_proxy_switchyomega_扩展">55.1.1. 安装 Proxy SwitchyOmega 扩展</a></li>
+<li><a href="#_保存文本格式日志">55.1.1. 保存文本格式日志</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_Misc_chapter">56. 杂项</a>
+<ul class="sectlevel2">
+<li><a href="#_chrome">56.1. Chrome</a>
+<ul class="sectlevel3">
+<li><a href="#_安装_proxy_switchyomega_扩展">56.1.1. 安装 Proxy SwitchyOmega 扩展</a></li>
 </ul>
 </li>
 </ul>
@@ -18559,12 +18568,230 @@ flutter doctor -v</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Misc_chapter">55. 杂项</h2>
+<h2 id="_Systemd_chapter">55. Systemd</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_chrome">55.1. Chrome</h3>
+<h3 id="_最佳实践">55.1. 最佳实践</h3>
 <div class="sect3">
-<h4 id="_安装_proxy_switchyomega_扩展">55.1.1. 安装 Proxy SwitchyOmega 扩展</h4>
+<h4 id="_保存文本格式日志">55.1.1. 保存文本格式日志</h4>
+<div class="sect4">
+<h5 id="_标准配置">标准配置</h5>
+<div class="listingblock">
+<div class="title">Service文件配置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/xxl_job_admin.service
+[Unit]
+Description=XXL-JOB Admin Service
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+Environment="PORT=8080"
+Environment="CONFIG_FILE=/data/xxl-job/admin/application.properties"
+Environment="JAR_FILE=/data/xxl-job/admin/xxl-job-admin-2.2.0-SNAPSHOT.jar"
+
+User=xxl_job
+Group=xxl_job
+WorkingDirectory=/data/xxl-job/admin
+ExecStart=/usr/bin/java -Dserver.port=\${PORT} -Dspring.config.location=\${CONFIG_FILE} -jar \${JAR_FILE}
+SuccessExitStatus=143
+StandardOutput=null <i class="conum" data-value="1"></i><b>(1)</b>
+StandardError=journal <i class="conum" data-value="2"></i><b>(2)</b>
+
+[Install]
+WantedBy=multi-user.target
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>标准输出重定向至 <code>/dev/null</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>标准错误重定向至 <code>journal</code>，<code>journal -u xxl_job_admin</code> 会显示服务运行相关错误日志</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_增强配置">增强配置</h5>
+<div class="paragraph">
+<p><code>journal</code> 采用非文本格式保存日志，查看不便，增加 <code>syslog</code> 配置，保存副本到文本文件。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+重定向到 <code>syslog</code> 后，<code>journal</code> 有同样的日志内容。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Service文件配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/xxl_job_admin.service
+[Unit]
+Description=XXL-JOB Admin Service
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+Environment="PORT=8080"
+Environment="CONFIG_FILE=/data/xxl-job/admin/application.properties"
+Environment="JAR_FILE=/data/xxl-job/admin/xxl-job-admin-2.2.0-SNAPSHOT.jar"
+
+User=xxl_job
+Group=xxl_job
+WorkingDirectory=/data/xxl-job/admin
+ExecStart=/usr/bin/java -Dserver.port=\${PORT} -Dspring.config.location=\${CONFIG_FILE} -jar \${JAR_FILE}
+SuccessExitStatus=143
+StandardOutput=null
+StandardError=syslog <i class="conum" data-value="1"></i><b>(1)</b>
+SyslogIdentifier=xxl-job-admin <i class="conum" data-value="2"></i><b>(2)</b>
+
+[Install]
+WantedBy=multi-user.target
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>标准错误重定向至 <code>syslog</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>设置 <code>syslog</code> 标识</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>syslog</code> 配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo ':programname, isequal, "xxl-job-admin" /var/log/xxl_job/admin_error.log' &gt; /etc/rsyslog.d/xxl-job-admin.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重启日志服务：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl restart rsyslog</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>确认日志文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tail -f /var/log/xxl_job/admin_error.log</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>给Nginx配置一个有 <a href="#_http基本身份验证">HTTP基本身份验证</a> 的站点，可以用浏览器查看日志，方便开发人员调试。</p>
+</div>
+<div class="listingblock">
+<div class="title">日志轮询归档配置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/logrotate.d/xxl-job-admin
+/var/log/xxl_job/admin_error.log {
+        daily
+        missingok
+        rotate 52
+        compress
+        delaycompress
+        notifempty
+        create 640 xxl_job adm
+        copytruncate <i class="conum" data-value="1"></i><b>(1)</b>
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>复制日志文件后，再清空旧日志文件。需要程序有 <code>reload</code> 类似支持才能改名后重载</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+归档时间由 <code>/etc/cron.daily/logrotate</code> 计划任务控制
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Nginx配置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/nginx/conf.d/xxl_admin_log.conf
+server {
+    listen       34567;
+
+    server_name _;
+    root /var/log/xxl_job;
+    default_type text/plain; <i class="conum" data-value="1"></i><b>(1)</b>
+
+    autoindex on;
+    autoindex_localtime on;
+    # 设置文件大小显示单位
+    autoindex_exact_size off;
+
+    auth_basic "Administrator’s Area";
+    auth_basic_user_file /etc/nginx/.htpasswd_log;
+
+    #location ~ \.log$ {
+    #    default_type text/plain; <i class="conum" data-value="2"></i><b>(2)</b>
+    #}
+}
+EOF
+
+nginx -s reload</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>设置 <code>Content-Type</code> 为 <code>text/plain</code>，浏览器会直接显示而不是提示下载</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>admin_error_log.1</code> 默认配置能直接查看，只想支持 <code>.log</code> 文件可以采用本设置</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_Misc_chapter">56. 杂项</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_chrome">56.1. Chrome</h3>
+<div class="sect3">
+<h4 id="_安装_proxy_switchyomega_扩展">56.1.1. 安装 Proxy SwitchyOmega 扩展</h4>
 <div class="paragraph">
 <p>安装 <code>Proxy SwitchyOmega</code> 之前，需要访问Google应用商店，让Chrome挂全局代理：</p>
 </div>
@@ -21253,7 +21480,7 @@ flutter doctor -v</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-09-29 12:39:29 +0800
+Last updated 2023-10-13 14:54:27 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
