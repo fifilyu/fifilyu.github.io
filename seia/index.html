@@ -11144,7 +11144,7 @@ _acme-challenge.xxx.com. 596 IN	TXT	"1EfqEsqE3pbZqiJmxpHvEkM0XdUhvqW5w4lWb46zMjM
 <h5 id="_生成交换密钥">生成交换密钥</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/xxx.com/dhparam.pem 2048</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -dsaparam -out /etc/letsencrypt/live/xxx.com/dhparam.pem 2048</code></pre>
 </div>
 </div>
 </div>
@@ -11275,7 +11275,7 @@ If you like Certbot, please consider supporting our work by:
 <h4 id="_生成交换密钥_2">26.3.3. 生成交换密钥</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/www.xxx.com/dhparam.pem 2048</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -dsaparam -out /etc/letsencrypt/live/www.xxx.com/dhparam.pem 2048</code></pre>
 </div>
 </div>
 </div>
@@ -11849,7 +11849,7 @@ cat /etc/letsencrypt/live/foo.com/cert.pem /etc/letsencrypt/lets-encrypt-r3.pem 
 <div class="listingblock">
 <div class="title">位置：签发界面</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -dsaparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
 </div>
 </div>
 </li>
@@ -12010,7 +12010,7 @@ If you like Certbot, please consider supporting our work by:
 <div class="listingblock">
 <div class="title">位置：签发界面</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">openssl dhparam -dsaparam -out /etc/letsencrypt/live/foo.com/dhparam.pem 2048</code></pre>
 </div>
 </div>
 </li>
