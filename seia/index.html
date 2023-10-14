@@ -1494,7 +1494,7 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_安装配置_15">45.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_centos6_安装">45.1.1. CentOS6 安装</a></li>
+<li><a href="#_centos7_安装">45.1.1. CentOS7 安装</a></li>
 </ul>
 </li>
 </ul>
@@ -15567,7 +15567,7 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <div class="sect2">
 <h3 id="_安装配置_15">45.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_centos6_安装">45.1.1. CentOS6 安装</h4>
+<h4 id="_centos7_安装">45.1.1. CentOS7 安装</h4>
 <div class="listingblock">
 <div class="title">安装EPEL源</div>
 <div class="content">
@@ -15578,11 +15578,6 @@ bin\windows\kafka-console-consumer.bat --bootstrap-server 192.168.2.2:9092 --top
 <div class="title">安装Pure-FTPd</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y pure-ftpd</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">chkconfig pure-ftpd on</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -15637,12 +15632,20 @@ EOF</code></pre>
 <div class="title">生成密钥</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /etc/ssl/private
-openssl dhparam -out /etc/ssl/private/pure-ftpd-dhparams.pem 2048
+openssl dhparam -dsaparam -out /etc/ssl/private/pure-ftpd-dhparams.pem 2048
 chmod 600 /etc/ssl/private/*.pem
 
 mkdir -p /etc/pki/pure-ftpd/
 openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/pki/pure-ftpd/pure-ftpd.pem -out /etc/pki/pure-ftpd/pure-ftpd.pem
 chmod 600 /etc/pki/pure-ftpd/pure-ftpd.pem</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">启动服务</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl enable pure-ftpd --now
+
+systemctl status pure-ftpd</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -15683,7 +15686,7 @@ EOF</code></pre>
 <div class="listingblock">
 <div class="title">删除用户</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pure-pw userdel myftp
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pure-pw userdel admin
 pure-pw mkdb
 pure-pw list</code></pre>
 </div>
