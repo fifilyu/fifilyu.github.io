@@ -11459,6 +11459,43 @@ If you like Certbot, please consider supporting our work by:
 <h3 id="_添加https站点">26.4. 添加HTTPS站点</h3>
 <div class="sect3">
 <h4 id="_创建配置文件">26.4.1. 创建配置文件</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Nginx会联网检查证书状态，出现警告：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2023/10/15 04:44:09 [warn] 11838#11838: no resolver defined to resolve r3.o.lencr.org while requesting certificate status, responder: r3.o.lencr.org, certificate: "/etc/letsencrypt/live/noby1.cyou/fullchain.pem"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>新增Nginx主配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">http {
+    resolver 223.5.5.5:53 ipv6=off; <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>在IPv4的系统上，IPv6选项必须关闭</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt; /etc/nginx/conf.d/xxx.com_ssl.conf
@@ -21924,7 +21961,7 @@ nginx -s reload</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-10-16 13:37:57 +0800
+Last updated 2023-10-13 14:54:27 +0800
 </div>
 </div>
 <link rel="stylesheet" href="css/github.min.css">
