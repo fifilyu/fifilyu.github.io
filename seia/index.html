@@ -6877,7 +6877,7 @@ sysctl -p
 
 #如果你想使用自己的 iptables 静态防火墙规则, 那么请安装 iptables-services 并且禁用 firewalld ，启用 iptables
 yum install -y iptables-services
-systemctl  stop  firewalld
+systemctl stop firewalld
 systemctl mask firewalld
 systemctl enable iptables --now
 
@@ -6893,9 +6893,7 @@ iptables-save &gt;/etc/sysconfig/iptables</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y xmlstarlet crudini
-
-yum install -y python3.11 python3.11-pip
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y xmlstarlet crudini
 
 pip310 install --root-user-action=ignore -U yq toml-cli
 
@@ -7015,8 +7013,8 @@ echo "net.ipv4.ip_forward = 1" &gt;&gt; /etc/sysctl.conf
 sysctl -p
 
 #如果你想使用自己的 iptables 静态防火墙规则, 那么请安装 iptables-services 并且禁用 firewalld ，启用 iptables
-yum install -y iptables-services
-systemctl  stop  firewalld
+dnf install -y iptables-services
+systemctl stop firewalld
 systemctl mask firewalld
 systemctl enable iptables --now
 
@@ -7031,7 +7029,7 @@ iptables-save &gt;/etc/sysconfig/iptables</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y xmlstarlet crudini
 
-yum install -y python3.11 python3.11-pip
+dnf install -y python3.11 python3.11-pip
 
 pip3.11 install --root-user-action=ignore -U yq toml-cli
 
