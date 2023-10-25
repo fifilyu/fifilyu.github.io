@@ -850,7 +850,12 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_创建用于运行服务的用户">5.1.3. 创建用于运行服务的用户</a></li>
 <li><a href="#_仅修改子目录中的文件权限忽略目录">5.1.4. 仅修改子目录中的文件权限，忽略目录</a></li>
 <li><a href="#_跨行替换文件内容">5.1.5. 跨行替换文件内容</a></li>
-<li><a href="#_nmcli">5.1.6. nmcli</a></li>
+<li><a href="#_nginx日志按日期排序">5.1.6. Nginx日志按日期排序</a></li>
+</ul>
+</li>
+<li><a href="#_networkmanager">5.2. NetworkManager</a>
+<ul class="sectlevel3">
+<li><a href="#_nmcli">5.2.1. nmcli</a></li>
 </ul>
 </li>
 </ul>
@@ -1432,14 +1437,14 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_增加yum源">39.1.2. 增加YUM源</a></li>
 <li><a href="#_elasticsearch">39.1.3. Elasticsearch</a></li>
 <li><a href="#_kibana">39.1.4. Kibana</a></li>
-<li><a href="#_docker_方式">39.1.5. Docker 方式</a></li>
-<li><a href="#_配置_7">39.1.6. 配置</a></li>
+<li><a href="#_配置_7">39.1.5. 配置</a></li>
+<li><a href="#_logstash">39.1.6. logstash</a></li>
 </ul>
 </li>
 <li><a href="#_centos8elk环境配置">39.2. CentOS8+ELK环境配置</a>
 <ul class="sectlevel3">
 <li><a href="#_安装elk">39.2.1. 安装ELK</a></li>
-<li><a href="#_logstash">39.2.2. Logstash</a></li>
+<li><a href="#_logstash_2">39.2.2. Logstash</a></li>
 </ul>
 </li>
 <li><a href="#_elasticstack使用教程">39.3. ElasticStack使用教程</a>
@@ -3270,13 +3275,76 @@ INSERT INTO `tb1` VALUES (2, 1851);</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">perl -i -p -E 'BEGIN{undef $/;} s/;\r\nINSERT INTO `[a-zA-Z0-9_]+` VALUES \(/, \(/smg' unilive.sql.test
-=== NetworkManager</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">perl -i -p -E 'BEGIN{undef $/;} s/;\r\nINSERT INTO `[a-zA-Z0-9_]+` VALUES \(/, \(/smg' unilive.sql.test</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_nmcli">5.1.6. nmcli</h4>
+<h4 id="_nginx日志按日期排序">5.1.6. Nginx日志按日期排序</h4>
+<div class="literalblock">
+<div class="content">
+<pre>foo.com 443 38.112.15.172 - - [24/Oct/2023:13:26:53 +0800] "GET / HTTP/1.0" 200 0.001 19023 "https://foo.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.127 Safari/537.36"</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sort -t ' ' \
+    -k 6.2,6.3n \
+    -k 6.5,6.7M \
+    -k 6.9,6.12n \
+    -k 6.14,6.15n \
+    -k 6.17,6.18n \
+    -k 6.20,6.21n \
+    access.log</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参数说明</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">-t</dt>
+<dd>
+<p>以空格分列，针对第六列 <code>[24/Oct/2023:13:26:53</code> 做排序操作</p>
+</dd>
+<dt class="hdlist1">-k</dt>
+<dd>
+<p>排序关键字，参数值格式：<code>"开始列号[排序规则],结束列号[排序规则]"</code>。 比如，<code>1n,1n</code> 表示从第1列行首开始到第1列行尾结束，都以数字规则 <code>"n"</code> 排序。按前后顺序，参数分别表示：<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>日期（如 <code>24</code>）按数字排序</p>
+</li>
+<li>
+<p>月份（如 <code>Oct</code>）按英文月份缩写排序</p>
+</li>
+<li>
+<p>年份（如 <code>2023</code>）按数字排序</p>
+</li>
+<li>
+<p>小时（如 <code>13</code>）按数字排序</p>
+</li>
+<li>
+<p>分钟（如 <code>26</code>）按数字排序</p>
+</li>
+<li>
+<p>秒（如 <code>53</code>）按数字排序</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_networkmanager">5.2. NetworkManager</h3>
+<div class="sect3">
+<h4 id="_nmcli">5.2.1. nmcli</h4>
 <div class="sect4">
 <h5 id="_配置ip地址">配置IP地址</h5>
 <div class="listingblock">
@@ -13558,8 +13626,8 @@ EOF</code></pre>
 
 cat &lt;&lt; EOF &gt; /etc/yum.repos.d/elasticsearch.repo
 [elasticsearch]
-name=Elasticsearch repository for 7.x packages
-baseurl=https://artifacts.elastic.co/packages/7.x/yum
+name=Elasticsearch repository for 8.x packages
+baseurl=https://artifacts.elastic.co/packages/8.x/yum
 gpgcheck=1
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=0
@@ -13573,31 +13641,74 @@ EOF</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">$ yum --disablerepo="*" --enablerepo="elasticsearch" list available
-Available Packages
-apm-server.x86_64                            7.7.1-1                       elasticsearch
-app-search.noarch                            7.6.2-1                       elasticsearch
-auditbeat.x86_64                             7.7.1-1                       elasticsearch
-elasticsearch.aarch64                        7.7.1-1                       elasticsearch
-elasticsearch.x86_64                         7.7.1-1                       elasticsearch
-enterprise-search.noarch                     7.7.1-1                       elasticsearch
-filebeat.x86_64                              7.7.1-1                       elasticsearch
-heartbeat-elastic.x86_64                     7.7.1-1                       elasticsearch
-journalbeat.x86_64                           7.7.1-1                       elasticsearch
-kibana.x86_64                                7.7.1-1                       elasticsearch
-logstash.noarch                              1:7.7.1-1                     elasticsearch
-metricbeat.x86_64                            7.7.1-1                       elasticsearch
-packetbeat.x86_64                            7.7.1-1                       elasticsearch</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" list available</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">Available Packages
+apm-server.x86_64                              8.10.4-1                          elasticsearch
+auditbeat.x86_64                               8.10.4-1                          elasticsearch
+elastic-agent.x86_64                           8.10.4-1                          elasticsearch
+elasticsearch.x86_64                           8.10.4-1                          elasticsearch
+enterprise-search.x86_64                       8.10.4-1                          elasticsearch
+filebeat.x86_64                                8.10.4-1                          elasticsearch
+heartbeat-elastic.x86_64                       8.10.4-1                          elasticsearch
+kibana.x86_64                                  8.10.4-1                          elasticsearch
+logstash.x86_64                                1:8.10.4-1                        elasticsearch
+metricbeat.x86_64                              8.10.4-1                          elasticsearch
+packetbeat.x86_64                              8.10.4-1                          elasticsearch
+pf-host-agent.x86_64                           8.10.4-1                          elasticsearch</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_elasticsearch">39.1.3. Elasticsearch</h4>
+<div class="paragraph">
+<p>Vo2wa2woo9ThahSh4Ood</p>
+</div>
 <div class="sect4">
 <h5 id="_安装_6">安装</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export ELASTIC_PASSWORD=$(pwgen 20 1)
+echo 'Elasticsearch密码：'$ELASTIC_PASSWORD
+
+yum --disablerepo="*" --enablerepo="elasticsearch" install -y elasticsearch</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">--------------------------- Security autoconfiguration information ------------------------------
+
+Authentication and authorization are enabled.
+TLS for the transport and HTTP layers is enabled and configured.
+
+The generated password for the elastic built-in superuser is : mo0BMMetyBPrIp_*hX2A
+
+If this node should join an existing cluster, you can reconfigure this with
+'/usr/share/elasticsearch/bin/elasticsearch-reconfigure-node --enrollment-token &lt;token-here&gt;'
+after creating an enrollment token on your existing cluster.
+
+You can complete the following actions at any time:
+
+Reset the password of the elastic built-in superuser with
+'/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic'.
+
+Generate an enrollment token for Kibana instances with
+ '/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana'.
+
+Generate an enrollment token for Elasticsearch nodes with
+'/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s node'.
+
+-------------------------------------------------------------------------------------------------
+### NOT starting on installation, please execute the following statements to configure elasticsearch service to start automatically using systemd
+ sudo systemctl daemon-reload
+ sudo systemctl enable elasticsearch.service
+### You can start elasticsearch service by executing
+ sudo systemctl start elasticsearch.service</code></pre>
 </div>
 </div>
 </div>
@@ -13605,19 +13716,42 @@ packetbeat.x86_64                            7.7.1-1                       elast
 <h5 id="_配置_5">配置</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '/#cluster.name: my-application/cluster.name: myapp/' /etc/elasticsearch/elasticsearch.yml
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">pip310 install --root-user-action=ignore -U yq
 
-sed -i '/#node.name: node-1/node.name: node-1/' /etc/elasticsearch/elasticsearch.yml
+yes|cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.init
 
-sed -i '/#network.host: 192.168.0.1/network.host: 0.0.0.0/' /etc/elasticsearch/elasticsearch.yml
-
-sed -i '/#discovery.seed_hosts: .*/discovery.seed_hosts: ["0.0.0.0\/0"]/' /etc/elasticsearch/elasticsearch.yml
-
-sed -i '/#cluster.initial_master_nodes: .*/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml
-
-# 启用权限认证
-echo 'xpack.security.enabled: true' &gt;&gt; /etc/elasticsearch/elasticsearch.yml
-echo 'xpack.security.transport.ssl.enabled: true' &gt;&gt; /etc/elasticsearch/elasticsearch.yml</code></pre>
+yq -yi '."cluster.name"="myapp"' /etc/elasticsearch/elasticsearch.yml
+yq -yi '."node.name"="'${HOSTNAME}'"' /etc/elasticsearch/elasticsearch.yml
+yq -yi '."network.host"="127.0.0.1"' /etc/elasticsearch/elasticsearch.yml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看配置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yq -y . /etc/elasticsearch/elasticsearch.yml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+xpack.security.enabled: true
+xpack.security.enrollment.enabled: true
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+cluster.initial_master_nodes:
+  - centos7
+http.host: 0.0.0.0
+cluster.name: myapp
+node.name: centos7
+network.host: 127.0.0.1</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -13663,23 +13797,33 @@ echo 'xpack.security.transport.ssl.enabled: true' &gt;&gt; /etc/elasticsearch/el
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start elasticsearch</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>systemctl enable elasticsearch --now</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_生成随机密码">生成随机密码</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">/usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto</code></pre>
-</div>
-</div>
 </div>
 <div class="sect4">
 <h5 id="_访问">访问</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -u 'elastic:password' http://localhost:9200</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -k -u 'elastic:mo0BMMetyBPrIp_*hX2A' https://localhost:9200</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
+  "name" : "centos7",
+  "cluster_name" : "myapp",
+  "cluster_uuid" : "MJ_gAE6wToyeymhvP8RZ-w",
+  "version" : {
+    "number" : "8.10.4",
+    "build_flavor" : "default",
+    "build_type" : "rpm",
+    "build_hash" : "b4a62ac808e886ff032700c391f45f1408b2538c",
+    "build_date" : "2023-10-11T22:04:35.506990650Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.7.0",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}</code></pre>
 </div>
 </div>
 </div>
@@ -13696,16 +13840,117 @@ echo 'xpack.security.transport.ssl.enabled: true' &gt;&gt; /etc/elasticsearch/el
 </div>
 <div class="sect4">
 <h5 id="_配置_6">配置</h5>
+<div class="paragraph">
+<p>xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12</p>
+</div>
+<div class="paragraph">
+<p>bin/elasticsearch-certutil cert -ca elastic-stack-ca.p12 -name kibana-client -dns &lt;your_kibana_hostname&gt;
+openssl pkcs12 -in kibana-client.p12 -cacerts -nokeys -out kibana-ca.crt</p>
+</div>
+<div class="paragraph">
+<p>elasticsearch-certutil csr -name kibana-server -dns example.com,www.example.com</p>
+</div>
+<div class="paragraph">
+<p>bin/elasticsearch-reset-password -u</p>
+</div>
+<div class="paragraph">
+<p>/usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system --auto --batch</p>
+</div>
+<div class="paragraph">
+<p>Password for the [kibana_system] user successfully reset.
+New value: g8mEFUrQclFstSniVqsj</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sed -i '/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml
-sed -i '/#elasticsearch.hosts: .*/elasticsearch.hosts: ["http:\/\/0.0.0.0:9200"]/' /etc/kibana/kibana.yml
-sed -i '/#i18n.locale: "en"/i18n.locale: "en"/' /etc/kibana/kibana.yml
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yes|cp /etc/kibana/kibana.yml /etc/kibana/kibana.yml.init
 
-echo 'elasticsearch.username: "elastic"' &gt;&gt;  /etc/kibana/kibana.yml
-echo 'elasticsearch.password: "password"' &gt;&gt;  /etc/kibana/kibana.yml
-echo 'xpack.security.enabled: true' &gt;&gt;  /etc/kibana/kibana.yml
-echo 'xpack.security.encryptionKey: "4297f44b13955235245b2497399d7a93"' &gt;&gt;  /etc/kibana/kibana.yml</code></pre>
+domain=kibana.foo.com
+cert_name=foo.com
+
+yq -yi '.server.port=5601' /etc/kibana/kibana.yml
+yq -yi '.server.host="0.0.0.0"' /etc/kibana/kibana.yml
+yq -yi '.server.name="mykibana"' /etc/kibana/kibana.yml
+yq -yi '.server.publicBaseUrl="https://kibana.no1bing.com:5601"' /etc/kibana/kibana.yml
+yq -yi '.server.ssl.enabled=true' /etc/kibana/kibana.yml
+yq -yi '.server.ssl.certificate="/etc/letsencrypt/live/'${cert_name}'/fullchain.pem"' /etc/kibana/kibana.yml
+yq -yi '.server.ssl.key="/etc/letsencrypt/live/'${cert_name}'/privkey.pem"' /etc/kibana/kibana.yml
+yq -yi '."i18n.locale"="zh-CN"' /etc/kibana/kibana.yml
+
+yq -yi '.elasticsearch.hosts=["https://localhost:9200"]' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.username="kibana_system"' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.password="g8mEFUrQclFstSniVqsj"' /etc/kibana/kibana.yml
+
+# for read /etc/elasticsearch/certs/http_ca.crt
+gpasswd -a kibana elasticsearch
+grpunconv
+
+yq -yi '.elasticsearch.ssl.verificationMode="none"' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.ssl.certificateAuthorities=["/etc/elasticsearch/certs/http_ca.crt"]' /etc/kibana/kibana.yml
+
+
+yq -yi '.elasticsearch.ssl.truststore.path="/etc/elasticsearch/certs/transport.p12"' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.ssl.truststore.password="_5DC1duxS8aXHgtMGjNkWg"' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.ssl.keystore.path="/etc/elasticsearch/certs/transport.p12"' /etc/kibana/kibana.yml
+yq -yi '.elasticsearch.ssl.keystore.password="_5DC1duxS8aXHgtMGjNkWg"' /etc/kibana/kibana.yml
+
+yq -yi '.xpack.security.enabled=true' /etc/kibana/kibana.yml
+yq -yi '.xpack.security.encryptionKey="'$(pwgen 32 1)'"' /etc/kibana/kibana.yml
+
+yq -yi '.xpack.encryptedSavedObjects.encryptionKey="'$(pwgen 32 1)'"' /etc/kibana/kibana.yml
+
+yq -yi '.xpack.reporting.kibanaServer.hostname="'${domain}'"' /etc/kibana/kibana.yml
+yq -yi '.xpack.reporting.encryptionKey="'$(pwgen 32 1)'"' /etc/kibana/kibana.yml
+yq -yi '.xpack.reporting.roles.enabled=false' /etc/kibana/kibana.yml
+
+yq -yi '.xpack.screenshotting.browser.chromium.disableSandbox=true' /etc/kibana/kibana.yml
+
+
+sed -i -E 's/^--openssl-legacy-provider$/#--openssl-legacy-provider/' /etc/kibana/node.options
+
+chmod 755 /etc/letsencrypt/{archive,live}
+chmod 644 /etc/letsencrypt/live/${cert_name}/privkey.pem</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看配置</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yq -y . /etc/kibana/kibana.yml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">屏幕输出</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="console" class="language-console hljs">logging:
+  appenders:
+    file:
+      type: file
+      fileName: /var/log/kibana/kibana.log
+      layout:
+        type: json
+  root:
+    appenders:
+      - default
+      - file
+pid.file: /run/kibana/kibana.pid
+server.host: 0.0.0.0
+server.name: mykibana
+server.ssl.enabled: true
+server.ssl.certificate: /etc/letsencrypt/live/kibana.foo.com/fullchain.pem
+server.ssl.key: /etc/letsencrypt/live/kibana.foo.com/privkey.pem
+i18n.locale: zh-CN
+elasticsearch.hosts:
+  - https://localhost:9200
+elasticsearch.username: elastic
+elasticsearch.password: mo0BMMetyBPrIp_*hX2A
+xpack.security.enabled: true
+xpack.security.encryptionKey: shaireeseimuaphohkaph4queiTh5aJe</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -13741,6 +13986,18 @@ echo 'xpack.security.encryptionKey: "4297f44b13955235245b2497399d7a93"' &gt;&gt;
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start kibana</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Kibana参数错误导致日志文件没数据，手动排查故障：<code>cd /usr/share/kibana &amp;&amp; runuser -u kibana /usr/share/kibana/bin/kibana</code>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_访问_2">访问</h5>
@@ -13758,96 +14015,7 @@ echo 'xpack.security.encryptionKey: "4297f44b13955235245b2497399d7a93"' &gt;&gt;
 </div>
 </div>
 <div class="sect3">
-<h4 id="_docker_方式">39.1.5. Docker 方式</h4>
-<div class="paragraph">
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html">Install Elasticsearch(官方文档)</a></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">echo "vm.max_map_count=262144" &gt;&gt; /etc/sysctl.conf
-sysctl -p</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>必须设置，否则无法启动 <code>Elasticsearch</code> 容器。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">docker-compose.yml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="yml" class="language-yml hljs">version: '2.2'
-services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-    container_name: elasticsearch
-    environment:
-      - TZ=Asia/Shanghai
-      - LANG=en_US.UTF-8
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - esdata1:/usr/share/elasticsearch/data
-    ports:
-        - 9200:9200
-    networks:
-      - esnet
-  elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
-    container_name: elasticsearch2
-    environment:
-      - TZ=Asia/Shanghai
-      - LANG=en_US.UTF-8
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - esdata2:/usr/share/elasticsearch/data
-    networks:
-      - esnet
-
-volumes:
-  esdata1:
-    driver: local
-  esdata2:
-    driver: local
-
-networks:
-  esnet:</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p /data/workspace/docker/es
-cp docker-compose.yml /data/workspace/docker/es
-cd /data/workspace/docker/es
-docker-compose up</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_配置_7">39.1.6. 配置</h4>
+<h4 id="_配置_7">39.1.5. 配置</h4>
 <div class="paragraph">
 <p>配置文件路径： <code>/etc/elasticsearch/elasticsearch.yml</code></p>
 </div>
@@ -13895,6 +14063,67 @@ docker-compose up</code></pre>
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_logstash">39.1.6. logstash</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum --disablerepo="*" --enablerepo="elasticsearch" install -y logstash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>openssl x509 -fingerprint -sha256 -noout -in /etc/elasticsearch/certs/http_ca.crt | awk --field-separator="=" '{print $2}' | sed 's/://g'</p>
+</div>
+<div class="paragraph">
+<p>/usr/share/elasticsearch/bin/elasticsearch-keystore show xpack.security.transport.ssl.keystore.secure_password
+/usr/share/elasticsearch/bin/elasticsearch-keystore show xpack.security.transport.ssl.truststore.secure_password</p>
+</div>
+<div class="paragraph">
+<p>yum --disablerepo="*" --enablerepo="elasticsearch" install -y filebeat</p>
+</div>
+<div class="paragraph">
+<p>yes|cp /etc/filebeat/filebeat.yml /etc/filebeat/filebeat.yml.init</p>
+</div>
+<div class="paragraph">
+<p>yq -yi '."output.elasticsearch".hosts=["103.231.173.43:9200"]' /etc/filebeat/filebeat.yml
+yq -yi '."output.elasticsearch".protocol="https"' /etc/filebeat/filebeat.yml
+yq -yi '."output.elasticsearch".username="elastic"' /etc/filebeat/filebeat.yml
+yq -yi '."output.elasticsearch".password="mo0BMMetyBPrIp_*hX2A"' /etc/filebeat/filebeat.yml
+yq -yi '."output.elasticsearch".ssl.enabled=true' /etc/filebeat/filebeat.yml
+yq -yi '."output.elasticsearch".ssl.ca_trusted_fingerprint="4CE07DBB4193918B332063A51DC0647A0D0FC86CF5DC01AB8CF5FB7459CBA97E"' /etc/filebeat/filebeat.yml</p>
+</div>
+<div class="paragraph">
+<p>yq -yi '."setup.kibana".host="https://kibana.no1bing.com:5601"' /etc/filebeat/filebeat.yml</p>
+</div>
+<div class="paragraph">
+<p>filebeat modules list
+filebeat modules enable nginx</p>
+</div>
+<div class="paragraph">
+<p>yes|cp /etc/filebeat/modules.d/nginx.yml /etc/filebeat/modules.d/nginx.yml.init</p>
+</div>
+<div class="paragraph">
+<p>yq -yi '.[0].access.enabled=true' /etc/filebeat/modules.d/nginx.yml
+yq -yi '.[0].access.var.paths=["/var/log/nginx/access.log"]' /etc/filebeat/modules.d/nginx.yml</p>
+</div>
+<div class="paragraph">
+<p>yq -yi '.[0].error.enabled=true' /etc/filebeat/modules.d/nginx.yml
+yq -yi '.[0].error.var.paths=["/var/log/nginx/error.log"]' /etc/filebeat/modules.d/nginx.yml</p>
+</div>
+<div class="paragraph">
+<p>filebeat test config
+filebeat test config -e</p>
+</div>
+<div class="paragraph">
+<p>Config OK</p>
+</div>
+<div class="paragraph">
+<p>filebeat setup -e</p>
+</div>
+<div class="paragraph">
+<p>systemctl enable filebeat --now
+systemctl status filebeat</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_centos8elk环境配置">39.2. CentOS8+ELK环境配置</h3>
@@ -13905,7 +14134,7 @@ docker-compose up</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_logstash">39.2.2. Logstash</h4>
+<h4 id="_logstash_2">39.2.2. Logstash</h4>
 <div class="paragraph">
 <p><span class="red">“如何将Nginx的Web日志导入Elasticsearch？”</span></p>
 </div>
