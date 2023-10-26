@@ -851,6 +851,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_仅修改子目录中的文件权限忽略目录">5.1.4. 仅修改子目录中的文件权限，忽略目录</a></li>
 <li><a href="#_跨行替换文件内容">5.1.5. 跨行替换文件内容</a></li>
 <li><a href="#_nginx日志按日期排序">5.1.6. Nginx日志按日期排序</a></li>
+<li><a href="#_双网卡">5.1.7. 双网卡</a></li>
 </ul>
 </li>
 <li><a href="#_networkmanager">5.2. NetworkManager</a>
@@ -3338,6 +3339,57 @@ INSERT INTO `tb1` VALUES (2, 1851);</pre>
 </div>
 </dd>
 </dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_双网卡">5.1.7. 双网卡</h4>
+<div class="paragraph">
+<p>单网卡系统已经正常工作，配有公网IP地址。</p>
+</div>
+<div class="paragraph">
+<p>现，需要双公网IP地址（不同网段）上网。</p>
+</div>
+<div class="paragraph">
+<p>所以，需要设置网卡路由支持第二张网卡IP通外网。</p>
+</div>
+<div class="listingblock">
+<div class="title">查看路由表</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">default via 192.168.0.1 dev eth0 proto dhcp metric 100
+169.254.169.254 via 192.168.0.1 dev eth0 proto dhcp metric 100
+192.168.0.0/24 dev eth0 proto kernel scope link src 192.168.0.68 metric 100
+192.168.1.0/24 dev eth1 proto kernel scope link src 192.168.1.26 metric 101</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">临时有效</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ip rule
+
+ip route add default via 192.168.1.1 dev eth1 table 20
+ip route add 192.168.1.0/24 dev eth1 table 20
+ip rule add from 192.168.1.175 table 20
+
+ip rule
+
+ip route show table 20
+
+ping -I 192.168.1.175 223.5.5.5</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">重启有效</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+# wait for nics up
+sleep 5
+# Add v4 routes for eth1
+ip route flush table 20
+ip route add default via 192.168.1.1 dev eth1 table 20
+ip route add 192.168.1.0/24 dev eth1 table 20
+ip rule add from 192.168.1.175 table 20
+EOF</code></pre>
+</div>
 </div>
 </div>
 </div>
