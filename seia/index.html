@@ -4263,7 +4263,11 @@ crudini --set /etc/my.cnf mysqld gtid-mode on
 crudini --set /etc/my.cnf mysqld enforce_gtid_consistency on
 
 crudini --set /etc/my.cnf mysqld default-storage-engine InnoDB
-crudini --set /etc/my.cnf mysqld disabled_storage_engines '"MyISAM"'</code></pre>
+crudini --set /etc/my.cnf mysqld disabled_storage_engines '"MyISAM"'
+
+crudini --set /etc/my.cnf mysqldump max_allowed_packet 100M
+echo 'quick' &gt;&gt; /etc/my.cnf
+echo 'quote-names' &gt;&gt; /etc/my.cnf</code></pre>
 </div>
 </div>
 </div>
