@@ -10934,23 +10934,7 @@ ldconfig -p|grep libsqlite3.so</code></pre>
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
 wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz -O Python-3.12.2.tar.xz
 tar xf Python-3.12.2.tar.xz
-cd Python-3.12.2
-
-# diff -uN from-file to-file &gt;to-file.patch
-cat &lt;&lt; EOF &gt; fix_sqlite_include_path.patch
---- setup.py	2022-07-02 18:03:53.701496705 +0800
-+++ setup.py	2022-07-02 18:04:37.227978715 +0800
-@@ -1549,6 +1549,7 @@
-                              '/usr/local/include',
-                              '/usr/local/include/sqlite',
-                              '/usr/local/include/sqlite3',
-+                             '/usr/local/sqlite-3.33/include',
-                              ]
-         if CROSS_COMPILING:
-             sqlite_inc_paths = []
-EOF
-
-patch -p0 &lt; fix_sqlite_include_path.patch</code></pre>
+cd Python-3.12.2</code></pre>
 </div>
 </div>
 <div class="listingblock">
