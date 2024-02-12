@@ -1224,14 +1224,14 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_Python_chapter">24. Python</a>
 <ul class="sectlevel2">
-<li><a href="#_centos6_install_python310">24.1. CentOS6 Install Python310</a>
+<li><a href="#_centos6_install_python312">24.1. CentOS6 Install Python312</a>
 <ul class="sectlevel3">
 <li><a href="#_编译安装">24.1.1. 编译安装</a></li>
 <li><a href="#_二进制压缩包安装">24.1.2. 二进制压缩包安装</a></li>
 <li><a href="#_设置环境变量">24.1.3. 设置环境变量</a></li>
 </ul>
 </li>
-<li><a href="#_centos7_install_python310">24.2. CentOS7 Install Python310</a>
+<li><a href="#_centos7_install_python312">24.2. CentOS7 Install Python312</a>
 <ul class="sectlevel3">
 <li><a href="#_编译安装_2">24.2.1. 编译安装</a></li>
 <li><a href="#_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</a></li>
@@ -1243,14 +1243,14 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_dnf安装">24.3.1. dnf安装</a></li>
 </ul>
 </li>
-<li><a href="#_centos9_install_python310">24.4. CentOS9 Install Python310</a>
+<li><a href="#_centos9_install_python312">24.4. CentOS9 Install Python312</a>
 <ul class="sectlevel3">
 <li><a href="#_编译安装_3">24.4.1. 编译安装</a></li>
 <li><a href="#_二进制压缩包安装_3">24.4.2. 二进制压缩包安装</a></li>
 <li><a href="#_设置环境变量_3">24.4.3. 设置环境变量</a></li>
 </ul>
 </li>
-<li><a href="#_ubuntu_install_python310">24.5. Ubuntu Install Python310</a>
+<li><a href="#_ubuntu_install_python312">24.5. Ubuntu Install Python312</a>
 <ul class="sectlevel3">
 <li><a href="#_编译安装_4">24.5.1. 编译安装</a></li>
 <li><a href="#_二进制压缩包安装_4">24.5.2. 二进制压缩包安装</a></li>
@@ -7511,7 +7511,7 @@ iptables-save &gt;/etc/sysconfig/iptables</code></pre>
 <div class="sect3">
 <h4 id="_常用命令行编辑工具">13.3.2. 常用命令行编辑工具</h4>
 <div class="paragraph">
-<p>请先安装新版Python <a href="#_centos7_install_python310">CentOS7 Install Python310</a></p>
+<p>请先安装新版Python <a href="#_centos7_install_python310">[_centos7_install_python310]</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10861,7 +10861,7 @@ systemctl status php7-fpm</code></pre>
 <h2 id="_Python_chapter">24. Python</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_centos6_install_python310">24.1. CentOS6 Install Python310</h3>
+<h3 id="_centos6_install_python312">24.1. CentOS6 Install Python312</h3>
 <div class="sect3">
 <h4 id="_编译安装">24.1.1. 编译安装</h4>
 <div class="sect4">
@@ -10932,9 +10932,9 @@ ldconfig -p|grep libsqlite3.so</code></pre>
 <div class="title">下载解压</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tar.xz -O Python-3.10.5.tar.xz
-tar xf Python-3.10.5.tar.xz
-cd Python-3.10.5
+wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz -O Python-3.12.2.tar.xz
+tar xf Python-3.12.2.tar.xz
+cd Python-3.12.2
 
 # diff -uN from-file to-file &gt;to-file.patch
 cat &lt;&lt; EOF &gt; fix_sqlite_include_path.patch
@@ -10958,7 +10958,7 @@ patch -p0 &lt; fix_sqlite_include_path.patch</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">CFLAGS='-I/usr/local/sqlite-3.33/include' \
     LDFLAGS='-L/usr/local/sqlite-3.33/lib' \
-    ./configure --prefix=/usr/local/python-3.10.5 \
+    ./configure --prefix=/usr/local/python-3.12.2 \
     --enable-optimizations \
     --with-openssl=/usr/local/openssl-1.1.1n \
     --with-ssl-default-suites=openssl \
@@ -10967,12 +10967,12 @@ patch -p0 &lt; fix_sqlite_include_path.patch</code></pre>
 make
 make install
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11017,17 +11017,17 @@ ldconfig -p|grep libsqlite3.so</code></pre>
 <h5 id="_安装python3">安装Python3</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/6/python/3/python-3.10.5-1.el6.x86_64.tar.gz -O python-3.10.5-1.el6.x86_64.tar.gz
-tar xf python-3.10.5-1.el6.x86_64.tar.gz
-rm -rf /usr/local/python-3.10.5
-mv python-3.10.5 /usr/local/python-3.10.5
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/6/python/3/python-3.12.2-1.el6.x86_64.tar.gz -O python-3.12.2-1.el6.x86_64.tar.gz
+tar xf python-3.12.2-1.el6.x86_64.tar.gz
+rm -rf /usr/local/python-3.12.2
+mv python-3.12.2 /usr/local/python-3.12.2
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11035,7 +11035,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 <div class="sect3">
 <h4 id="_设置环境变量">24.1.3. 设置环境变量</h4>
 <div class="paragraph">
-<p>通过 <code>pip310</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
+<p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
 <div class="paragraph">
 <p>为方便，增加环境变量：</p>
@@ -11067,7 +11067,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos7_install_python310">24.2. CentOS7 Install Python310</h3>
+<h3 id="_centos7_install_python312">24.2. CentOS7 Install Python312</h3>
 <div class="sect3">
 <h4 id="_编译安装_2">24.2.1. 编译安装</h4>
 <div class="sect4">
@@ -11105,11 +11105,11 @@ ldconfig -p|grep openssl-1.1.1n</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tar.xz -O Python-3.10.5.tar.xz
-tar xf Python-3.10.5.tar.xz
-cd Python-3.10.5
+wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz -O Python-3.12.2.tar.xz
+tar xf Python-3.12.2.tar.xz
+cd Python-3.12.2
 
-./configure --prefix=/usr/local/python-3.10.5 \
+./configure --prefix=/usr/local/python-3.12.2 \
     --enable-optimizations \
     --with-openssl=/usr/local/openssl-1.1.1n \
     --with-ssl-default-suites=openssl \
@@ -11118,12 +11118,12 @@ cd Python-3.10.5
 make
 make install
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11149,19 +11149,19 @@ ldconfig -p|grep openssl-1.1.1n</code></pre>
 <h5 id="_安装python3_2">安装Python3</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/7/python/3/python-3.10.5-1.el7.x86_64.tar.gz -O python-3.10.5-1.el7.x86_64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/7/python/3/python-3.12.2-1.el7.x86_64.tar.gz -O python-3.12.2-1.el7.x86_64.tar.gz
 
-tar xf python-3.10.5-1.el7.x86_64.tar.gz
+tar xf python-3.12.2-1.el7.x86_64.tar.gz
 
-rm -rf /usr/local/python-3.10.5
-mv python-3.10.5 /usr/local/python-3.10.5
+rm -rf /usr/local/python-3.12.2
+mv python-3.12.2 /usr/local/python-3.12.2
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11169,7 +11169,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 <div class="sect3">
 <h4 id="_设置环境变量_2">24.2.3. 设置环境变量</h4>
 <div class="paragraph">
-<p>通过 <code>pip310</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
+<p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
 <div class="paragraph">
 <p>为方便，增加环境变量：</p>
@@ -11212,7 +11212,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos9_install_python310">24.4. CentOS9 Install Python310</h3>
+<h3 id="_centos9_install_python312">24.4. CentOS9 Install Python312</h3>
 <div class="sect3">
 <h4 id="_编译安装_3">24.4.1. 编译安装</h4>
 <div class="sect4">
@@ -11229,23 +11229,23 @@ dnf install -y gcc gcc-c++ make libffi-devel bzip2-devel readline-devel ncurses-
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tar.xz -O Python-3.10.5.tar.xz
-tar xf Python-3.10.5.tar.xz
-cd Python-3.10.5
+wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz -O Python-3.12.2.tar.xz
+tar xf Python-3.12.2.tar.xz
+cd Python-3.12.2
 
-./configure --prefix=/usr/local/python-3.10.5 \
+./configure --prefix=/usr/local/python-3.12.2 \
     --enable-optimizations \
     --with-ensurepip \
     --enable-loadable-sqlite-extensions
 make
 make install
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11256,19 +11256,19 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 <h5 id="_安装python3_3">安装Python3</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/9/python/3/python-3.10.5-1.el9.x86_64.tar.gz -O python-3.10.5-1.el9.x86_64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/centos/9/python/3/python-3.12.2-1.el9.x86_64.tar.gz -O python-3.12.2-1.el9.x86_64.tar.gz
 
-tar xf python-3.10.5-1.el9.x86_64.tar.gz
+tar xf python-3.12.2-1.el9.x86_64.tar.gz
 
-rm -rf /usr/local/python-3.10.5
-mv python-3.10.5 /usr/local/python-3.10.5
+rm -rf /usr/local/python-3.12.2
+mv python-3.12.2 /usr/local/python-3.12.2
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11276,7 +11276,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 <div class="sect3">
 <h4 id="_设置环境变量_3">24.4.3. 设置环境变量</h4>
 <div class="paragraph">
-<p>通过 <code>pip310</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
+<p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
 <div class="paragraph">
 <p>为方便，增加环境变量：</p>
@@ -11308,7 +11308,7 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ubuntu_install_python310">24.5. Ubuntu Install Python310</h3>
+<h3 id="_ubuntu_install_python312">24.5. Ubuntu Install Python312</h3>
 <div class="sect3">
 <h4 id="_编译安装_4">24.5.1. 编译安装</h4>
 <div class="sect4">
@@ -11326,11 +11326,11 @@ apt install gcc make libssl-dev libffi-dev zlib1g zlib1g-dev</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd  ~/downloads
-wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tar.xz -O Python-3.10.5.tar.xz
-tar xf Python-3.10.5.tar.xz
-cd Python-3.10.5
+wget https://www.python.org/ftp/python/3.12.2/Python-3.12.2.tar.xz -O Python-3.12.2.tar.xz
+tar xf Python-3.12.2.tar.xz
+cd Python-3.12.2
 
-./configure --prefix=/usr/local/python-3.10.5 \
+./configure --prefix=/usr/local/python-3.12.2 \
     --enable-optimizations \
     --with-openssl=/usr \
     --with-ssl-default-suites=openssl \
@@ -11339,12 +11339,12 @@ cd Python-3.10.5
 make
 make install
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
@@ -11356,19 +11356,19 @@ pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/ubuntu/18.04/python-3.10.5-1~ubuntu18.04_amd64.tar.gz -O python-3.10.5-1~ubuntu18.04_amd64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/ubuntu/18.04/python-3.12.2-1~ubuntu18.04_amd64.tar.gz -O python-3.12.2-1~ubuntu18.04_amd64.tar.gz
 
-tar xf python-3.10.5-1~ubuntu18.04_amd64.tar.gz
+tar xf python-3.12.2-1~ubuntu18.04_amd64.tar.gz
 
-rm -rf /usr/local/python-3.10.5
-mv python-3.10.5 /usr/local/python-3.10.5
+rm -rf /usr/local/python-3.12.2
+mv python-3.12.2 /usr/local/python-3.12.2
 
-ln -s /usr/local/python-3.10.5 /usr/local/python3
-ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip310
-ln -s /usr/local/python3/bin/python3 /usr/local/bin/python310
+ln -s /usr/local/python-3.12.2 /usr/local/python3
+ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip312
+ln -s /usr/local/python3/bin/python3 /usr/local/bin/python312
 
-pip310 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
-pip310 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+pip312 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple pip
+pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
 </div>
 </div>
 </div>
