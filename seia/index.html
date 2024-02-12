@@ -1226,16 +1226,18 @@ p { margin-bottom: 1.25rem; }
 <ul class="sectlevel2">
 <li><a href="#_centos6_install_python312">24.1. CentOS6 Install Python312</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装">24.1.1. 编译安装</a></li>
-<li><a href="#_二进制压缩包安装">24.1.2. 二进制压缩包安装</a></li>
-<li><a href="#_设置环境变量">24.1.3. 设置环境变量</a></li>
+<li><a href="#_安装yum依赖">24.1.1. 安装YUM依赖</a></li>
+<li><a href="#_编译安装">24.1.2. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装">24.1.3. 二进制压缩包安装</a></li>
+<li><a href="#_设置环境变量">24.1.4. 设置环境变量</a></li>
 </ul>
 </li>
 <li><a href="#_centos7_install_python312">24.2. CentOS7 Install Python312</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装_2">24.2.1. 编译安装</a></li>
-<li><a href="#_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</a></li>
-<li><a href="#_设置环境变量_2">24.2.3. 设置环境变量</a></li>
+<li><a href="#_安装yum依赖_2">24.2.1. 安装YUM依赖</a></li>
+<li><a href="#_编译安装_2">24.2.2. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装_2">24.2.3. 二进制压缩包安装</a></li>
+<li><a href="#_设置环境变量_2">24.2.4. 设置环境变量</a></li>
 </ul>
 </li>
 <li><a href="#_centos8_install_python39">24.3. CentOS8 Install Python39</a>
@@ -1245,15 +1247,17 @@ p { margin-bottom: 1.25rem; }
 </li>
 <li><a href="#_centos9_install_python312">24.4. CentOS9 Install Python312</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装_3">24.4.1. 编译安装</a></li>
-<li><a href="#_二进制压缩包安装_3">24.4.2. 二进制压缩包安装</a></li>
-<li><a href="#_设置环境变量_3">24.4.3. 设置环境变量</a></li>
+<li><a href="#_安装yum依赖_3">24.4.1. 安装YUM依赖</a></li>
+<li><a href="#_编译安装_3">24.4.2. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装_3">24.4.3. 二进制压缩包安装</a></li>
+<li><a href="#_设置环境变量_3">24.4.4. 设置环境变量</a></li>
 </ul>
 </li>
 <li><a href="#_ubuntu_install_python312">24.5. Ubuntu Install Python312</a>
 <ul class="sectlevel3">
-<li><a href="#_编译安装_4">24.5.1. 编译安装</a></li>
-<li><a href="#_二进制压缩包安装_4">24.5.2. 二进制压缩包安装</a></li>
+<li><a href="#_安装deb依赖">24.5.1. 安装DEB依赖</a></li>
+<li><a href="#_编译安装_4">24.5.2. 编译安装</a></li>
+<li><a href="#_二进制压缩包安装_4">24.5.3. 二进制压缩包安装</a></li>
 </ul>
 </li>
 <li><a href="#_pip常用设置">24.6. PIP常用设置</a>
@@ -10862,15 +10866,25 @@ systemctl status php7-fpm</code></pre>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_centos6_install_python312">24.1. CentOS6 Install Python312</h3>
+<div class="paragraph">
+<p><strong>不支持_dbm、tkinter模块</strong></p>
+</div>
 <div class="sect3">
-<h4 id="_编译安装">24.1.1. 编译安装</h4>
+<h4 id="_安装yum依赖">24.1.1. 安装YUM依赖</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y libffi-devel bzip2-devel readline-devel ncurses-devel gdbm-devel tkinter tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk  glibc-devel</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_编译安装">24.1.2. 编译安装</h4>
 <div class="sect4">
 <h5 id="_环境准备">环境准备</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
-yum install xz
-yum install -y gcc gcc-c++ make libffi-devel bzip2-devel readline-devel ncurses-devel gdbm-devel tkinter tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
+yum install -y gcc gcc-c++ make</code></pre>
 </div>
 </div>
 </div>
@@ -10966,7 +10980,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_二进制压缩包安装">24.1.2. 二进制压缩包安装</h4>
+<h4 id="_二进制压缩包安装">24.1.3. 二进制压缩包安装</h4>
 <div class="sect4">
 <h5 id="_安装openssl">安装OpenSSL</h5>
 <div class="listingblock">
@@ -11017,7 +11031,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置环境变量">24.1.3. 设置环境变量</h4>
+<h4 id="_设置环境变量">24.1.4. 设置环境变量</h4>
 <div class="paragraph">
 <p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
@@ -11052,14 +11066,25 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 <div class="sect2">
 <h3 id="_centos7_install_python312">24.2. CentOS7 Install Python312</h3>
+<div class="paragraph">
+<p><strong>不支持tkinter模块</strong></p>
+</div>
 <div class="sect3">
-<h4 id="_编译安装_2">24.2.1. 编译安装</h4>
+<h4 id="_安装yum依赖_2">24.2.1. 安装YUM依赖</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">yum install -y libffi-devel bzip2-devel readline-devel ncurses-devel gdbm-devel tkinter tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk openssl-devel sqlite-devel glibc-devel</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_编译安装_2">24.2.2. 编译安装</h4>
 <div class="sect4">
 <h5 id="_环境准备_2">环境准备</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
-yum install -y gcc gcc-c++ make libffi-devel bzip2-devel readline-devel ncurses-devel gdbm-devel tkinter tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk openssl-devel sqlite-devel</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
+yum install -y gcc gcc-c++ make</code></pre>
 </div>
 </div>
 </div>
@@ -11113,7 +11138,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_二进制压缩包安装_2">24.2.2. 二进制压缩包安装</h4>
+<h4 id="_二进制压缩包安装_2">24.2.3. 二进制压缩包安装</h4>
 <div class="sect4">
 <h5 id="_安装openssl_2">安装OpenSSL</h5>
 <div class="listingblock">
@@ -11151,7 +11176,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置环境变量_2">24.2.3. 设置环境变量</h4>
+<h4 id="_设置环境变量_2">24.2.4. 设置环境变量</h4>
 <div class="paragraph">
 <p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
@@ -11197,14 +11222,30 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 <div class="sect2">
 <h3 id="_centos9_install_python312">24.4. CentOS9 Install Python312</h3>
+<div class="paragraph">
+<p><strong>支持tkinter模块</strong></p>
+</div>
 <div class="sect3">
-<h4 id="_编译安装_3">24.4.1. 编译安装</h4>
+<h4 id="_安装yum依赖_3">24.4.1. 安装YUM依赖</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dnf install -y dnf-plugins-core
+dnf config-manager --set-enabled crb
+dnf install -y gdbm-devel
+
+dnf install -y libffi-devel bzip2-devel readline-devel ncurses-devel tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk openssl-devel sqlite-devel libnsl2-devel</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_编译安装_3">24.4.2. 编译安装</h4>
 <div class="sect4">
 <h5 id="_环境准备_3">环境准备</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
-dnf install -y gcc gcc-c++ make libffi-devel bzip2-devel readline-devel ncurses-devel tcl-devel tcl libuuid-devel zlib-devel zlib xz-devel xz tk-devel tk openssl-devel sqlite-devel</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
+
+dnf install -y gcc gcc-c++ make</code></pre>
 </div>
 </div>
 </div>
@@ -11235,7 +11276,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_二进制压缩包安装_3">24.4.2. 二进制压缩包安装</h4>
+<h4 id="_二进制压缩包安装_3">24.4.3. 二进制压缩包安装</h4>
 <div class="sect4">
 <h5 id="_安装python3_3">安装Python3</h5>
 <div class="listingblock">
@@ -11258,7 +11299,7 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_设置环境变量_3">24.4.3. 设置环境变量</h4>
+<h4 id="_设置环境变量_3">24.4.4. 设置环境变量</h4>
 <div class="paragraph">
 <p>通过 <code>pip312</code> 安装的命令包（比如，rain-shell-scripter），命令被安装在 <code>/usr/local/python3/bin</code> 目录下。</p>
 </div>
@@ -11293,15 +11334,83 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 <div class="sect2">
 <h3 id="_ubuntu_install_python312">24.5. Ubuntu Install Python312</h3>
+<div class="paragraph">
+<p><strong>支持tkinter模块</strong></p>
+</div>
 <div class="sect3">
-<h4 id="_编译安装_4">24.5.1. 编译安装</h4>
+<h4 id="_安装deb依赖">24.5.1. 安装DEB依赖</h4>
+<div class="listingblock">
+<div class="title">common</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">apt install -y libssl-dev libffi-dev zlib1g-dev tk-dev libsqlite3-dev libbz2-dev ncurses-dev liblzma-dev uuid-dev libreadline-dev libgdbm-dev</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">only 18.04/22.04</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">apt install -y libgdbm-compat-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_编译安装_4">24.5.2. 编译安装</h4>
 <div class="sect4">
 <h5 id="_环境准备_4">环境准备</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir ~/downloads
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads
 
-apt install gcc make libssl-dev libffi-dev zlib1g zlib1g-dev</code></pre>
+apt install -y gcc make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>16.04/18.04系统创建tk-dev包的pkg-config配置文件，解决 _tkinter模块无法安装问题：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p ~/downloads/pkgconfig
+
+tk_version=$(dpkg -s tk-dev|grep Version)
+
+cat &lt;&lt; EOF &gt; ~/downloads/pkgconfig/tk.pc
+# tk pkg-config source file
+
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib/x86_64-linux-gnu
+includedir=/usr/include/tcl8.6
+
+Name: The Tk Toolkit
+Description: Tk is a cross-platform graphical user interface toolkit, the standard GUI not only for Tcl, but for many other dynamic languages as well.
+URL: https://www.tcl-lang.org/
+${tk_version}
+Requires: tcl &gt;= 8.6
+Libs: -L\${libdir} -ltk8.6 -ltkstub8.6
+Libs.private: -lXft -lfontconfig -lfreetype -lfontconfig -lX11 -lXss -lXext
+Cflags: -I\${includedir}
+EOF
+
+tcl_version=$(dpkg -s tcl-dev|grep Version)
+
+cat &lt;&lt; EOF &gt; ~/downloads/pkgconfig/tcl.pc
+# tcl pkg-config source file
+
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib/x86_64-linux-gnu
+includedir=/usr/include/tcl8.6
+
+Name: Tool Command Language
+Description: Tcl is a powerful, easy-to-learn dynamic programming language, suitable for a wide range of uses.
+URL: https://www.tcl-tk.org/
+${tcl_version}
+Requires.private: zlib &gt;= 1.2.x
+Libs: -L\${libdir} -ltcl8.6 -ltclstub8.6
+Libs.private: -ldl -lz  -lpthread -lm
+Cflags: -I\${includedir}
+EOF
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/downloads/pkgconfig</code></pre>
 </div>
 </div>
 </div>
@@ -11334,15 +11443,17 @@ pip312 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_二进制压缩包安装_4">24.5.2. 二进制压缩包安装</h4>
-<div class="paragraph">
-<p><strong>Ubuntu 18.04</strong></p>
-</div>
+<h4 id="_二进制压缩包安装_4">24.5.3. 二进制压缩包安装</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget http://dl.cdgeekcamp.com/ubuntu/18.04/python-3.12.2-1~ubuntu18.04_amd64.tar.gz -O python-3.12.2-1~ubuntu18.04_amd64.tar.gz
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 可选一
+wget http://dl.cdgeekcamp.com/ubuntu/16.04/python-3.12.2-1~ubuntu16.04_amd64.tar.gz -O python-3.12.2-1~ubuntu16.04_amd64.tar.gz
+# 可选二
+wget http://dl.cdgeekcamp.com/ubuntu/18.04/python-3.12.2-1~ubuntu18.04_amd64.tar.gz -O python-3.12.2-1~ubuntu18.04_amd64.tar.gz
+# 可选三
+wget http://dl.cdgeekcamp.com/ubuntu/22.04/python-3.12.2-1~ubuntu22.04_amd64.tar.gz -O python-3.12.2-1~ubuntu22.04_amd64.tar.gz
 
-tar xf python-3.12.2-1~ubuntu18.04_amd64.tar.gz
+tar xf python-3.12.2-1~ubuntu*04_amd64.tar.gz
 
 rm -rf /usr/local/python-3.12.2
 mv python-3.12.2 /usr/local/python-3.12.2
