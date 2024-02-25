@@ -7540,14 +7540,10 @@ chmod 755 /usr/local/bin/jq</code></pre>
 <h3 id="_centos8初始化过时">13.4. CentOS8初始化（过时）</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y iproute rsync epel-release vim-enhanced wget curl screen bzip2 tcpdump unzip bash-completion mlocate strace telnet
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y bash-completion bzip2 curl epel-release iftop iotop iproute lbzip2 mlocate pwgen rsync screen strace tar tcpdump telnet tree unzip vim-enhanced wget xz yum-utils
 
 dnf install -y dnf-plugins-core
-dnf config-manager --set-enabled PowerTools
-
-# PHP 7
-dnf install centos-release-scl
-
+dnf config-manager --set-enabled powertools
 
 #禁用SELINUX，必须重启才能生效
 echo SELINUX=disabled&gt;/etc/selinux/config
