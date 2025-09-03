@@ -1686,11 +1686,24 @@ p { margin-bottom: 1.25rem; }
 </li>
 </ul>
 </li>
-<li><a href="#_Misc_chapter">57. 杂项</a>
+<li><a href="#_PGVMonitoring_chapter">57. PGVMonitoring</a>
 <ul class="sectlevel2">
-<li><a href="#_chrome">57.1. Chrome</a>
+<li><a href="#_安装配置_18">57.1. 安装配置</a>
 <ul class="sectlevel3">
-<li><a href="#_安装_proxy_switchyomega_扩展">57.1.1. 安装 Proxy SwitchyOmega 扩展</a></li>
+<li><a href="#_victoriametrics">57.1.1. VictoriaMetrics</a></li>
+<li><a href="#_grafana">57.1.2. Grafana</a></li>
+<li><a href="#_测试数据生成脚本">57.1.3. 测试数据生成脚本</a></li>
+<li><a href="#_node_exporter">57.1.4. Node Exporter</a></li>
+<li><a href="#_prometheus">57.1.5. Prometheus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_Misc_chapter">58. 杂项</a>
+<ul class="sectlevel2">
+<li><a href="#_chrome">58.1. Chrome</a>
+<ul class="sectlevel3">
+<li><a href="#_安装_proxy_switchyomega_扩展">58.1.1. 安装 Proxy SwitchyOmega 扩展</a></li>
 </ul>
 </li>
 </ul>
@@ -20358,12 +20371,375 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Misc_chapter">57. 杂项</h2>
+<h2 id="_PGVMonitoring_chapter">57. PGVMonitoring</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_chrome">57.1. Chrome</h3>
+<h3 id="_安装配置_18">57.1. 安装配置</h3>
 <div class="sect3">
-<h4 id="_安装_proxy_switchyomega_扩展">57.1.1. 安装 Proxy SwitchyOmega 扩展</h4>
+<h4 id="_victoriametrics">57.1.1. VictoriaMetrics</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 拉取镜像
+docker pull victoriametrics/victoria-metrics:latest
+# docker pull m.daocloud.io/docker.io/victoriametrics/victoria-metrics:latest
+
+# 创建专用用户
+useradd -r -s /usr/sbin/nologin \
+  --home-dir /data3/victoria-metrics-data \
+  --create-home victoriametrics
+
+# 运行容器（数据保留6个月）
+docker run -d \
+  --restart always \
+  --user `id -u victoriametrics`:`id -g victoriametrics` \
+  --env LANG=en_US.UTF-8 \
+  --env TZ=Asia/Shanghai \
+  -p 8428:8428 \
+  -v /data3/victoria-metrics-data:/var/lib/victoria-metrics-data \
+  --name victoria_metrics \
+  victoriametrics/victoria-metrics:latest \
+    -retentionPeriod=180d \
+    -selfScrapeInterval=10s \
+    -storageDataPath=/var/lib/victoria-metrics-data
+
+# 验证部署
+docker ps -a
+docker logs victoria_metrics
+ss -antpl | grep 8428
+
+# 配置防火墙
+iptables -A INPUT -i br1 -p tcp --dport 8428 -j DROP
+iptables -I INPUT -s y.y.y.y/32 -i br1 -p tcp --dport 8428 -j ACCEPT</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">测试</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 基础功能测试
+pip3 install beautifulsoup4
+curl -s http://localhost:8428/ | \
+  python3 -c "from bs4 import BeautifulSoup; import sys; soup=BeautifulSoup(sys.stdin.read(),'html.parser'); [print(text) for text in [t.strip() for t in soup.find_all(string=True) if t.strip()]]"
+
+# 验证数据保留策略
+curl -s http://localhost:8428/metrics | grep retentionPeriod
+
+# 写入测试数据
+curl -d 'test_metric{label="value"} 123' \
+  http://localhost:8428/api/v1/import/prometheus
+
+# 查询测试数据
+curl -s 'http://localhost:8428/api/v1/query' \
+  --data-urlencode 'query=test_metric' | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>外部访问地址</strong>：<code><a href="http://x.x.x.x:8428/metrics" class="bare">http://x.x.x.x:8428/metrics</a></code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grafana">57.1.2. Grafana</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 拉取镜像
+docker pull grafana/grafana-oss:latest
+# docker pull docker.1ms.run/grafana/grafana-oss:latest
+
+# 创建专用用户
+useradd -r -s /usr/sbin/nologin \
+  --home-dir /data3/grafana-data \
+  --create-home grafana
+
+# 运行容器
+docker run -d \
+  --restart always \
+  --user `id -u grafana`:`id -g grafana` \
+  --env LANG=en_US.UTF-8 \
+  --env TZ=Asia/Shanghai \
+  -p 23000:3000 \
+  -v /data3/grafana-data:/var/lib/grafana \
+  --name grafana \
+  docker.1ms.run/grafana/grafana-oss:latest
+
+# 验证部署
+docker ps -a
+docker logs grafana | head -n 20
+ss -antpl | grep 23000
+
+# 配置防火墙
+iptables -A INPUT -i br1 -p tcp --dport 23000 -j DROP
+iptables -I INPUT -s y.y.y.y/32 -i br1 -p tcp --dport 23000 -j ACCEPT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>访问方式</strong>：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>打开 <code><a href="http://x.x.x.x:23000/login" class="bare">http://x.x.x.x:23000/login</a></code></p>
+</li>
+<li>
+<p>使用默认凭证：admin/admin</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>配置数据源</strong>：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>导航到: <code>Connections</code> → <code>Data Sources</code></p>
+</li>
+<li>
+<p>添加 <code>Prometheus</code> 类型数据源</p>
+</li>
+<li>
+<p>设置URL: <code><a href="http://x.x.x.x:8428" class="bare">http://x.x.x.x:8428</a></code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_测试数据生成脚本">57.1.3. 测试数据生成脚本</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt; EOF &gt; ~/victoria_metrics_push.py
+import requests
+import random
+import time
+from datetime import datetime
+import sys
+
+# 配置参数
+PUSH_URL = "http://localhost:8428/api/v1/import/prometheus"
+METRIC_NAME = "test_metric"
+LABEL_NAME = "label"
+LABEL_VALUE = "value"
+DURATION = 60   # 总运行时间(秒)
+INTERVAL = 5    # 推送间隔(秒)
+
+def generate_metric():
+    """生成指标数据点"""
+    return f'{METRIC_NAME}{{{LABEL_NAME}="{LABEL_VALUE}"}} {random.randint(1, 500)} {int(time.time()*1000)}'
+
+def push_metric(data):
+    """推送指标到VictoriaMetrics"""
+    try:
+        response = requests.post(PUSH_URL, data=data, headers={"Content-Type": "text/plain"})
+        response.raise_for_status()
+        print(f"推送成功: {data}")
+        return True
+    except Exception as e:
+        print(f"推送失败: {str(e)}")
+        return False
+
+def main():
+    start_time = time.time()
+    end_time = start_time + DURATION
+    total_points = 0
+
+    print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"持续时间: {DURATION}秒, 间隔: {INTERVAL}秒")
+    print("-" * 50)
+
+    while time.time() &lt; end_time:
+        if push_metric(generate_metric()):
+            total_points += 1
+
+        remaining = max(0, end_time - time.time())
+        sleep_time = min(INTERVAL, remaining)
+        progress = min(100, int((1 - remaining/DURATION) * 100))
+
+        print(f"进度: {progress}% | 已推送: {total_points} | 剩余: {int(remaining)}秒")
+        if sleep_time &gt; 0:
+            time.sleep(sleep_time)
+
+    print("-" * 50)
+    print(f"完成! 总推送: {total_points} 点")
+    print(f"实际用时: {time.time() - start_time:.2f}秒")
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n用户中断")
+        sys.exit(0)
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>执行脚本</strong>：<code>python3 ~/victoria_metrics_push.py</code></p>
+</div>
+<div class="paragraph">
+<p><strong>数据验证</strong>：在Grafana的 <code>Drilldown</code> 中查看生成的数据</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_node_exporter">57.1.4. Node Exporter</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 下载安装
+mkdir -p ~/downloads/
+wget https://github.com/prometheus/node_exporter/releases/download/v1.9.1/node_exporter-1.9.1.linux-amd64.tar.gz \
+  -O ~/downloads/node_exporter-1.9.1.linux-amd64.tar.gz
+
+tar xf ~/downloads/node_exporter-*.tar.gz -C /usr/local/
+mv /usr/local/node_exporter-* /usr/local/node_exporter-1.9.1
+mkdir -p /usr/local/node_exporter-1.9.1/bin
+mv /usr/local/node_exporter-1.9.1/node_exporter /usr/local/node_exporter-1.9.1/bin/
+
+# 创建系统用户
+useradd -r -s /bin/false node_exporter
+chown -R node_exporter:node_exporter /usr/local/node_exporter-1.9.1
+
+# 准备存储目录
+mkdir -p /var/lib/node_exporter/textfile_collector
+chown node_exporter:node_exporter /var/lib/node_exporter/textfile_collector
+
+# 创建systemd服务
+cat &lt;&lt; EOF &gt; /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+ExecStart=/usr/local/node_exporter-1.9.1/bin/node_exporter \
+  --web.listen-address=:29100 \
+  --collector.systemd \
+  --collector.systemd.unit-whitelist="(docker|sshd|nginx).service" \
+  --collector.textfile.directory=/var/lib/node_exporter/textfile_collector
+
+MemoryMax=100M
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 启动服务
+systemctl daemon-reload
+systemctl enable --now node_exporter
+
+# 验证服务
+systemctl status node_exporter
+ss -antpl | grep 29100
+curl -Is http://localhost:29100/metrics
+
+# 防火墙配置
+iptables -A INPUT -i br1 -p tcp --dport 29100 -j DROP
+iptables -I INPUT -s y.y.y.y/32 -i br1 -p tcp --dport 29100 -j ACCEPT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>外部访问</strong>：<code><a href="http://x.x.x.x:29100/metrics" class="bare">http://x.x.x.x:29100/metrics</a></code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prometheus">57.1.5. Prometheus</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 拉取镜像
+docker pull prom/prometheus:latest
+# docker pull docker.1ms.run/prom/prometheus:latest
+
+# 创建专用用户
+useradd -r -s /usr/sbin/nologin \
+  --home-dir /data3/prometheus-data \
+  --create-home prometheus
+
+# 准备目录结构
+mkdir -p /data3/prometheus-data/{data,conf} /data3/prometheus-data/conf/targets
+chown -R prometheus:prometheus /data3/prometheus-data
+
+# 创建目标配置文件
+cat &lt;&lt; EOF &gt; /data3/prometheus-data/conf/targets/node-exporters.json
+[
+  {
+    "targets": ["x.x.x.x:29100"],
+    "labels": {
+      "env": "staging",
+      "role": "host",
+      "instance": "host-primary-01"
+    }
+  }
+]
+EOF
+
+# 创建主配置文件
+cat &lt;&lt; EOF &gt; /data3/prometheus-data/conf/prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'my-cluster'
+    replica: 'prometheus-01'
+
+remote_write:
+  - url: "http://x.x.x.x:8428/api/v1/write"
+    queue_config:
+      max_samples_per_send: 10000
+      capacity: 20000
+      max_shards: 20
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node-exporter-file-sd'
+    file_sd_configs:
+      - files:
+          - '/etc/prometheus/targets/node-exporters.json'
+        refresh_interval: 1m
+EOF
+
+# 运行容器
+docker run -d \
+  --restart always \
+  --user `id -u prometheus`:`id -g prometheus` \
+  --env LANG=en_US.UTF-8 \
+  --env TZ=Asia/Shanghai \
+  -p 29090:9090 \
+  -v /data3/prometheus-data/conf:/etc/prometheus \
+  -v /data3/prometheus-data/data:/prometheus \
+  --name prometheus \
+  docker.1ms.run/prom/prometheus:latest \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/prometheus \
+    --web.enable-lifecycle \
+    --storage.tsdb.retention.time=180d
+
+# 验证部署
+docker ps -a
+docker logs prometheus | head -n 20
+ss -antpl | grep 29090
+curl http://localhost:29090/query
+
+# 防火墙配置
+iptables -A INPUT -i br1 -p tcp --dport 29090 -j DROP
+iptables -I INPUT -s y.y.y.y/32 -i br1 -p tcp --dport 29090 -j ACCEPT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>外部访问</strong>：<code><a href="http://x.x.x.x:29090/query" class="bare">http://x.x.x.x:29090/query</a></code></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_Misc_chapter">58. 杂项</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_chrome">58.1. Chrome</h3>
+<div class="sect3">
+<h4 id="_安装_proxy_switchyomega_扩展">58.1.1. 安装 Proxy SwitchyOmega 扩展</h4>
 <div class="paragraph">
 <p>安装 <code>Proxy SwitchyOmega</code> 之前，需要访问Google应用商店，让Chrome挂全局代理：</p>
 </div>
@@ -23052,7 +23428,7 @@ EOF</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-16 22:31:57 +0800
+Last updated 2025-09-03 13:42:51 +0800
 </div>
 </div>
 <script src="js/highlight.min.js"></script>
